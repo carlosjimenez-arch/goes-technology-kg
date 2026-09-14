@@ -31,7 +31,10 @@ def allowed_url(url: str, policy: dict[str, Any]) -> bool:
 def license_gate(document: SourceDocument, policy: dict[str, Any]) -> LicenseDecision:
     reason = "Verified resource-specific admission evidence"
     accepted = True
-    if not allowed_url(str(document.url), policy):
+    if document.provenance == "generated":
+        accepted = False
+        reason = "Generated content cannot enter the corpus; provenance must be external"
+    elif not allowed_url(str(document.url), policy):
         accepted = False
         reason = "URL is outside the publisher allowlist"
     elif not document.license_evidence_url or not document.license_evidence:

@@ -1,6 +1,5 @@
 # GOES Technology Knowledge Graph
 
-[![CI](https://github.com/carlosjimenez-arch/goes-technology-kg/actions/workflows/ci.yml/badge.svg?branch=feat%2Fcontext)](https://github.com/carlosjimenez-arch/goes-technology-kg/actions/workflows/ci.yml)
 [![Python 3.13](https://img.shields.io/badge/python-3.13-3776AB?logo=python&logoColor=white)](https://www.python.org/downloads/)
 [![uv](https://img.shields.io/badge/packaging-uv-DE5FE9)](https://docs.astral.sh/uv/)
 
@@ -60,7 +59,7 @@ discover → license gate → fetch → hash + manifest
          → parse → normalize → curriculum-unit chunks → embed → index
 ```
 
-Discovery reads a reviewed [source catalogue](corpus/sources.yaml). An allowed publisher does not automatically grant admission: each resource needs recorded evidence of an open license or official publication. Rejections and acquisition failures retain their reasons. `goes-tech fetch` deliberately acquires a new snapshot and archives the previous manifest.
+Discovery reads a reviewed [source catalogue](corpus/sources.yaml). Every source declares `provenance: external`; the gate rejects `generated` so pipeline output can never re-enter the corpus. An allowed publisher does not automatically grant admission: each resource needs recorded evidence of an open license or official publication. Rejections and acquisition failures retain their reasons. `goes-tech fetch` deliberately acquires a new snapshot and archives the previous manifest.
 
 PDF parsing preserves page and unit boundaries. HTML parsing preserves complete activities and section/DOM locators. Reversible newline normalization maps evidence intervals back to extracted source text. Citations resolve through document hash, paragraph ID and character offsets. Unknown textless pages fail unless a digest-pinned manual review is recorded.
 
@@ -73,17 +72,18 @@ Long activities use token windows for embedding only; cited units remain complet
 | `src/goes_tech_kg/schemas/` | Pydantic contracts and graph/curriculum invariants |
 | `src/goes_tech_kg/corpus/` | Acquisition, parsing, traceability, embeddings and indexing |
 | `src/goes_tech_kg/graph/` | Semantic graph-version diffs |
+| `src/goes_tech_kg/eval/` | Confidence calibration; metrics, slices and judges follow decision 0011 |
 | `src/goes_tech_kg/curriculum/` | Declared cross-subject grade-conflict checks |
 | `src/goes_tech_kg/agents/` | License-gate pipeline node |
 | `corpus/`, `decisions/` | Reviewed sources and validated architecture decisions |
 | `data/manifests/`, `data/processed/` | Acquisition records and reproducible derived artifacts |
 | `tests/` | Contract, property, real-source, VCR and performance tests |
 
-Skills are context-free archetypes; context enters during curricularization. `VOLATILE` tool operations live outside graph snapshots and cannot become prerequisites. Material downgrades must disclose lost practical performance and its instructional bridge.
+Skills are context-free archetypes; context enters during curricularization. A micro-skill's `confidence` is never authored: it is computed from judge verdicts weighted by their measured agreement with humans, citation support and revision count, then mapped through a calibration table fitted on unaided human labels (`eval/calibration.py`). Without calibrated judges or a table the value stays null, and `verify_confidence` fails any stored value that does not reproduce. `VOLATILE` tool operations live outside graph snapshots and cannot become prerequisites. Material downgrades must disclose lost practical performance and its instructional bridge.
 
 Budgets support `standalone`, `transversal` and `hybrid` contracts with explicit capacities and host-subject accounting. There is **no assumed 160-hour allocation**. Cross-subject dependencies include repository, snapshot hash, node ID and declared availability grade; authoritative sibling-export adapters remain necessary.
 
-Structure follows the sibling repositories. Context follows the available science sibling; Mathematics uses a different vocabulary and needs an explicit adapter. Decisions [0004](decisions/0004-contracts-and-compatibility.yaml) and [0005](decisions/0005-ingestion-and-replay.yaml) explain compatibility and ingestion trade-offs.
+Decisions [0010](decisions/0010-system-design.yaml) and [0011](decisions/0011-evaluation-design.yaml) propose the production framing and the evaluation design. Structure follows the sibling repositories. Context follows the available science sibling; Mathematics uses a different vocabulary and needs an explicit adapter. Decisions [0004](decisions/0004-contracts-and-compatibility.yaml) and [0005](decisions/0005-ingestion-and-replay.yaml) explain compatibility and ingestion trade-offs.
 
 ## Validation
 
@@ -96,7 +96,7 @@ uv build            # Source distribution and wheel
 
 Tests do not mock domain logic. Three attributed real excerpts cover PDF and HTML; VCR replays a real HTTP failure. Hypothesis checks canonical identities, graph ordering, text conservation and offsets. Tests also exercise volatile-node rejection, material tiers, budgets, grade conflicts and source/vector corruption.
 
-GitHub CI runs the portable checks and package build on Python 3.13. Performance thresholds are enforced by `make check` against a reviewed machine-specific [baseline](tests/benchmarks/baseline.json), not compared across unrelated hosted runners. The benchmark workloads are one real PDF page, a real HTML curriculum excerpt, and a seeded 1,000 × 768-vector index. Migration measurements are recorded in [desktop-migration-validation.json](research/desktop-migration-validation.json). All 28 offline tests passed on Python 3.13 with 75.98% coverage.
+Hosted CI is suspended by decision [0012](decisions/0012-ci-suspension.yaml); `make static-check` runs the portable checks locally. Performance thresholds are enforced by `make check` against a reviewed machine-specific [baseline](tests/benchmarks/baseline.json), not compared across unrelated hosted runners. The benchmark workloads are one real PDF page, a real HTML curriculum excerpt, and a seeded 1,000 × 768-vector index. Migration measurements are recorded in [desktop-migration-validation.json](research/desktop-migration-validation.json). Current counts are reported by `make static-check`.
 
 | Local benchmark | Median |
 | --- | ---: |

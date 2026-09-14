@@ -1,0 +1,28 @@
+schema_version: architecture-decision/1.0
+id: '0012'
+title: Suspend the hosted CI workflow; local gates remain the definition of done
+status: accepted
+date: '2026-09-14'
+context: >
+  The maintainer asked to remove CI for the moment. The hosted workflow only ran the portable
+  subset (lock, lint, typing, offline tests, build) and could not run the machine-specific
+  benchmark gate. Local make targets already run the complete gate.
+options:
+  - id: keep_ci
+    name: Keep the GitHub Actions workflow
+  - id: suspend_ci
+    name: Delete the workflow and badge; keep make static-check and make check as the gate
+criteria:
+  - Follow the maintainer's explicit instruction.
+  - Do not lose any check: everything the workflow ran must remain runnable locally.
+  - Record how to reinstate it.
+selected_option: suspend_ci
+rationale:
+  - .github/workflows/ci.yml and the README badge are removed; make static-check runs the identical steps locally.
+  - CLAUDE.md section 3.2 and section 8 still describe a hosted offline CI gate; that text is not edited here and describes the intended end state, not the current one.
+  - Reinstating CI means restoring the workflow with the same make target; no test depends on a hosted runner.
+consequences:
+  - Definition of done is make check on the maintainer's machine until CI returns.
+  - Decision 0006 remains accepted; its CI statements are historical for the period this record is in force.
+validation:
+  - tests/unit/test_decisions.py

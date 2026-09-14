@@ -1,1 +1,1 @@
-"""Technology curriculum infrastructure."""
+"""Evaluation harness: calibration today; metrics, slices, baselines and judges follow decision 0011."""

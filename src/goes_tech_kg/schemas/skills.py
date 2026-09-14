@@ -5,7 +5,8 @@ from typing import Annotated, Literal, Self
 
 from pydantic import Field, model_validator
 
-from goes_tech_kg.schemas.base import Contract, Grade, Minutes, Probability, Text, stable_id
+from goes_tech_kg.schemas.base import Contract, Digest, Grade, Minutes, Probability, Text, stable_id
+from goes_tech_kg.schemas.calibration import ConfidenceBasis
 
 
 class Strand(StrEnum):
@@ -72,7 +73,7 @@ class PrerequisiteRef(Contract):
 
 
 class CrossSubjectDependency(Contract):
-    repository: Literal["goes-math-kg", "goes-linguistics-kg", "goes-science-kg"]
+    repository: Literal["goes-math-kg", "goes-linguistics-kg", "goes-natural-science-kg"]
     snapshot_sha256: Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
     node_id: Text
     available_grade: Annotated[int, Field(strict=True, ge=1, le=12)]
@@ -149,7 +150,28 @@ class MicroSkill(Contract):
     evidence_of_mastery: Text
     estimated_minutes: Annotated[Minutes, Field(gt=0)]
     source_refs: Annotated[tuple[EvidenceRef, ...], Field(min_length=1)]
-    confidence: Probability
+    # Confidence is never authored: it is calibrated from confidence_basis (eval.calibration).
+    confidence: Probability | None = None
+    confidence_basis: ConfidenceBasis | None = None
+    calibration_sha256: Digest | None = None
+
+    @property
+    def human_reviewed(self) -> bool:
+        return self.confidence_basis is not None and self.confidence_basis.human_review != "none"
+
+    @model_validator(mode="after")
+    def derived_confidence(self) -> Self:
+        if self.confidence is not None and self.confidence_basis is None:
+            raise ValueError("confidence requires a recorded confidence basis")
+        if (
+            self.confidence is not None
+            and self.calibration_sha256 is None
+            and not self.human_reviewed
+        ):
+            raise ValueError("calibrated confidence requires the calibration table digest")
+        if self.confidence is None and self.calibration_sha256 is not None:
+            raise ValueError("calibration digest without a confidence value")
+        return self
 
     @model_validator(mode="after")
     def intrinsic_identity(self) -> Self:

@@ -6,6 +6,7 @@ import httpx
 import typer
 import yaml
 
+from goes_tech_kg.config import Settings
 from goes_tech_kg.corpus.embed import Embedder
 from goes_tech_kg.corpus.fetch import restore as restore_record
 from goes_tech_kg.corpus.pipeline import acquire, compile_corpus, read_manifest
@@ -56,7 +57,7 @@ def build(
             model_path, data_root / "processed/embeddings", replay=not generate_embeddings
         )
     )
-    report = compile_corpus(data_root, embedder)
+    report = compile_corpus(data_root, embedder, Settings().seed)
     typer.echo(canonical_json(report))
     if not report["coverage_complete"]:
         raise typer.Exit(2)

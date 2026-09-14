@@ -13,17 +13,29 @@ class DecisionOption(Contract):
     name: Text
 
 
+class EnforcementTest(Contract):
+    model_config = ConfigDict(extra="allow", frozen=True)
+    id: Text
+    assertion: Text
+
+
+class Enforcement(Contract):
+    status: Literal["specified_not_implemented", "implemented"]
+    tests: list[EnforcementTest] = Field(min_length=1)
+
+
 class ArchitectureDecision(Contract):
     # Phase 1 records carry research matrices and citations beyond this common contract.
     model_config = ConfigDict(extra="allow", frozen=True)
     schema_version: Text
     id: Text
     title: Text
-    status: Literal["proposed", "accepted", "superseded"]
+    status: Literal["proposed", "pending", "accepted", "superseded"]
     options: list[DecisionOption] = Field(min_length=2)
     criteria: list[Any] = Field(min_length=1)
     selected_option: Text
     rationale: list[Text] = Field(min_length=1)
+    enforced_by: Enforcement | None = None
 
     @model_validator(mode="after")
     def choice(self) -> Self:

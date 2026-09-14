@@ -44,7 +44,6 @@ def micro_factory(skill, evidence):
             evidence_of_mastery="Explain every state transition on an unseen sequence",
             estimated_minutes=30,
             source_refs=[evidence.model_dump()],
-            confidence=0.8,
         )
         data.update(updates)
         return MicroSkill.model_validate(data)

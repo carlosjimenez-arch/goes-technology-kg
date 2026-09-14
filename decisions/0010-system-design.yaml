@@ -1,0 +1,606 @@
+schema_version: architecture-decision/1.0
+id: '0010'
+title: Production ML-system framing for an LLM-composition curriculum pipeline
+status: proposed
+date: '2026-09-14'
+supersedes: []
+roles:
+  - technology_curriculum_designer
+  - computational_thinking_researcher
+  - knowledge_graph_researcher
+  - ai_software_engineer
+affected_invariants:
+  - determinism_and_replay
+  - provenance
+  - meaningful_tests
+  - git_and_secrets
+  - performance_and_state
+context: >
+  The maintainer asked for the repository to be structured as a production ML/AI system
+  following the Huyen framework (Designing Machine Learning Systems; AI Engineering), with
+  each concept translated into this domain rather than copied as folders, and with an
+  explicit list of what does not apply. The system does not train models. It is a batch
+  LLM-composition pipeline that emits a versioned artifact: a curriculum knowledge graph and
+  a derived curriculum, reviewed by humans before adoption. No LLM stage exists yet; the
+  implemented pipeline is corpus acquisition, parsing, chunking, embedding and indexing.
+  This record fixes the translation, the discards and the target layout. It does not
+  implement the pipeline and it does not claim any evaluation has been run.
+
+options:
+  - id: literal_mlops
+    name: Reproduce the book chapters as repository components
+    pros:
+      - Recognizable to ML engineers; off-the-shelf tooling for stores, serving and monitors.
+    cons:
+      - Feature store, online serving, autoscaling and live A/B testing have no traffic to serve.
+      - Every unused layer must be maintained and buries lineage, evaluation and drift work.
+  - id: translated_batch_artifact_system
+    name: Translate each concept to a batch artifact pipeline; discard serving-side machinery
+    pros:
+      - Keeps versioning, lineage, baselines, slices, drift and judge validation as first-class.
+      - Every component maps to an auditable question a policy maker can ask.
+    cons:
+      - Some vocabulary differs from the books; new collaborators need the translation table.
+      - No vendor tooling for judge calibration or curriculum slices; must be built and tested here.
+  - id: research_scripts
+    name: Keep the current research-script structure and add evaluation ad hoc
+    pros:
+      - Lowest immediate cost.
+    cons:
+      - Cannot answer why a skill sits in a grade; no baseline comparison; no drift detection.
+      - Fails the adoption requirement stated by the maintainer.
+
+criteria:
+  - Every retained component answers an auditability or quality question about the artifact.
+  - Nothing is built for traffic, latency or scale the system will never have.
+  - Evaluation exists before generation; judges are validated before they gate anything.
+  - A new subject or skill map costs configuration plus a golden set, not code.
+  - Compatible with the invariants in CLAUDE.md sections 3 to 6 and with siblings.
+
+selected_option: translated_batch_artifact_system
+
+rationale:
+  - The product is an artifact, not a service. Quality lives in the artifact and its lineage, so the design centres the run manifest, the evaluation harness and drift gates instead of serving.
+  - The maintainer's mapping is adopted with four corrections recorded below (ml_objective, feature_engineering, deployment, monitoring); the remainder is confirmed.
+  - Discards are explicit and justified so a future contributor does not reintroduce them by habit.
+  - The repository already implements several functions under other names (see existing_coverage); the layout reuses them instead of duplicating.
+
+# ---------------------------------------------------------------------------
+# 1. Translation of the Huyen framework to this domain
+# ---------------------------------------------------------------------------
+translation:
+  - concept: business_objective
+    maintainer_mapping: Student learning; adoption viability by the ministry. Not measurable by the system.
+    verdict: confirmed
+    domain_meaning: >
+      Students in grades 2 to 6 learn technology (design, systems, computational thinking, digital
+      citizenship) and the ministry can adopt the curriculum without rewriting it. The system cannot
+      observe either. The only proxy the system can serve is answerability: for any micro-skill,
+      a human can reconstruct why it exists, why it sits in its grade and what evidence supports it.
+    measured_by: Not measured. Recorded as the reason every other objective exists.
+
+  - concept: ml_objective
+    maintainer_mapping: 'Graph quality, measurable: skill-map coverage, prerequisite precision against human reference, verifiable-citation rate, schema adherence, cross-run consistency.'
+    verdict: corrected
+    critique: >
+      Three of the five proposed metrics measure what is easy, not what matters. Schema adherence
+      and cross-run consistency are necessary hygiene, already enforced by Pydantic contracts and
+      the replay design; a graph can be 100 percent valid, 100 percent reproducible and
+      pedagogically wrong. Coverage counts whether a skill-map entry has descendants, not whether
+      the descendants are teachable in that grade. Verifiable-citation rate says a locator resolves,
+      not that the cited passage supports the claim. Prerequisite precision against a human reference
+      is the one proposed metric that touches the important thing, and it is incomplete without
+      recall: a graph that emits only the two safest edges has perfect precision.
+    domain_meaning: >
+      Primary metrics (what matters): prerequisite edge precision AND recall against the human
+      golden set, grade-placement agreement with the golden set, citation support rate judged by a
+      human on a sample (the passage actually supports the claim), and micro-skill decomposition
+      acceptability on the golden subset. Secondary gates (necessary, not sufficient): schema
+      adherence, citation resolution rate, cross-run byte identity, skill-map coverage.
+    measured_by: decisions/0011-evaluation-design.yaml metrics and thresholds; every metric is reported per slice.
+
+  - concept: training_data
+    maintainer_mapping: Two separately versioned things; the golden set never enters the corpus.
+    verdict: confirmed_and_extended
+    domain_meaning: >
+      (a) The corpus is the system input: licensed curricula and frameworks with manifest, digests
+      and locators. (b) The golden set is the evaluation input: human-annotated micro-skills,
+      prerequisite edges, grade placements and citation judgments. A third input class exists and
+      must also be kept apart: (c) the skill map and official baseline, which are alignment
+      targets, not evidence (math anti-circularity boundary in CLAUDE.md section 3.5). Confusing
+      (a) with (b) leaks the test set into the prompt context; confusing (a) with (c) lets the
+      official programme prove itself.
+    separation_rule: >
+      Golden records live under evaluation/golden/ and are never chunked, embedded or retrievable.
+      The retrieval stage asserts that no golden text digest appears in the index. Corpus records
+      carry provenance external|generated and the gate rejects generated (section 5 barrier).
+
+  - concept: feature_engineering
+    maintainer_mapping: Chunking, embeddings, retrieval and context assembly; most decisive and least measured.
+    verdict: confirmed_with_scope_note
+    domain_meaning: >
+      Everything between raw bytes and the prompt: unit-preserving chunking, embedding, exact
+      retrieval, ranking and the assembled context window. Today chunking, embedding and indexing
+      exist and are digest-replayed; retrieval and context assembly do not exist yet, and nothing
+      measures retrieval quality.
+    scope_note: >
+      In the books this stage is where leakage happens. Here the equivalent leak is retrieving a
+      golden passage or a generated document into the context. The instrumentation must therefore
+      record, per LLM call, the chunk identifiers and digests injected, so leakage is detectable
+      after the fact and retrieval recall against golden citations can be computed.
+    measured_by: retrieval recall@k against golden citations; context leakage count (must be zero); per-call context manifest.
+
+  - concept: model_development
+    maintainer_mapping: 'Prompt variants and agent topology; the model is (prompt_version, graph_topology, llm_version).'
+    verdict: confirmed_with_extension
+    domain_meaning: >
+      A model version is the tuple (prompt_version, topology_version, llm_version, generation
+      settings, retrieval_version, judge_panel_version). Retrieval and judge configuration are
+      added because either changes outputs without any prompt edit. The tuple is hashed into the
+      run manifest and into every node's lineage.
+    measured_by: run manifest model_version digest; canary gate on any component change.
+
+  - concept: offline_evaluation
+    maintainer_mapping: Golden set plus slice evaluation.
+    verdict: confirmed
+    domain_meaning: Golden set, baselines B0 to S, slices, judge validation and behavioural tests. Fully specified in 0011.
+
+  - concept: deployment
+    maintainer_mapping: CLI plus versioned artifacts plus dashboard. Batch, not online.
+    verdict: corrected
+    critique: >
+      Deployment here is not shipping code; it is promoting an artifact version from candidate to
+      reviewed to published. The CLI is the operator interface, not the deployment. The dashboard
+      is a static report rendered from committed run manifests, not a service.
+    domain_meaning: >
+      A release is a directory under data/graph/<version>/ with nodes, edges, ledger, manifest and
+      evaluation report, promoted only when the canary passed, the worst slice clears its floor,
+      the needs_human_review fraction is under threshold and the checkout is clean.
+    measured_by: promotion gate test; release manifest completeness test.
+
+  - concept: distribution_shift
+    maintainer_mapping: Three sources treated separately.
+    verdict: confirmed
+    domain_meaning: See drift section below. D1 baseline, D2 corpus, D3 model.
+
+  - concept: continual_learning
+    maintainer_mapping: Re-run on skill-map or baseline change; incorporate teacher and expert feedback.
+    verdict: confirmed_with_correction
+    critique: >
+      Nothing here learns continually. There is no gradient and no online update. The honest name
+      is scheduled re-generation with feedback ingestion. Feedback returns through two traceable
+      channels: output corrections become golden or override records; prompt corrections become a
+      new prompt_version that must pass the canary. Feedback never edits a published artifact in place.
+    domain_meaning: Re-run triggers are baseline version change, corpus manifest change, model or prompt version change, and accepted feedback batches.
+
+  - concept: monitoring
+    maintainer_mapping: No inference traffic; monitor artifact quality between runs.
+    verdict: corrected
+    critique: >
+      Between-run quality comparison is regression testing, not monitoring. What deserves the
+      name monitoring is the set of signals that arrive without a run: official programme URLs
+      changing bytes, source URLs going dark, provider model identifiers being deprecated,
+      teacher feedback accumulating. These are drift detectors that trigger a run, not metrics on a run.
+    domain_meaning: >
+      Two things. Regression: every run emits metrics compared with the previous accepted run and
+      the baseline table. Watch: a network-enabled, separately authorized check that re-hashes
+      pinned sources and records provider model availability; changed bytes create a new baseline
+      or corpus version candidate, never a silent update.
+
+  - concept: data_lineage
+    maintainer_mapping: Reconstruct source document to chunk to prompt_version to llm_version to judge verdicts to revision count to commit.
+    verdict: confirmed
+    domain_meaning: See lineage section below.
+
+# ---------------------------------------------------------------------------
+# 2. What does not apply, with justification
+# ---------------------------------------------------------------------------
+discarded:
+  - component: feature_store
+    hypothesis: not_needed
+    verdict: confirmed
+    reason: >
+      Features are chunks and embeddings computed once per corpus version and replayed from
+      digest-addressed records. There is no train/serve skew because there is no serving path;
+      the same replay records feed every run. A content-addressed directory is the feature store.
+  - component: online_serving
+    hypothesis: not_needed
+    verdict: confirmed
+    reason: No request arrives at run time. Consumers read committed JSONL and CSV.
+  - component: autoscaling
+    hypothesis: not_needed
+    verdict: confirmed
+    reason: Runs are few, scheduled, and bounded by LLM quota, not by compute. A single machine with pinned thread count is the determinism requirement, and autoscaling would fight it.
+  - component: inference_latency_optimization
+    hypothesis: not_needed
+    verdict: confirmed
+    reason: Wall-clock cost of a run is irrelevant next to the cost of a wrong prerequisite adopted nationally. Token cost is tracked as a budget line, not optimized as latency.
+  - component: live_ab_testing
+    hypothesis: not_needed
+    verdict: confirmed
+    reason: There are no users to randomize over. The equivalent is the offline baseline table with a frozen golden set; a variant that wins on the golden set and the canary is promoted.
+  - component: shadow_deployment
+    hypothesis: not_needed
+    verdict: confirmed_with_replacement
+    reason: >
+      Nothing to shadow. The canary run against the frozen golden subset before any model or
+      prompt change is the batch equivalent and is retained under that name.
+  - component: model_registry
+    hypothesis: not stated by maintainer
+    verdict: discarded_as_service_kept_as_file
+    reason: A registry service is unnecessary. The model version tuple is a committed catalogue file plus its digest in each run manifest.
+  - component: streaming_ingestion
+    verdict: discarded
+    reason: Sources are documents acquired deliberately and pinned. Streaming would violate the pinned-manifest invariant.
+  - component: model_training_and_fine_tuning
+    verdict: discarded
+    reason: No labelled volume, and a fine-tuned model would make judge independence and lineage harder. Prompt and topology are the tunable surface.
+  - component: real_time_monitoring_and_alerting
+    verdict: discarded_as_service_kept_as_watch
+    reason: Replaced by an authorized periodic watch that re-hashes sources and checks provider model availability.
+
+retained_with_full_force:
+  - data_and_artifact_versioning
+  - lineage_per_node
+  - baselines_before_architecture
+  - slice_evaluation_with_worst_slice_visible
+  - drift_detection_by_source
+  - evaluation_of_evaluators
+  - degenerate_loop_barrier
+  - immutable_run_manifests
+
+# ---------------------------------------------------------------------------
+# 3. Existing repository functions that already fill a framework role
+# ---------------------------------------------------------------------------
+existing_coverage:
+  fulfilled_under_another_name:
+    - framework_role: data_versioning_and_lineage_of_inputs
+      repo_location: data/manifests/corpus.jsonl and data/manifests/history/
+      note: Pinned digests, acquisition timestamps and immutable history on change. Fulfils corpus versioning.
+    - framework_role: feature_store_equivalent
+      repo_location: data/processed/embeddings/<sha256>.json and src/goes_tech_kg/corpus/embed.py
+      note: Cache key hashes text, model id, revision, model file digests, pooling and thread count. Replay refuses to generate on miss.
+    - framework_role: schema_and_contract_validation
+      repo_location: src/goes_tech_kg/schemas/
+      note: Frozen closed models, intrinsic identities, strict acyclicity via scipy.sparse, budget capacity checks.
+    - framework_role: artifact_diff_for_regression
+      repo_location: src/goes_tech_kg/graph/diff.py
+      note: Semantic diff by intrinsic identity; the base for D1 and D3 diff artifacts.
+    - framework_role: build_provenance
+      repo_location: src/goes_tech_kg/corpus/provenance.py and data/processed/ingestion/report.json
+      note: Records commit, source tree digest, lock digest, model manifest digest, dependency versions. Partial RunManifest.
+    - framework_role: baseline_versioning_D1
+      repo_location: data/processed/baseline/sv-2026-09-13-v1/
+      note: Cutoff date, immutable rule, source digests, unit inventory. Missing the diff between versions.
+    - framework_role: performance_regression_gate
+      repo_location: tests/benchmarks/, scripts/check_benchmarks.py, tests/benchmarks/baseline.json
+      note: 20 percent median ceiling with explicit failure on incomparable baselines.
+    - framework_role: recorded_boundary_failures
+      repo_location: tests/cassettes/sv-cs-current.yaml, tests/integration/test_http_failure.py
+      note: Real 404/403 replay; reliability behaviour for one failure class.
+    - framework_role: golden_fixtures_for_extraction
+      repo_location: tests/golden/*.json
+      note: These are extraction goldens (parser correctness), not curriculum goldens. See mismatch list.
+    - framework_role: decision_records
+      repo_location: decisions/ and src/goes_tech_kg/schemas/decisions.py
+      note: Validated ADRs; this record uses the same contract.
+  absent:
+    - retrieval and context assembly
+    - LLM stage, prompts, replay records under data/processed/llm_responses/
+    - judge panel and judge validation
+    - curriculum golden set
+    - baselines B0 to S
+    - slice evaluation and worst-slice report
+    - canary and model drift gate
+    - corpus provenance barrier (external|generated)
+    - RunManifest and runs/ directory
+    - per-node lineage fields
+    - human review surface and feedback channels
+
+# ---------------------------------------------------------------------------
+# 4. Drift, treated as three separate sources
+# ---------------------------------------------------------------------------
+drift:
+  D1_baseline_drift:
+    meaning: The official Salvadoran programme changes. Expected and ongoing.
+    treatment: >
+      Baseline versions are immutable directories with cutoff date and source digests (existing).
+      Add a committed diff artifact between consecutive baseline versions produced by the semantic
+      diff over the unit inventory, and require every run manifest to name its baseline version.
+    detector: Authorized watch re-hashes baseline URLs; changed bytes open a new candidate version.
+  D2_corpus_drift:
+    meaning: Sources enter, leave or change.
+    treatment: >
+      Corpus composition table per run: counts by country, publication year, role and format,
+      computed with polars from the manifest. Compare with the previous accepted run; any share
+      moving more than the configured tolerance fails the run with a composition diagnostic.
+    detector: Manifest digest change plus composition delta above tolerance.
+  D3_model_drift:
+    meaning: The underlying LLM version, prompt or judge changes. Most dangerous because a graph diff cannot separate it from D1 or D2.
+    treatment: >
+      Canary: a frozen golden subset re-run on every model_version tuple change with acceptance
+      thresholds from 0011. No production artifact is regenerated with a model version that has
+      not passed the canary. llm_version is a required field in every node's lineage and in every
+      LLM replay record. Runs that mix D1/D2 changes with D3 changes are refused: change one axis
+      per run so the diff is attributable.
+    detector: model_version digest differs from the last accepted run's digest.
+
+# ---------------------------------------------------------------------------
+# 5. Degenerate loop barrier
+# ---------------------------------------------------------------------------
+degenerate_loop_barrier:
+  risk: Pipeline output re-enters the corpus; the graph confirms itself; confidence rises while quality falls.
+  rule: >
+    Every SourceDocument carries provenance: external | generated. The license gate rejects
+    generated before any fetch. Generated artifacts (graph releases, curricula, LLM outputs)
+    are additionally denied by digest: the gate refuses any URL or payload whose SHA-256 matches
+    a committed run artifact.
+  golden_rule: Golden records carry annotation_method and any value other than human_unaided is rejected by the golden loader.
+  enforced_by:
+    - tests/unit/test_corpus_provenance_barrier.py::test_generated_provenance_is_rejected_before_fetch (planned)
+    - tests/unit/test_corpus_provenance_barrier.py::test_run_artifact_digest_cannot_enter_corpus (planned)
+    - tests/unit/test_golden_loader.py::test_system_assisted_annotation_is_rejected (planned)
+
+# ---------------------------------------------------------------------------
+# 6. Lineage and RunManifest
+# ---------------------------------------------------------------------------
+lineage:
+  per_node_required_fields:
+    - source_refs (document_id, document_sha256, paragraph_id, offsets) [exists]
+    - chunk_ids and chunk digests injected in the generating call
+    - prompt_version
+    - llm_version (provider model identifier plus settings digest)
+    - retrieval_version
+    - judge_verdicts: list of (judge_id, judge_llm_version, verdict, score, response_digest)
+    - revision_count and revision_reason codes
+    - run_id
+    - code_commit and source_tree_sha256
+  reconstruction_query: >
+    Given a micro-skill ID, resolve run_id to runs/<run_id>/manifest.json, then the LLM replay
+    record by response digest, then chunk ids to data/processed/ingestion/chunks.jsonl, then
+    paragraph locators to the pinned source bytes. Every hop is a committed file.
+  run_manifest:
+    path: runs/<run_id>/manifest.json
+    run_id: SHA-256 over (model_version digest, corpus manifest digest, baseline version, skill map digest, budget policy digest, seed, code commit), first 16 hex. Never a wall-clock value.
+    immutability: A run directory is never modified after write; a re-run with identical inputs must reproduce identical bytes, and a differing re-run is a bug report, not an overwrite.
+    fields:
+      - schema_version
+      - run_id
+      - 'code: commit, git_dirty, source_tree_sha256, lock_sha256'
+      - 'inputs: corpus_manifest_sha256, baseline_version, skill_map_sha256, budget_policy_sha256, settings_sha256, seed'
+      - 'model_version: prompt_versions, topology_version, llm_versions, generation_settings_sha256, retrieval_version, judge_panel_version'
+      - replay_set_sha256 over all LLM response digests used
+      - metrics: aggregate and per-slice results from 0011, plus baseline table when run in evaluation mode
+      - 'canary: passed, model_version_sha256, thresholds_sha256'
+      - artifacts: path, sha256 and byte count for every emitted file
+      - 'needs_human_review: count, fraction, sample_path'
+      - 'drift: D1 baseline diff path, D2 composition delta, D3 model_version changed'
+    committed: true
+    excluded_from_commit: raw corpus bytes, full source text, secrets, provider headers
+
+# ---------------------------------------------------------------------------
+# 7. Four requirements as tests
+# ---------------------------------------------------------------------------
+requirements_as_tests:
+  reliability:
+    meaning: A judge failure, a dead download or invalid LLM JSON produce explicit degradation and a diagnostic, never silent output.
+    tests:
+      - Invalid JSON replay record fails validation and the node is emitted with status needs_human_review and reason code; the run does not drop it.
+      - A judge panel with one unavailable judge marks its verdict as missing; aggregation with fewer than the configured quorum blocks promotion.
+      - Restore with a changed digest raises; build never fetches (exists for corpus).
+      - Replay cache miss raises instead of calling a model (CLAUDE.md 3.6).
+  scalability:
+    meaning: The axis is graph size and subject count, not traffic.
+    tests:
+      - pytest-benchmark on synthetic graphs of 5k and 50k nodes for acyclicity, reachability closure and diff; committed baseline, 20 percent ceiling.
+      - Five-subject synthetic cross-subject dependency resolution benchmark.
+      - Memory bound: sparse structures only; a test asserts no dense n x n allocation for n >= 5000.
+  maintainability:
+    meaning: A contributor changes a prompt and learns what broke from the harness, not from documentation.
+    tests:
+      - Changing any prompt body changes prompt_version digest, invalidates canary status and the CLI refuses a production run until the canary is re-run.
+      - The evaluation report lists metric deltas per slice against the last accepted run.
+  adaptability:
+    meaning: A new subject or skill map costs a configuration file and a golden set.
+    tests:
+      - A second synthetic subject configuration runs end to end through the harness with no code change; the test fails if any subject-specific literal appears in src/.
+      - Strand, cognitive domain and tier vocabularies load from config, not from enums hard-coded in prompts.
+
+# ---------------------------------------------------------------------------
+# 8. Human in the loop
+# ---------------------------------------------------------------------------
+human_in_the_loop:
+  golden_annotation:
+    who: Two annotators per item; at least one is a curriculum expert in primary technology or computing education; the maintainer may be one.
+    protocol: >
+      Independent annotation without access to system output. Disagreements resolved by a
+      recorded adjudication with the reason code stored on the golden record. Items with
+      unresolved disagreement are kept with status disputed and excluded from thresholds but
+      reported.
+    minimum_size: 25 items per grade and per strand cell where the cell exists; empty cells are reported as uncovered, not padded.
+    never: Annotated with help from any component of the system under evaluation.
+  expert_review_surface:
+    what_is_shown: >
+      One micro-skill per card: observable statement, grade, strand, cited passage text with
+      source title and page, proposed prerequisites as plain sentences, judge summaries as one
+      line each, and three actions: accept, correct, reject with reason code. Rendered as static
+      HTML and CSV from the run directory. Never raw JSON.
+  feedback_channels:
+    output_correction: Becomes a golden or override record with reviewer id, date and reason; applies to the artifact through a re-run, never by editing the release file.
+    prompt_correction: Becomes a new prompt_version through a pull request; must pass canary and the full harness before any production run.
+    traceability: Both channels reference the run_id and node id they respond to.
+  readiness_threshold:
+    needs_human_review_fraction_max: 0.10
+    rule: >
+      A run whose needs_human_review fraction exceeds 10 percent overall, or 20 percent in any
+      grade slice, is not promotable. These are proposed values pending maintainer acceptance;
+      they are not derived from evidence and must be revisited after the first baseline table.
+
+# ---------------------------------------------------------------------------
+# 9. Target layout (function in this system, one line per directory)
+# ---------------------------------------------------------------------------
+layout:
+  - path: config/
+    function: Subject configuration (vocabularies, model version catalogue, budget policy, thresholds); the adaptability surface.
+  - path: corpus/
+    function: Reviewed source catalogue and publisher allowlist; every record carries provenance external.
+  - path: data/manifests/
+    function: Pinned corpus manifest with history; input lineage root.
+  - path: data/processed/ingestion/
+    function: Chunk locators, index and ingestion report; the feature layer.
+  - path: data/processed/embeddings/
+    function: Digest-addressed embedding replay; feature store equivalent.
+  - path: data/processed/llm_responses/
+    function: Immutable credential-free LLM response records keyed by request digest; model replay.
+  - path: data/processed/baseline/<version>/
+    function: Immutable official baseline snapshots plus committed diffs between versions; D1.
+  - path: data/graph/<version>/
+    function: Promoted graph releases with nodes, edges, ledger, manifest and evaluation report; the deployment.
+  - path: runs/<run_id>/
+    function: Immutable per-run manifest, metrics, slices, canary result, review sample and artifact digests.
+  - path: evaluation/golden/
+    function: Human-annotated golden set with annotation_method and adjudication records; never indexed.
+  - path: evaluation/canary/
+    function: Frozen golden subset and thresholds used to gate model_version changes; D3.
+  - path: evaluation/baselines/
+    function: B0, B1, B2 configurations and their recorded results tables.
+  - path: evaluation/judges/
+    function: Judge prompts, human calibration samples, agreement statistics and activation status.
+  - path: src/goes_tech_kg/schemas/
+    function: Canonical Pydantic contracts including RunManifest, Lineage, GoldenRecord and JudgeVerdict.
+  - path: src/goes_tech_kg/corpus/
+    function: Acquisition, gate with provenance barrier, parsing, chunking, embedding, index.
+  - path: src/goes_tech_kg/retrieval/
+    function: Query construction, exact search, context assembly with per-call context manifest and leakage assertion.
+  - path: src/goes_tech_kg/prompts/
+    function: Versioned Spanish prompt bodies with English constant names; prompt_version derives from body digest.
+  - path: src/goes_tech_kg/llm/
+    function: Provider adapter at the boundary, request canonicalization, replay-only default.
+  - path: src/goes_tech_kg/judges/
+    function: Judge panel execution, aggregation with quorum, bias perturbation harness.
+  - path: src/goes_tech_kg/eval/
+    function: Metrics, slices, worst-slice report, baseline table, agreement statistics, canary gate.
+  - path: src/goes_tech_kg/graph/
+    function: Snapshot store, sparse projections, diff, lineage resolution.
+  - path: src/goes_tech_kg/budget/ and solver/
+    function: Ledger and feasibility; unchanged scope from CLAUDE.md section 4.
+  - path: src/goes_tech_kg/pipeline/
+    function: Run orchestration producing runs/<run_id>/; refuses mixed drift axes and failed canaries.
+  - path: src/goes_tech_kg/review/
+    function: Static review cards (HTML, CSV) from a run directory; feedback record ingestion.
+  - path: tests/unit, integration, golden, cassettes, benchmarks
+    function: Unchanged roles; benchmarks gain 5k and 50k node graph workloads.
+  - path: scripts/
+    function: Thin authorized online operations (fetch, record, watch); no domain logic.
+
+# ---------------------------------------------------------------------------
+# 10. Implementation order (evaluation first)
+# ---------------------------------------------------------------------------
+implementation_order:
+  - step: 1
+    title: Contracts for evaluation and lineage
+    delivers: GoldenRecord, JudgeVerdict, Lineage, RunManifest, SliceReport schemas; provenance field on SourceDocument; test count update.
+  - step: 2
+    title: Degenerate loop barrier
+    delivers: gate rejection of provenance generated and of run-artifact digests; golden loader rejects non-human annotation; tests.
+  - step: 3
+    title: Golden set protocol and first annotation batch
+    delivers: evaluation/golden/ with adjudication records for at least the canary subset; coverage table by grade and strand.
+  - step: 4
+    title: Metrics, slices and worst-slice report
+    delivers: eval module computing every 0011 metric per slice from a graph plus golden set, with property tests on synthetic graphs.
+  - step: 5
+    title: B0 official baseline measurement
+    delivers: coverage and granularity of the current programme measured on the golden set; no LLM.
+  - step: 6
+    title: LLM boundary and replay
+    delivers: request canonicalization, replay records, prompt_version derivation, refusal on miss; recorded cassettes.
+  - step: 7
+    title: B1 single call and B2 single generic judge
+    delivers: recorded runs and their slice tables.
+  - step: 8
+    title: Judge validation
+    delivers: human calibration sample, agreement statistics, bias perturbations, activation status per judge.
+  - step: 9
+    title: Canary and D3 gate
+    delivers: frozen subset, thresholds, CLI refusal on unpassed model version.
+  - step: 10
+    title: Full system S
+    delivers: hierarchical decomposition plus judge panel, only after B1 and B2 tables exist; comparison table reported unsoftened.
+  - step: 11
+    title: Review surface and feedback channels
+    delivers: static cards and feedback ingestion.
+  - step: 12
+    title: Scalability benchmarks
+    delivers: 5k and 50k node workloads with committed baselines.
+
+# ---------------------------------------------------------------------------
+# 11. Current repository mismatches against these functions
+# ---------------------------------------------------------------------------
+current_mismatches:
+  - item: tests/golden/ contains extraction fixtures, not a curriculum golden set
+    problem: The name suggests evaluation goldens; they test parser fidelity. Keep them, rename their role in README, create evaluation/golden/ for curriculum annotations.
+  - item: No provenance field on SourceDocument or in corpus/sources.yaml
+    problem: The degenerate loop barrier does not exist. Any generated document with an allowlisted URL would be admitted.
+  - item: src/goes_tech_kg/eval/ is an empty package with a copied docstring
+    problem: Advertises an evaluation module that computes nothing.
+  - item: build_provenance hard-codes seed 0 and ignores Settings.seed
+    problem: The provenance record can disagree with the effective seed; RunManifest must read the settings digest instead.
+  - item: build_provenance does not record git_dirty
+    problem: CLAUDE.md 3.6 requires exploratory builds to record dirty status; uncommitted code can masquerade as a commit.
+  - item: data/processed/ingestion/report.json is written in place on every build
+    problem: Runs overwrite each other; no immutable runs/<run_id>/ history exists.
+  - item: Baseline sv-2026-09-13-v1 has no diff artifact and git_commit null
+    problem: D1 versioning exists but the between-version diff the maintainer requires is missing.
+  - item: MicroSkill.confidence is a bare probability with no calibration source
+    problem: A judge-free confidence is exactly the self-confirming signal the degenerate loop inflates; it must be replaced by judge verdicts plus human agreement, or removed.
+  - item: coverage() quota (8 to 10 foreign sources, 4 countries) is a hard-coded corpus composition rule
+    problem: This is a D2 composition threshold living in domain code instead of config; it cannot be reused for another subject.
+  - item: Strand, CognitiveDomain, Tier are Python enums
+    problem: Adaptability requires vocabularies in configuration; enums force a code change per subject.
+  - item: CrossSubjectDependency.repository literal includes goes-science-kg
+    problem: That repository does not exist; the available sibling is goes-natural-science-kg (CLAUDE.md section 2).
+  - item: tests/unit/test_decisions.py asserts exactly 6 decision files
+    problem: Any new decision breaks the suite; updated to 8 in this turn, should count files rather than pin a constant once the decision schema gains a status field for pending.
+  - item: ArchitectureDecision status lacks pending
+    problem: CLAUDE.md section 7 lists pending; the schema rejects it. This record uses proposed.
+  - item: ArchitectureDecision allows extra fields
+    problem: A misspelled required section (for example enforced_by) is silently accepted; lineage and evaluation sections in decisions are not validated.
+  - item: An unignored-by-intent office export sits at the repository root
+    problem: Comparacion_malla_oficial_y_propuesta_Lenguaje_GOES_2_a_6_2026-09-14.xlsx is ignored by pattern, but it is a hand-made baseline comparison that belongs, if kept, as a versioned JSON/CSV baseline artifact with digest, not as an ignored spreadsheet.
+  - item: reports/ is ignored
+    problem: Benchmark results and check logs are the only run evidence and are not versioned; runs/<run_id>/ replaces this.
+
+consequences:
+  - No pipeline code is written under this decision; it authorizes the layout and the order.
+  - Steps 1 to 5 require no LLM credentials and can proceed offline.
+  - Thresholds and fractions in this record are proposals pending maintainer acceptance.
+  - Accepting this decision supersedes nothing; 0004 and 0005 remain in force for contracts and ingestion.
+
+source_evidence:
+  - source_id: huyen_dmls
+    title: Designing Machine Learning Systems, Chip Huyen, O'Reilly 2022
+    use: Framework vocabulary being translated; not evidence about curriculum.
+  - source_id: huyen_aie
+    title: AI Engineering, Chip Huyen, O'Reilly 2025
+    use: Evaluation-driven development, AI-as-judge caveats, drift taxonomy.
+  - source_id: repo_inspection
+    title: Inspection of this repository at commit 2236b5e on 2026-09-14
+    use: Basis for existing_coverage and current_mismatches.
+
+enforced_by:
+  status: specified_not_implemented
+  tests:
+    - id: run_manifest_reproducible
+      assertion: Two clean replay runs with identical inputs produce byte-identical runs/<run_id>/ directories.
+    - id: provenance_barrier
+      assertion: provenance generated and run-artifact digests are rejected by the gate before fetch.
+    - id: canary_blocks_unpassed_model
+      assertion: A model_version whose canary record is absent or failed cannot start a production run.
+    - id: mixed_drift_refused
+      assertion: A run changing both corpus manifest and model_version relative to the last accepted run is refused with a diagnostic.
+    - id: no_subject_literals_in_src
+      assertion: A second synthetic subject configuration runs through the harness with zero changes under src/.
+
+validation:
+  - tests/unit/test_decisions.py

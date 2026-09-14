@@ -56,7 +56,9 @@ def read_manifest(path: Path) -> tuple[Acquisition, ...]:
     return records
 
 
-def compile_corpus(data_root: Path, embedder: Embedder | None = None) -> dict[str, Any]:
+def compile_corpus(
+    data_root: Path, embedder: Embedder | None = None, seed: int = 0
+) -> dict[str, Any]:
     records = read_manifest(data_root / "manifests/corpus.jsonl")
     chunks: list[Chunk] = []
     statuses: list[dict[str, Any]] = []
@@ -124,7 +126,7 @@ def compile_corpus(data_root: Path, embedder: Embedder | None = None) -> dict[st
     report.update(
         {
             "schema_version": "ingestion-run/1.0",
-            "provenance": build_provenance(data_root),
+            "provenance": build_provenance(data_root, seed),
             "manifest_sha256": byte_digest((data_root / "manifests/corpus.jsonl").read_bytes()),
             "statuses": statuses,
             "chunks": len(chunks),

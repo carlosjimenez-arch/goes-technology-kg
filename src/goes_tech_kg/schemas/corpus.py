@@ -25,6 +25,8 @@ class SourceDocument(Contract):
     role: Literal[
         "foreign_curriculum", "international_framework", "salvadoran_baseline", "supplementary"
     ]
+    # Degenerate-loop barrier: pipeline output is never admissible as corpus evidence.
+    provenance: Literal["external", "generated"]
     grades: tuple[Grade, ...]
     alignment_rationale: Text
     format: Literal["pdf", "html"]

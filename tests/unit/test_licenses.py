@@ -18,6 +18,7 @@ def document(**updates):
         publisher="University of Canterbury",
         country="NZ",
         role="foreign_curriculum",
+        provenance="external",
         grades=[2, 3],
         alignment_rationale="Sequence and debugging",
         format="html",

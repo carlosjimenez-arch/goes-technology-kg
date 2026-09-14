@@ -1,6 +1,7 @@
 schema_version: discovery/1.0
 sources:
 - slug: sv-cyt
+  provenance: external
   title: Science and Technology, grades 2–6, current 2026 download
   url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
   publisher: SV curriculum authority
@@ -161,6 +162,7 @@ sources:
     106: Reviewed blank or decorative separator/back-cover page; retained in source binary, no curricular
       text.
 - slug: sv-cs-current
+  provenance: external
   title: Current linked Computer Science programme; web-indexed 59 pages, live download failed
   url: https://www.mined.gob.sv/docs/Programas_de_estudio_Ciencias_de_la_Computacion.pdf
   publisher: SV curriculum authority
@@ -226,6 +228,7 @@ sources:
     grades: []
   required_baseline: true
 - slug: sv-cs
+  provenance: external
   title: Computer Science, cover 2024, first-year detailed programme
   url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
   publisher: SV curriculum authority
@@ -282,6 +285,7 @@ sources:
     45: Reviewed blank or decorative separator/back-cover page; retained in source binary, no curricular
       text.
 - slug: sv-cyt-iii
+  provenance: external
   title: CyT third-cycle programme, 92 pages
   url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_III%20ciclo.pdf
   publisher: SV curriculum authority
@@ -320,6 +324,7 @@ sources:
     92: Reviewed blank or decorative separator/back-cover page; retained in source binary, no curricular
       text.
 - slug: sv-cyt-media
+  provenance: external
   title: CyT bachillerato programme, 77 pages
   url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_Bachillerato.pdf
   publisher: SV curriculum authority
@@ -358,6 +363,7 @@ sources:
     77: Reviewed blank or decorative separator/back-cover page; retained in source binary, no curricular
       text.
 - slug: colombia
+  provenance: external
   title: MEN Guide 30, Ser competente en tecnología, 2008
   url: https://www.mineducacion.gov.co/1621/articles-160915_archivo_pdf.pdf
   publisher: CO curriculum authority
@@ -401,6 +407,7 @@ sources:
     grades: []
   required_baseline: false
 - slug: colombia-update
+  provenance: external
   title: MEN technology and informatics curriculum guidelines, 2022
   url: https://www.mineducacion.gov.co/1780/articles-411706_recurso_4.pdf
   publisher: CO curriculum authority
@@ -456,6 +463,7 @@ sources:
   page_review_reasons:
     1: Cover title visually transcribed from raster page; no curricular activity on this page.
 - slug: chile
+  provenance: external
   title: Chile Technology curricular bases, grades 1–6
   url: https://www.curriculumnacional.cl/614/articles-22394_bases.pdf
   publisher: CL curriculum authority
@@ -479,6 +487,7 @@ sources:
   unit_boundaries: []
   required_baseline: false
 - slug: eng-computing
+  provenance: external
   title: England Computing programmes of study
   url: https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study/national-curriculum-in-england-computing-programmes-of-study
   publisher: GB curriculum authority
@@ -502,6 +511,7 @@ sources:
   unit_boundaries: []
   required_baseline: false
 - slug: eng-dt
+  provenance: external
   title: England Design and Technology KS1–2
   url: https://assets.publishing.service.gov.uk/media/5a7ca43640f0b6629523adc1/PRIMARY_national_curriculum_-_Design_and_technology.pdf
   publisher: GB curriculum authority
@@ -537,6 +547,7 @@ sources:
     grades: []
   required_baseline: false
 - slug: ontario-math
+  provenance: external
   title: Ontario Mathematics 2020, January 2021 PDF
   url: https://assets-us-01.kc-usercontent.com/fbd574c4-da36-0066-a0c5-849ffb2de96e/3ed76499-9df4-4524-8cc2-3c0010a51811/The%20Ontario%20Curriculum%20Grades%201%E2%80%938%20-%20Mathematics%2C%202020%20%28January%202021%29.pdf
   publisher: CA curriculum authority
@@ -587,6 +598,7 @@ sources:
     grades: []
   required_baseline: false
 - slug: ontario-science-programme
+  provenance: external
   title: Ontario Science and Technology 2022, official full programme
   url: https://assets-us-01.kc-usercontent.com/fbd574c4-da36-0066-a0c5-849ffb2de96e/36038265-bd6d-4991-882b-52b4b06c32d0/The%20Ontario%20Curriculum%20Grades%201%E2%80%938%20%E2%80%93%20Science%20and%20Technology%202022_2.pdf
   publisher: CA curriculum authority
@@ -637,6 +649,7 @@ sources:
     grades: []
   required_baseline: false
 - slug: argentina
+  provenance: external
   title: Argentina NAP Digital Education, Programming and Robotics, 343/18
   url: https://www.argentina.gob.ar/sites/default/files/nap_de_educacion_digital_programacion_y_robotica.pdf
   publisher: AR curriculum authority
@@ -696,6 +709,7 @@ sources:
     24: Reviewed blank or decorative separator/back-cover page; retained in source binary, no curricular
       text.
 - slug: ceibal-guide
+  provenance: external
   title: Ceibal classroom and remote teacher guide
   url: https://pensamientocomputacional.ceibal.edu.uy/wp-content/uploads/2023/06/2022-Internet-y-las-Personas_Guia-docentes.pdf
   publisher: UY curriculum authority
@@ -717,6 +731,7 @@ sources:
   unit_boundaries: []
   required_baseline: false
 - slug: unplugged-rocket
+  provenance: external
   title: Sending a rocket to Mars
   url: https://www.csunplugged.org/en/topics/kidbots/sending-a-rocket-to-mars/
   publisher: unplugged
@@ -741,6 +756,7 @@ sources:
   unit_boundaries: []
   required_baseline: false
 - slug: code-org-algorithms
+  provenance: external
   title: 'Real-life algorithms: planting a seed'
   url: https://code.org/curriculum/course1/6/Teacher
   publisher: code
@@ -765,6 +781,7 @@ sources:
   unit_boundaries: []
   required_baseline: false
 - slug: icils-framework
+  provenance: external
   title: ICILS 2023 assessment framework
   url: https://www.iea.nl/sites/default/files/2023-12/20231221%20ICILS2023_Assessment_Framework__Final_0.pdf
   publisher: INT curriculum authority
@@ -815,6 +832,7 @@ sources:
     52: Reviewed blank or decorative separator/back-cover page; retained in source binary, no curricular
       text.
 - slug: digcomp
+  provenance: external
   title: JRC DigComp 2.2, 2022
   url: https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf
   publisher: INT curriculum authority
@@ -868,6 +886,7 @@ sources:
     132: Reviewed blank or decorative separator/back-cover page; retained in source binary, no curricular
       text.
 - slug: unesco-ai
+  provenance: external
   title: UNESCO AI competency framework for students, 2024
   url: https://www.unesco.org/en/articles/ai-competency-framework-students
   publisher: INT curriculum authority

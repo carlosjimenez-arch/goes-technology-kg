@@ -1,0 +1,268 @@
+schema_version: architecture-decision/1.0
+id: '0011'
+title: Evaluation design; metrics, slices, baselines, judge validation and thresholds
+status: proposed
+date: '2026-09-14'
+supersedes: []
+roles:
+  - technology_curriculum_designer
+  - computational_thinking_researcher
+  - knowledge_graph_researcher
+  - ai_software_engineer
+affected_invariants:
+  - meaningful_tests
+  - determinism_and_replay
+  - provenance
+context: >
+  Companion to 0010. Evaluation is implemented before generation. The maintainer requires
+  mandatory baselines B0, B1, B2 against the full system S, per-slice reporting that exposes
+  the worst slice, validation of LLM judges against humans and against each other, and
+  behavioural tests. No metric here has been computed; every threshold is a proposal awaiting
+  acceptance and a first baseline table.
+
+options:
+  - id: aggregate_only
+    name: One aggregate quality score per run
+    pros:
+      - Cheap; easy to trend.
+    cons:
+      - Hides grade-level failure; a 92 percent aggregate can be 61 percent in grade 2.
+  - id: unvalidated_judges
+    name: LLM judges as ground truth without human calibration
+    pros:
+      - Scales to every node.
+    cons:
+      - Measures the sensation of quality; shares biases with the generator; no way to know when it is wrong.
+  - id: sliced_calibrated_baselined
+    name: Golden set plus slices plus validated judges plus mandatory baselines
+    pros:
+      - Worst slice is visible; judges are trusted only to the degree humans agree with them; S must beat B1 on evidence.
+    cons:
+      - Requires human annotation effort up front and repeated calibration on model change.
+
+criteria:
+  - Worst slice, not mean, decides promotability.
+  - Judges gate nothing until agreement with humans is measured.
+  - The system is compared with cheaper alternatives on the same golden set before any claim.
+  - Every metric has a stated scale, statistic and threshold, or is marked exploratory.
+
+selected_option: sliced_calibrated_baselined
+
+rationale:
+  - Adoption depends on defending grade placements one by one, so evaluation is per grade and per strand by construction.
+  - Prerequisite precision alone rewards emitting few edges; recall and F1 are reported alongside.
+  - Judge agreement statistics are chosen by scale type; a single generic kappa would be wrong for ordinal and multi-rater data.
+  - The baseline table is the only defence against agentic complexity that ties a single well-prompted call.
+
+# ---------------------------------------------------------------------------
+# 1. Metrics
+# ---------------------------------------------------------------------------
+metrics:
+  primary:
+    - id: prerequisite_precision
+      definition: Of emitted strict prerequisite edges between golden nodes, the fraction present in the golden edge set.
+      scale: ratio
+      matching: Node match by golden alignment id; direction must match.
+    - id: prerequisite_recall
+      definition: Of golden strict prerequisite edges, the fraction emitted by the system.
+      scale: ratio
+    - id: prerequisite_f1
+      definition: Harmonic mean of the two above; the headline structural metric.
+      scale: ratio
+    - id: grade_placement_agreement
+      definition: Fraction of golden micro-skills placed in the golden grade; also reported as mean absolute grade distance.
+      scale: ratio and grades
+    - id: citation_support_rate
+      definition: On a stratified human sample, the fraction of citations whose cited passage supports the micro-skill or edge statement.
+      scale: ratio
+      note: Distinct from citation_resolution_rate; a resolving locator can cite an irrelevant paragraph.
+    - id: decomposition_acceptability
+      definition: Fraction of golden skill-map entries whose emitted decomposition a human rates acceptable or acceptable with minor edits.
+      scale: ratio
+  secondary_gates:
+    - id: schema_adherence
+      definition: Fraction of LLM outputs that validate against the output contract on first parse.
+      threshold: 1.0 after repair loop; first-parse rate reported.
+    - id: citation_resolution_rate
+      definition: Fraction of source_refs that resolve to pinned bytes with matching digest and offsets.
+      threshold: 1.0
+    - id: cross_run_byte_identity
+      definition: Two clean replay runs produce identical run directories.
+      threshold: required
+    - id: skill_map_coverage
+      definition: Fraction of skill-map entries with at least one emitted micro-skill per required grade.
+      threshold: 1.0 or explicit uncovered list
+    - id: acyclicity_and_grade_monotonicity
+      definition: Strict prerequisite projection is a DAG and no strict edge decreases grade or progression stage.
+      threshold: required
+  retrieval:
+    - id: retrieval_recall_at_k
+      definition: Fraction of golden citations whose chunk appears in the top k retrieved chunks for the generating query.
+      k: 10
+    - id: context_leakage_count
+      definition: Number of golden or generated text digests found in any assembled context.
+      threshold: 0
+  cost:
+    - id: tokens_per_accepted_node
+      definition: Total input plus output tokens divided by nodes not flagged needs_human_review.
+      use: Denominator for the S versus B1 cost argument.
+
+# ---------------------------------------------------------------------------
+# 2. Slices
+# ---------------------------------------------------------------------------
+slices:
+  mandatory:
+    - grade: [2, 3, 4, 5, 6]
+    - strand: values from config vocabulary (currently computational_thinking, digital_citizenship, design_process, technical_systems, data_and_ai)
+    - cognitive_domain: [knowing, applying, reasoning]
+    - min_tier: '[T0, T1, T2, T3] where applicable'
+  report_rules:
+    - Every primary metric is reported for every slice with non-empty golden support; empty slices are listed as uncovered.
+    - The report's first table is the worst slice per metric, with its value and its golden support count. The aggregate appears after it.
+    - Slices with golden support below 10 items are reported with a small-support flag and excluded from promotion floors, never silently dropped.
+    - The report is a committed CSV and a JSON under runs/<run_id>/slices/.
+
+# ---------------------------------------------------------------------------
+# 3. Baselines
+# ---------------------------------------------------------------------------
+baselines:
+  golden_set_rule: All baselines and S are evaluated on the identical golden set version, identical slices and identical metric code.
+  systems:
+    - id: B0
+      name: Current official programme
+      description: The Science and Technology programme units labelled technology, mapped to the golden set by a human; no LLM.
+      measures: skill_map_coverage, granularity (indicators per golden micro-skill), grade_placement_agreement where indicators exist.
+      purpose: Answers what the country has today and what the system must improve on.
+    - id: B1
+      name: Single well-prompted LLM call
+      description: One call per skill-map entry with retrieved context; no decomposition hierarchy, no judges, output schema enforced.
+      measures: all primary and secondary metrics.
+    - id: B2
+      name: Single call plus one generic judge
+      description: B1 plus one accept/revise/reject judge with a generic rubric; one revision loop.
+      measures: all primary and secondary metrics plus tokens_per_accepted_node.
+    - id: S
+      name: Full system
+      description: Hierarchical decomposition plus judge panel with quorum aggregation.
+      measures: all metrics.
+  comparison_rule: >
+    S is justified only if it beats B1 on prerequisite_f1 and grade_placement_agreement in the
+    worst slice by at least the margin below, and the improvement per additional token is
+    reported. A tie or an aggregate-only win is reported as a tie. The table is committed
+    under evaluation/baselines/results/<golden_version>/table.csv and reproduced in the README.
+  minimum_margin_over_B1:
+    prerequisite_f1_worst_slice: 0.05
+    grade_placement_agreement_worst_slice: 0.05
+    status: proposed; revisit after the first table.
+  variance: Each system is run with three seeds when the provider exposes seed control; otherwise three prompt-order permutations. Report mean and range; a margin inside the range is not a win.
+
+# ---------------------------------------------------------------------------
+# 4. Judge validation
+# ---------------------------------------------------------------------------
+judge_validation:
+  sampling:
+    per_judge_items: 60 minimum, stratified by grade and strand, drawn from system output before any judge sees it.
+    human_raters: two, following the golden protocol; the maintainer may be one.
+  agreement_statistics:
+    - scale: binary or nominal verdicts (accept, revise, reject)
+      statistic: Cohen's kappa for judge versus one human; Krippendorff's alpha (nominal) when more than two raters or missing ratings.
+      why: Kappa corrects for chance agreement on categorical labels; alpha generalizes to any number of raters and tolerates missing cells.
+    - scale: ordinal scores (for example 1 to 5 quality)
+      statistic: Krippendorff's alpha with ordinal distance; report also quadratic-weighted kappa for two-rater cases.
+      why: Ordinal alpha penalizes distant disagreements more than adjacent ones, which matches how a 1 versus 5 disagreement differs from 4 versus 5.
+    - scale: continuous scores
+      statistic: Spearman rank correlation plus mean absolute error against the human mean.
+      why: Judges are used for ranking and thresholds; rank agreement matters more than calibration of the raw number.
+  inter_judge:
+    statistic: Krippendorff's alpha across the panel plus pairwise error correlation on items where humans disagree with the panel.
+    rule: Two judges whose verdicts agree above 0.9 alpha and whose errors correlate above 0.8 are redundant; one is removed or its rubric is rewritten. Recorded in the report.
+  activation_thresholds:
+    minimum_alpha_or_kappa_to_gate: 0.6
+    minimum_to_advise: 0.4
+    below_minimum: deactivated; recorded with statistic and sample in evaluation/judges/<judge_id>/status.json.
+    status: proposed; 0.6 is a conventional substantial-agreement floor, not derived from this domain.
+  bias_perturbations:
+    - id: length_bias
+      test: Same content padded with neutral filler versus original; verdict distribution must not shift beyond noise.
+    - id: self_preference
+      test: Judge rates its own model's output versus a paraphrase produced by a different model; acceptance rate difference reported.
+    - id: position_bias
+      test: Pairwise comparisons with swapped order; the fraction of order-dependent flips is reported and must be under 0.1.
+    - id: authority_bias
+      test: Identical statement with and without a fabricated citation string; a judge that accepts the fabricated citation fails and is deactivated.
+  revalidation_trigger: Any judge llm_version or judge prompt_version change resets activation to pending until the sample is re-rated.
+
+# ---------------------------------------------------------------------------
+# 5. Behavioural tests
+# ---------------------------------------------------------------------------
+behavioural_tests:
+  - id: invariance_paraphrase
+    definition: Reformulating a skill-map entry without changing meaning must not change the decomposition beyond a similarity threshold.
+    measure: Jaccard over emitted micro-skill intrinsic ids after alignment; threshold 0.8 proposed.
+    paraphrases: Human-written, stored with the golden set; never generated by the system.
+  - id: directional_grade
+    definition: Raising the input grade must not lower the emitted cognitive domain distribution or the tier.
+    measure: Ordinal shift of cognitive_domain must be non-negative; violations listed.
+  - id: consistency
+    definition: Same input, seed and prompt_version produce identical outputs.
+    measure: Byte identity of run directory; already required by CLAUDE.md 3.6.
+  - id: robustness_refusal
+    definition: Malformed or ambiguous input produces an explicit refusal record with a reason code, never a confident decomposition.
+    measure: Refusal rate on a committed set of malformed inputs must be 1.0; any emitted micro-skill from those inputs is a failure.
+  - id: minimum_pairs
+    definition: Two skill-map entries differing in a single grade-relevant word produce decompositions that differ in the expected direction.
+    measure: Case list with expected direction; failures listed.
+
+# ---------------------------------------------------------------------------
+# 6. Promotion thresholds (all proposed)
+# ---------------------------------------------------------------------------
+promotion_thresholds:
+  worst_slice_floors:
+    prerequisite_f1: 0.70
+    grade_placement_agreement: 0.75
+    citation_support_rate: 0.90
+    decomposition_acceptability: 0.80
+  aggregate_floors_are_not_sufficient: true
+  needs_human_review_fraction_max_overall: 0.10
+  needs_human_review_fraction_max_per_grade: 0.20
+  canary:
+    subset: Frozen 40 golden items, 8 per grade, covering every strand at least once; digest committed under evaluation/canary/.
+    acceptance: No primary metric drops more than 0.05 from the last accepted model_version on the subset; robustness_refusal stays 1.0.
+    trigger: Any change to prompt_version, topology_version, llm_version, generation settings, retrieval_version or judge_panel_version.
+  status: Values are proposals for maintainer acceptance; they must be revisited with the first baseline table and cannot be tuned after seeing S results without a recorded decision.
+
+consequences:
+  - Human annotation is the first cost of the project; no LLM run is evaluable before the golden set exists.
+  - Judges gate nothing until their agreement statistics are committed.
+  - The baseline table may show that S does not justify itself; that result is published, not softened.
+  - Metric code is tested on synthetic graphs with known answers before being applied to any real output.
+
+source_evidence:
+  - source_id: huyen_aie
+    title: AI Engineering, Chip Huyen, O'Reilly 2025
+    use: AI-as-judge biases (length, self-preference, position) and evaluation-driven development.
+  - source_id: krippendorff_alpha
+    title: Krippendorff, Content Analysis, reliability chapter
+    use: Choice of alpha for multi-rater, ordinal and missing-data agreement.
+  - source_id: checklist_behavioural
+    title: Ribeiro et al., Beyond Accuracy; Behavioral Testing of NLP Models with CheckList, ACL 2020
+    use: Invariance, directional expectation and minimum functionality test types.
+
+enforced_by:
+  status: specified_not_implemented
+  tests:
+    - id: metrics_on_synthetic_graph
+      assertion: Precision, recall, F1 and placement agreement return known values on a synthetic golden pair including the zero-edge and full-edge cases.
+    - id: worst_slice_first
+      assertion: The slice report's first row is the minimum over slices with sufficient support; small-support slices are flagged, not dropped.
+    - id: baseline_table_same_golden
+      assertion: The baseline table refuses to combine rows evaluated on different golden set digests.
+    - id: judge_inactive_until_calibrated
+      assertion: A judge without a committed agreement statistic above the gate threshold cannot contribute to promotion decisions.
+    - id: position_bias_bound
+      assertion: Swapped-order flips above 0.1 deactivate the judge.
+    - id: refusal_on_malformed
+      assertion: Every committed malformed input yields a refusal record and zero micro-skills.
+
+validation:
+  - tests/unit/test_decisions.py
