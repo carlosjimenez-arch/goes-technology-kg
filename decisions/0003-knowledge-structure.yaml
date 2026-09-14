@@ -1,0 +1,303 @@
+schema_version: phase1-decision-1.0
+id: '0003'
+title: 'Knowledge structure: typed dependency rules with co-learning bundles'
+status: accepted
+date: '2026-09-13'
+supersedes: []
+roles:
+- technology_curriculum_designer
+- computational_thinking_researcher
+- knowledge_graph_researcher
+- ai_software_engineer
+approval_required_before_implementation: false
+affected_invariants:
+- graph_semantics
+- cross_subject_provenance
+- auditable_sequencing
+- determinism
+- sibling_compatibility
+context: 'Phase 1 direction accepted by maintainer: A todo Ok. Empirical uncertainties and deferred implementation
+  checks remain explicit.'
+options:
+- id: dag
+  name: Binary prerequisite DAG
+  scores:
+    corequisites_and_and_or: 2
+    time_constrained_sequencing: 4
+    teacher_auditability: 4
+    maintenance_cost: 5
+    grade_move_analysis: 3
+  pros:
+  - Simple reachability and topological order; sparse representation.
+  cons:
+  - Multiple incoming edges usually mean AND; OR needs gates. Mutual prerequisite edges create cycles
+    and falsely describe co-learning.
+- id: hypergraph
+  name: Typed AND/OR dependency rules plus co-learning groups
+  scores:
+    corequisites_and_and_or: 5
+    time_constrained_sequencing: 4
+    teacher_auditability: 4
+    maintenance_cost: 3
+    grade_move_analysis: 5
+  pros:
+  - Alternative sufficient sets and joint learning explicit; explain which clause blocks a move.
+  cons:
+  - More validation and solver modeling; topological sorting alone cannot select alternatives or allocate
+    time.
+- id: probabilistic
+  name: Probabilistic prerequisite network
+  scores:
+    corequisites_and_and_or: 3
+    time_constrained_sequencing: 3
+    teacher_auditability: 2
+    maintenance_cost: 1
+    grade_move_analysis: 4
+  pros:
+  - Can model uncertainty and learner evidence when calibrated.
+  cons:
+  - No local calibration data; invented probabilities would hide judgments. Does not replace the curriculum
+    time ledger.
+- id: qmatrix
+  name: Q matrix only
+  scores:
+    corequisites_and_and_or: 1
+    time_constrained_sequencing: 1
+    teacher_auditability: 3
+    maintenance_cost: 3
+    grade_move_analysis: 2
+  pros:
+  - Clear assessment-item/attribute map.
+  cons:
+  - Does not encode instructional sequencing, alternatives or co-learning scheduling.
+- id: ontology
+  name: Pure hierarchical ontology
+  scores:
+    corequisites_and_and_or: 1
+    time_constrained_sequencing: 1
+    teacher_auditability: 5
+    maintenance_cost: 4
+    grade_move_analysis: 1
+  pros:
+  - Readable taxonomy and shared terminology.
+  cons:
+  - Containment is not necessary learning order or a resource/budget constraint.
+criteria:
+- corequisites_and_and_or
+- time_constrained_sequencing
+- teacher_auditability
+- maintenance_cost
+- grade_move_analysis
+selected_option: hypergraph
+rationale:
+- Choose a rule layer only because the project requires alternative prerequisites and co-learning; do
+  not assume a graph is always the answer.
+- Keep a hierarchy for classification and a Q projection for assessment, not as substitutes for dependency
+  semantics.
+- Use AND within a clause and OR between clauses; reify clauses in ordinary JSON/JSONL if needed. No graph
+  database or specific solver vendor is selected.
+- Collapse explicit co-learning groups for strict precedence checks; do not automatically condense arbitrary
+  prerequisite cycles, which may be errors.
+- Soft recommendations, documentary order and cross-subject support remain distinct from necessary prerequisites.
+consequences:
+- Rule semantics and external references need stricter validation than a pure DAG.
+- No production solver, complexity guarantee or empirical prerequisite network is delivered in research.
+- Teacher review must distinguish inferred prerequisites from documented statements before publication.
+source_evidence:
+- source_id: knowledge_spaces
+  source_url: https://escholarship.org/uc/item/94b9x5sw
+  retrieved_at: '2026-09-14T01:45:00Z'
+- source_id: qmatrix
+  source_url: https://www.tandfonline.com/doi/full/10.1080/15434300902801917
+  retrieved_at: '2026-09-14T01:45:00Z'
+- source_id: bayes
+  source_url: https://arxiv.org/abs/1301.6722
+  retrieved_at: '2026-09-14T01:45:00Z'
+- source_id: eng_computing
+  source_url: https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study/national-curriculum-in-england-computing-programmes-of-study
+  retrieved_at: '2026-09-14T01:45:00Z'
+- source_id: sv_cs
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+enforced_by:
+  status: specified_not_implemented
+  tests:
+  - id: and_or_truth_table
+    assertion: Exhaust all subsets of three fixture prerequisites; satisfy (a AND b) OR c exactly.
+  - id: corequisite_vs_cycle
+    assertion: Approved co-learning group is schedulable; undeclared circular hard prerequisites are rejected.
+  - id: move_g4_to_g3
+    assertion: Moving the target earlier while a required external skill remains in grade 4 reports infeasible;
+      approved funded bridge removes only that blocker.
+  - id: property_graph_invariants
+    assertion: Hypothesis covers ID uniqueness, endpoints, acyclic strict projection, clause satisfaction,
+      permutation invariance and no silent loss in export.
+  - id: q_is_not_prerequisite
+    assertion: An item assessing two attributes creates assessment mappings, not an invented prerequisite
+      edge.
+score_semantics: 1–5 engineering judgments; higher is better, including lower maintenance burden. No measured
+  runtime benchmark is implied.
+semantics:
+  dependency_rule: A target can be scheduled only if at least one prerequisite clause is satisfied. Each
+    clause requires every member outcome to have reached its specified evidence state.
+  empty_rule: Explicitly declared no hard prerequisite; absent extraction is not equivalent to empty prerequisites.
+  corequisite: Approved co-learning bundle with shared teaching window and individual outcome assessments;
+    not reciprocal hard prerequisite edges.
+  ordering: Strict dependencies between bundles form an acyclic projection. Internal pedagogical iteration
+    is allowed; a genuine circular hard dependency must fail review.
+  time: Bundle teaching minutes are explicitly modeled, never assumed to equal sum or max of member durations.
+    Alternatives and variant resources are part of feasibility.
+  external_dependencies: Reference immutable external skill IDs, subject, schema and baseline versions
+    plus evidence. Do not depend on a subject node such as Mathematics as if it were a skill.
+  grade_vs_mastery: An external skill assigned to an earlier grade is a scheduling assumption, not evidence
+    every student mastered it. Diagnose and fund bridging.
+sibling_mapping:
+  preserved_nodes:
+  - curriculum_skill
+  - specific_skill
+  - micro_skill
+  - indicator
+  - representation
+  - misconception
+  preserved_edges:
+  - decomposes_to
+  - prerequisite_of
+  - assesses
+  - requires
+  - uses_representation
+  - targets_misconception
+  - aligns_to
+  - supported_by
+  preserved_endpoints:
+  - source
+  - target
+  preserved_statuses:
+  - candidate
+  - reviewed
+  - published
+  - rejected
+  extensions_proposed:
+  - dependency_rule
+  - prerequisite_clause
+  - co_learning_group
+  - external_skill_ref
+  serialization: Versioned Technology contract; nodes.jsonl/edges.jsonl, JSON manifests and typed rule/group
+    artifacts. Preserve sibling interchange names; do not squeeze OR groups into a binary prerequisite
+    edge enum.
+  migration_rule: Project single-member strict clauses to prerequisite_of when semantics match. Multi-member
+    alternatives remain explicit; reject lossy export as an equivalent graph.
+  schema_status: Design only. Canonical Pydantic contracts in schemas/ await implementation-phase approval.
+worked_examples:
+- id: and_or
+  target: debug_branch
+  any_of:
+  - all_of:
+    - trace_sequence
+    - evaluate_condition
+  - all_of:
+    - demonstrate_equivalent_branch_reasoning
+  semantics: Either both first-clause skills or the explicit alternative; grade ordering alone does not
+    satisfy a clause.
+  evidence_status: Synthetic semantic fixture, not an empirically established prerequisite.
+- id: co_learning
+  members:
+  - design_program
+  - debug_program
+  relation: co_learning_group
+  semantics: Iterate together; each learner still supplies evidence of both outcomes.
+  evidence_status: Pedagogical hypothesis consistent with coupled practices, not quantified necessity.
+grade_move_case:
+  request: Move coordinate-based control from grade 4 to grade 3
+  external_requirements:
+  - Exact mathematics coordinate/position skill reference with grade and baseline
+  - Language instruction/comprehension supports
+  dependency_fixture:
+    target: coordinate_control
+    any_of:
+    - all_of:
+      - trace_sequence
+      - coordinate_representation
+    original_grade: 4
+    requested_grade: 3
+    known_grades:
+      trace_sequence: 2
+      coordinate_representation: 4
+  strict_result: 'Blocked: required coordinate representation is scheduled later.'
+  alternatives:
+  - Fund and assess a grade-3 mathematics bridge with host approval, then recompute capacity.
+  - Use a relative-movement variant only if its changed outcome and preserved constructs are explicit;
+    do not certify coordinate_control from it.
+  - Keep the outcome in grade 4.
+  report_fields:
+  - failed_clause
+  - external_skill_and_version
+  - affected_descendants
+  - bundle_changes
+  - minutes_by_host_before_after
+  - tier_variant_changes
+  - uncovered_anchors
+  - feasible_alternatives
+  caveat: The grades in this fixture are synthetic and are not asserted as the actual Salvadoran mathematics
+    progression.
+deterministic_contract:
+  canonicalization: Stable ID sorting, canonical JSON, UTF-8, LF and deterministic numeric formatting.
+    No run-time timestamps in reproducible content.
+  rules: Stable clause ordering and IDs; deterministic tie-breaking among feasible alternatives.
+  solver: Pin version, configuration, seed and determinism controls; a seed alone is insufficient. Compare
+    complete serialized outputs byte for byte.
+  llm: No unrecorded model generation in graph compilation. Hash prompt_version and canonical input; version
+    replay payloads and model/config provenance.
+  performance: Use scipy.sparse for appropriate adjacency projections, numpy/polars for transformations;
+    benchmark representative rule and move workloads with a >20% regression failure gate in the implementation
+    phase.
+role_tensions:
+- from: knowledge_graph_researcher
+  position: Acyclicity belongs to strict precedence, not every semantic relation. Higher expressive power
+    requires clear logical semantics.
+- from: technology_curriculum_designer
+  position: Show teachers concrete blocked outcomes and co-learning groups; graph terminology must not
+    replace pedagogical justification.
+- from: ai_software_engineer
+  position: Keep simple serializable rules and sparse projections; avoid probabilistic infrastructure
+    without data or a justified runtime need.
+research_validation:
+  status: passed_semantic_fixture_checks_not_solver_validation
+  truth_table:
+  - a: false
+    b: false
+    c: false
+    satisfied: false
+  - a: false
+    b: false
+    c: true
+    satisfied: true
+  - a: false
+    b: true
+    c: false
+    satisfied: false
+  - a: false
+    b: true
+    c: true
+    satisfied: true
+  - a: true
+    b: false
+    c: false
+    satisfied: false
+  - a: true
+    b: false
+    c: true
+    satisfied: true
+  - a: true
+    b: true
+    c: false
+    satisfied: true
+  - a: true
+    b: true
+    c: true
+    satisfied: true
+  grade_move_fixture:
+    target_grade: 3
+    prerequisite_grade: 4
+    strict_precedence_feasible: false
+  limitations: Declarative logic and an ordering counterexample checked with a temporary research validator.
+    No production graph API, solver, Hypothesis or benchmark tests exist.

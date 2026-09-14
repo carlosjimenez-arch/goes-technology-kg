@@ -1,0 +1,41 @@
+{
+  "benchmarks": [
+    {
+      "median_seconds": 0.013664812548086047,
+      "name": "test_parse_pdf"
+    },
+    {
+      "median_seconds": 0.00036279100459069014,
+      "name": "test_parse_html"
+    },
+    {
+      "median_seconds": 0.000193667015992105,
+      "name": "test_index_1000x768"
+    }
+  ],
+  "checks": {
+    "benchmarks": 3,
+    "coverage_percent": 75.98,
+    "historical_20_percent_gate": "passed",
+    "lock": "passed",
+    "mypy": "passed",
+    "offline_tests": 28,
+    "ruff": "passed",
+    "sdist_and_wheel": "passed"
+  },
+  "lock_sha256": "a9cac199e97fc6aefad7941a4608c64bf3b34b2797dc4ab1c4340e9f5302a2c5",
+  "python": "3.13.15",
+  "remote_ci_verified": false,
+  "replay": {
+    "artifacts_sha256": {
+      "chunks.jsonl": "c337e8a866eb835737d0665da57848cab68d7301391d2c2eb0716d724870a79d",
+      "index/index.json": "bdd72baca14f6fb5dd4359beea46a4c60674a262453e5251959d14c7441d889f",
+      "index/vectors.f32": "bc9f2f6fd0dbac24360b39f12bbdb241d293d9e96ad234db0ae50ebc09390858"
+    },
+    "derived_artifacts_unchanged": true,
+    "exit_code": 2
+  },
+  "schema_version": "desktop-migration-validation/1.0",
+  "uv": "0.7.8",
+  "validation_before_initial_commit": true
+}

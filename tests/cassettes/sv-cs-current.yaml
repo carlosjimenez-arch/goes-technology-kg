@@ -1,0 +1,80 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - www.mined.gob.sv
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://www.mined.gob.sv/docs/Programas_de_estudio_Ciencias_de_la_Computacion.pdf
+  response:
+    body:
+      string: !!binary |
+        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
+        jSfdEQAA
+    headers:
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      cf-ray:
+      - a3ac3f93cbecf35c-BOG
+      connection:
+      - keep-alive
+      content-encoding:
+      - gzip
+      content-type:
+      - text/html; charset=UTF-8
+      date:
+      - Mon, 14 Sep 2026 03:19:08 GMT
+      expires:
+      - Thu, 01 Jan 1970 00:00:01 GMT
+      referrer-policy:
+      - same-origin
+      server:
+      - cloudflare
+      transfer-encoding:
+      - chunked
+      x-frame-options:
+      - SAMEORIGIN
+    status:
+      code: 403
+      message: Forbidden
+version: 1

@@ -1,0 +1,41 @@
+schema_version: architecture-decision/1.0
+id: '0005'
+title: Activity-preserving ingestion and pinned offline replay
+status: accepted
+date: '2026-09-13'
+options:
+  - id: online_tokens
+    name: Live discovery with fixed token chunks and hosted embeddings
+  - id: reviewed_units
+    name: Reviewed catalogue, whole curricular units and versioned local embedding replay
+criteria:
+  - Reconstruct every cited source paragraph from pinned bytes.
+  - Preserve complete activities despite model context limits.
+  - Avoid source-count inflation through chunking or duplicate URLs.
+  - Keep network acquisitions separate from deterministic builds.
+selected_option: reviewed_units
+rationale:
+  - The reviewed YAML catalogue is discovery input; the publisher allowlist does not itself grant a license. Human-reviewed resource evidence is required before the gate accepts a resource.
+  - Official publication is an admission basis, not an assertion of an open redistribution license. Full source wording remains ignored; manifests and derived locators are retained.
+  - PDF page ranges and strict HTML root selectors define whole units. Embedded token windows are pooled only for vector generation; the cited chunk remains complete.
+  - Reversible newline normalization retains compact source-offset runs. Unknown textless PDF pages fail parsing; digest-pinned manual reviews describe blank pages and transcribed covers.
+  - Exact numpy search is appropriate for the current corpus size. Polars computes coverage; scipy sparse validates graph components.
+  - Acquisition timestamps are fixed by the versioned manifest. Restore rejects changed remote bytes; build does not silently fetch or regenerate missing embeddings.
+  - Three attributed real excerpts are the explicit testing exception to excluding raw corpus. No fabricated network responses are accepted.
+  - Benchmark medians have a build failure threshold above 20 percent. Baselines are machine-specific and require review when the machine or dependency lock changes.
+role_tension:
+  curriculum_designer: The UNESCO article is an overview, not a substitute for the complete competency framework.
+  graph_researcher: Eight resources from five foreign countries satisfy the numerical coverage check but do not establish eight independent empirical studies.
+  ai_software_engineer: Missing current Salvadoran Computer Science source keeps overall coverage false and the build exit code at 2, even when index generation succeeds.
+limitations:
+  - No OCR or automatic curriculum inference is implemented.
+  - The directory has no Git metadata; a commit-based reproducibility claim awaits repository initialization by the maintainer.
+  - Cross-platform numerical regeneration is not guaranteed; committed vectors and the lock file define replay.
+quality_policy:
+  coverage_floor_percent: 75
+  coverage_scope: Combined source statement/branch coverage including unexercised live acquisition and model-generation paths.
+  security_scope: Offline URL/license and recorded failure checks; no dependency vulnerability audit claimed.
+validation:
+  - tests/integration/test_real_documents.py
+  - tests/unit/test_chunking.py
+  - tests/benchmarks/test_ingestion.py

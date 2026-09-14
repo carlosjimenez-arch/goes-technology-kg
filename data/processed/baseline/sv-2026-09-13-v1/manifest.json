@@ -1,0 +1,66 @@
+{
+  "schema_version": "phase1-baseline-manifest-1.0",
+  "baseline_version": "sv-2026-09-13-v1",
+  "cutoff_date": "2026-09-13",
+  "timezone": "America/Bogota",
+  "status": "provisional_with_known_gaps",
+  "git_commit": null,
+  "immutable_snapshot_rule": "Never replace files under this version after acceptance; create a new version and record source/content differences.",
+  "corpus_storage": "Raw PDFs are local downloads only; commit the manifest and processed extraction, not corpus PDFs. The workspace has no Git repository or .gitignore yet; establish required ignore rules before any future git add.",
+  "sources": [
+    {
+      "id": "sv_cyt",
+      "title": "Science and Technology, grades 2–6, current 2026 download",
+      "source_url": "https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf",
+      "retrieved_at": "2026-09-14T01:45:00Z",
+      "source_type": "official_publication",
+      "license": "No open license asserted; official-publication exception",
+      "corpus_status": "accepted",
+      "corpus_reason": "Official publication allowed by user policy; do not infer unrestricted redistribution",
+      "downloaded": true,
+      "sha256": "8127beee05165a7e5a73c1b33fcdd5a921744354fd330939714660e6a70d6486",
+      "local_path": "data/raw/research/sv_cyt_g2_g6_2026.pdf",
+      "bytes": 2217899
+    },
+    {
+      "id": "sv_cs",
+      "title": "Computer Science, cover 2024, first-year detailed programme",
+      "source_url": "https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf",
+      "retrieved_at": "2026-09-14T01:45:00Z",
+      "source_type": "official_publication",
+      "license": "No open license asserted; official-publication exception",
+      "corpus_status": "accepted",
+      "corpus_reason": "Official publication allowed by user policy; do not infer unrestricted redistribution",
+      "downloaded": true,
+      "sha256": "330972de0ad7ffcf336060cdd41ad48959bd58a0033673178c68931226178440",
+      "local_path": "data/raw/research/sv_cs_2024.pdf",
+      "bytes": 728638
+    },
+    {
+      "id": "sv_cs_current",
+      "title": "Current linked Computer Science programme; web-indexed 59 pages, live download failed",
+      "source_url": "https://www.mined.gob.sv/docs/Programas_de_estudio_Ciencias_de_la_Computacion.pdf",
+      "retrieved_at": "2026-09-14T01:45:00Z",
+      "source_type": "official_publication",
+      "license": "No open license asserted; official-publication exception",
+      "corpus_status": "accepted",
+      "corpus_reason": "Official publication allowed by user policy; do not infer unrestricted redistribution",
+      "downloaded": false,
+      "sha256": null,
+      "download_status": "http_404",
+      "web_index_pages": 59
+    }
+  ],
+  "derived_artifacts": [
+    {
+      "path": "data/processed/baseline/sv-2026-09-13-v1/cyt_unit_inventory.json",
+      "sha256": "2cd49db18b8d6bf723541171131771f76a9fe14e280adcfd2bfa8b21ca5460e1"
+    }
+  ],
+  "limitations": [
+    "Only two programme binaries are acquired.",
+    "Older CS cover 2024 is not relabelled as the latest 59-page linked document.",
+    "No historical CyT content diff or comprehensive nationwide rollout claim.",
+    "Official period-to-minute conversion unresolved."
+  ]
+}

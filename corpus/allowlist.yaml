@@ -1,0 +1,132 @@
+schema_version: allowlist/1.0
+policy: Allowlisting permits review, not automatic acceptance. Official publication
+  and open licensing are distinct bases. No credentials or unreviewed redirect hosts.
+publishers:
+- host: anep.edu.uy
+  official: true
+  path_prefixes:
+  - /
+- host: assets-us-01.kc-usercontent.com
+  official: true
+  path_prefixes:
+  - /fbd574c4-da36-0066-a0c5-849ffb2de96e/
+- host: assets.publishing.service.gov.uk
+  official: true
+  path_prefixes:
+  - /
+- host: ceibal.edu.uy
+  official: true
+  path_prefixes:
+  - /
+- host: code.org
+  official: false
+  path_prefixes:
+  - /
+- host: conaliteg.sep.gob.mx
+  official: true
+  path_prefixes:
+  - /
+- host: csteachers.org
+  official: false
+  path_prefixes:
+  - /
+- host: curriculum.code.org
+  official: false
+  path_prefixes:
+  - /
+- host: educagob.educacionfpydeportes.gob.es
+  official: true
+  path_prefixes:
+  - /
+- host: iste.org
+  official: false
+  path_prefixes:
+  - /
+- host: k12cs.org
+  official: false
+  path_prefixes:
+  - /
+- host: libros.conaliteg.gob.mx
+  official: true
+  path_prefixes:
+  - /
+- host: mined.gob.sv
+  official: true
+  path_prefixes:
+  - /
+- host: pensamientocomputacional.ceibal.edu.uy
+  official: true
+  path_prefixes:
+  - /
+- host: publications.iadb.org
+  official: true
+  path_prefixes:
+  - /
+- host: publications.jrc.ec.europa.eu
+  official: true
+  path_prefixes:
+  - /
+- host: repositorio.cepal.org
+  official: true
+  path_prefixes:
+  - /
+- host: studio.code.org
+  official: false
+  path_prefixes:
+  - /
+- host: unesdoc.unesco.org
+  official: true
+  path_prefixes:
+  - /
+- host: www.anep.edu.uy
+  official: true
+  path_prefixes:
+  - /
+- host: www.argentina.gob.ar
+  official: true
+  path_prefixes:
+  - /
+- host: www.boe.es
+  official: true
+  path_prefixes:
+  - /
+- host: www.ceibal.edu.uy
+  official: true
+  path_prefixes:
+  - /
+- host: www.cepal.org
+  official: true
+  path_prefixes:
+  - /
+- host: www.csunplugged.org
+  official: false
+  path_prefixes:
+  - /
+- host: www.curriculumnacional.cl
+  official: true
+  path_prefixes:
+  - /
+- host: www.gov.uk
+  official: true
+  path_prefixes:
+  - /
+- host: www.iadb.org
+  official: true
+  path_prefixes:
+  - /
+- host: www.iea.nl
+  official: true
+  path_prefixes:
+  - /
+- host: www.mined.gob.sv
+  official: true
+  path_prefixes:
+  - /
+- host: www.mineducacion.gov.co
+  official: true
+  path_prefixes:
+  - /
+- host: www.unesco.org
+  official: true
+  path_prefixes:
+  - /

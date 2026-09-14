@@ -1,0 +1,12 @@
+{
+  "artifacts_sha256": {
+    "data/processed/ingestion/chunks.jsonl": "c337e8a866eb835737d0665da57848cab68d7301391d2c2eb0716d724870a79d",
+    "data/processed/ingestion/index/index.json": "bdd72baca14f6fb5dd4359beea46a4c60674a262453e5251959d14c7441d889f",
+    "data/processed/ingestion/index/vectors.f32": "bc9f2f6fd0dbac24360b39f12bbdb241d293d9e96ad234db0ae50ebc09390858",
+    "data/processed/ingestion/report.json": "05148554d31e3f6de3bfb9ea915df2412dd7c1408d0aaefd086a4f6a649541c3"
+  },
+  "equal_byte_for_byte": true,
+  "exit_code": 2,
+  "reason": "Required Salvadoran current Computer Science source unavailable",
+  "schema_version": "replay-validation/1.0"
+}

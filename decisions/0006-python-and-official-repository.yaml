@@ -1,0 +1,25 @@
+schema_version: architecture-decision/1.0
+id: '0006'
+title: Official repository migration and Python 3.13 toolchain
+status: accepted
+date: '2026-09-14'
+options:
+  - id: retain_runtime
+    name: Retain Python 3.12 and the original workspace
+  - id: migrate
+    name: Move to the official repository with uv-managed Python 3.13
+criteria:
+  - Follow the maintainer's explicit repository and runtime requirements.
+  - Preserve source evidence and public import compatibility.
+  - Distinguish portable CI checks from machine-specific performance thresholds.
+selected_option: migrate
+rationale:
+  - The official Git repository is goes-technology-kg; distribution and import names remain goes-tech-kg and goes_tech_kg.
+  - Python 3.13 is required in packaging, interpreter pinning, Ruff, mypy and CI. uv manages dependency installation and builds.
+  - Historical Python 3.12 evidence is retained and identified as historical. Current migration results are recorded separately.
+  - CI runs lock, lint, formatting, typing, offline tests and package builds. The full local make check also enforces the existing 20 percent performance gate.
+  - Local credentials, raw corpus, caches, environments and office exports remain excluded from Git. Bounded fixtures and sanitized cassettes remain versioned.
+  - Badges link to the actual CI workflow and supported tools. No PyPI or license badge implies publication or licensing that has not occurred.
+validation:
+  - tests/unit/test_decisions.py
+  - research/desktop-migration-validation.json

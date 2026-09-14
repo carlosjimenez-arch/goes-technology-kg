@@ -1,0 +1,2631 @@
+schema_version: research-findings-addendum/1.0
+metadata:
+  title: 'Phase 1 addendum: independent second retrieval of the official baseline'
+  relation_to_primary: Supplements research/findings.yaml (retrieval_session 2026-09-14 UTC, 99 evidence records). Produced
+    by a second, independent session on 2026-09-13 (America/El_Salvador) that ran the same Phase 1 brief without reading the
+    primary file first. Where both files agree, treat that as independent corroboration. Where they differ, the difference
+    is stated under cross_check. Nothing in this file overwrites the primary file or the accepted decisions 0001–0003; merge
+    is a maintainer decision.
+  date: '2026-09-13'
+  timezone: America/El_Salvador
+  production_code_written: false
+  claim_policy: Every claim carries source_id (resolving to sources[]), a verbatim quote where the claim is documentary, retrieved_at,
+    and confidence. Interpretations are marked as such.
+  raw_files_location: data/raw/mined/ (ignored corpus; re-downloadable from sources[] URLs, digests pinned here)
+  record_counts:
+    sources: 13
+    context_records: 61
+    learning_science_records: 51
+sources:
+- id: mined_cyt_2022_2a6
+  title: Programas de estudio de Ciencia y Tecnología, 2.º a 6.º grado (2022 edition; PDF created 2022-02-15, modified 2024-03-22)
+  source_url: https://www.mined.gob.sv/download/programas-de-estudio-de-ciencia-y-tecnologia-para-segundo-a-sexto-grado-de-educacion-basica/?wpdmdl=11132
+  local_path: data/raw/mined/cyt_2022_programas_2a6.pdf
+  sha256: 403369a6978ef60112cac6f726ec902c76495d130e598868f507a0017abc1a2f
+  bytes: 6035275
+  retrieved_at: '2026-09-13'
+  source_type: official
+  license_or_access: official government publication (MINED); no explicit open licence statement found
+- id: mined_cyt_2026_2a6
+  title: Programas de estudio de Ciencia y Tecnología, 2.º a 6.º grado (2026 materials; PDF created 2025-12-11)
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
+  local_path: data/raw/mined/cyt_2026_programas_2a6.pdf
+  sha256: 8127beee05165a7e5a73c1b33fcdd5a921744354fd330939714660e6a70d6486
+  bytes: 2217899
+  retrieved_at: '2026-09-13'
+  source_type: official
+  license_or_access: official government publication (MINED); no explicit open licence statement found
+- id: mined_cyt_2026_iii_ciclo
+  title: Programas de estudio de Ciencia y Tecnología, Tercer Ciclo (2026 materials; PDF created 2025-12-11)
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_III%20ciclo.pdf
+  local_path: data/raw/mined/cyt_2026_programas_III_ciclo.pdf
+  sha256: c45e3094ad876dc55bc8fcc9e18a9d16c948ec5105197541841ca724b1fd24f0
+  bytes: 1429749
+  retrieved_at: '2026-09-13'
+  source_type: official
+  license_or_access: official government publication (MINED); no explicit open licence statement found
+- id: mined_cyt_2026_bachillerato
+  title: Programas de estudio de Ciencia y Tecnología, Educación Media (2026 materials; PDF created 2025-10-24)
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_Bachillerato.pdf
+  local_path: data/raw/mined/cyt_2026_programas_bachillerato.pdf
+  sha256: 77d6661cea682559a58c3d555c831c4242dc42a01cfa29cbf75e8dc900c4f0fd
+  bytes: 945000
+  retrieved_at: '2026-09-13'
+  source_type: official
+  license_or_access: official government publication (MINED); no explicit open licence statement found
+- id: mined_cc_2025_1er_anio
+  title: Programa de estudios de Ciencias de la Computación, Primer año de bachillerato (PDF created 2025-05-02). Live MINED
+    link returns HTTP 404 on 2026-09-13; retrieved from the Internet Archive capture of 2025-07-09.
+  source_url: https://web.archive.org/web/20250709130432id_/https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20(1er%20A%C3%B1o).pdf
+  local_path: data/raw/mined/cc_2025_programa_1er_anio.pdf
+  sha256: 330972de0ad7ffcf336060cdd41ad48959bd58a0033673178c68931226178440
+  bytes: 728638
+  retrieved_at: '2026-09-13'
+  source_type: official
+  license_or_access: official government publication (MINED); no explicit open licence statement found
+- id: mined_mat_2026_ii_ciclo
+  title: Programa de estudio de Matemática, Segundo Ciclo (2026 materials; PDF created 2026-03-25)
+  source_url: https://www.mined.gob.sv/materiales/2026/MATEMATICA/1.%20Programas%20de%20estudio/Programa%20de%20estudio%20II%20ciclo.pdf
+  local_path: data/raw/mined/mat_2026_programa_II_ciclo.pdf
+  sha256: a677f8cd699cf6be41507a445373152779358f4954d18b105302753655f75846
+  bytes: 1577381
+  retrieved_at: '2026-09-13'
+  source_type: official
+  license_or_access: official government publication (MINED); no explicit open licence statement found
+- id: mined_mat_2026_iii_ciclo
+  title: Programa de estudio "Matemática y datos", Tercer Ciclo (2026 materials; PDF created 2025-12-01)
+  source_url: https://www.mined.gob.sv/materiales/2026/MATEMATICA/1.%20Programas%20de%20estudio/Programa%20de%20estudio%20III%20ciclo.pdf
+  local_path: data/raw/mined/mat_2026_programa_III_ciclo.pdf
+  sha256: 33cbd8915dbb4db4d75c1e55085eedcb3e80743f1bcd0a555978aac0f2481c90
+  bytes: 2450584
+  retrieved_at: '2026-09-13'
+  source_type: official
+  license_or_access: official government publication (MINED); no explicit open licence statement found
+- id: mined_cyv_2026_2y3
+  title: Programa de estudios de Ciudadanía y Valores, 2.º y 3.º grado (2026 materials)
+  source_url: https://www.mined.gob.sv/materiales/2026/CIUDADANIA_Y_VALORES/1.%20Programas%20de%20estudio/Programa%20de%20estudios%20Ciudadan%C3%ADa%20y%20Valores%202.%C2%B0%20y%203.%C2%B0%20grados.pdf
+  local_path: data/raw/mined/cyv_2026_programa_2y3.pdf
+  sha256: d4609d93e68905345e6f5ea7004730319fa4da5fde1e9a82aabbcc2479de8470
+  bytes: 3472371
+  retrieved_at: '2026-09-13'
+  source_type: official
+  license_or_access: official government publication (MINED); no explicit open licence statement found
+- id: mined_cyv_2026_ii_ciclo
+  title: Programa de estudios de Ciudadanía y Valores, Segundo Ciclo (2026 materials)
+  source_url: https://www.mined.gob.sv/materiales/2026/CIUDADANIA_Y_VALORES/1.%20Programas%20de%20estudio/Programa%20de%20estudios%20Ciudadan%C3%ADa%20y%20Valores%20II%20ciclo.pdf
+  local_path: data/raw/mined/cyv_2026_programa_II_ciclo.pdf
+  sha256: bcc30ad4d4e83fecd77b4b8a934006fab7adaa464e9fa68c127e68f7dbf821ca
+  bytes: 3242063
+  retrieved_at: '2026-09-13'
+  source_type: official
+  license_or_access: official government publication (MINED); no explicit open licence statement found
+- id: mined_page_cyt_2022
+  title: MINED page announcing CyT 2.º–6.º (2022)
+  source_url: https://www.mined.gob.sv/programa-de-estudio-cyt/
+  local_path: data/raw/mined/programa-de-estudio-cyt.html
+  sha256: fee863df3e7abbf84540a37c9a915ff486881a6e55f577e19001136a231bdc57
+  bytes: 104162
+  retrieved_at: '2026-09-13'
+  source_type: official
+  license_or_access: official government publication (MINED); no explicit open licence statement found
+- id: mined_page_ciencia_educativa
+  title: MINED page "Ciencia y Tecnología" listing 2026 materials
+  source_url: https://www.mined.gob.sv/ciencia-educativa/
+  local_path: data/raw/mined/ciencia-educativa.html
+  sha256: 788ba164cff69bf6b89ca7f48ee505c8586e2e881cb0e36a9107d0ad226c232b
+  bytes: 109369
+  retrieved_at: '2026-09-13'
+  source_type: official
+  license_or_access: official government publication (MINED); no explicit open licence statement found
+- id: mined_page_cc
+  title: MINED page "Ciencias de la Computación"
+  source_url: https://www.mined.gob.sv/ciencias-de-la-computacion/
+  local_path: data/raw/mined/ciencias-de-la-computacion.html
+  sha256: f5b5ab660d2dc11f4585356ddfa256e47b56f6b3f472ece61390867f18c7594d
+  bytes: 104422
+  retrieved_at: '2026-09-13'
+  source_type: official
+  license_or_access: official government publication (MINED); no explicit open licence statement found
+- id: elmundo_2024_cinco_materias
+  title: Diario El Mundo, 2024-01-29, "Cinco materias tendrán nuevos planes de estudio este año escolar"
+  source_url: https://diario.elmundo.sv/nacionales/cinco-materias-tendran-nuevos-planes-de-estudio-este-ano-escolar
+  local_path: data/raw/mined/elmundo_cinco_materias.html
+  sha256: bf2ec9fc896eb0af67772ad4c96c07ed7fec5342575cf12b5841eda857a8dfec
+  bytes: 102837
+  retrieved_at: '2026-09-13'
+  source_type: independent_press
+  license_or_access: press article, all rights reserved; cited, not redistributed
+baseline_el_salvador:
+  summary: 'There is no standalone Technology, Informática or Computación subject in grades 2–6. "Tecnología" appears only
+    as one of five integrating axes (I, S, O, T, E) inside the subject "Ciencia y Tecnología" (CyT), and that axis is physics/engineering
+    (measurement, structures, simple machines, circuits), not computing. Computing content first appears as a subject in 1.º
+    de bachillerato ("Ciencias de la Computación", from 2025). Digital citizenship appears as a sub-block inside "Ciudadanía
+    y Valores" in grades 3–6 (2026 programmes). The data strand of Matemática (2.º ciclo) carries data representation/analysis
+    units.
+
+    '
+  subject_landscape_2a6:
+  - claim: Since March 2022, grades 2–6 study "Ciencia y Tecnología", replacing "Ciencia, Salud y Medio Ambiente".
+    source_id: mined_page_ciencia_educativa
+    quote: introducen en marzo de 2022, los recursos educativos para la asignatura «Ciencia y Tecnología» destinados para
+      2° a 6° grado, en reemplazo a la asignatura anterior de Ciencia, Salud y Medio Ambiente
+    retrieved_at: 2026-09-13
+    confidence: high
+  - claim: The 2022 announcement dated the entry into force to week 8 (March) of the 2022 school year and named CyT as replacement
+      for both "Ciencia, Salud y Medio Ambiente" and "Ciencias Naturales".
+    source_id: mined_page_cyt_2022
+    quote: los materiales de segundo a sexto grado entrarán en vigencia de manera oficial y en todos los centros educativos
+      del país a partir de la Semana 8 (marzo) de la estrategia de continuidad educativa 2022
+    retrieved_at: 2026-09-13
+    confidence: high
+  - claim: CyT is a 10-year continuous sequence from grade 2 to 2.º de bachillerato (ages 8–17).
+    source_id: mined_cyt_2026_2a6
+    quote: guía un proceso formativo de 10 años continuos que inicia en el segundo grado de educación básica y culmina en
+      el segundo año de educación media
+    retrieved_at: 2026-09-13
+    confidence: high
+  cyt_2a6_time_and_structure:
+    weekly_hours:
+      2: 4
+      3: 5
+      4: 5
+      5: 5
+      6: 5
+    annual_hours:
+      2: 160
+      3: 200
+      4: 200
+      5: 200
+      6: 200
+    school_year_weeks: 40
+    effective_teaching_weeks: 32
+    reserved_weeks_for_adaptation: 8
+    units_per_grade: 6
+    unit_of_hours: hora (as printed); the programme does not state the minute length of a class hour
+    source_id: mined_cyt_2026_2a6
+    quote: Ciencia y Tecnología se desarrolla en cinco horas por semana durante el año lectivo, el cual comprende 40 semanas.
+      La excepción es el segundo grado, que contempla únicamente cuatro horas por semana.
+    quote_2: el tiempo efectivo de las clases se ajusta a 32 semanas, contemplándose 8 semanas para las adecuaciones curriculares
+    retrieved_at: 2026-09-13
+    confidence: high
+    note: 'Same table in the 2022 edition (mined_cyt_2022_2a6). Observe: 160 h/year is exactly the 2.º grado CyT allocation
+      and exactly the Ciencias de la Computación allocation in bachillerato (4 h × 40).'
+  cyt_technology_axis_inventory:
+    definition: Units whose 'eje integrador' is T – Tecnología in the malla curricular (2026 edition; identical set in 2022
+      except 3.º U1 renamed from 'Fuerzas' to 'Medidas y fuerzas').
+    source_id: mined_cyt_2026_2a6
+    retrieved_at: 2026-09-13
+    confidence: high
+    units:
+    - grade: 2
+      unit: 5
+      title: Objetos técnicos
+      weeks: 5
+      indicators: 9
+      indicator_ids:
+      - '5.1'
+      - '5.2'
+      - '5.3'
+      - '5.4'
+      - '5.5'
+      - '5.6'
+      - '5.7'
+      - '5.8'
+      - '5.9'
+      skill_type: design-and-make (build a balance, a rigid bridge model, an energy-transforming device, a terrarium; record
+        measurements; explain how to optimise an own-built device)
+      key_domain: La estructura y materiales de un objeto condicionan su uso.
+      computing_content: none
+    - grade: 3
+      unit: 1
+      title: Medidas y fuerzas
+      weeks: 5
+      indicators: 6
+      indicator_ids:
+      - '1.1'
+      - '1.2'
+      - '1.3'
+      - '1.4'
+      - '1.5'
+      - '1.6'
+      skill_type: measurement and instrument selection; contact vs distance forces; communicating observations
+      key_domain: Las fuerzas pueden actuar por contacto o a distancia.
+      computing_content: none
+    - grade: 4
+      unit: 1
+      title: Máquinas y energía
+      weeks: 5
+      indicators: 10
+      indicator_ids:
+      - '1.1'
+      - '1.2'
+      - '1.3'
+      - '1.4'
+      - '1.5'
+      - '1.6'
+      - '1.7'
+      - '1.8'
+      - '1.9'
+      - '1.10'
+      skill_type: simple/complex machines; inventory of everyday technological objects and their energy sources; simple energy-transformation
+        calculations; build a complex machine
+      key_domain: Las máquinas pueden reducir la cantidad de fuerza necesaria para efectuar una tarea.
+      computing_content: none
+    - grade: 5
+      unit: null
+      title: null
+      weeks: 0
+      indicators: 0
+      note: 'No unit with eje T in grade 5 (units: Magnitudes físicas O, Mecánica E, Estructura atómica I, Tabla periódica
+        O, Ciencias del espacio S, Ciencias de la Tierra I).'
+    - grade: 6
+      unit: 3
+      title: Electricidad y magnetismo
+      weeks: 4
+      indicators: 9
+      indicator_ids:
+      - '3.1'
+      - '3.2'
+      - '3.3'
+      - '3.4'
+      - '3.5'
+      - '3.6'
+      - '3.7'
+      - '3.8'
+      - '3.9'
+      skill_type: 'multimeter use; resistor colour code; series/parallel circuits built and calculated; electromagnets; field
+        lines. Attitudinal content: ''Confianza en su capacidad de seguir secuencias de instrucciones para ensamblar dispositivos.'''
+      key_domain: La corriente eléctrica produce un campo magnético...
+      computing_content: none
+    totals:
+      t_axis_units: 4
+      t_axis_weeks: 19
+      t_axis_indicators: 34
+      all_units_2a6: 30
+      all_indicators_2a6_approx: 754
+      share_of_weeks: 19 of ~160 programmed unit-weeks (≈12 %)
+      share_of_indicators: 34 of ~754 (≈4.5 %)
+      t_axis_hours_estimate: '2.º: 5 w × 4 h = 20 h; 3.º: 5 w × 5 h = 25 h; 4.º: 5 w × 5 h = 25 h; 5.º: 0 h; 6.º: 4 w × 5
+        h = 20 h → 90 class-hours across five grades (nominal; matches ''technology_suggested_periods: 90'' in research/findings.yaml)'
+    computing_terms_scan:
+      method: case-insensitive grep over pdftotext output of the 2026 2.º–6.º programme
+      hits:
+        computadora: 1
+        simulación por computadora (methodology section): 1
+        simulador: 2
+        algoritmo: 0
+        programación: 0
+        internet: 0
+        digital: 0
+        robot: 0
+        software: 0
+        pensamiento computacional: 0
+        inteligencia artificial: 0
+      conclusion: Zero computational-thinking, programming, data-literacy or digital-citizenship content in CyT 2.º–6.º. The
+        only device-related capabilities are the ICC+I profile items 4.03 'Comprender instrucciones escritas para ensamblar
+        dispositivos' and 5.03/6.03 'Ensamblar dispositivos siguiendo una secuencia de instrucciones', plus 'Abstracción',
+        'Tratamiento de datos', 'Manipulación de dispositivos' and 'Experticia tecnológica' in the skills catalogue (section
+        3.3).
+      confidence: high
+  cyt_vertical_chain_7_to_11:
+    source_ids:
+    - mined_cyt_2026_iii_ciclo
+    - mined_cyt_2026_bachillerato
+    weekly_hours:
+      7: 5
+      8: 5
+      9: 5
+      10: 6
+      11: 6
+    annual_hours:
+      7: 200
+      8: 200
+      9: 200
+      10: 240
+      11: 240
+    t_axis_units:
+    - grade: 9
+      unit: 6
+      title: Electricidad
+      weeks: 5
+    - grade: 9
+      unit: 7
+      title: Magnetismo aplicado
+      weeks: 3
+    - grade: 10
+      unit: 2
+      title: Electromagnetismo
+      weeks: 3
+    - grade: 11
+      unit: 5
+      title: Biotecnología microbiana
+      weeks: 4
+    - grade: 11
+      unit: 6
+      title: Biotecnología vegetal y agroindustria
+      weeks: 6
+    - grade: 11
+      unit: 7
+      title: Ciencia de materiales
+      weeks: 3
+    computing_terms_scan:
+      III_ciclo:
+        algoritmo: 0
+        programación: 2
+        software: 1
+        computador: 1
+      bachillerato:
+        algoritmo: 3
+        sensor: 3
+        programación: 0
+    conclusion: The T axis of CyT stays physics/biotech through grade 11; computing is not in CyT at any level. The vertical
+      anchor for computing is therefore Ciencias de la Computación (bachillerato), not CyT.
+    confidence: high
+  ciencias_de_la_computacion_bachillerato:
+    status: Introduced 2025 in all public bachilleratos generales as 'asignatura complementaria del tronco común', replacing
+      Informática.
+    source_id: mined_page_cc
+    quote: introduce a partir del año 2025 la asignatura «Ciencias de la Computación» en todos los bachilleratos generales
+      del sector público... constituye una evolución de la que se impartía como «Informática»
+    programme_source_id: mined_cc_2025_1er_anio
+    programme_availability: Only the 1.er año programme was found (45 pp., PDF dated 2025-05-02). The live MINED link returns
+      404 on 2026-09-13; the Internet Archive holds captures from 2025-07-09 and 2025-11-04. No 2.º año programme was located
+      (Wayback CDX of mined.gob.sv/docs/ lists no such file).
+    weekly_hours:
+      10: 4
+      11: 4
+    annual_hours:
+      10: 160
+      11: 160
+    effective_weeks: 32
+    integrating_axes:
+    - Computación
+    - Datos
+    - Aplicaciones
+    - Sistemas
+    units_1er_anio:
+    - unit: 1
+      title: Introducción a las ciencias de la computación
+      weeks: 5
+      eje: Computación
+      indicators: 10
+      focus: 'what a computer is; generations; CT: decomposition, patterns, abstraction, algorithms (input/process/output);
+        flowcharts and pseudocode; hardware/software; operating systems'
+    - unit: 2
+      title: Lógica de programación
+      weeks: 5
+      eje: Computación
+      indicators: 10
+      focus: logical/relational operators; sequences in pseudocode and blocks; if/if-else; for/while; debugging in a visual
+        programming environment
+    - unit: 3
+      title: Estructuras de datos
+      weeks: 5
+      eje: Datos
+      indicators: 10
+      focus: 'variables, lists, arrays, stacks, queues, tables/dictionaries; linear vs binary search; bubble/selection sort
+        — all in a visual programming environment; advanced: import CSV'
+    - unit: 4
+      title: Desarrollo básico de software
+      weeks: 7
+      eje: Aplicaciones
+      indicators: 14
+      focus: 'Python in IDLE: syntax, conditionals, loops, functions/modularity, strings/lists/tuples/dicts, text-file I/O,
+        libraries (math, random, datetime); advanced: version control'
+    - unit: 5
+      title: Ciberseguridad y ciudadanía digital
+      weeks: 4
+      eje: Sistemas
+      indicators: 8
+      focus: digital footprint, reputation, phishing/malware/scams, fake information and source reliability, passwords, privacy
+        settings, empathy online, cyberbullying, reporting
+    - unit: 6
+      title: Fundamentos de inteligencia artificial
+      weeks: 6
+      eje: Datos
+      indicators: 12
+      focus: what AI is; ML basics; computer vision and image generation via pseudocode simulation; rule-based vs AI chatbots;
+        data role; supervised (trees, rules, k-NN, linear regression) and unsupervised (clustering); neural networks; generative
+        AI; ethics
+    entry_profile_verbatim: Para un desarrollo adecuado de las competencias planteadas es indispensable la construcción previa
+      de habilidades fundamentales como la resolución de problemas, la búsqueda de información, la representación de datos
+      numéricos y el ensamblaje de dispositivos siguiendo instrucciones. Estas habilidades deberán fomentarse en los años
+      previos como parte del perfil de entrada a Educación Media.
+    declared_feeder_subjects_verbatim: integra y expande las competencias promovidas durante la Educación Básica, principalmente
+      en las asignaturas de Matemática y Datos y Ciencia y Tecnología
+    note_on_feeders: '''Matemática y Datos'' is the 2026 title of the III-ciclo mathematics programme (mined_mat_2026_iii_ciclo).
+      The 2.º-ciclo mathematics programme (2026) is titled ''Aritmética y finanzas'' in its running header and includes data
+      units (4.º U9 ''Medida y representación de datos''; 6.º U7 ''Análisis de datos''; 6.º U11 ''Formas de contar y ordenar
+      objetos''). The word ''algoritmo'' appears 31 times in the 2.º-ciclo maths programme, always as ''algoritmo de la división/multiplicación''
+      (arithmetic procedures), never as computational algorithm design.'
+    references_to_basica: The CC programme's bibliography cites the 2008 Programas de Estudio of 2.º, 4.º and 6.º grado de
+      Educación Básica (not the 2022 CyT programme).
+    retrieved_at: 2026-09-13
+    confidence: high
+  backward_mapping_cc_to_2a6:
+    purpose: For each capability that CC 1.er año assumes on entry (explicitly in the perfil de entrada, or implicitly because
+      a unit starts from it without teaching it), state where it is or is not developed in the current 2.º–6.º programmes.
+      This is the vertical anchor; grade-6 exit targets are derived from it in Phase 3.
+    method: Read every CC indicator; classify the prior capability it presupposes; search the 2026 CyT 2.º–6.º, CyV 2.º–6.º
+      and Matemática 4.º–6.º programmes for an indicator that develops it. 'gap' = no indicator found.
+    confidence: medium
+    note: Implicit prerequisites are an interpretation; explicit ones are quoted. III ciclo (7–9) has no computing subject
+      either, so a gap at grade 6 is a gap at grade 9 unless III ciclo is redesigned.
+    rows:
+    - cc_ref: perfil de entrada
+      assumed_capability: Resolución de problemas (problem solving as a habit, including trial-and-error and revision)
+      explicit: true
+      present_in_2a6: CyT ICC+I profile 2.10–6.11 ('Enfrentar situaciones novedosas', 'Adecuar procedimientos para mejorar
+        sus resultados previos'); Matemática RSP methodology
+      gap: none
+    - cc_ref: perfil de entrada
+      assumed_capability: Búsqueda de información (finding and contrasting sources)
+      explicit: true
+      present_in_2a6: CyT profile 2.02–6.02 ('Contrastar opiniones y fuentes de información', 'Recopilar información disponible');
+        CyV 4.º 6.13–6.15 (medios de comunicación)
+      gap: partial — no indicator on searching or evaluating online sources before bachillerato (CC 5.4 'Evalúa la veracidad
+        de información disponible en línea')
+    - cc_ref: perfil de entrada
+      assumed_capability: Representación de datos numéricos (tables, charts, simple statistics)
+      explicit: true
+      present_in_2a6: Matemática 4.º U9 'Medida y representación de datos', 6.º U7 'Análisis de datos', 6.º U11 'Formas de
+        contar y ordenar objetos'; CyT profile 2.16–6.16 (registro, representación y síntesis de información)
+      gap: none
+    - cc_ref: perfil de entrada
+      assumed_capability: Ensamblaje de dispositivos siguiendo instrucciones
+      explicit: true
+      present_in_2a6: CyT profile 4.03 'Comprender instrucciones escritas para ensamblar dispositivos', 5.03/6.03 'Ensamblar
+        dispositivos siguiendo una secuencia de instrucciones'; 2.º U5, 4.º U1, 6.º U3 build tasks
+      gap: none
+    - cc_ref: U1 1.3–1.5 (descomposición, patrones, abstracción)
+      assumed_capability: Having practised decomposition, pattern recognition and abstraction on everyday tasks before being
+        asked to name them
+      explicit: false
+      present_in_2a6: CyT skills catalogue lists 'Abstracción', 'Simplificación y síntesis', 'Deconstrucción' as ICC+I skills,
+        but no 2.º–6.º indicator operationalises them as CT practices; Matemática 'patrón' appears 5 times (numeric patterns)
+      gap: CT practices are named as generic skills but never assessed as indicators before grade 10
+    - cc_ref: U1 1.6–1.8 (algoritmos; entrada/proceso/salida; diagramas de flujo y pseudocódigo)
+      assumed_capability: Writing and following an unambiguous ordered sequence of instructions; reading a simple flowchart
+      explicit: false
+      present_in_2a6: CyT 6.º U3 attitudinal content 'seguir secuencias de instrucciones para ensamblar dispositivos'; 2.º
+        U5 5.7 'Registra las tareas necesarias para el cuidado de un animal doméstico' (a procedure list)
+      gap: No indicator on authoring an algorithm or representing it; the CC programme starts flowcharts from zero in week
+        1–5 of grade 10
+    - cc_ref: U2 2.1–2.2 (operadores lógicos y relacionales)
+      assumed_capability: Truth values; comparison of quantities; AND/OR/NOT in natural language
+      explicit: false
+      present_in_2a6: Matemática comparison of numbers/fractions (4.º–6.º); no logic content
+      gap: propositional logic absent before grade 10 (expected; but conditionals in natural language could be seeded in 5.º–6.º)
+    - cc_ref: U2 2.3–2.8 (secuencias, condicionales, bucles en pseudocódigo/bloques)
+      assumed_capability: Prior contact with block-based programming (the programme says 'implementa ... en un entorno de
+        programación visual' from week 6 of grade 10 without an introduction to the environment)
+      explicit: false
+      present_in_2a6: none
+      gap: No block programming anywhere in 2.º–9.º; CC assumes a visual environment can be picked up incidentally
+    - cc_ref: U2 2.9–2.10 (depuración)
+      assumed_capability: Treating errors as information; systematic testing
+      explicit: false
+      present_in_2a6: CyT attitudinal 'Asunción de errores', profile 5.11/6.11 'Adecuar procedimientos para mejorar resultados
+        previos'; CyT 2.º U5 5.6 'Explica sus ideas de cómo optimizar un dispositivo'
+      gap: attitude present; no debugging-of-a-procedure indicator
+    - cc_ref: U3 3.1–3.10 (estructuras de datos; búsqueda lineal/binaria; ordenamiento)
+      assumed_capability: Sorting and searching as everyday procedures; organising items in lists/tables
+      explicit: false
+      present_in_2a6: Matemática 6.º U11 'Formas de contar y ordenar objetos'; 4.º U9 tables
+      gap: partial — ordering exists as maths content; no procedural (step-by-step) treatment of sorting/searching
+    - cc_ref: U4 4.1–4.14 (Python, IDLE, archivos)
+      assumed_capability: 'Keyboard/file-system literacy: install and configure an IDE, create/save files, folder navigation'
+      explicit: false
+      present_in_2a6: none (no ICT-operations content in any 2.º–6.º programme read)
+      gap: Operational digital literacy is assumed, not taught, anywhere in básica programmes; this is the strongest tier-dependence
+        in the chain
+    - cc_ref: U5 5.1–5.8 (ciberseguridad y ciudadanía digital)
+      assumed_capability: Prior notions of personal data, online risks, respectful interaction
+      explicit: false
+      present_in_2a6: CyV 3.º U6 6.5 (herramientas tecnológicas); CyV 4.º U6 6.13–6.15 (medios y ciudadanía digital); CyV
+        5.º U6 6.9–6.12 (riesgos digitales, seguridad en línea, derechos y responsabilidades en plataformas digitales); CyV
+        6.º competencies mention 'ciudadanía digital y la seguridad'
+      gap: none at the notional level; CyV owns this strand from grade 3 — a strong candidate host subject for transversal
+        delivery
+    - cc_ref: U6 6.1–6.12 (IA, aprendizaje automático, sesgos)
+      assumed_capability: Idea of a rule vs a learned pattern; classification by attributes; awareness that machines make
+        predictions from data
+      explicit: false
+      present_in_2a6: Matemática data units (classification/counting); CyT 'Análisis y predicción' skill; nothing on AI
+      gap: AI literacy absent before grade 10; UNESCO 2024 framework places 'understand' level in primary
+    gap_summary:
+      covered_by_existing_2a6:
+      - problem_solving_habit
+      - information_search_offline
+      - numeric_data_representation
+      - following_assembly_instructions
+      - digital_citizenship_notions
+      absent_before_grade_10:
+      - algorithm_authoring_and_representation
+      - block_programming
+      - debugging_as_procedure
+      - propositional_logic_in_natural_language
+      - operational_digital_literacy
+      - ai_literacy
+      - ct_practices_as_assessed_indicators
+  reform_2026_status:
+  - claim: The "Mi Nueva Escuela" curriculum renewal proceeds by subject and level; III ciclo programmes (Lenguaje, CyT, Estudios
+      Sociales, Inglés) entered into force for use and validation in 2024, Educación Física in 2.º–3.º and II ciclo in 2024.
+    source_id: elmundo_2024_cinco_materias
+    quote: Desde este año escolar 2024 entra en vigencia para su uso y validación en el sector público el nuevo programa de
+      estudio de III ciclo y los libros de texto de Séptimo y Octavo grado
+    retrieved_at: 2026-09-13
+    confidence: high
+  - claim: MINED's 2026 materials tree (mined.gob.sv/materiales/2026/) publishes, for básica 2.º–6.º, programmes for Ciencia
+      y Tecnología (2.º–6.º), Matemática (II ciclo, dated 2026-03-25), Ciudadanía y Valores (2.º–3.º and II ciclo; renamed
+      from Estudios Sociales) and Inglés (Builders 2.º–3.º, Movers II ciclo), each with textbooks and methodological guides.
+    source_ids:
+    - mined_page_ciencia_educativa
+    - mined_cyv_2026_2y3
+    - mined_cyv_2026_ii_ciclo
+    - mined_mat_2026_ii_ciclo
+    retrieved_at: 2026-09-13
+    confidence: high
+    notes: Directory listing is forbidden (403); files were found via subject pages (/ciencia-educativa/, /ciudadania-y-valores/,
+      /ingles/) and by search-engine-indexed paths (MATEMATICA, LENGUAJE). A Matemática I-ciclo file and a Lenguaje básica
+      file were not located under the guessed names. No 'Tecnología', 'Informática' or 'Computación' directory exists under
+      materiales/2026 (404).
+  - claim: The 2026 CyT 2.º–6.º programme is a reprint of the 2022 programme, not a redesign.
+    evidence: Same authors and identical foreword ('primera versión'); same plan de estudio table; same malla except 3.º U1
+      renamed 'Fuerzas' → 'Medidas y fuerzas'; indicator sets identical by (id, verb) for grades 2, 3, 4; grade 5 loses one
+      item ('2.3 Objetivos', a heading artefact); grade 6 renames 4.7 'Atención' → 'Inclusión'. 2022 PDF created 2022-02-15
+      (mod. 2024-03-22), 108 pp.; 2026 PDF created 2025-12-11, 106 pp.
+    source_ids:
+    - mined_cyt_2022_2a6
+    - mined_cyt_2026_2a6
+    confidence: high
+  - claim: The US$71.4M / 6-million-textbook figure and the level-by-level publication calendar of the 2026 reform could not
+      be verified from MINED pages read here.
+    status: unverified_here
+    handoff: see context.yaml (reform_2026) for press/official sources gathered by the context survey
+    confidence: low
+  baseline_versioning_proposal:
+    rationale: The official baseline changed in 2022 (CyT created), 2024 (III ciclo), 2025 (CC in bachillerato), 2026 (materials
+      reprint + CyV/Matemática renewal), and the 2.º año CC programme is still unpublished. The repo must pin which baseline
+      a run used.
+    layout: data/processed/baseline/<version>/ with manifest.json {baseline_version, cutoff_date, sources:[{id, url, sha256}],
+      programmes:[...]}
+    versions:
+    - version: '2022.03'
+      cutoff_date: 2022-03-01
+      contents: CyT 2.º–6.º (2022 PDF); Estudios Sociales 2008; Matemática ESMATE 2018; no CC
+    - version: '2025.02'
+      cutoff_date: 2025-02-01
+      contents: + CyT III ciclo (2024); + CC 1.er año (2025); Estudios Sociales still 2008 programme
+    - version: '2026.02'
+      cutoff_date: 2026-02-01
+      contents: + 2026 reprints (CyT 2.º–6.º, III ciclo, bachillerato); + CyV 2.º–3.º and II ciclo; + Matemática II ciclo
+        (2026-03-25 PDF); CC 2.º año still absent
+    default_for_phase_3: '2026.02'
+  official_hours_for_technology_2a6:
+    finding: None. No official weekly load is assigned to Tecnología, Informática or Computación in grades 2–6. The only technology
+      time is the T axis inside CyT (90 nominal class-hours across grades 2–6, i.e. 18 h/grade average, 0 in grade 5), and
+      the digital-citizenship blocks inside CyV (one unit block per grade in 3.º–6.º, a few indicators each).
+    confidence: high
+    implication_for_budget: A standalone 160 h/grade Technology subject would be a new subject with the weekly load of CyT
+      in 2.º grado (4 h). No evidence supports that allocation for 2.º–6.º; the realistic official envelope today is transversal
+      (CyT T-axis + CyV digital block + Matemática data units).
+  host_subject_weekly_hours_2026_programmes:
+    note: Read from the 'Plan de estudio' section of each 2026 programme. A general plan-de-estudios table for all subjects
+      was not found on MINED pages (see context.yaml time_structure).
+    ciencia_y_tecnologia:
+      2: 4
+      3: 5
+      4: 5
+      5: 5
+      6: 5
+    ciudadania_y_valores:
+      2: 3
+      3: 4
+      4: 4
+      5: 4
+      6: 4
+    matematica:
+      4: 5
+      5: 5
+      6: 5
+      2: null
+      3: null
+    lenguaje: null
+    ingles: null
+    educacion_fisica: null
+    educacion_artistica: null
+    hora_clase_minutes: not stated in any programme read; see context.yaml
+    source_ids:
+    - mined_cyt_2026_2a6
+    - mined_cyv_2026_2y3
+    - mined_cyv_2026_ii_ciclo
+    - mined_mat_2026_ii_ciclo
+    confidence: high
+cross_check_against_primary_findings:
+  agreements:
+  - 'CyT 2.º–6.º weekly load 4/5/5/5/5, 40-week year, 32 effective weeks, six units per grade (primary: sv_time).'
+  - 'Technology axis = 4 units, 34 numbered indicators, 90 nominal class-hours, none in grade 5 (primary: technology_indicators
+    34, technology_suggested_periods 90, sv_cyt_grade_5).'
+  - 'Ciencias de la Computación 1.er año: 45-page programme, six units, 4 h/week, entry profile wording (primary: sv_cs_entry,
+    sv_cs_targets). Same sha256 330972de… in both sessions.'
+  - 'The 59-page "current" CC PDF linked from the MINED page returns 404 (primary: gap_current_cs_binary).'
+  - 'Period (hora clase) duration in minutes is not stated in any programme read (primary: gap_period_minutes). This session
+    adds nothing that closes it.'
+  additions_that_close_or_narrow_primary_open_items:
+  - open_item: gap_period_minutes
+    contribution: 'CLOSED for Educación Primaria: MINEDUCYT "Orientaciones Pedagógicas para la Implementación del Currículo
+      en los Centros Educativos 2026", section 3, fixes five 45-minute horas clase per shift (7:15–8:00 … 11:00–11:45) and
+      25 h/week; the 55-minute period is a non-mandatory bachillerato pilot (~100 schools). Conversion rule: 1 hora clase
+      = 45 min; CyT 5 h/week = 225 min/week; 200 h/year = 150 clock-hours.'
+    see: context_el_salvador_second_retrieval.time_structure
+    confidence: high
+  - open_item: gap_reform_diff
+    contribution: 'Dated version comparison done for CyT 2.º–6.º: the 2026 file (created 2025-12-11) is a reprint of the 2022
+      file (created 2022-02-15, modified 2024-03-22). Identical foreword and authors; identical plan-de-estudio table; malla
+      identical except 3.º U1 title "Fuerzas" → "Medidas y fuerzas"; indicator sets identical by (id, verb) in grades 2–4,
+      one heading artefact removed in grade 5, one verb changed in grade 6 (4.7 "Atención" → "Inclusión"). Conclusion: for
+      grades 2–6 the technological baseline did not change in the 2026 reform; what is new in 2026 are Ciudadanía y Valores
+      (2.º–3.º, II ciclo) and Matemática II ciclo programmes, textbooks and guides.'
+    see: baseline_el_salvador.reform_2026_status
+    confidence: high
+  - open_item: gap_current_cs_binary
+    contribution: 'Internet Archive CDX for mined.gob.sv/docs/* lists only one CC programme ever captured: "Programa de estudios
+      de Ciencias de la Computación (1er Año).pdf" (captures 2025-07-09 and 2025-11-04), identical sha256 to the file both
+      sessions hold. The 59-page "Programas_de_estudio_Ciencias_de_la_Computacion.pdf" was never archived, so no hash-pinned
+      copy exists anywhere public. The item stays open, but the search space is exhausted for public archives; the next step
+      is a formal request to MINED (UAIP).'
+    see: sources[mined_cc_2025_1er_anio]
+    confidence: high
+  - open_item: gap_reference_hours
+    contribution: Not closed here; the frameworks section of this addendum (if present) records what the second retrieval
+      obtained for Chile.
+    confidence: low
+  new_evidence_not_in_primary:
+  - Ciudadanía y Valores (2026) carries a digital-citizenship block in 3.º U6 (6.5), 4.º U6 (6.13–6.15) and 5.º U6 (6.9–6.12),
+    and names "ciudadanía digital y la seguridad" in the 6.º competencies; weekly load 3 h (2.º) / 4 h (3.º–6.º). This is
+    the natural host subject for the B strand under transversal/hybrid modes, with ~4 indicators per grade already in place.
+  - 'Matemática II ciclo (2026, PDF dated 2026-03-25): 5 h/week, 200 h/year in 4.º–6.º; data units 4.º U9, 6.º U7, 6.º U11;
+    "algoritmo" appears 31 times, always as arithmetic procedure. The III-ciclo programme is titled "Matemática y datos",
+    which is the feeder subject the CC programme names.'
+  - CyT technology axis in 7.º–11.º stays physics/biotech (9.º Electricidad, Magnetismo aplicado; 10.º Electromagnetismo;
+    11.º Biotecnología ×2, Ciencia de materiales). No computing in CyT at any level; the vertical computing chain has a 7-year
+    gap (grades 3–9) with no host.
+  - 'CC programme bibliography cites the 2008 Programas de Estudio (2.º, 4.º, 6.º), not the 2022 CyT programme: the CC authors
+    did not backward-map from the current primary curriculum.'
+  - Diario El Mundo 2024-01-29 documents the 2024 III-ciclo rollouts (Lenguaje, CyT, Estudios Sociales, Inglés) and Educación
+    Física for 2.º–3.º and II ciclo, "para su uso y validación".
+  - 'Orientaciones 2026 renames the primary subjects: Comunicación (2.º–3.º) / Comunicación y Literatura (4.º–6.º), Números
+    y Formas (2.º–3.º) / Aritmética y Finanzas (4.º–6.º), Ciencia y Tecnología, Ciudadanía y Valores, Artes, Desarrollo Corporal;
+    total 25 h/week; no Tecnología/Informática/Computación row in any grade 2–6. III ciclo: Matemática y Datos 5 h. Bachillerato
+    general 1.º año 38 h including Ciencias de la Computación 4 h.'
+  - 'Connectivity is the sharpest official-vs-independent gap: Presidencia/UNDP ">90 % of schools connected, >4,700 schools"
+    and "80 % with Starlink" (2025) versus World Bank PID (Nov 2025) "57 % of schools lack internet" and ESSA (Feb 2026) "one
+    in four with stable connectivity"; MINEDUCYT declared the list of connected schools reserved information in 2023. This
+    supports T0/T1 as the design floor.'
+  - 'No official or independent measurement of the working share of the 2021–23 device fleet exists; only repair-centre figures
+    and a 2025 maintenance tender. World Bank ESSA: under 20 % of teachers trained in pedagogical use of technology.'
+  - 'AI policy: Ley de Fomento a la IA (D.L. 234, D.O. 2025-03-03) and ANIA exist; a national AI strategy was announced (UNESCO,
+    Jun 2026) but no document is published → status partial. Digital-competence framework for students or teachers: absent
+    (only Política TIC 2014).'
+  - 'School calendars: 2025 = 20 Jan–7 Nov, 2026 = 2 Feb–13 Nov, 40 numbered weeks; the World Bank refers to 200 school days.'
+  discrepancies:
+  - None material. This session initially computed 86 T-axis hours (arithmetic slip on grade 6); corrected to 90 after cross-check,
+    in agreement with the primary file.
+  - 'Orientaciones 2026 weekly table lists Ciencia y Tecnología at 4 h in BOTH 2.º and 3.º (primer ciclo table: 2.º 7/6/4/3/2/3,
+    3.º 6/6/4/4/2/3 = 25 h), whereas the CyT programme (2022 and 2026 editions) states 4 h in 2.º and 5 h in 3.º. Both are
+    official documents; record both, do not average. The 2026 table is the timetable instrument, so host capacity for 3.º
+    should use 4 h until MINED clarifies.'
+decision_review_notes:
+  purpose: The maintainer asked for critique, not confirmation. These notes do not change decisions 0001–0003; they list points
+    the maintainer may want addressed before Phase 4/5 implementation.
+  d0001_subject_scope:
+  - role: curriculum_designer
+    note: Option D with A weight 0.40 (grades 2–3) and 0.25 (grades 4–6) assumes CyT can host strand A. CyT has no T-axis
+      unit in grade 5, so under transversal/hybrid modes strand A in grade 5 has zero native host capacity; either the ledger
+      borrows from non-T CyT units (Magnitudes físicas, Mecánica) with explicit justification, or the grade-5 A weight should
+      be lower. Make this an explicit test vector.
+  - role: ct_researcher
+    note: Option B is scored t0_feasibility=1, which treats B as operational digital competence. Its citizenship/safety/source-evaluation
+      half is T0-teachable and is already hosted by Ciudadanía y Valores from grade 3. Consider splitting B into B1 (citizenship
+      and judgement, T0, host CyV) and B2 (operations, T2+), so the weight and the tier analysis stop conflating them.
+  - role: ai_engineer
+    note: 0001 embeds budget_policy, but CLAUDE.md §4 still names decisions/0002-time-budget-policy.yaml and §5 names 0003-graph-vocabulary.yaml;
+      0002 is capability tiers and 0003 is knowledge structure. Either split budget policy into its own numbered decision
+      or fix the two references so the enforcement test for decision references resolves.
+  - role: graph_researcher
+    note: The weighted scores (A 3.45, B 2.45, C 3.85, D 4.2) are sensitive to the 0.30 weight on vertical_alignment; with
+      equal weights D still wins (4.2 vs 3.8 for C), so the choice is robust, but record the sensitivity check rather than
+      only the point scores.
+  - role: ct_researcher
+    note: 'Second learning-science retrieval (51 records) supports the early-CT position of 0001 but bounds it: at age 7 sequence/patterns/find-the-wrong-step
+      only; variables and state not before grade 4; nested conditionals and Booleans at grade 6 with mandatory conceptual
+      assessment (projects get completed without understanding). Transfer claims allowed: mathematics, creative thinking,
+      metacognition (Scherer 2019 g=0.49 [0.37,0.61], inflated by passive controls); not allowed: literacy, general achievement.
+      Integration is at least as effective as standalone (Sun, Hu & Zhou 2021 g=0.60), which favours hybrid/transversal delivery.'
+  d0002_capability_tiers:
+  - role: curriculum_designer
+    note: 'Agreed that strict full-anchor T0 equivalence is infeasible and should be reported as failed. One addition: the
+      CyT programme itself already requires real instruments (multimeter in 6.º U3), so a T0 variant for the A strand will
+      lose performances that the official CyT indicators demand; the practical_bridge for those should point to the CyT unit,
+      not to a new Technology activity, to avoid double time.'
+  - role: ai_engineer
+    note: required_capabilities is the right generalisation of tiers; make sure the solver reads capabilities, not the ordinal
+      tier, when checking feasibility, otherwise T3-without-multimeter passes.
+  - role: ct_researcher
+    note: 'Unplugged evidence: defensible as opening weeks of each grade and main mode in grades 2–3 (~10 h moved CTt scores
+      in grades 5–6, d≈0.80 within-group), but it does not teach debugging-with-feedback or state/variables well; plan plugged
+      (T1+) time for those from grade 3. This matches 0002''s conceptual-T0-with-practical-bridge choice and gives the bridge
+      a concrete content list.'
+  d0003_knowledge_structure:
+  - role: graph_researcher
+    note: goes-natural-science-kg (CLAUDE.md, Phase 2 amendments dated 2026-09-14) fixed its edge enum as PREREQUISITE / CO_REQUISITE
+      / REFINES / TRANSFERS_TO and explicitly deferred AND/OR groups. The sibling_mapping in 0003 maps to math only; add the
+      science mapping (co_learning_group ≈ CO_REQUISITE; dependency_rule has no counterpart there) so the four repositories
+      can exchange graphs.
+  - role: curriculum_designer
+    note: The grade_move_case uses synthetic maths grades. The Matemática II ciclo programme retrieved here can replace them
+      with real unit references (e.g. coordinates are not a named unit in 4.º–6.º; the data units are 4.º U9, 6.º U7/U11).
+housekeeping_observed:
+- Two Claude sessions worked in this directory on 2026-09-13; the primary produced the scaffold, findings.yaml, decisions
+  0001–0005 and Phase 2/3 code; this second session produced only this addendum and data/raw/mined/. No file of the primary
+  session was modified by the second session.
+- CLAUDE.md §0 states the maintainer approved Phases 2–3 with "A todo Ok"; that approval was given in the primary session
+  and is not visible to the second one.
+context_el_salvador_second_retrieval:
+  note: Independent retrieval (2026-09-13) covering devices, connectivity, fleet condition, teacher training, AI policy, digital-competence
+    framework, time structure and the 2026 reform. Official and independent figures are kept side by side; discrepancies are
+    not reconciled.
+  meta:
+    compiled_on: 2026-09-13
+    compiler_note: 'Official and independent figures are recorded side by side; nothing is averaged. Sites that blocked automated
+      access (La Prensa Gráfica, unesco.org/ethics-ai, rree.gob.sv, presidencia 770k article) are noted where relevant. ''retrieved_at''
+      is the date the URL was opened.
+
+      '
+  devices:
+  - claim: Government announced in January 2021 it would deliver computers to ~1.2 million public-system students progressively
+      during 2021.
+    value: 1.2 million students (target)
+    source_url: https://www.presidencia.gob.sv/gobierno-entregara-computadoras-a-1-2-millones-de-estudiantes-del-sistema-publico-de-forma-progresiva/
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: The delivery will be efficient, safe and progressive. The logistics of receiving and distributing computers is
+      substantial
+    confidence: high
+    notes: Published 2021-01-08; minister Carla Hananía de Varela. Quote is the page's own English rendering as returned by
+      fetch tool; original in Spanish.
+  - claim: Device type by grade in the presidential programme was tablets for grades 1–3 and laptops for grades 4 to bachillerato.
+    value: 1.º–3.º tablet; 4.º–bachillerato laptop
+    source_url: https://www.asamblea.gob.sv/node/12058
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: A los alumnos de primero a tercer grado se les dará una tablet y a los de cuarto grado a bachillerato una laptop
+    confidence: high
+    notes: Asamblea Legislativa news, 2022-03-23 (IVA exemption). Interim minister Mauricio Pineda.
+  - claim: In March 2022 the Asamblea exempted from IVA a purchase of about 150,700 laptops and 298,500 tablets for the programme.
+    value: 150,700 laptops; 298,500 tablets (2022 tranche)
+    source_url: https://www.asamblea.gob.sv/node/12058
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: Son alrededor de 150,700 laptops que se van a comprar y 298,500 tabletas
+    confidence: high
+    notes: Deputy Rodrigo Ayala, 2022-03-23.
+  - claim: The tablet tranche for primer ciclo (1.º–3.º) was >300,000 Lenovo 10-inch tablets costing US$59.1M, within US$600M
+      assigned to digital tools; distribution began 16 May 2022.
+    value: 300,000+ tablets; US$59.1M; US$600M total digital tools (as of May 2022)
+    source_url: https://www.presidencia.gob.sv/gobierno-del-presidente-nayib-bukele-inicia-la-entrega-de-tablets-a-los-alumnos-de-1-a-3-grado-en-todas-las-escuelas-publicas-de-el-salvador/
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: ha destinado $600 millones para la adquisición de herramientas digitales, asignando $59.1 millones para la compra
+      de más de 300,000 tablets
+    confidence: high
+    notes: Presidencia, 2022-05-16. Tablets run Android 10 with 15 offline-capable apps and Google Classroom (same page).
+      MINED 2022-06-29 page states a distribution pace of "20 mil tablets diarias" (https://www.mined.gob.sv/2022/06/29/mined-disminuye-brecha-digital-de-forma-acelerada/,
+      retrieved 2026-09-13).
+  - claim: Presidencia declared in January 2023 that the promise of a laptop or tablet for 1.2 million public students (1.º
+      grado to bachillerato) had been fulfilled.
+    value: 1.2 million devices delivered (official, Jan 2023)
+    source_url: https://www.presidencia.gob.sv/presidente-nayib-bukele-cumple-su-promesa-de-entregarles-una-computadora-o-tablet-a-cada-estudiante/
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: El Presidente Nayib Bukele cumplió con su promesa de entregar una laptop o una tablet a 1.2 millones de estudiantes
+    confidence: high
+    notes: Published 2023-01-05. No tablet/laptop split given. Graduating students keep devices.
+  - claim: UNDP's Digital Readiness Assessment (July 2025) records 770,000 laptops and >298,000 tablets delivered to students
+      plus laptops for >45,000 teachers since 2021, citing a Presidencia release.
+    value: 770,000 laptops + 298,000 tablets (students); 45,000 teacher laptops
+    source_url: https://www.undp.org/sites/g/files/zskgke326/files/2025-07/reporte_digital_readiness_assessment_2.0_elsv_2024-2025_web.pdf
+    source_type: multilateral
+    retrieved_at: 2026-09-13
+    quote: se han entregado un total de 770,000 laptops y más de 298,000 tablets a estudiantes, a lo que se suman computadoras
+      portátiles para más de 45,000 docentes
+    confidence: medium
+    notes: local_file context/undp_dra_2024_2025.pdf. UNDP footnote 60 cites presidencia.gob.sv (URL not opened by me). The
+      World Bank PID (below) says 36,000 teachers, not 45,000 — discrepancy recorded under `discrepancies`.
+  - claim: World Bank PID (Nov 2025) states the Government equipped 1.2 million students and 36,000 teachers with laptops/tablets
+      and Google Classroom licences.
+    value: 1.2M students; 36,000 teachers
+    source_url: https://documents1.worldbank.org/curated/en/099112525170540758/pdf/P511960-cd8a6424-77e8-4d8a-9607-68f2ac9b1af9.pdf
+    source_type: multilateral
+    retrieved_at: 2026-09-13
+    quote: the Government has equipped 1.2 million students and 36,000 teachers with laptops/tables, secured Google Classroom
+      licenses and training
+    confidence: high
+    notes: local_file context/wb_pid_P511960.pdf (Program Information Document, AprendES P511960).
+  - claim: For school year 2026 devices are delivered only to Kínder 4 (8-inch tablet), 1.º grado (10-inch tablet), 4.º grado
+      (first laptop) and new entrants; 440,000 devices received; cumulative investment since 2021 stated as US$800M.
+    value: 440,000 devices (2026); US$800M since 2021
+    source_url: https://www.elsalvador.com/noticias/nacional/computadoras-tablets-paquetes-escolares/1259732/2026/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: en kínder 4 con una tablet de 8 pulgadas; en primer grado con una tablet de 10 pulgadas, y en cuarto grado donde
+      obtienen su primera computadora portátil
+    confidence: high
+    notes: El Diario de Hoy 2026-01-22 quoting minister Karla Trigueros. Corroborated by Infobae 2026-01-21 (https://www.infobae.com/el-salvador/2026/01/21/ninos-de-parvularia-en-el-salvador-recibiran-tablets-como-parte-del-nuevo-programa-educativo/)
+      which adds that teacher training for pedagogical use is "the following stage".
+  - claim: Early procurement transparency — GatoEncerrado documented a UN-channel purchase of 46,422 computers for US$13.5M
+      (~US$291.50/unit) against a US$450M headline figure, and noted programme details were placed under reserved information.
+    value: 46,422 units / US$13,525,049.70 (UN procurement, 2021)
+    source_url: https://gatoencerrado.news/2021/02/23/una-computadora-y-nueve-fotografos-para-cada-estudiante/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: el presidente Bukele fue muy escueto y no reveló detalles sobre el uso de fondos públicos utilizados
+    confidence: medium
+    notes: 2021-02-23. Complements GatoEncerrado 2021-04-30 special (under fleet_condition_independent).
+  - claim: Robotics kits (2022) — MINED delivered educational robotics kits (Makeblock Ultimate 2.0, Makeblock Ranger, K'NEX,
+      Robot Mouse) to 14 schools in San Salvador and 8 in San Vicente in April 2022, projecting 118 schools nationally in
+      2022.
+    value: 118 schools projected (2022); kits used via clubs / tercer ciclo
+    source_url: https://www.mined.gob.sv/2022/04/25/inicia-entrega-de-kits-de-robotica-educativa-para-escuelas-de-san-salvador/
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: El kit de robótica educativa entregada contiene MAKEBLOCK Ultimate 2.0, MAKEBLOCK Ranger, KNEX (12605), KNEX (23012)
+      y Robot Mouse
+    confidence: high
+    notes: 118-school national figure from Diario El Salvador 2022-04-27 (https://diarioelsalvador.com/a-escala-nacional-118-escuelas-reciben-kits-de-robotica/220089/,
+      retrieved 2026-09-13; state-owned outlet). No investment figure found. No later national count of kits found (searched
+      mined.gob.sv 2023–2025).
+  - claim: Loan financing — CAF US$150M (ratified 2023-01-06) for teacher equipment/training in technology and digital-gap
+      reduction; CAF US$100M (2025) modernisation programme; BIRF US$501,253,133 (ratified 2026-04-21) AprendES results-based
+      programme including connectivity and "dispositivos en buen estado".
+    value: CAF 150M (2023); CAF 100M (2025); BIRF 501.25M (2026)
+    source_url: https://www.asamblea.gob.sv/node/13926
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: La tercera promueve el uso efectivo de tecnología, garantizando conectividad, dispositivos en buen estado y plataformas
+      digitales
+    confidence: high
+    notes: CAF 150M at https://www.asamblea.gob.sv/node/12625; CAF 100M tranche of US$7,015,995 for "aulas digitales" at https://www.asamblea.gob.sv/node/13758
+      (both retrieved 2026-09-13). BID US$85M (two loans, 2022-04-19) fund the Secretaría de Innovación connectivity programme
+      (node/13926). World Bank press release 2026-03-31 confirms US$501M, grades 2–11, 2026–2031 (https://www.bancomundial.org/es/news/press-release/2026/03/31/banco-mundial-apoya-modernizacion-educativa-el-salvador-habilidades-ampliar-empleo).
+  - claim: Grok/xAI national AI tutoring programme announced 2025-12-11 for >1 million students in 5,000+ public schools over
+      two years; pilot of 171 schools/1,198 students, >1,000 schools by Sept 2026.
+    value: 5,000+ schools; 1M+ students (target); 171 pilot schools
+    source_url: https://www.presidencia.gob.sv/xai-y-el-salvador-anuncian-el-primer-programa-nacional-de-educacion-con-ia-en-el-mundo/
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: By partnering with President Bukele to bring Grok to every student in El Salvador, we're putting the most advanced
+      AI directly in the hands of an entire generation.
+    confidence: high
+    notes: 'Pilot numbers from El Diario de Hoy 2026-09-07 (https://www.elsalvador.com/noticias/nacional/bukele-defiende-reforma-educativa/1292094/2026/):
+      "1,198 students in 171 schools"; Bukele conceded "Nunca afirmamos que estos resultados representen el promedio nacional".
+      Devices/connectivity not specified in official announcement.'
+  connectivity:
+  - claim: MINED's 2020 GPE compact figure, cited by the World Bank in 2025, is that 57% of schools lack internet access.
+    value: 57% schools without internet (MINEDUCYT 2020, cited 2025)
+    source_url: https://documents1.worldbank.org/curated/en/099112525170540758/pdf/P511960-cd8a6424-77e8-4d8a-9607-68f2ac9b1af9.pdf
+    source_type: multilateral
+    retrieved_at: 2026-09-13
+    quote: lack of access to the internet in 57 percent of schools limits the use of technology for learning, assessment and
+      teacher development
+    confidence: high
+    notes: 'Footnote 15 = "Ministry of Education... (2020). El Salvador Compact: Local Education Group document. GPE". Same
+      PID: 41.6% of households have home internet; 5,130 public schools; 50,177 teachers; 1.1M students.'
+  - claim: World Bank ESSA (Feb 2026) states only one in four public schools had stable internet during the pandemic and fewer
+      than 20% of teachers had training in pedagogical use of technology.
+    value: ~25% schools stable internet; <20% teachers trained (UNICEF 2024 / MINEDUCYT 2023 as cited)
+    source_url: https://documents1.worldbank.org/curated/en/099020426223533305/txt/P511960-4cc2e41b-4db3-420b-9409-0527d6bab65b.txt
+    source_type: multilateral
+    retrieved_at: 2026-09-13
+    quote: apenas una cuarta parte de las escuelas públicas contaba con conectividad estable y menos del 20 % de los docentes
+      tenía formación en el uso pedagógico de tecnología
+    confidence: high
+    notes: 'local_file context/wb_essa_P511960.txt. Also: "en las zonas rurales, solo el 12 % de los hogares tenía acceso
+      a internet fijo".'
+  - claim: A 2023 BID/EU project-modification document stated 65% of schools had no connectivity; the programme targets 2,033
+      of 5,139 schools (34%→76%).
+    value: 65% schools without connectivity (2023 document); target 76% by programme end
+    source_url: https://diario.elmundo.sv/politica/daran-2-1-millones-a-secretaria-de-innovacion-para-conectividad-de-440-sitios-publicos-entre-julio-y-octubre
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: el 65 % de las escuelas no tenían conectividad
+    confidence: medium
+    notes: 'Diario El Mundo 2026-05-26 reporting an Asamblea budget reform (US$2,151,615; EU donation US$10.165M via BID).
+      Same article: "En mayo de 2025 el presidente Bukele dijo que un 80 % de los centros" had Starlink internet.'
+  - claim: Official claim (Bukele, May 2025) that 80% of school centres have Starlink internet.
+    value: 80% (official, May 2025)
+    source_url: https://diario.elmundo.sv/politica/daran-2-1-millones-a-secretaria-de-innovacion-para-conectividad-de-440-sitios-publicos-entre-julio-y-octubre
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: En mayo de 2025 el presidente Bukele dijo que un 80 % de los centros
+    confidence: medium
+    notes: Secondary report of a presidential statement; primary post not opened. No MINEDUCYT dataset found.
+  - claim: UNDP DRA (July 2025) reports >4,700 public schools connected to broadband and that >90% of public schools have
+      internet connectivity, with a BID programme aiming at 100%.
+    value: '>4,700 schools; >90% (UNDP/Secretaría de Innovación, 2025)'
+    source_url: https://www.undp.org/sites/g/files/zskgke326/files/2025-07/reporte_digital_readiness_assessment_2.0_elsv_2024-2025_web.pdf
+    source_type: multilateral
+    retrieved_at: 2026-09-13
+    quote: más de 4,700 centros educativos públicos han sido conectados a internet de banda ancha como parte del despliegue
+      nacional de infraestructura
+    confidence: medium
+    notes: Report co-produced with Secretaría de Innovación de la Presidencia, so effectively an official figure. Contrasts
+      with WB's 57%/25% figures and the 2023 "65% without" — see discrepancies.
+  - claim: UNICEF/ITU Giga had connected 1,647 schools in El Salvador since 2019 (as of July 2024).
+    value: 1,647 schools (Giga)
+    source_url: https://www.swissinfo.ch/spa/honduras-o-el-salvador,-ejemplos-para-alcanzar-la-conectividad-digital-escolar-en-2030/83256648
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: 1,647 schools connected to internet since the initiative's 2019 launch
+    confidence: medium
+    notes: EFE via swissinfo, 2024-07-09; fetch tool returned English paraphrase.
+  - claim: In 2023 MINEDUCYT classified as reserved information the list of which of the 5,150 public schools have internet
+      service.
+    value: list of connected schools = información reservada (2023)
+    source_url: https://www.elsalvador.com/h-noticias/h-nacional/escuelas-presupuestos-de-educacion-ministerio-ley-acceso-a-la-informacion-publica-/1087989/2023/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: se trata de información reservada
+    confidence: high
+    notes: El Diario de Hoy, request 2023-08-22, response 2023-09-01.
+  - claim: Rural–urban household internet gap cited in UNESCO RAM coverage — 59.7% urban vs 23.4% rural access.
+    value: 59.7% urban / 23.4% rural
+    source_url: https://www.eldiariodehoy.com/noticias/nacionales/el-salvador-inteligencia-artificial/79949/2026/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: Connectivity and infrastructure gaps (59.7% urban vs. 23.4% rural internet access)
+    confidence: medium
+    notes: 'El Diario de Hoy 2026-06-14 summarising the UNESCO RAM; fetch tool paraphrase. Pre-programme baseline: 34.53%
+      of schools had internet in 2018 (1,521 of 5,179) per ContraPunto/IWMF 2021-06-30 (https://www.contrapunto.com.sv/brecha-digital-el-tropiezo-para-la-educacion-en-el-salvador/).'
+  - claim: Minister Trigueros announced US$130.1M for digital infrastructure in 2026 and that 100% of schools would get fibre-optic
+      internet.
+    value: US$130.1M; 100% fibre target (2026 plan)
+    source_url: https://www.eldiariodehoy.com/noticias/nacionales/educacion-sustituira-programas-de-estudio-en-todos-los-niveles/47026/2025/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: $130.1 million allocated for digital infrastructure; 100% of schools will receive fiber-optic internet access
+    confidence: medium
+    notes: 2025-11-14 budget presentation coverage; fetch tool paraphrase, not verbatim Spanish.
+  fleet_condition_official:
+  - claim: MINED runs CREST/Enlaces technical-support centres; 19 centres were planned in Jan 2022 and by April 2024 two eastern
+      centres reported >2,500 maintenance services in Q1 2024, mostly devices not powering on and broken screens.
+    value: 19 support centres (2022); >2,500 services Q1-2024 (two centres)
+    source_url: https://diarioelsalvador.com/gobierno-da-soporte-tecnico-a-equipos-de-los-estudiantes/486698/
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: problems when equipment suddenly won't turn on and broken screens—those are the most requested services
+    confidence: medium
+    notes: Diario El Salvador is state-owned (treated as official). 19 centres from Diario El Mundo 2022-01-03 (https://diario.elmundo.sv/Nacionales/educacion-creara-centros-de-soporte-tecnico-para-computadoras-entregadas-a-estudiantes)
+      which also notes lost/damaged units are replaced only after five years. No national breakage/repair statistics found
+      on mined.gob.sv.
+  - claim: MINEDUCYT tendered in May 2025 a preventive and corrective maintenance service with parts replacement for "equipo
+      cliente 2025".
+    value: LC 56/2025 maintenance tender
+    source_url: https://www.mined.gob.sv/2025/05/20/licitacion-competitiva-no-56-2025-mineducyt-goes/
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: SERVICIO DE MANTENIMIENTO PREVENTIVO Y CORRECTIVO CON SUSTITUCIÓN DE PARTES DEL EQUIPO CLIENTE 2025
+    confidence: medium
+    notes: Only the title was seen in search results; tender body not opened. Indicates fleet maintenance is outsourced.
+  - claim: Official position (Jan 2026) is that students outside K4/1.º/4.º already have devices from previous years.
+    value: rest have them
+    source_url: https://www.elsalvador.com/noticias/nacional/computadoras-tablets-paquetes-escolares/1259732/2026/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: We've been giving 1.2 million devices already; the rest have them, they received them in previous years.
+    confidence: medium
+    notes: Minister Trigueros; fetch-tool English paraphrase. No official replacement-cycle data for 2021–2022 laptops (now
+      4–5 years old) found.
+  - claim: Official narrative that the digital gap in education has been closed (Diario El Salvador, May 2024).
+    value: brecha cerrada (official framing)
+    source_url: https://diarioelsalvador.com/gobierno-de-el-salvador-cerro-la-brecha-digital-en-educacion/512048/
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: El Salvador ahora está a la vanguardia en la enseñanza internacional
+    confidence: medium
+    notes: 2024-05-31; state-owned outlet.
+  fleet_condition_independent:
+  - claim: GatoEncerrado (Apr 2021) found no strategy to ensure use of delivered computers, unequal distribution within grades,
+      teachers still sending printed guides via WhatsApp, and connectivity packages useless where no coverage.
+    value: no use strategy; no evaluation design (2021)
+    source_url: https://gatoencerrado.news/2021/04/30/las-computadoras-desconectadas-de-la-educacion-especial/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: Los paquetes de conectividad son insuficientes o inútiles porque hay zonas del país donde las telefónicas no brindan
+      cobertura de internet
+    confidence: high
+    notes: Also "No hay una estrategia para garantizar que se sacará provecho al recurso entregado". Programme design/purchase
+      details were in MINED's reserved-information index (Jan 2021).
+  - claim: ContraPunto/IWMF investigation (Jun 2021) reported that the quantity of devices delivered in rural zones was unknown
+      and that teachers were barred from reporting school needs to media.
+    value: rural delivery count unknown; 31,000 of 50,000 teachers had laptops by May 2021
+    source_url: https://www.contrapunto.com.sv/brecha-digital-el-tropiezo-para-la-educacion-en-el-salvador/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: Education stopped being public and free
+    confidence: medium
+    notes: Quote attributed to researcher Óscar Picardo (fetch-tool English rendering). Authors Marisela Morán and Kenia Gómez.
+  - claim: World Bank (Sept 2026) cautioned that AI-tutor pilot results represent only the pilot sample, not the system; technology
+      requires teacher training, pedagogical guidance, evaluation and supervision.
+    value: pilot-only caveat
+    source_url: https://www.infobae.com/el-salvador/2026/09/05/nayib-bukele-asegura-que-escuelas-con-tutores-de-ia-alcanzaron-el-nivel-educativo-de-alemania-y-suecia/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: capacitación de maestros, orientación pedagógica, mecanismos de evaluación y supervisión
+    confidence: medium
+    notes: Independent evidence on classroom use of the 2021–2023 fleet (breakage rates, obsolescence, share in use) was NOT
+      found. Searched El Faro, Factum, GatoEncerrado, LPG, EDH, FUSADES, FUNDAUNGO, UNICEF, Corte de Cuentas (queries listed
+      in discrepancies.notes). FUSADES 2023 'Camino hacia la Transformación Digital Inclusiva' (local_file context/fusades_2023.pdf)
+      covers households/businesses, not the school fleet.
+  - claim: Corte de Cuentas — no published audit of the student-device programme was found; CCR announced a special audit
+      of a BID loan executed by MINEDUCYT/DOM (infrastructure) only.
+    value: no CCR device audit found
+    source_url: https://www.cortedecuentas.gob.sv/index.php/en/noticias/item/818-ccr-audita-fondos-asignados-al-mineducyt-y-la-dom
+    source_type: audit
+    retrieved_at: 2026-09-13
+    quote: CCR audita fondos asignados al MINEDUCYT y la DOM
+    confidence: low
+    notes: Only headline seen via search; page not opened in full. Searched "Corte de Cuentas examen especial computadoras
+      tabletas Ministerio de Educación" (2 queries) — no hits.
+  - claim: Teacher unions' 2025–2026 complaints centre on salaries, dialogue and job stability; none of the opened articles
+      contains union statements on device condition.
+    value: no union claims on devices found
+    source_url: https://www.eldiariodehoy.com/noticias/nacionales/avanza-infraestructura-escolar-pero-docentes-de-el-salvador-exigen-otras-mejoras/81725/2026/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: El magisterio suma ya seis años consecutivos sin percibir dicho ajuste
+    confidence: medium
+    notes: '2026-06-22. Enrollment context (EDH 2026-01-03): 1,276,854 (2024) → 1,243,000 (2025); 2026 preliminary 885,000.'
+  discrepancies:
+  - topic: School internet coverage
+    official_claim: 80% of schools with Starlink (Bukele, May 2025); >90% connected and >4,700 schools on broadband (UNDP
+      DRA with Secretaría de Innovación, Jul 2025); 100% fibre target 2026 (Trigueros, Nov 2025)
+    independent_or_multilateral_claim: 57% of schools without internet (MINEDUCYT 2020 GPE compact, cited by World Bank PID
+      Nov 2025); ~25% with stable connectivity (World Bank ESSA Feb 2026 citing UNICEF 2024); 65% without connectivity (BID/EU
+      2023 project document via Diario El Mundo 2026); Giga 1,647 schools (2024)
+    discrepancy: Range 10%–90% depending on source, year and definition (any signal vs. stable broadband). No MINEDUCYT school-level
+      dataset is public; the list was declared reserved information in 2023.
+    sources:
+    - https://diario.elmundo.sv/politica/daran-2-1-millones-a-secretaria-de-innovacion-para-conectividad-de-440-sitios-publicos-entre-julio-y-octubre
+    - https://www.undp.org/sites/g/files/zskgke326/files/2025-07/reporte_digital_readiness_assessment_2.0_elsv_2024-2025_web.pdf
+    - https://documents1.worldbank.org/curated/en/099112525170540758/pdf/P511960-cd8a6424-77e8-4d8a-9607-68f2ac9b1af9.pdf
+    - https://documents1.worldbank.org/curated/en/099020426223533305/txt/P511960-4cc2e41b-4db3-420b-9409-0527d6bab65b.txt
+    retrieved_at: 2026-09-13
+  - topic: Teachers equipped with laptops
+    official_claim: '>45,000 teachers (UNDP DRA citing Presidencia)'
+    independent_or_multilateral_claim: 36,000 teachers (World Bank PID, Nov 2025); 31,000 of 50,000 by May 2021 (ContraPunto)
+    discrepancy: 45,000 vs 36,000 for the same programme; different cut-off dates possible but not stated.
+    sources:
+    - https://www.undp.org/sites/g/files/zskgke326/files/2025-07/reporte_digital_readiness_assessment_2.0_elsv_2024-2025_web.pdf
+    - https://documents1.worldbank.org/curated/en/099112525170540758/pdf/P511960-cd8a6424-77e8-4d8a-9607-68f2ac9b1af9.pdf
+    retrieved_at: 2026-09-13
+  - topic: Investment in devices
+    official_claim: US$450M (2021 headline); US$600M for digital tools (May 2022); US$800M since 2021 (Trigueros, Jan 2026)
+    independent_or_multilateral_claim: US$120M spent 2021–2022 on devices (UNDP DRA); UN procurement US$13.5M for 46,422 units
+      (GatoEncerrado 2021)
+    discrepancy: Headline totals and documented spend differ by an order of magnitude; no consolidated official expenditure
+      report found.
+    sources:
+    - https://www.presidencia.gob.sv/gobierno-del-presidente-nayib-bukele-inicia-la-entrega-de-tablets-a-los-alumnos-de-1-a-3-grado-en-todas-las-escuelas-publicas-de-el-salvador/
+    - https://www.elsalvador.com/noticias/nacional/computadoras-tablets-paquetes-escolares/1259732/2026/
+    - https://gatoencerrado.news/2021/02/23/una-computadora-y-nueve-fotografos-para-cada-estudiante/
+    retrieved_at: 2026-09-13
+  - topic: Fleet condition / classroom use
+    official_claim: Devices delivered to 1.2M; free repair centres; 'the rest have them' (2026)
+    independent_or_multilateral_claim: No evaluation strategy (GatoEncerrado 2021); <20% of teachers trained in pedagogical
+      use (WB ESSA); World Bank AprendES loan conditions disbursement on 'dispositivos en buen estado' — implying current
+      state is not assured
+    discrepancy: No public official or independent measurement of the share of 2021–2023 devices still functional or used
+      in class. Gap, not contradiction.
+    sources:
+    - https://gatoencerrado.news/2021/04/30/las-computadoras-desconectadas-de-la-educacion-especial/
+    - https://www.asamblea.gob.sv/node/13926
+    retrieved_at: 2026-09-13
+    notes: 'Searches run 2026-09-13: ''computadoras MINED estudiantes dañadas sin usar El Faro/Factum/GatoEncerrado/LPG'';
+      ''tablets computadoras no funcionan obsoletas sin usar 2025 2026''; ''laptops MINED soporte técnico CREST reparación
+      dañadas cifra''; ''FUSADES FUNDAUNGO UNICEF computadoras evaluación''; ''Corte de Cuentas computadoras tabletas examen
+      especial''; ''elfaro.net computadoras estudiantes MINED''. LPG pages returned 403 to both WebFetch and curl.'
+  - topic: Hora clase duration 2026
+    official_claim: 'Orientaciones Pedagógicas 2026 (MINEDUCYT): Educación Primaria timetable of five 45-minute classes'
+    independent_or_multilateral_claim: 'Canal 12 (2026-01-22): reform ''extiende la duración de la hora clase de 45 a 55 minutos''
+      — applies to bachillerato, non-mandatory, ~100 pilot schools, >2,000 teachers in training'
+    discrepancy: 'Not contradictory once level is specified: 45 min remains the primary-school period; 55 min is a bachillerato
+      pilot. Press headlines omit the level.'
+    sources:
+    - https://drive.google.com/file/d/152mpDdOepCPKWPteZXiBumk2iqCTHjiW/view
+    - https://www.canal12.com.sv/noticia/reforma-educativa-en-el-pais-extiende-duracion-de-la-hora-clase-de-45-a-55-minutos/
+    retrieved_at: 2026-09-13
+  teacher_training:
+  - claim: World Bank ESSA cites that fewer than 20% of teachers had training in pedagogical use of technology (pre-programme
+      baseline).
+    value: <20% teachers trained (UNICEF 2024 / MINEDUCYT 2023 as cited)
+    source_url: https://documents1.worldbank.org/curated/en/099020426223533305/txt/P511960-4cc2e41b-4db3-420b-9409-0527d6bab65b.txt
+    source_type: multilateral
+    retrieved_at: 2026-09-13
+    quote: menos del 20 % de los docentes tenía formación en el uso pedagógico de tecnología (UNICEF 2024; MINEDUCYT 2023)
+    confidence: high
+    notes: local_file context/wb_essa_P511960.txt
+  - claim: 'MINEDUCYT''s 2026 Franja de Orientaciones lists a formative (non-evaluated) course "Innovación pedagógica: inteligencia
+      artificial con Google" among priority teacher trainings, plus Platzi scholarships via certificate.gob.sv.'
+    value: Google AI course (2026); no enrolment figures
+    source_url: https://sites.google.com/mined.gob.sv/franja-orientaciones
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: 'Innovación pedagógica: inteligencia artificial con Google'
+    confidence: high
+    notes: Course page https://sites.google.com/mined.gob.sv/franja-orientaciones/formaciones-prioritarias/ia-de-google (seen
+      in search). Teacher counts not published.
+  - claim: By May 2026 MINEDUCYT reported ~10,000 teachers in training on the new educational models (mainly early childhood
+      and new curriculum).
+    value: ~10,000 teachers (May 2026)
+    source_url: https://www.elsalvador.com/noticias/nacional/ministra-de-educacion-karla-trigueros-el-salvador/1288226/2026/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: 10,000 docentes en procesos de capacitación
+    confidence: medium
+    notes: El Diario de Hoy 2026-08 (one-year review). Not specific to computing/digital skills. EDH 2026-09-09 cites ">8,000
+      teachers participate in AI-supported professional development" (https://www.elsalvador.com/noticias/nacional/inteligencia-artificial-estudiantes-salvadorenos/1292377/2026/).
+  - claim: Canal 12 reports >2,000 teachers being trained for the 55-minute/extended-day bachillerato modality (Jan 2026).
+    value: '>2,000 teachers; ~100 pilot schools'
+    source_url: https://www.canal12.com.sv/noticia/reforma-educativa-en-el-pais-extiende-duracion-de-la-hora-clase-de-45-a-55-minutos/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: extiende la duración de la hora clase de 45 a 55 minutos
+    confidence: medium
+    notes: 2026-01-22.
+  - claim: ARK Educate (Cathie Wood's nonprofit) trained ~100 teachers/directors in AI, robotics and related topics (Jan 2025)
+      for a 20-school pilot in La Libertad, with 2026 national expansion planned.
+    value: ~100 educators; 20 pilot schools (2025)
+    source_url: https://diarioelsalvador.com/maestros-salvadorenos-son-capacitados-en-innovacion-ia-y-robotica-por-ark-educate/613033/
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: all specially designed for El Salvador
+    confidence: medium
+    notes: 2025-01-15; state-owned outlet. Infobae 2026-01-25 refers to 50 pilot schools in La Libertad in 2025 with robotics
+      and data-science content.
+  - claim: Mi Primer Bitcoin, under an Aug 2023 agreement with MINED, trained 359 public-school teachers in a Bitcoin diploma
+      delivered to bachillerato students (10-week course).
+    value: 359 teachers (2023–2024)
+    source_url: https://www.criptonoticias.com/comunidad/400-docentes-escuelas-publicas-elsalvador-bitcoin/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: trained and graduated 359 public school teachers, nearly double the 150 teachers initially planned
+    confidence: low
+    notes: Seen only in search-result summary; article not opened. Included because it is the only K-12 Bitcoin-curriculum
+      link found; Diario El Salvador 2024-04 reports 97 graduates in one cohort (https://diarioelsalvador.com/dedinero/mas-de-90-docentes-de-escuelas-publicas-se-graduaron-de-diplomado-en-bitcoin/485751,
+      not opened).
+  - claim: Teacher preparation on Ciencias de la Computación (bachillerato, 2025) consisted of published orientations and
+      a 16-minute induction video on the Formación Docente repository; no enrolment numbers published.
+    value: induction video + orientations (2025)
+    source_url: https://formaciondocente.edu.sv/repositorio-site/socializacion-media/202501241408E7wvMCX6E5uTlPUss2RS
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: Orientaciones generales para implementar el nuevo programa de estudios de Ciencias de la Computación para Educación
+      Media
+    confidence: medium
+    notes: 'Searched mined.gob.sv for national robotics/digital teacher-training counts 2023–2025 — none found. Status: no
+      national computing/digital-skills teacher-training programme with published numbers located.'
+  ai_policy:
+    status: partial
+    summary: 'A law and an agency exist (Ley de Fomento de la Inteligencia Artificial y Tecnologías, D.L. 234, D.O. No. 43
+      Tomo 446, 2025-03-03; ANIA). A "Estrategia Nacional de Inteligencia Artificial 2026" was announced by ANIA in May–June
+      2026 alongside the UNESCO RAM, but no published strategy document/PDF was located on any official domain as of 2026-09-13.
+      El Diario de Hoy (2026-06-14) reporting the RAM says the country "still lacks a comprehensive National AI Strategy".
+
+      '
+    records:
+    - claim: Ley de Fomento de la IA y Tecnologías (D.L. 234) mandates ANIA to collaborate with MINEDUCYT on AI education
+        at all levels of the system.
+      value: D.L. 234, 26-Feb-2025; D.O. 43, Tomo 446, 3-Mar-2025
+      source_url: https://goldservice.com.sv/wp-content/uploads/2025/03/DECRETO-N-234-Ley-de-Fomento-a-Inteligencia-Artificial-y-Tecnologias-en-El-Salvador.pdf
+      source_type: official
+      retrieved_at: 2026-09-13
+      quote: Colaborar con el Ministerio de Educación, Ciencia y Tecnología en la incorporación de la educación en inteligencia
+        artificial y tecnologías similares en todos los niveles del sistema educativo
+      confidence: high
+      notes: local_file context/decreto_234_ley_ia.pdf (law-firm mirror of the decree text; D.O. citation on last page). Also
+        Art. objectives c) "Integrar la educación en inteligencia artificial dentro del sistema educativo". Asamblea page
+        https://www.asamblea.gob.sv/node/13490 (2025-02-25) confirms.
+    - claim: UNESCO reports that ANIA presented a "National Artificial Intelligence Strategy 2026" at the RAM results event
+        (June 2026).
+      value: Strategy announced Jun 2026
+      source_url: https://www.unesco.org/en/articles/el-salvador-moving-toward-human-centered-artificial-intelligence
+      source_type: multilateral
+      retrieved_at: 2026-09-13
+      quote: ANIA unveiled the National Artificial Intelligence Strategy 2026 during the presentation event
+      confidence: medium
+      notes: Fetch-tool paraphrase; UNESCO article dated 2026-06-18. RAM built with 75 actors from 51 institutions. The UNESCO
+        country page https://www.unesco.org/ethics-ai/en/elsalvador returned 403.
+    - claim: El Diario de Hoy, summarising the RAM report, states El Salvador still lacks a comprehensive national AI strategy
+        with objectives, budget and roadmap.
+      value: absence of adopted strategy (press reading of RAM, Jun 2026)
+      source_url: https://www.eldiariodehoy.com/noticias/nacionales/el-salvador-inteligencia-artificial/79949/2026/
+      source_type: independent_press
+      retrieved_at: 2026-09-13
+      quote: the nation still lacks a comprehensive National AI Strategy establishing objectives, budget allocation, and coordinated
+        implementation roadmap
+      confidence: medium
+      notes: Fetch-tool paraphrase. Conflicts with UNESCO/ANIA announcement — recorded, not reconciled.
+    - claim: Presidencia's "Estrategia 24" site has an AI section with an "Educación Inteligente" component (personalised
+        learning, AI labs, teacher training in AI pedagogy) and a self-assessed maturity score of 32.58/100.
+      value: Estrategia 24 AI section; maturity 32.58/100
+      source_url: https://sites.google.com/presidencia.gob.sv/estrategia-24b/inicio/ciencia-y-tecnolog%C3%ADa/inteligencia-artificial
+      source_type: official
+      retrieved_at: 2026-09-13
+      quote: Educación Inteligente
+      confidence: low
+      notes: Undated Google Site; unclear whether it is an adopted policy or a planning draft.
+    - claim: The 2026 strategy launch was reported by a pro-government English blog citing an ANIA X post (2026-05-15); no
+        official document link.
+      value: X announcement only
+      source_url: https://elsalvadorinenglish.com/2026/05/15/el-salvador-unveils-2026-national-ai-strategy-a-new-blueprint-for-global-sovereign-ai/
+      source_type: independent_press
+      retrieved_at: 2026-09-13
+      quote: We choose to build; we choose to deploy
+      confidence: low
+      notes: Note ia.sv (which search results describe as ANIA) is actually an "AI Travel Assistant" site (opened 2026-09-13);
+        do not treat it as ANIA's official domain.
+    searched:
+    - presidencia.gob.sv / sites.google.com/presidencia.gob.sv estrategia-24b (opened)
+    - unesco.org/ethics-ai/en/elsalvador (403)
+    - oecd.ai/en/dashboards/countries/ElSalvador (404); search 'oecd.ai El Salvador' — no country entry found
+    - rree.gob.sv UNESCO RAM article (Cloudflare block)
+    - ia.sv (not ANIA)
+    - 'queries: ''Estrategia Nacional de Inteligencia Artificial El Salvador ANIA 2026 pdf documento oficial''; ''ANIA estrategia
+      presentación mayo 2026''; ''Ley de Fomento de la Inteligencia Artificial Diario Oficial 2025'''
+    searched_on: 2026-09-13
+  digital_competence_framework:
+    status: absent
+    summary: 'No national digital-competence framework for students or teachers (marco de competencias digitales) published
+      by MINEDUCYT was found. Closest official artefacts: the 2014 Política Nacional de TIC en Educación (references UNESCO
+      ICT-CFT standards) and UNDP''s 2025 statement that MINEDUCYT "ha comenzado a integrar competencias TIC al currículo
+      escolar, en alineación parcial" with UNESCO''s Global Digital Literacy Framework and DigComp 2.1.
+
+      '
+    records:
+    - claim: UNDP DRA 2024-2025 says MINEDUCYT has begun integrating ICT competences into the curriculum in partial alignment
+        with UNESCO and DigComp 2.1, and 45% of surveyed experts think basic digital competences are broadly in public-school
+        curricula.
+      value: partial alignment; no framework named
+      source_url: https://www.undp.org/sites/g/files/zskgke326/files/2025-07/reporte_digital_readiness_assessment_2.0_elsv_2024-2025_web.pdf
+      source_type: multilateral
+      retrieved_at: 2026-09-13
+      quote: ha comenzado a integrar competencias TIC al currículo escolar, en alineación parcial con marcos internacionales
+        como el Marco Global de Alfabetización Digital de la UNESCO y el DigComp 2.1
+      confidence: high
+      notes: local_file context/undp_dra_2024_2025.pdf (July 2025).
+    - claim: The 2014 Política Nacional de TIC en Educación (Viceministerio de Ciencia y Tecnología) set objectives on ICT
+        competences for teachers and students and cites UNESCO's ICT competency standards for teachers.
+      value: 2014 policy (pre-2019)
+      source_url: https://siteal.iiep.unesco.org/sites/default/files/sit_accion_files/politica-nacional-de-tic-en-educacion-23-de-mayo-14-aprobada.pdf
+      source_type: official
+      retrieved_at: 2026-09-13
+      quote: Estándares de competencias en TIC para docentes. Organización de las Naciones Unidas para la Educación, la Ciencia
+        y la Cultura UNESCO.
+      confidence: high
+      notes: local_file context/politica_tic_2014.pdf. Bibliography entry; no evidence it is in force after 2019.
+    - claim: The 2026 Ciudadanía y Valores programme for segundo ciclo embeds "ciudadanía digital", digital risks and digital
+        rights as content (not a standalone competence framework).
+      value: ciudadanía digital content in 2.º ciclo (2026 programme)
+      source_url: https://www.mined.gob.sv/materiales/2026/CIUDADANIA_Y_VALORES/1.%20Programas%20de%20estudio/Programa%20de%20estudios%20Ciudadan%C3%ADa%20y%20Valores%20II%20ciclo.pdf
+      source_type: official
+      retrieved_at: 2026-09-13
+      quote: Ciudadanía digital
+      confidence: high
+      notes: local_file context/ciud_IIciclo_2026.pdf (colophon dated 2024; published in 2026 materials folder).
+    searched:
+    - 'query: El Salvador ''marco de competencias digitales'' docentes MINEDUCYT'
+    - 'query: ''competencias digitales'' estudiantes marco MINEDUCYT 2025 2026 ''ciudadanía digital'' currículo'
+    - 'query: ''marco de competencias digitales docentes'' OR ''marco nacional de competencias digitales'' OR ''estándares
+      de competencias digitales'' MINEDUCYT 2023 2024 2025 UNESCO BID'
+    - 'query: ''Política Nacional de TIC en Educación'' OR ''competencias digitales docentes'' El Salvador MINED marco 2014
+      UNESCO'
+    - mined.gob.sv/programas-de-estudio/ and /descargas/ listings (opened; no framework document listed)
+    searched_on: 2026-09-13
+  time_structure:
+  - claim: Official 2026 primary-school timetable defines five 45-minute classes per shift (7:15–8:00, 8:00–8:45, 9:15–10:00,
+      10:00–10:45, 11:00–11:45) within a 7:00–12:00 morning shift (13:00–18:00 afternoon).
+    value: hora clase = 45 minutes; 5 clases/day; 25 h/week
+    source_url: https://drive.google.com/file/d/152mpDdOepCPKWPteZXiBumk2iqCTHjiW/view
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: se deberá contemplar —con estricto cumplimiento— el inicio y la finalización de la jornada escolar, así como la
+      distribución de las 5 horas clases
+    confidence: high
+    notes: 'MINEDUCYT, "Orientaciones Pedagógicas para la Implementación del Currículo en los Centros Educativos 2026", section
+      3 "Horario escolar y carga horaria para estudiantes en el 2026". Linked from https://sites.google.com/mined.gob.sv/franja-orientaciones/orientaciones.
+      local_file context/orientaciones_pedagogicas_2026.pdf. Verbatim timetable (turno matutino): "7:00 a. m. a 7:15 a. m.
+      Inicio de la jornada | 7:15 a. m. a 8:00 a. m. 1.a clase | 8:00 a. m. a 8:45 a. m. 2.a clase | 8:45 a.m. a 9:15 a.m.
+      1.er recreo | 9:15 a. m. a 10:00 a. m. 3.a clase | 10:00 a. m. a 10:45 a. m. 4.a clase | 10:45 a.m. a 11:00 a.m. 2.o
+      recreo | 11:00 a. m. a 11:45 a. m. 5.a clase | 11:45 a. m a 12:00 m. Retiro de los estudiantes". Primer grado (now Primera
+      Infancia) day is "4 horas y 45 minutos".
+
+      '
+  - claim: 2026 weekly hours table, primer ciclo (2.º–3.º) — verbatim from Orientaciones 2026.
+    value: '2.º: Comunicación 7h, Números y Formas 6h, Ciencia y Tecnología 4h, Ciudadanía y Valores 3h, Artes 2h, Desarrollo
+      Corporal 3h = 25h; 3.º: 6/6/4/4/2/3 = 25h'
+    source_url: https://drive.google.com/file/d/152mpDdOepCPKWPteZXiBumk2iqCTHjiW/view
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: Carga horaria de primer ciclo (horas semanales por grado) ... Ciencia y Tecnología 4h 4h ... Total 25 h
+    table_verbatim: Carga horaria de primer ciclo (horas semanales por grado) | Comunicación 7h 6h | Números y Formas 6h 6h
+      | Ciencia y Tecnología 4h 4h | Ciudadanía y Valores 3h 4h | Artes 2h 2h | Desarrollo Corporal 3h 3h | Total 25 h 25
+      h
+    confidence: high
+    notes: No separate Informática/Tecnología/Computación row exists for 2.º–3.º.
+  - claim: 2026 weekly hours table, segundo ciclo (4.º–6.º) — verbatim from Orientaciones 2026.
+    value: '4.º–6.º each: Comunicación y Literatura 5h, Aritmética y Finanzas 5h, Ciencia y Tecnología 5h, Ciudadanía y Valores
+      4h, Artes 3h, Desarrollo Corporal 3h = 25h'
+    source_url: https://drive.google.com/file/d/152mpDdOepCPKWPteZXiBumk2iqCTHjiW/view
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: Carga horaria de segundo ciclo (horas semanales por grado) ... Ciencia y Tecnología 5h 5h 5h ... Total 25 h
+    table_verbatim: Carga horaria de segundo ciclo (horas semanales por grado) | Comunicación y Literatura 5h 5h 5h | Aritmética
+      y Finanzas 5h 5h 5h | Ciencia y Tecnología 5h 5h 5h | Ciudadanía y Valores 4h 4h 4h | Artes 3h 3h 3h | Desarrollo Corporal
+      3h 3h 3h | Total 25 h
+    confidence: high
+    notes: 'No separate Informática/Tecnología/Computación row exists for 4.º–6.º. Tercer ciclo (7.º–9.º) 2026: Lengua y Literatura
+      5, Inglés 3, Matemática y Datos 5, Ciencia y Tecnología 5, Ciudadanía y Valores 5, Educación Física 2 = 25h. Bachillerato
+      general: 1.º año 38h (incl. Ciencias de la Computación 4h), 2.º año 36h (CC 4h).'
+  - claim: Legacy (2008) Plan de estudio de primer ciclo — verbatim table, 40-week year, 25 h/week, 1,000 h/year.
+    value: '1.º: Lenguaje 8, Matemática 7, CSMA 3, EESS 3, Artística 2, EF 2 = 25; 2.º: 6/5/4/4/3/3; 3.º: 5/5/5/4/3/3'
+    source_url: https://mined.gob.sv/descarga/programas-estudio/programa-primer-grado_0_.pdf
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: A partir de las 40 semanas laborales, el plan de estudio de primer grado se organiza en seis asignaturas con carga
+      horaria definida.
+    confidence: high
+    notes: 'local_file context/programa_primer_grado.pdf. Table (Grados y horas semanales / N° de horas anuales por grado):
+      Lenguaje 8 6 5 / 320 240 200; Matemática 7 5 5 / 280 200 200; Ciencia, Salud y Medio Ambiente 3 4 5 / 120 160 200; Estudios
+      Sociales 3 4 4 / 120 120 120 (sic); Educación Artística 2 3 3 / 80 120 120; Educación Física 2 3 3 / 80 120 120; Total
+      25 25 25 / 1000 1000 1000. "Educación Moral y Cívica no cuenta con carga horaria definida". The 2008 table does not
+      state minutes per hora clase; 1,000 h ÷ 40 weeks = 25 h so an "hora" is a nominal period.
+
+      '
+  - claim: Legacy (2008) Plan de estudio de segundo ciclo — verbatim table.
+    value: '4.º–6.º each: Lenguaje 5, Matemática 5, Ciencia Salud y Medio Ambiente 5, Estudios Sociales 4, Educación Artística
+      3, Educación Física 3 = 25 h/week, 1000 h/year'
+    source_url: https://www.mined.gob.sv/descarga/programas-estudio/programa_estudio_4to_grado2008_0_.pdf
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: A partir de las cuarenta semanas laborales, el plan de estudio de cuarto grado se organiza en seis asignaturas
+      con carga horaria definida.
+    confidence: high
+    notes: local_file context/programa_4to_grado_2008.pdf. No informática/tecnología subject in 2008 plan.
+  - claim: Ciencia y Tecnología (III ciclo, 2026 programme) is organised in weeks of 5 horas clase over a 40-week year (200
+      h/year).
+    value: 5 h/week × 40 weeks = 200 h
+    source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_III%20ciclo.pdf
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: Ciencia y Tecnología se desarrolla en cinco horas por semana durante el año lectivo, el cual comprende 40 semanas.
+    confidence: high
+    notes: local_file context/cyt_IIIciclo_2026.pdf.
+  - claim: School year 2025 — classes began 20 Jan (27 Jan for primera infancia), 40 numbered weeks, "FINALIZACIÓN DEL AÑO
+      ESCOLAR" on Fri 7 Nov 2025; week 40 (10–14 Nov) is "Período de reposición"; teachers' last day 28 Nov.
+    value: '2025: 20 Jan – 7 Nov; 40 weeks'
+    source_url: https://www.mined.gob.sv/download/calendario-escolar/?wpdmdl=22815
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: FINALIZACIÓN DEL AÑO ESCOLAR
+    confidence: medium
+    notes: local_file context/calendario2025_mined.pdf (MINED "Calendario Escolar 2025", 13 pp). End-date read from calendar
+      grid layout (label in the Friday-7 column); the calendar does not print a total of días lectivos. Receso 18–20 June;
+      Vacaciones Agostinas 1–6 Aug.
+  - claim: School year 2026 — classes begin Mon 2 Feb 2026, 40 numbered weeks, "Cierre del año escolar 2026" on Fri 13 Nov
+      2026; teacher formation 7–23 Jan; Semana Santa asueto to 6 Apr; Vacaciones Agostinas 1–6 Aug; teachers' last working
+      day 30 Nov.
+    value: '2026: 2 Feb – 13 Nov; 40 weeks'
+    source_url: https://www.mined.gob.sv/download/calendario-escolar/?wpdmdl=23071
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: Cierre del año escolar 2026
+    confidence: high
+    notes: local_file context/calendario2026_mined.pdf. Corroborated by dinero.com.sv 2026-01-09 (https://dinero.com.sv/miscelaneos/clases-iniciaran-el-2-de-febrero-mined-publica-calendario-escolar-2026/).
+      Calendar does not print a días-lectivos total; World Bank PID refers to "160 - out of 200- school days per year" (https://documents1.worldbank.org/curated/en/099112525170540758/pdf/P511960-cd8a6424-77e8-4d8a-9607-68f2ac9b1af9.pdf).
+  - claim: A bachillerato reform for 2026 lengthens the class period from 45 to 55 minutes, non-mandatory, piloted in ~100
+      schools.
+    value: 55 min (bachillerato pilot, 2026)
+    source_url: https://www.canal12.com.sv/noticia/reforma-educativa-en-el-pais-extiende-duracion-de-la-hora-clase-de-45-a-55-minutos/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: extiende la duración de la hora clase de 45 a 55 minutos
+    confidence: medium
+    notes: 2026-01-22. Not found in the Orientaciones 2026 PDF (which only shows primary timetable). LPG 2025-11-04 "nuevo
+      formato" article blocked (403).
+  - claim: Official weekly hours for informática/tecnología/computación in 2.º–6.º — NONE. The only technology-bearing subject
+      is "Ciencia y Tecnología" (4h in 2.º–3.º; 5h in 4.º–6.º), a science subject that replaced Ciencia, Salud y Medio Ambiente
+      from 2022.
+    value: 0 dedicated hours; CyT 4–5 h/week
+    source_url: https://www.mined.gob.sv/programa-de-estudio-cyt/
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: introducen en 2022 los recursos de validación para la asignatura Ciencia y Tecnología
+    confidence: high
+    notes: Ciencias de la Computación exists only in bachillerato (from 2025, 4 h/week). Pensamiento computacional is named
+      as a transversal ("ámbito común") for complementary subjects in bachillerato, not in básica.
+  - claim: Pre-2026 daily schedule reported by NGO Educo — morning 7:30–11:45, afternoon 13:15–16:45, three 15-minute breaks.
+    value: ≈4 h instruction/day (2023 description)
+    source_url: https://www.educo.org/blog/hoy-hay-cole-en-el-salvador
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: las clases se desarrollan desde las 13:15 hasta las 16:45, también con tres recreos de 15 minutos
+    confidence: medium
+    notes: 2023-11-23; NGO blog, not normative.
+  reform_2026:
+  - claim: In Nov 2025 the minister announced complete replacement of outdated study programmes at all levels for 2026, US$71.4M
+      and six million textbooks; total MINEDUCYT 2026 budget US$1,641.1M.
+    value: US$71.4M; 6M textbooks; all levels
+    source_url: https://www.eldiariodehoy.com/noticias/nacionales/educacion-sustituira-programas-de-estudio-en-todos-los-niveles/47026/2025/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: la sustitución completa de programas de estudio que ya estaban desfasados
+    confidence: high
+    notes: 2025-11-14; also elsalvador.com 2025-11-16 (https://www.elsalvador.com/noticias/nacional/educacion-basica-ministerio-de-hard-news/1251125/2025/).
+      Early-childhood teachers to be trained with Universidad de Navarra (cohort 2 from Feb 2026).
+  - claim: Textbook distribution (6 million) started 4 March 2026.
+    value: '2026-03-04'
+    source_url: https://gestioneducativa.net/el-salvador-consolida-su-reforma-curricular-2026-el-desafio-de-transformar-la-inversion-logistica-en-un-cambio-cultural-dentro-del-aula/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: El ecosistema escolar funciona como un engranaje
+    confidence: low
+    notes: Blog-type source with no citations; date not independently confirmed on mined.gob.sv.
+  - claim: Official Orientaciones 2026 state that 2026 continues implementing existing programmes/plans "desde Primera Infancia
+      hasta Bachillerato"; only Primera Infancia (incl. 1.º grado) receives a new curricular document set in Q1 2026; other
+      programmes are "publicados en el apartado de descargas".
+    value: 'new published set: Primera Infancia + 1.º grado; básica programmes continue'
+    source_url: https://drive.google.com/file/d/152mpDdOepCPKWPteZXiBumk2iqCTHjiW/view
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: En el año lectivo 2026 se continuará con la implementación de los programas y planes de estudio correspondientes,
+      desde Primera Infancia hasta Bachillerato.
+    confidence: high
+    notes: 'Same document lists the 2026 subject map: primer/segundo ciclo use renamed subjects (Comunicación / Números y
+      Formas / Aritmética y Finanzas / Ciencia y Tecnología / Ciudadanía y Valores / Artes / Desarrollo Corporal). Programmes
+      for Ciencia y Tecnología (III ciclo) and Ciudadanía y Valores (I, II, III ciclo, Media) are published under mined.gob.sv/materiales/2026/
+      (directory listing forbidden; individual PDFs opened). New primaria "Orientaciones curriculares" cover Lenguaje, Matemática,
+      Ciudadanía y Valores and Artes only (https://sites.google.com/mined.gob.sv/franja-orientaciones/orientaciones/orientaciones-primaria).
+
+      '
+  - claim: Bachillerato general — updated plan applies to 1.º año (public, since 2025) and extends to 2.º año in 2026 (public);
+      private sector only 1.º año in 2026; Ciencias de la Computación replaces Informática (in force since 2008) and includes
+      robotics, programming, cybersecurity, data and AI.
+    value: CC 4h/week; 2.º año rollout 2026; private 2.º año in 2027
+    source_url: https://drive.google.com/file/d/152mpDdOepCPKWPteZXiBumk2iqCTHjiW/view
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: Esta nueva asignatura, que comenzó a implementarse en el 2025, sustituye a la asignatura de Informática, vigente
+      desde 2008.
+    confidence: high
+    notes: 'Also https://www.mined.gob.sv/ciencias-de-la-computacion/ (opened 2026-09-13): "introduce a partir del año 2025
+      la asignatura «Ciencias de la Computación» en todos los bachilleratos generales del sector público". Contents: "principios
+      de robótica, programación, ciberseguridad, representación y análisis de datos, e Inteligencia Artificial (IA)".'
+  - claim: A new "Nuevo Currículo Nacional de Primera Infancia" was adopted in February 2026; press summary lists Informática→Ciencias
+      de la Computación, Finanzas y Economía, Proyecto de Vida y Carrera, Estudios Sociales→Ciudadanía y Valores, English
+      from 2.º grado.
+    value: Primera Infancia curriculum Feb 2026
+    source_url: https://www.eldiariodehoy.com/noticias/nacionales/karla-trigueros-cumple-un-ano-en-educacion-cual-sera-su-proxima-medida/89761/2026/
+    source_type: independent_press
+    retrieved_at: 2026-09-13
+    quote: Adopción del Nuevo Currículo Nacional de Primera Infancia
+    confidence: medium
+    notes: 2026-08-16. World Bank PID (Nov 2025) confirms the early-years curriculum "has been revised and published, reaching
+      over 8,000 teachers and 252,000 students in preschool and Grade 1".
+  - claim: Technology strand status for 2.º–6.º in the 2026 reform — no new technology/computing subject or programme was
+      published; technology content remains inside Ciencia y Tecnología (2022 validation programmes) and ciudadanía digital
+      content inside Ciudadanía y Valores.
+    value: pending / not created
+    source_url: https://www.mined.gob.sv/materiales/2026/CIUDADANIA_Y_VALORES/1.%20Programas%20de%20estudio/Programa%20de%20estudios%20Ciudadan%C3%ADa%20y%20Valores%20II%20ciclo.pdf
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: Ciudadanía digital
+    confidence: medium
+    notes: Absence claim based on the 2026 hours tables (no such row), the materiales/2026 PDFs opened, and searches "Ciencias
+      de la Computación MINEDUCYT 2026 programa educación básica segundo ciclo horas" and "MINEDUCYT plan de estudios 2026
+      nueva asignatura tecnología informática segundo ciclo" (2026-09-13). The Grok/AprendES platform (grades 2–11) is a delivery
+      tool, not a curricular subject.
+  - claim: AprendES (World Bank, US$501M, 2026–2031) will cover 3,250 prioritised schools (~65% of public system, 92% of básica
+      students), starting with 200 pilot schools, with structured daily lesson plans for 160 of 200 school days and a 12-hour
+      induction for principals/teachers.
+    value: 3,250 schools; 200 pilot; 160/200 days
+    source_url: https://documents1.worldbank.org/curated/en/099020426223533305/txt/P511960-4cc2e41b-4db3-420b-9409-0527d6bab65b.txt
+    source_type: multilateral
+    retrieved_at: 2026-09-13
+    quote: La cobertura alcanzará 3,250 escuelas priorizadas durante el período de financiamiento del PforR, representando
+      aproximadamente 65% del sistema público
+    confidence: high
+    notes: PID adds "The Technology pillar ensures all schools have connectivity and each student (and teacher) has a computer."
+  - claim: Official cut-off dates found — no Diario Oficial acuerdo approving the 2026 básica programmes was located; the
+      only 2025–2026 MINEDUCYT acuerdo opened (15-1359/2025) concerns a school-courtesy demerit regulation.
+    value: no D.O. cut-off found
+    source_url: https://www.jurisprudencia.gob.sv/DocumentosBoveda/D/2/2020-2029/2025/09/10DD27.PDF
+    source_type: official
+    retrieved_at: 2026-09-13
+    quote: ACUERDO No. 15-1359/2025
+    confidence: low
+    notes: Searched "Diario Oficial El Salvador 2026 acuerdo ejecutivo programas de estudio currículo renovado MINEDUCYT aprobación"
+      (2026-09-13); vLex/diariooficial.gob.sv hits not opened (paywall/JS).
+learning_science_second_retrieval:
+  note: Independent retrieval (2026-09-13). Publisher sites (ACM, Elsevier, Springer, T&F, Sage, APA) blocked; records read
+    via open PDFs, ERIC, Crossref and Semantic Scholar APIs; evidence_level and caveats state when only an abstract was readable.
+  records:
+  - id: pea-1986-superbug
+    topic: misconceptions
+    citation: Pea, R. D. (1986). Language-independent conceptual 'bugs' in novice programming. Journal of Educational Computing
+      Research, 2(1), 25-36. (Read via the 1984 Technical Report No. 31 record in ERIC.)
+    source_url: https://api.ies.ed.gov/eric/?search=title:%22Language-Independent%20Conceptual%20Bugs%22&format=json&fields=title,author,publicationdateyear,source,description
+    retrieved_at: 2026-09-13
+    study_type: position_paper
+    sample: n/a (synthesis of observations of novices from primary school to college, mainly Logo/BASIC era)
+    finding: 'Identifies three language-independent bug classes: parallelism (belief that several lines execute at once),
+      intentionality (program has goals/foresight) and egocentrism (child assumes the machine knows what they meant). All
+      are rooted in a ''superbug'': the default belief that there is a hidden intelligent mind inside the machine that interprets
+      the program.'
+    effect_size: n/a
+    evidence_level: moderate
+    caveats: Conceptual synthesis with illustrative observations, not a controlled study; only the abstract/record was read
+      (Sage page blocked); 1980s languages, but the classes are repeatedly rediscovered in Scratch studies (see swidan-2018,
+      meerbaum-salant-2013).
+    implication_for_curriculum: Every grade band needs explicit work on 'the computer is a literal, one-step-at-a-time executor
+      with no mind', e.g. act-it-out tracing where the human robot may only do exactly what is written.
+    confidence: high
+  - id: sorva-2013-notional-machines
+    topic: misconceptions
+    citation: Sorva, J. (2013). Notional machines and introductory programming education. ACM Transactions on Computing Education,
+      13(2), Article 8.
+    source_url: https://api.ies.ed.gov/eric/?search=title:%22Notional%20Machines%20and%20Introductory%20Programming%20Education%22&format=json&fields=title,author,publicationdateyear,source,description
+    retrieved_at: 2026-09-13
+    study_type: systematic_review
+    sample: n/a (literature review, mostly university novices)
+    finding: Synthesises misconception research, mental-model theory, constructivism, phenomenography and threshold concepts
+      around the 'notional machine' (an abstract model of how programs execute). Argues the notional machine should be an
+      explicit learning objective rather than left implicit, because many misconceptions are inaccurate models of execution
+      dynamics.
+    effect_size: n/a
+    evidence_level: moderate
+    caveats: Narrative review; evidence base is mainly tertiary text-based programming; only the abstract was read (ACM DL
+      blocked).
+    implication_for_curriculum: 'Name and teach a simple notional machine for each tool used (e.g. for Scratch: scripts, events,
+      one instruction at a time per script, several scripts concurrently) and assess students'' ability to predict execution,
+      not only to build artefacts.'
+    confidence: high
+  - id: swidan-2018-school-misconceptions
+    topic: misconceptions
+    citation: Swidan, A., Hermans, F., & Smit, M. (2018). Programming misconceptions for school students. Proceedings of ICER
+      '18, 151-159.
+    source_url: https://api.semanticscholar.org/graph/v1/paper/DOI:10.1145/3230977.3230995?fields=title,authors,year,venue,abstract,tldr
+    retrieved_at: 2026-09-13
+    study_type: quasi_experimental
+    sample: n=145 children aged 7-17 with some programming experience (Netherlands); multiple-choice Scratch questionnaire
+      covering 11 known misconceptions
+    finding: 'Top three misconceptions: difficulty understanding the sequentiality of statements, that a variable holds one
+      value at a time, and the interactivity of a program when user input is required. Holding a misconception was influenced
+      by the mathematical effect of numbers, semantic meaning of identifiers and high expectations of what a computer can
+      do. Older children answered more correctly, especially for variables and control; children who programmed in Scratch
+      only did worse than those who also knew another language.'
+    effect_size: n/a (descriptive prevalence)
+    evidence_level: moderate
+    caveats: Cross-sectional, convenience sample, wide age span, self-developed instrument; abstract-level read only (ACM
+      DL blocked).
+    implication_for_curriculum: 'Design against three specific bugs: (a) sequence as simultaneous, (b) variable as holding
+      several values/its name having meaning, (c) programs ''waiting'' intelligently for input; use concept-rich, varied exercises
+      per concept rather than one project per concept.'
+    confidence: high
+  - id: meerbaum-salant-2013-scratch-concepts
+    topic: misconceptions
+    citation: Meerbaum-Salant, O., Armoni, M., & Ben-Ari, M. (2013). Learning computer science concepts with Scratch. Computer
+      Science Education, 23(3), 239-264.
+    source_url: https://api.ies.ed.gov/eric/?search=title:%22Learning%20Computer%20Science%20Concepts%20with%20Scratch%22&format=json&fields=title,author,publicationdateyear,source,description
+    retrieved_at: 2026-09-13
+    study_type: design_study
+    sample: Middle-school students in a few Israeli schools over two years (n not given in abstract)
+    finding: Students could learn important CS concepts in Scratch (tests built on a revised Bloom x SOLO taxonomy), but there
+      were persistent problems with repeated execution (loops), variables and concurrency; the authors attribute part of this
+      to Scratch's affordances and propose changes to the teaching process.
+    effect_size: n/a
+    evidence_level: moderate
+    caveats: Only abstract read; middle school, not primary; no control group; instrument author-developed.
+    implication_for_curriculum: Loops, variables and concurrency are the three concepts most likely to be 'used but not understood'
+      in Scratch; plan explicit conceptual lessons and prediction tasks for them, not only project time.
+    confidence: high
+  - id: grover-basu-2017-block-misconceptions
+    topic: misconceptions
+    citation: 'Grover, S., & Basu, S. (2017). Measuring student learning in introductory block-based programming: Examining
+      misconceptions of loops, variables, and Boolean logic. Proceedings of SIGCSE ''17, 267-272.'
+    source_url: https://www.computacional.com.br/files/Artigos/GROVER%20-%20Measuring%20Student%20Learning%20in%20Introductory%20Block-Based%20Programming.pdf
+    retrieved_at: 2026-09-13
+    study_type: instrument_validation
+    sample: n=100 6th-8th graders (USA) who had completed an introductory Scratch course; plus cognitive think-alouds
+    finding: After a Scratch course students were generally unfamiliar with variables and held misconceptions about them (e.g.
+      a variable is a letter used as a shorthand), had trouble with how loops work (e.g. expecting a loop body to produce
+      the same output every iteration; fewer than 4% answered item 8d, on loop iteration, correctly) and with Boolean operators
+      (confusing OR with exclusive OR).
+    effect_size: n/a
+    evidence_level: moderate
+    caveats: Pilot assessment, single site, middle school, item-level percentages only; authors are also the curriculum designers.
+    implication_for_curriculum: Completing Scratch projects does not imply understanding of variables/loops/Booleans; grades
+      5-6 need targeted conceptual items (trace a loop with a changing variable) in formative assessment.
+    confidence: high
+  - id: franklin-2017-conceptual-sequencing
+    topic: misconceptions
+    citation: Franklin, D., Skifstad, G., Rolock, R., Mehrotra, I., Ding, V., Hansen, A., Weintrop, D., & Harlow, D. (2017).
+      Using upper-elementary student performance to understand conceptual sequencing in a blocks-based curriculum. Proceedings
+      of SIGCSE '17, 231-236.
+    source_url: https://terpconnect.umd.edu/~weintrop/papers/Franklin_et_al_SIGCSE2017.pdf
+    retrieved_at: 2026-09-13
+    study_type: design_study
+    sample: n=123 students, ages 9-12, grades 4-6, one US elementary school, all completing Module 1 of the LaPlaya (Scratch-derived)
+      curriculum
+    finding: 'For simple concepts there was little difference between grades: over 90% of 4th-6th graders completed sequencing
+      tasks and over 85% simple 2-D grid tasks; multiple events with one action each were accessible to all grades. Students
+      understood basic concepts but were challenged by deeper applications (initialization, event/parallel coordination) and
+      by non-CS prerequisites (mathematics such as coordinates), with 4th and 5th graders struggling slightly more; the authors
+      argue concepts need to be articulated by grade, not grade band, and revisited over several years.'
+    effect_size: n/a (completion rates)
+    evidence_level: moderate
+    caveats: Single school, no control, completion used as proxy for understanding, curriculum authors are evaluators.
+    implication_for_curriculum: Sequence and simple events are safe at grade 4; initialization and coordinating multiple scripts
+      should be spiralled across grades 4-6, and math prerequisites (coordinates, negative numbers) should be checked before
+      tasks that depend on them.
+    confidence: high
+  - id: qian-lehman-2017-review
+    topic: misconceptions
+    citation: 'Qian, Y., & Lehman, J. (2017). Students'' misconceptions and other difficulties in introductory programming:
+      A literature review. ACM Transactions on Computing Education, 18(1), Article 1.'
+    source_url: https://api.crossref.org/works/10.1145/3077618
+    retrieved_at: 2026-09-13
+    study_type: systematic_review
+    sample: n/a (literature review, mostly secondary/tertiary text-based programming)
+    finding: Students show misconceptions across syntactic, conceptual and strategic knowledge; contributing factors include
+      unfamiliar syntax, natural-language interference, mathematics knowledge, inaccurate mental models, lack of strategies,
+      the programming environment and teachers' knowledge/instruction; many difficulties trace to prior knowledge. Recommends
+      moving from documenting misconceptions to conceptual-change teaching and building teachers' pedagogical content knowledge
+      about misconceptions.
+    effect_size: n/a
+    evidence_level: moderate
+    caveats: Narrative review; primary-school evidence is thin in the corpus; read from Crossref abstract.
+    implication_for_curriculum: Teacher materials should list expected misconceptions per lesson (natural-language and mathematics
+      interference especially) and give a conceptual-change move, since teacher PCK is itself a named cause.
+    confidence: high
+  - id: chiodini-2021-progmiscon
+    topic: misconceptions
+    citation: Chiodini, L., Moreno Santos, I., Gallidabino, A., Tafliovich, A., Santos, A. L., & Hauswirth, M. (2021). A curated
+      inventory of programming language misconceptions. Proceedings of ITiCSE '21, 380-386.
+    source_url: https://www.chiodini.org/publications/iticse21-progmiscon.pdf
+    retrieved_at: 2026-09-13
+    study_type: position_paper
+    sample: n/a (inventory of 198 misconceptions in Java, Python and JavaScript, collected over more than a decade of classroom
+      observation; progmiscon.org)
+    finding: Proposes an organizational structure for misconception collections (language-specific, tied to syntax/semantics,
+      distinct from general orientation problems) and publishes 198 curated misconceptions. Useful as a taxonomy and naming
+      scheme; it is not a prevalence study.
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Text-based languages and mostly university learners; no frequency data; not validated with children.
+    implication_for_curriculum: Use as a checklist to name misconceptions consistently in teacher guides (e.g. assignment-as-equation),
+      but do not treat it as evidence of what primary children actually believe.
+    confidence: high
+  - id: rich-2017-k8-trajectories
+    topic: abstraction_by_age
+    citation: 'Rich, K. M., Strickland, C., Binkowski, T. A., Moran, C., & Franklin, D. (2017). K-8 learning trajectories
+      derived from research literature: Sequence, repetition, conditionals. Proceedings of ICER ''17, 182-190.'
+    source_url: https://api.semanticscholar.org/graph/v1/paper/DOI:10.1145/3105726.3106166?fields=title,authors,year,venue,abstract,tldr
+    retrieved_at: 2026-09-13
+    study_type: systematic_review
+    sample: n/a (in-depth review of over 100 scholarly articles on K-8 CS education)
+    finding: Derives literature-based learning trajectories for Sequence, Repetition and Conditionals for K-8, ordering consensus
+      learning goals from concrete (e.g. precise ordered instructions) to abstract (e.g. nested/conditional repetition). Notes
+      that assumptions about context (mathematics, language) and the programming language directly shaped the trajectories.
+    effect_size: n/a
+    evidence_level: moderate
+    caveats: Trajectories are synthesised from heterogeneous studies, not empirically validated with cohorts; only the abstract/TLDR
+      was accessible in this session.
+    implication_for_curriculum: 'Use these three trajectories as the spine for grades 2-6 sequencing: sequence before repetition
+      before conditionals, with conditional-repetition combinations late (grades 5-6).'
+    confidence: medium
+  - id: rich-2018-decomposition-trajectory
+    topic: abstraction_by_age
+    citation: 'Rich, K. M., Binkowski, T. A., Strickland, C., & Franklin, D. (2018). Decomposition: A K-8 computational thinking
+      learning trajectory. Proceedings of ICER ''18, 124-132.'
+    source_url: https://api.semanticscholar.org/graph/v1/paper/DOI:10.1145/3230977.3230979?fields=title,authors,year,venue,abstract,tldr
+    retrieved_at: 2026-09-13
+    study_type: systematic_review
+    sample: 'n/a (literature review: 63 learning goals synthesised into 13 consensus goals)'
+    finding: Presents a K-8 learning trajectory for decomposition built from 63 literature-derived goals collapsed to 13 consensus
+      goals, with justified pathways between them; decomposition is treated as a practice that develops from breaking familiar
+      tasks into steps toward deliberately structuring programs.
+    effect_size: n/a
+    evidence_level: moderate
+    caveats: Literature-derived, not cohort-validated; abstract-level read.
+    implication_for_curriculum: Teach decomposition first on everyday/unplugged tasks (grades 2-3) and only later as program
+      structure (procedures/custom blocks, grades 5-6).
+    confidence: high
+  - id: rich-2019-debugging-trajectory
+    topic: abstraction_by_age
+    citation: Rich, K. M., Strickland, C., Binkowski, T. A., & Franklin, D. (2019). A K-8 debugging learning trajectory derived
+      from research literature. Proceedings of SIGCSE '19, 745-751.
+    source_url: https://api.semanticscholar.org/graph/v1/paper/DOI:10.1145/3287324.3287396?fields=title,authors,year,venue,abstract,openAccessPdf
+    retrieved_at: 2026-09-13
+    study_type: systematic_review
+    sample: n/a (rigorous analysis of K-8 CS education research)
+    finding: 'Debugging has three dimensions students should learn: (1) strategies for finding and fixing errors, (2) types
+      of errors, and (3) the role of errors in problem solving (errors as normal and informative). The trajectory guided an
+      integrated mathematics+CT curriculum for grades 3-5.'
+    effect_size: n/a
+    evidence_level: moderate
+    caveats: Literature-derived; abstract-level read.
+    implication_for_curriculum: Assess debugging as three separable micro-skills from grade 3 (attitude to errors; classifying
+      an error; applying a strategy), not as a single 'can fix bugs' outcome.
+    confidence: high
+  - id: seiter-foreman-2013-pect
+    topic: abstraction_by_age
+    citation: Seiter, L., & Foreman, B. (2013). Modeling the learning progressions of computational thinking of primary grade
+      students. Proceedings of ICER '13, 59-66.
+    source_url: https://www.computacional.com.br/files/Artigos/SEITER%20-%20Modeling%20the%20Learning%20Progressions%20of%20Computational%20Thinking%20of%20Primary%20Grade%20Students.pdf
+    retrieved_at: 2026-09-13
+    study_type: design_study
+    sample: 150 Scratch projects from teacher-curated galleries, grades 1-6 (USA), 25 per grade
+    finding: PECT model scores evidence variables (e.g. loops, conditionals, variables, parallelization, initialization) and
+      design patterns. Conversate/Animate patterns appeared at all grades; patterns requiring conditionals and variables (Collision,
+      Scoring) were under-represented in all grades except 5 and 6; proficiency involving initialization and program state
+      (initialize-then-change) showed little evidence before grades 3-4; the Maintain Score pattern (variable creation and
+      assignment) appears too advanced for most primary students.
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Small, non-random, artefact-only pilot (no interviews), projects selected by teachers; grade differences confounded
+      with exposure; artefact analysis cannot distinguish understanding from copying.
+    implication_for_curriculum: Do not require variables/score-keeping before grade 5; expect 'state and initialization' understanding
+      to emerge around grades 3-4; grades 1-2 outcomes should be sequence, events and simple animation.
+    confidence: high
+  - id: kazakoff-2013-sequencing-robotics
+    topic: abstraction_by_age
+    citation: Kazakoff, E. R., Sullivan, A., & Bers, M. U. (2013). The effect of a classroom-based intensive robotics and
+      programming workshop on sequencing ability in early childhood. Early Childhood Education Journal, 41(4), 245-255.
+    source_url: https://api.ies.ed.gov/eric/?search=title:%22Intensive%20Robotics%20and%20Programming%20Workshop%20on%20Sequencing%20Ability%22&format=json&fields=title,author,publicationdateyear,source,description
+    retrieved_at: 2026-09-13
+    study_type: quasi_experimental
+    sample: n=27 early-childhood (PreK-K) children at a STEM magnet school in Harlem, New York, plus a control group; 1-week
+      CHERP tangible-programming workshop
+    finding: Children in the 1-week robotics/programming workshop showed significant pre-to-post gains on a picture-story
+      sequencing task compared with controls.
+    effect_size: n/a (not in abstract)
+    evidence_level: weak
+    caveats: Very small n, one week, non-random assignment, near-transfer outcome (sequencing pictures) chosen by the developers
+      of the programming language.
+    implication_for_curriculum: Sequencing is a realistic target from age 5-6 with tangible/robot tools, but treat 'sequencing
+      ability' gains as near-transfer only.
+    confidence: high
+  - id: louka-papadakis-2024-scratchjr
+    topic: abstraction_by_age
+    citation: Louka, K., & Papadakis, S. (2024). Enhancing computational thinking in early childhood education through ScratchJr
+      integration. Heliyon, 10(10), e30482.
+    source_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC11109739/
+    retrieved_at: 2026-09-13
+    study_type: quasi_experimental
+    sample: n=32 children aged 4-6 (17 experimental, 15 control), Greece; 3-week ScratchJr intervention; TechCheck-K-style
+      multiple-choice CT measure
+    finding: Mean CT improvement was 2.76 (SD 2.44) in the ScratchJr group vs 0.33 (SD 2.47) in controls, t(30) = -2.8, p
+      = .009, with gains in algorithms, representation and hardware/software; no difference for modularity/control structures,
+      and the control group improved more on debugging (p = .005).
+    effect_size: n/a (raw means only)
+    evidence_level: weak
+    caveats: Tiny sample, non-random, groups differed at pre-test (p = .036), partly self-designed instrument, 3 weeks, single
+      site.
+    implication_for_curriculum: At ages 5-6, expect gains in algorithm/sequence recognition; do not expect control structures
+      or debugging to develop from short screen-based exposure alone.
+    confidence: high
+  - id: papadakis-2024-scratchjr-slr
+    topic: abstraction_by_age
+    citation: Papadakis, S. (2024). Can preschoolers learn computational thinking and coding skills with ScratchJr? A systematic
+      literature review. International Journal of Educational Reform, 33(1), 28-61.
+    source_url: https://api.ies.ed.gov/eric/?search=title:%22Can%20Preschoolers%20Learn%20Computational%20Thinking%20and%20Coding%20Skills%20with%20ScratchJr%22&format=json&fields=title,author,publicationdateyear,source,description
+    retrieved_at: 2026-09-13
+    study_type: systematic_review
+    sample: 18 studies of ScratchJr with young learners (preschool/early primary)
+    finding: Concludes ScratchJr 'is not a panacea' but appears to positively affect young children's CT and coding skills;
+      the underlying studies are small and heterogeneous.
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Only the ERIC abstract read; no meta-analytic pooling; primary studies mostly small, short and often by tool-affiliated
+      researchers.
+    implication_for_curriculum: ScratchJr is a defensible entry tool for ages 5-7, but claims should be limited to sequence/event/loop
+      familiarity, not general CT.
+    confidence: medium
+  - id: wang-2024-meta-ages-3-8
+    topic: abstraction_by_age
+    citation: Wang, X., Chan, K. K., Li, Q., & Leung, S. O. (2024). Do 3-8 years old children benefit from computational thinking
+      development? A meta-analysis. Journal of Educational Computing Research, 62(4).
+    source_url: https://api.crossref.org/works/10.1177/07356331241236744
+    retrieved_at: 2026-09-13
+    study_type: meta_analysis
+    sample: 17 studies, 34 effect sizes, 1,665 participants aged 3-8 (Web of Science only)
+    finding: Overall large effect on CT development, d = .83 (95% CI [.73, .89]), p < .001; effect moderated by gender, scaffolding
+      and education level; intervention length marginally significant.
+    effect_size: d = 0.83, 95% CI [0.73, 0.89]
+    evidence_level: moderate
+    caveats: Single database; small primary studies with author-made CT measures; CT measured mostly as near-transfer; publication
+      bias handling not visible in abstract; CI looks implausibly narrow for 17 studies (check dependence handling).
+    implication_for_curriculum: CT-labelled skills are teachable to 5-8 year-olds with scaffolding, but the measured outcome
+      is usually the taught task family, so specify micro-skills narrowly for grades 1-2.
+    confidence: medium
+  - id: grover-pea-2013-review
+    topic: abstraction_by_age
+    citation: 'Grover, S., & Pea, R. (2013). Computational thinking in K-12: A review of the state of the field. Educational
+      Researcher, 42(1), 38-43.'
+    source_url: https://api.ies.ed.gov/eric/?search=author:Grover%20AND%20author:Pea%20AND%20title:%22Computational%20Thinking%22&format=json&fields=title,author,publicationdateyear,source,description
+    retrieved_at: 2026-09-13
+    study_type: position_paper
+    sample: n/a
+    finding: 'Frames the post-Wing discourse, identifies gaps: lack of agreed definition, scarce assessment instruments, little
+      evidence on transfer, and few studies on how CT develops with age; sets research priorities.'
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Narrative review of an early literature; abstract read.
+    implication_for_curriculum: Any age-banded progression we adopt is a design hypothesis to be checked with assessment data,
+      because the field itself lacks validated developmental sequences.
+    confidence: high
+  - id: scherer-2019-transfer-meta
+    topic: transfer
+    citation: 'Scherer, R., Siddiq, F., & Sanchez Viveros, B. (2019). The cognitive benefits of learning computer programming:
+      A meta-analysis of transfer effects. Journal of Educational Psychology, 111(5), 764-792.'
+    source_url: https://api.semanticscholar.org/graph/v1/paper/DOI:10.1037/edu0000314?fields=title,authors,year,venue,abstract,tldr
+    retrieved_at: 2026-09-13
+    study_type: meta_analysis
+    sample: 105 studies, 539 effect sizes (3-level random-effects), learners from kindergarten to adulthood
+    finding: Overall transfer g = 0.49 (95% CI [0.37, 0.61]); near transfer g = 0.75 [0.39, 1.11]; far transfer g = 0.47 [0.35,
+      0.59]. Positive transfer was found for creative thinking, mathematical skills and metacognition, then spatial skills
+      and reasoning; school achievement and literacy benefited least. Effects were significantly larger with untreated (passive)
+      than with active control groups, and larger in published than grey literature.
+    effect_size: overall g = 0.49 [0.37, 0.61]; near g = 0.75 [0.39, 1.11]; far g = 0.47 [0.35, 0.59]
+    evidence_level: moderate
+    caveats: Passive-control inflation and publication/grey-literature gap both point to overestimation; the far-transfer
+      estimate mixes ages and outcome types; the abstract does not report domain-specific CIs (APA page blocked).
+    implication_for_curriculum: We may claim programming supports mathematics, creative thinking and metacognition as plausible
+      secondary benefits, but must state effects are moderate and inflated by weak designs; we may not claim literacy or general
+      school-achievement gains.
+    confidence: high
+  - id: popat-starkey-2019-review
+    topic: transfer
+    citation: Popat, S., & Starkey, L. (2019). Learning to code or coding to learn? A systematic review. Computers & Education,
+      128, 365-376.
+    source_url: https://api.semanticscholar.org/graph/v1/paper/DOI:10.1016/j.compedu.2018.10.005?fields=title,authors,year,venue,abstract,tldr
+    retrieved_at: 2026-09-13
+    study_type: systematic_review
+    sample: 10 articles on school-age children learning to code
+    finding: Beyond coding itself, studies reported mathematical problem-solving, critical thinking, social skills, self-management
+      and academic skills; the review stresses that these depend on instructional design and that only ten studies met inclusion
+      criteria.
+    effect_size: n/a (thematic synthesis)
+    evidence_level: weak
+    caveats: Very small corpus, qualitative synthesis, no effect sizes, outcome measures heterogeneous.
+    implication_for_curriculum: Secondary outcomes (collaboration, persistence) should be designed for explicitly (pair work,
+      reflection) rather than assumed to emerge from coding.
+    confidence: high
+  - id: sala-gobet-2017-far-transfer
+    topic: transfer
+    citation: Sala, G., & Gobet, F. (2017). Does far transfer exist? Negative evidence from chess, music, and working memory
+      training. Current Directions in Psychological Science, 26(6), 515-520.
+    source_url: https://api.semanticscholar.org/graph/v1/paper/DOI:10.1177/0963721417712760?fields=title,authors,year,venue,abstract,tldr
+    retrieved_at: 2026-09-13
+    study_type: meta_analysis
+    sample: Three meta-analyses (chess, music, working-memory training) on children's cognitive and academic outcomes
+    finding: Small-to-moderate pooled effects that shrink as design quality rises (especially with active controls); the authors
+      conclude that far transfer of learning rarely occurs and extend the argument to spatial, brain and video-game training.
+    effect_size: n/a in abstract (small-to-moderate, inversely related to design quality)
+    evidence_level: strong
+    caveats: Not about programming; the relevance is the general pattern that far-transfer effects are largely design artefacts,
+      which matches the passive-control inflation in scherer-2019.
+    implication_for_curriculum: Do not justify the subject by far transfer ('coding makes children smarter'); justify it by
+      the CT/digital competences it directly teaches.
+    confidence: high
+  - id: denning-2017-trouble-spots
+    topic: transfer
+    citation: Denning, P. J. (2017). Remaining trouble spots with computational thinking. Communications of the ACM, 60(6),
+      33-39.
+    source_url: https://calhoun.nps.edu/server/api/core/bitstreams/98060af5-27af-4f60-b6b8-fad4b0e0c8fd/content
+    retrieved_at: 2026-09-13
+    study_type: position_paper
+    sample: n/a
+    finding: Argues the CS-for-all movement offered vague definitions of CT and that the claim CT benefits everyone 'has never
+      been substantiated with empirical research'; cites Pea & Kurland (1984) finding little evidence Logo helped mathematics
+      or general cognition, Koschmann (1997) and Guzdial's 2015 review reaffirming no evidence for the transfer claim; recommends
+      competency-based assessment of concrete skills over vague CT constructs.
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Opinion piece by a critic; predates scherer-2019, which found moderate (if inflated) transfer effects.
+    implication_for_curriculum: Write outcomes as observable, assessable skills (e.g. 'traces a loop with a counter'), not
+      as 'thinks computationally'.
+    confidence: high
+  - id: bell-vahrenhold-2018-cs-unplugged
+    topic: unplugged
+    citation: Bell, T., & Vahrenhold, J. (2018). CS Unplugged - How is it used, and does it work? In Adventures Between Lower
+      Bounds and Higher Altitudes (LNCS 11011, pp. 497-521). Springer.
+    source_url: https://www.springerprofessional.de/en/cs-unplugged-how-is-it-used-and-does-it-work/16094778
+    retrieved_at: 2026-09-13
+    study_type: systematic_review
+    sample: n/a (review of formal evaluations of CS Unplugged in outreach, teacher training and classrooms)
+    finding: Notes that despite widespread use 'there is relatively little systematic evaluation of its effectiveness'; reviews
+      existing formal evaluations. (Search-result summaries of the chapter report that controlled comparisons of Unplugged
+      activities with conventional instruction found no statistically significant differences, and that Unplugged should not
+      be regarded as a complete approach to CT education; these specific claims could not be verified from the pages opened.)
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Only the abstract was readable (Springer chapter blocked); the 'no significant difference' findings are second-hand
+      from search snippets and are flagged as unverified.
+    implication_for_curriculum: Use CS Unplugged as an engagement and concept-introduction layer, not as the whole CT curriculum,
+      and do not claim it is proven superior to conventional teaching.
+    confidence: low
+  - id: brackmann-2017-unplugged-spain
+    topic: unplugged
+    citation: Brackmann, C. P., Roman-Gonzalez, M., Robles, G., Moreno-Leon, J., Casali, A., & Barone, D. (2017). Development
+      of computational thinking skills through unplugged activities in primary school. Proceedings of WiPSCE '17, 65-72.
+    source_url: https://www.computacional.com.br/files/Artigos/BRACKMANN%20-%20Development%20of%20Computational%20Thinking%20Skills%20through%20Unplugged%20Activities.pdf
+    retrieved_at: 2026-09-13
+    study_type: quasi_experimental
+    sample: n=73 students in 5th and 6th grade (ages 10-12), two public schools in Madrid, Spain; intact classes assigned
+      to experimental/control; no prior formal programming
+    finding: 10 hours of unplugged CT activities over five weeks (Hello Ruby, Code Master, decomposition/route/pattern tasks).
+      Experimental group improved significantly on the Computational Thinking Test (t = 4.431, p < .001, d = .80); control
+      group did not (t = 1.128, p = .267, d = .17); groups were equivalent at pre-test (p = .154).
+    effect_size: within-group d = 0.80 (experimental) vs d = 0.17 (control); no between-group effect size reported
+    evidence_level: moderate
+    caveats: Small n, intact classes, researchers delivered the lessons, CTt is validated for 10-16 so results say nothing
+      about ages 7-9, six-week window only.
+    implication_for_curriculum: About 10 hours of well-designed unplugged work can move CTt-type scores in grades 5-6; this
+      justifies an unplugged strand but not an unplugged-only programme.
+    confidence: high
+  - id: del-olmo-munoz-2020-unplugged-then-plugged
+    topic: unplugged
+    citation: del Olmo-Munoz, J., Cozar-Gutierrez, R., & Gonzalez-Calero, J. A. (2020). Computational thinking through unplugged
+      activities in early years of Primary Education. Computers & Education, 150, 103832.
+    source_url: https://api.semanticscholar.org/graph/v1/paper/DOI:10.1016/j.compedu.2020.103832?fields=title,authors,year,venue,abstract,tldr
+    retrieved_at: 2026-09-13
+    study_type: quasi_experimental
+    sample: 'n=84 second-grade students (age 7-8), Spain; two phases: unplugged-then-plugged vs plugged-then-plugged, activities
+      from Code.org'
+    finding: Including unplugged activities before plugged ones appeared beneficial for CT scores and for motivation, with
+      no gender effect; measured by tests before, between and after phases.
+    effect_size: n/a (not in abstract)
+    evidence_level: weak
+    caveats: Only abstract read; effect sizes not visible; quasi-experimental with intact groups; instrument for 7-year-olds
+      not specified in abstract.
+    implication_for_curriculum: For grade 2, an unplugged-first sequence is defensible and may help motivation; keep the plugged
+      phase, since the design did not test unplugged alone.
+    confidence: medium
+  - id: hermans-aivaloglou-2017-scratch-or-not
+    topic: unplugged
+    citation: Hermans, F., & Aivaloglou, E. (2017). To Scratch or not to Scratch? A controlled experiment comparing plugged
+      first and unplugged first programming lessons. Proceedings of WiPSCE '17, 49-56.
+    source_url: https://www.felienne.com/archives/5743
+    retrieved_at: 2026-09-13
+    study_type: rct
+    sample: n=35 children, Dutch grades 6-8 (ages 9-12), one school; random balanced allocation (17 unplugged-first, 18 Scratch-first),
+      4 weeks each then joint Scratch weeks
+    finding: After eight weeks there was no difference between groups in mastery of programming concepts (loops, conditionals,
+      procedures, broadcasts, parallelization, variables). The unplugged-first group reported higher self-efficacy and used
+      a wider variety of Scratch blocks, including blocks beyond the course material.
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Very small n, single school, author-run; read from the author's blog summary of the paper (ACM DL blocked); outcome
+      measure author-developed.
+    implication_for_curriculum: Starting unplugged costs nothing in concept learning and may buy confidence and exploration;
+      safe default for the first weeks of each grade.
+    confidence: medium
+  - id: huang-looi-2021-unplugged-review
+    topic: unplugged
+    citation: Huang, W., & Looi, C.-K. (2021). A critical review of literature on 'unplugged' pedagogies in K-12 computer
+      science and computational thinking education. Computer Science Education, 31(1), 83-111.
+    source_url: https://api.semanticscholar.org/graph/v1/paper/DOI:10.1080/08993408.2020.1789411?fields=title,authors,year,venue,abstract,tldr
+    retrieved_at: 2026-09-13
+    study_type: systematic_review
+    sample: n/a (database search on unplugged + CS/CT, synthesised with existing reviews)
+    finding: Unplugged approaches have potential in formal education but the review 'surfaced CSU's limitations to broaden
+      access for underrepresented students' and highlights areas of unknown and tension; proposes 10 open research questions.
+      It does not establish that unplugged alone develops programming-specific skills.
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Critical narrative review; abstract read only.
+    implication_for_curriculum: Do not assume unplugged is automatically equitable or sufficient; pair it with plugged practice
+      and monitor which students disengage.
+    confidence: medium
+  - id: chen-2023-unplugged-meta
+    topic: unplugged
+    citation: 'Chen, P., Yang, D., Metwally, A. H. S., Lavonen, J., & Wang, X. (2023). Fostering computational thinking through
+      unplugged activities: A systematic literature review and meta-analysis. International Journal of STEM Education, 10,
+      47.'
+    source_url: https://api.semanticscholar.org/graph/v1/paper/DOI:10.1186/s40594-023-00434-7?fields=title,authors,year,venue,abstract
+    retrieved_at: 2026-09-13
+    study_type: meta_analysis
+    sample: 49 K-12 studies (2006-2022) reviewed; 13 studies pooled
+    finding: Pooled effect of unplugged activities on CT was large, Hedges' g = 1.028 (13 studies); board and card games were
+      the most common activity type; only 36.37% of studies used CT diagnostic tools.
+    effect_size: g = 1.028 (CI not visible in abstract)
+    evidence_level: weak
+    caveats: Only 13 pooled studies, mostly pre-post or passive-control, with heterogeneous author-made measures; a g above
+      1.0 in education is a red flag for design inflation.
+    implication_for_curriculum: Treat unplugged as effective for the specific concepts taught (pattern, sequence, decomposition)
+      but discount the pooled magnitude heavily.
+    confidence: medium
+  - id: zhang-2024-unplugged-k9-meta
+    topic: unplugged
+    citation: 'Zhang, Y., Liang, Y., Tian, X., & Yu, X. (2024). The effects of unplugged programming activities on K-9 students''
+      computational thinking: meta-analysis. Educational Technology Research and Development, 72, 1-24.'
+    source_url: https://api.ies.ed.gov/eric/?search=title:%22unplugged%20programming%20activities%20on%20K-9%22&format=json&fields=title,author,publicationdateyear,source,description
+    retrieved_at: 2026-09-13
+    study_type: meta_analysis
+    sample: 15 studies (2006-2023), K-9
+    finding: Unplugged programming activity has a positive effect on K-9 students' CT, with effects varying by grade level,
+      duration and activity type.
+    effect_size: n/a (pooled g not in the abstract read)
+    evidence_level: weak
+    caveats: Abstract only; 15 studies; moderator directions not visible.
+    implication_for_curriculum: Grade-level moderation exists, so pilot unplugged units separately for grades 1-3 and 4-6
+      rather than assuming one design fits all.
+    confidence: low
+  - id: kotsopoulos-2017-ct-pedagogical-framework
+    topic: unplugged
+    citation: Kotsopoulos, D., Floyd, L., Khan, S., Namukasa, I. K., Somanath, S., Weber, J., & Yiu, C. (2017). A pedagogical
+      framework for computational thinking. Digital Experiences in Mathematics Education, 3(2), 154-171.
+    source_url: https://www.utouch.cpsc.ucalgary.ca/docs/PedagogicalFramework-Springer2017.pdf
+    retrieved_at: 2026-09-13
+    study_type: position_paper
+    sample: n/a
+    finding: 'Proposes four pedagogical experiences: unplugged, tinkering (modifying existing objects), making (constructing
+      new objects) and remixing (appropriating components); originally conceived as a progression (unplugged, then tinkering,
+      making, remixing) but the authors say unplugged may usefully precede any of the others. The authors explicitly note
+      the need for empirical data on efficacy.'
+    effect_size: n/a
+    evidence_level: anecdotal
+    caveats: Conceptual framework without empirical test.
+    implication_for_curriculum: Usable as a lesson-type vocabulary (unplugged/tinker/make/remix) for teacher guides, not as
+      evidence of an optimal sequence.
+    confidence: high
+  - id: sun-yang-becker-2024-debugging-meta
+    topic: unplugged
+    citation: 'Sun, C., Yang, S., & Becker, B. (2024). Debugging in computational thinking: A meta-analysis on the effects
+      of interventions on debugging skills. Journal of Educational Computing Research, 62(4).'
+    source_url: https://api.crossref.org/works/10.1177/07356331241227793
+    retrieved_at: 2026-09-13
+    study_type: meta_analysis
+    sample: 62 effect sizes from 18 articles (mixed ages)
+    finding: Debugging interventions had a significant mean effect, g = 0.64 (95% CI [0.32, 0.96]), with true effects ranging
+      from -0.54 to 1.82; interventions using enhanced debuggers and systematic instruction were particularly effective; effects
+      held regardless of programming medium, control type and randomisation, and varied by participant population and possibly
+      publication type.
+    effect_size: g = 0.64, 95% CI [0.32, 0.96]
+    evidence_level: moderate
+    caveats: Wide prediction interval; few primary-age studies; the strongest interventions (enhanced debuggers) require a
+      computer, which is indirect evidence about the limits of unplugged debugging.
+    implication_for_curriculum: Debugging should be taught systematically and, from grade 3-4, with a plugged environment
+      that gives execution feedback; unplugged debugging (spot the error on paper) is a starter, not the target.
+    confidence: high
+  - id: merino-armero-2022-ct-meta
+    topic: unplugged
+    citation: Merino-Armero, J. M., Gonzalez-Calero, J. A., & Cozar-Gutierrez, R. (2022). Computational thinking in K-12 education.
+      An insight through meta-analysis. Journal of Research on Technology in Education, 54(3), 410-437.
+    source_url: https://api.semanticscholar.org/graph/v1/paper/DOI:10.1080/15391523.2020.1870250?fields=title,authors,year,venue,abstract,tldr
+    retrieved_at: 2026-09-13
+    study_type: meta_analysis
+    sample: K-12 CT intervention studies (41 per search snippet; intra-group effect sizes)
+    finding: Pre-post (intra-group) effect on CT was large, g = 1.044; among intervention types, programming was the most
+      efficient tool for developing CT (i.e. more than unplugged or robotics-only approaches).
+    effect_size: intra-group g = 1.044 (CI not in abstract)
+    evidence_level: weak
+    caveats: Intra-group pre-post effects are inflated by maturation and retest; abstract read only; study count from a search
+      snippet.
+    implication_for_curriculum: Where devices exist, programming should carry the core CT outcomes; unplugged supports but
+      should not replace it.
+    confidence: medium
+  - id: sentance-csizmadia-2017-teacher-challenges
+    topic: teacher_capacity
+    citation: 'Sentance, S., & Csizmadia, A. (2017). Computing in the curriculum: Challenges and strategies from a teacher''s
+      perspective. Education and Information Technologies, 22(2), 469-495.'
+    source_url: https://api.semanticscholar.org/graph/v1/paper/DOI:10.1007/s10639-016-9482-0?fields=title,authors,year,venue,abstract,tldr
+    retrieved_at: 2026-09-13
+    study_type: qualitative
+    sample: Survey of over 300 UK teachers already teaching Computing in 2014 (primary and secondary)
+    finding: 'Teachers reported extrinsic and intrinsic challenges (own subject knowledge, resources, time, student resilience).
+      Five strategy themes emerged: unplugged activities, contextualisation of tasks, collaborative learning, developing CT,
+      and scaffolding programming tasks; few strategies were offered for building student resilience.'
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Self-selected respondents (many Computing At School members), self-report, pre-rollout context.
+    implication_for_curriculum: Teacher guides should ship with the five strategies built in (unplugged intro, context, pairs,
+      scaffolded code) so generalist teachers need not invent pedagogy.
+    confidence: high
+  - id: royal-society-2017-after-the-reboot
+    topic: teacher_capacity
+    citation: 'The Royal Society (2017). After the reboot: computing education in UK schools. London: The Royal Society (survey
+      fieldwork by Pye Tait).'
+    source_url: https://royalsociety.org/~/media/policy/projects/computing-education/computing-education-report.pdf
+    retrieved_at: 2026-09-13
+    study_type: qualitative
+    sample: Teacher survey (Pye Tait 2017) of UK computing teachers, about 600 primary respondents per summary; plus qualifications
+      and workforce data
+    finding: Three years after Computing became compulsory (2014), 44% of secondary teachers felt confident only with the
+      earlier stages of the curriculum and 26% had undertaken no computing-related CPD in the past year; the report's own
+      figure gives 32% for primary teachers on the 'more confident teaching earlier stages' item. The report notes a 'large
+      cohort of teachers that do not feel confident in teaching computing', warns its survey is vulnerable to selection bias
+      (likely over-optimistic), and cites the 35 hours of CPD per year norm while documenting large disparities, with some
+      teachers receiving none.
+    effect_size: n/a
+    evidence_level: moderate
+    caveats: Policy report; self-report survey with acknowledged selection bias; UK context with a specialist-secondary model.
+    implication_for_curriculum: Plan for a national rollout in which most primary teachers lack confidence for years; budget
+      recurring CPD (order of 30+ hours/year) rather than a one-off course.
+    confidence: medium
+  - id: ncce-2022-impact-report
+    topic: teacher_capacity
+    citation: National Centre for Computing Education (2022). Impact report 2018-2022. Teach Computing / STEM Learning.
+    source_url: https://static.teachcomputing.org/NCCE-Impact-report-2022.pdf
+    retrieved_at: 2026-09-13
+    study_type: qualitative
+    sample: England; over 14,000 primary teachers engaged through resources and CPD; survey sample of 5,825 responses across
+      programmes
+    finding: 'Self-reported outcomes: about 70% of CPD participants reported increased confidence/motivation, 97% of primary
+      and 86% of secondary schools reported increased teacher knowledge, and 94% rated CPD good quality. The report combines
+      surveys, interviews, case studies and monitoring data; it presents no measured pupil-attainment outcomes attributable
+      to the CPD.'
+    effect_size: n/a
+    evidence_level: anecdotal
+    caveats: Provider's own impact report; self-report satisfaction measures; no control group; no pupil learning data.
+    implication_for_curriculum: Short CPD reliably raises reported confidence; do not equate this with classroom implementation
+      or pupil learning; build in observation-based follow-up.
+    confidence: high
+  - id: rich-mason-oleary-2021-teacher-self-efficacy
+    topic: teacher_capacity
+    citation: Rich, P. J., Mason, S. L., & O'Leary, J. (2021). Measuring the effect of continuous professional development
+      on elementary teachers' self-efficacy to teach coding and computational thinking. Computers & Education, 168, 104196.
+    source_url: https://api.semanticscholar.org/graph/v1/paper/DOI:10.1016/j.compedu.2021.104196?fields=title,authors,year,venue,abstract,tldr
+    retrieved_at: 2026-09-13
+    study_type: quasi_experimental
+    sample: n=127 elementary teachers (USA) in a year-long continuous PD programme
+    finding: Teachers' confidence grew most for sequences, algorithms and loops and least for conditionals, variables and
+      functions; in CT they were strongest in pattern recognition and algorithmic reasoning and weakest in decomposition and
+      abstraction.
+    effect_size: n/a (not visible; publisher elided abstract)
+    evidence_level: weak
+    caveats: Self-efficacy (self-report) not skill; no control group; details read from a Semantic Scholar key-findings summary,
+      not the abstract.
+    implication_for_curriculum: A 20-40 h PD budget can realistically make generalists confident with sequence, loops and
+      pattern/algorithm work (grades 1-4 content); conditionals, variables, functions and abstraction (grades 5-6 content)
+      need more support, e.g. scripted lessons or specialist backup.
+    confidence: medium
+  - id: yadav-2014-preservice-ct
+    topic: teacher_capacity
+    citation: Yadav, A., Mayfield, C., Zhou, N., Hambrusch, S., & Korb, J. T. (2014). Computational thinking in elementary
+      and secondary teacher education. ACM Transactions on Computing Education, 14(1), Article 5.
+    source_url: https://api.crossref.org/works/10.1145/2576872
+    retrieved_at: 2026-09-13
+    study_type: quasi_experimental
+    sample: Preservice teachers in an educational psychology course (USA); n not in abstract
+    finding: A short CT module embedded in a required education course measurably improved preservice teachers' understanding
+      of CT concepts and attitudes toward computing.
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Short module, self-report attitudes and concept definitions, no classroom implementation measured.
+    implication_for_curriculum: Embedding a compact CT module in initial teacher education is low-cost and shifts understanding;
+      pair it with in-service PD for practice.
+    confidence: medium
+  - id: ceibal-remote-teacher-model
+    topic: teacher_capacity
+    citation: Fundacion Sadosky / Program.AR (n.d.). Docentes remotos (remote teachers for Ceibal's Pensamiento Computacional
+      programme, Uruguay). Web page; and Chicos.net programme page.
+    source_url: https://fundacionsadosky.org.ar/docentes-remotos/
+    retrieved_at: 2026-09-13
+    study_type: position_paper
+    sample: 'Programme description: since 2018 Argentine remote teachers, over 25,000 students in more than 350 Uruguayan
+      primary schools, ages 9-12 (grades 4-6); weekly videoconference class co-taught with the classroom teacher as a ''pedagogical
+      pair'' (Chicos.net page)'
+    finding: Ceibal's model substitutes for teacher subject knowledge by pairing a remote specialist (one videoconference
+      class per week) with the generalist classroom teacher, who co-teaches and follows up. The pages opened report reach
+      and qualitative testimonials only; no student-learning impact evaluation was accessible in this session (a 2026 Ceibal
+      PDF was blocked).
+    effect_size: n/a
+    evidence_level: anecdotal
+    caveats: Provider web pages; no outcome data verified; satisfaction figures seen only in search snippets (not opened)
+      are excluded.
+    implication_for_curriculum: A remote-specialist plus classroom-teacher model is a feasible scaling strategy for grades
+      4-6 where generalists lack knowledge, but adopt it as a design bet, not as evidence-backed.
+    confidence: medium
+  - id: outlier-codeorg-evaluation
+    topic: teacher_capacity
+    citation: 'Outlier Research & Evaluation, University of Chicago (2015-2016). Code.org evaluation (Year 1, 2014-15): elementary
+      CS Fundamentals interviews and questionnaires.'
+    source_url: https://outlier.uchicago.edu/evaluation_codeorg
+    retrieved_at: 2026-09-13
+    study_type: qualitative
+    sample: US teachers implementing CS Fundamentals in 2014-15 (different samples per instrument)
+    finding: The evaluation prioritised PD implementation, teacher satisfaction with PD, course implementation and teacher
+      attitudinal outcomes, using interviews, surveys, focus groups and observations; the landing page presents no student-outcome
+      or effect data.
+    effect_size: n/a
+    evidence_level: anecdotal
+    caveats: Only the index page was accessible; commissioned by Code.org; attitudinal outcomes only.
+    implication_for_curriculum: Existing large-scale PD evaluations of one-day CS Fundamentals workshops measure satisfaction
+      and attitude, so a short-PD model cannot be claimed to be validated on pupil learning.
+    confidence: high
+  - id: sun-hu-zhou-2021-programming-ct-meta
+    topic: integration_vs_standalone
+    citation: Sun, L., Hu, L., & Zhou, D. (2021). Which way of design programming activities is more effective to promote
+      K-12 students' computational thinking skills? A meta-analysis. Journal of Computer Assisted Learning, 37(4), 1048-1062.
+    source_url: https://api.crossref.org/works/10.1111/jcal.12545
+    retrieved_at: 2026-09-13
+    study_type: meta_analysis
+    sample: 86 empirical (randomised/controlled) K-12 studies, 114 effect sizes
+    finding: 'Programming improved K-12 CT overall, Hedges'' g = 0.601 (95% CI [0.505, 0.697]), p < .001, with no publication
+      bias detected. Moderators favouring larger effects: interdisciplinary programming integration (vs standalone programming),
+      interventions of 1 week to 1 month, class sizes under 50, and deliberate choice of tools and assessment.'
+    effect_size: g = 0.601, 95% CI [0.505, 0.697]
+    evidence_level: moderate
+    caveats: Moderator estimates for integration are not reported in the abstract; short interventions scoring higher suggests
+      novelty/retest effects; CT measured with heterogeneous instruments.
+    implication_for_curriculum: Integrating programming into other subjects is at least as effective as standalone for CT
+      outcomes and may be more so; a hybrid (standalone spine + integrated applications) is defensible.
+    confidence: high
+  - id: lai-wong-2022-collaborative-meta
+    topic: integration_vs_standalone
+    citation: 'Lai, X., & Wong, G. K.-W. (2022). Collaborative versus individual problem solving in computational thinking
+      through programming: A meta-analysis. British Journal of Educational Technology, 53(1), 150-170.'
+    source_url: https://api.ies.ed.gov/eric/?search=title:%22Collaborative%20versus%20Individual%22&format=json&fields=title,author,publicationdateyear,source,description
+    retrieved_at: 2026-09-13
+    study_type: meta_analysis
+    sample: 33 publications, 4,717 learners across educational levels
+    finding: Collaborative problem solving in programming had a medium advantage over individual work on cognitive outcomes,
+      Hedges' g = 0.562, p < .001.
+    effect_size: g = 0.562 (CI not in abstract)
+    evidence_level: moderate
+    caveats: Pedagogical (not integration) moderator; mixed ages; abstract read only.
+    implication_for_curriculum: Default to pair programming / small-group problem solving in both standalone and integrated
+      lessons; this also halves device needs.
+    confidence: high
+  - id: weintrop-2016-ct-math-science
+    topic: integration_vs_standalone
+    citation: Weintrop, D., Beheshti, E., Horn, M., Orton, K., Jona, K., Trouille, L., & Wilensky, U. (2016). Defining computational
+      thinking for mathematics and science classrooms. Journal of Science Education and Technology, 25(1), 127-147.
+    source_url: https://api.ies.ed.gov/eric/?search=id:EJ1087675&format=json&fields=title,author,publicationdateyear,source,description
+    retrieved_at: 2026-09-13
+    study_type: position_paper
+    sample: n/a (taxonomy built from literature, expert input and high-school classroom activities)
+    finding: 'Defines CT-in-STEM as four practice families: data practices, modeling and simulation practices, computational
+      problem-solving practices, and systems-thinking practices.'
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Developed for secondary mathematics/science; no primary validation; conceptual.
+    implication_for_curriculum: For integration in grades 5-6, borrow only the data-practices and computational-problem-solving
+      strands; modeling/simulation and systems thinking are secondary-level.
+    confidence: high
+  - id: israel-2015-schoolwide-ct
+    topic: integration_vs_standalone
+    citation: 'Israel, M., Pearson, J. N., Tapia, T., Wherfel, Q. M., & Reese, G. (2015). Supporting all learners in school-wide
+      computational thinking: A cross-case qualitative analysis. Computers & Education, 82, 263-279.'
+    source_url: https://lists.mste.illinois.edu/lists/arc/ctrl-shift/2015-02/msg00031/Computers_&_Education_Israel_et_al_2015.pdf
+    retrieved_at: 2026-09-13
+    study_type: qualitative
+    sample: One high-need Midwestern US elementary school (K-5); classroom teachers (grades 2, 3, 4/5 split), librarian, art
+      teacher and administrators; observations and interviews over four months
+    finding: Classroom teachers all said curriculum pacing was too rapid to add computing as a distinct subject and therefore
+      embedded it in mathematics, language arts and science (e.g. money skills in grade 2). Teachers were initially apprehensive
+      but willing once given support; success depended on a 'purveyor' (the librarian) who co-planned and co-taught until
+      teachers were confident; integration increased preparation time; struggling learners and students with disabilities
+      benefited from collaboration and explicit scaffolds.
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Single school, no learning outcomes, purposive case selection.
+    implication_for_curriculum: In a crowded primary timetable, integration is what generalists will actually do; the model
+      needs a named in-school coach/co-teacher and planning time, not only materials.
+    confidence: high
+  - id: rich-yadav-larimore-2020-implementation-profiles
+    topic: integration_vs_standalone
+    citation: Rich, K. M., Yadav, A., & Larimore, R. A. (2020). Teacher implementation profiles for integrating computational
+      thinking into elementary mathematics and science instruction. Education and Information Technologies, 25, 3161-3188.
+    source_url: https://par.nsf.gov/servlets/purl/10183083
+    retrieved_at: 2026-09-13
+    study_type: qualitative
+    sample: 8 US elementary teachers (grades 2-5 lessons); three PD workshops in 2018 (introduction, four CT practices, and
+      a three-day lesson-planning workshop); video of 12 lesson days
+    finding: Teachers created CT opportunities through framing, prompting and inviting reflection, grouped into four profiles
+      (CT as general problem-solving strategies; CT to structure lessons; CT through prompting; CT to guide planning). Teachers
+      saw stronger CT connections in mathematics than in science and leaned on existing CT-related vocabulary (patterns, decomposition).
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Eight teachers, no student outcomes, unplugged integration only, researchers designed the PD.
+    implication_for_curriculum: With roughly a week of PD, generalists can integrate unplugged CT practices (patterns, decomposition,
+      debugging, abstraction) into mathematics lessons; science integration is harder and should come later.
+    confidence: high
+  - id: zhang-2025-umbrella-review
+    topic: integration_vs_standalone
+    citation: 'Zhang, J., Wu, Y., Ning, Y., & Shi, Y. (2025). From evidence to insight: An umbrella review of computational
+      thinking research syntheses. Journal of Intelligence, 13(12), 157.'
+    source_url: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=41440818&rettype=abstract&retmode=text
+    retrieved_at: 2026-09-13
+    study_type: systematic_review
+    sample: 33 meta-analyses and systematic reviews on CT
+    finding: Across syntheses, project-based learning, text-based programming and game-based learning show more pronounced
+      effects; the review criticises research quality and calls for standardising meta-analyses, unifying effect-size indicators
+      and strengthening longitudinal studies.
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Abstract only; umbrella reviews inherit primary-study weaknesses; the text-based finding is mostly secondary-level.
+    implication_for_curriculum: Prefer project-based units for grades 4-6; treat any single meta-analytic number as provisional
+      given the field's acknowledged heterogeneity.
+    confidence: medium
+  - id: relkin-2020-techcheck
+    topic: assessment
+    citation: 'Relkin, E., de Ruiter, L., & Bers, M. U. (2020). TechCheck: Development and validation of an unplugged assessment
+      of computational thinking in early childhood education. Journal of Science Education and Technology, 29, 482-498.'
+    source_url: https://api.ies.ed.gov/eric/?search=title:%22TechCheck%22%20AND%20author:Relkin&format=json&fields=title,author,publicationdateyear,source,description
+    retrieved_at: 2026-09-13
+    study_type: instrument_validation
+    sample: n=768 students aged 5-9 (USA)
+    finding: Unplugged multiple-choice test of six CT domains (algorithms, modularity, control structures, representation,
+      hardware/software, debugging), administrable to a whole class in under 15 minutes without programming knowledge; good
+      psychometric properties and discriminates between CT ability levels. A 2023 normative follow-up (Relkin, Johnson & Bers)
+      provides grade-specific norms because raw scores are not comparable across grades.
+    effect_size: n/a
+    evidence_level: moderate
+    caveats: Developed by the ScratchJr/KIBO team; abstract-level psychometrics only were readable; ceiling effects reported
+      for older children in the TLDR ('low for second graders').
+    implication_for_curriculum: TechCheck (or K/1/2 variants) can anchor grade 1-3 assessment of unplugged CT recognition
+      skills; use grade norms, not raw cut scores.
+    confidence: high
+  - id: zapata-caceres-2020-bctt
+    topic: assessment
+    citation: 'Zapata-Caceres, M., Martin-Barroso, E., & Roman-Gonzalez, M. (2020). Computational Thinking Test for Beginners:
+      Design and content validation. Proceedings of IEEE EDUCON 2020, 1905-1914.'
+    source_url: https://api.semanticscholar.org/graph/v1/paper/DOI:10.1109/EDUCON45650.2020.9125368?fields=title,authors,year,venue,abstract,tldr
+    retrieved_at: 2026-09-13
+    study_type: instrument_validation
+    sample: Primary-school students in Spain (n not in abstract); expert-judgement content validation
+    finding: The Beginners CT test (BCTt), derived from the CTt and aimed at early ages (about 5-10), was judged adequate
+      by experts and showed high reliability in primary school, 'particularly in first educational stages'.
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Content validation and reliability only in this paper; abstract read; later work by the same group (cCTt) supersedes
+      it for grades 3-6.
+    implication_for_curriculum: BCTt is a candidate for grades 1-3 assessment of sequences, loops and simple conditionals
+      in a maze/canvas format.
+    confidence: medium
+  - id: el-hamamsy-2025-cctt
+    topic: assessment
+    citation: 'El-Hamamsy, L., Zapata-Caceres, M., Martin-Barroso, E., Mondada, F., Dehler Zufferey, J., Bruno, B., & Roman-Gonzalez,
+      M. (2025). The competent Computational Thinking test (cCTt): A valid, reliable and gender-fair test for longitudinal
+      CT studies in grades 3-6. Technology, Knowledge and Learning.'
+    source_url: https://api.ies.ed.gov/eric/?search=author:Rom%C3%A1n-Gonz%C3%A1lez%20AND%20title:%22Computational%20Thinking%20Test%22&format=json&fields=title,author,publicationdateyear,source,description
+    retrieved_at: 2026-09-13
+    study_type: instrument_validation
+    sample: n=2,709 students, grades 3-6 (Switzerland)
+    finding: Validated with Classical Test Theory, Item Response Theory and measurement-invariance analyses; reliable and
+      gender-fair across grades 3-6, with proficiency benchmarks and equivalency scales for longitudinal use.
+    effect_size: n/a
+    evidence_level: strong
+    caveats: Abstract read; measures the CTt construct (sequences, loops, conditionals, functions in block-like maze/canvas
+      items), not creative or collaborative CT.
+    implication_for_curriculum: cCTt is the best-evidenced anchor for grades 3-6 and allows tracking growth across years;
+      align our grade 3-6 micro-skills to its item families.
+    confidence: high
+  - id: roman-gonzalez-2017-ctt
+    topic: assessment
+    citation: Roman-Gonzalez, M., Perez-Gonzalez, J.-C., & Jimenez-Fernandez, C. (2017). Which cognitive abilities underlie
+      computational thinking? Criterion validity of the Computational Thinking Test. Computers in Human Behavior, 72, 678-691.
+    source_url: https://api.crossref.org/works/10.1016/j.chb.2016.08.047
+    retrieved_at: 2026-09-13
+    study_type: instrument_validation
+    sample: Spanish students aged 10-16 (n not readable; abstract elided by publisher)
+    finding: Existence and venue confirmed via Crossref; Semantic Scholar's TLDR states results link CT to components of the
+      Cattell-Horn-Carroll model and support CT as a problem-solving ability. The Brackmann 2017 paper (opened) describes
+      the CTt as validated for students from 10 to 16 years old and covering sequences, loops, conditionals (including nested),
+      functions and debugging in visual-block items.
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Abstract not accessible; details are second-hand from a paper using the instrument.
+    implication_for_curriculum: CTt is appropriate only from about grade 5 (age 10); for younger grades use BCTt/cCTt/TechCheck
+      instead.
+    confidence: medium
+  - id: zhang-wong-2023-cttlp
+    topic: assessment
+    citation: Zhang, S., & Wong, G. K. W. (2023). Development and validation of a computational thinking test for lower primary
+      school students. Educational Technology Research and Development, 71, 1595-1630.
+    source_url: https://api.ies.ed.gov/eric/?search=title:%22lower%20primary%20school%20students%22%20AND%20title:%22computational%20thinking%20test%22&format=json&fields=title,author,publicationdateyear,source,description
+    retrieved_at: 2026-09-13
+    study_type: instrument_validation
+    sample: n=1,225 students in grades 1-3 (ages 6-10), Hong Kong; constructed-response items
+    finding: Test validated via expert review, cognitive interviews, CTT and IRT; performance improved with grade and no gender
+      difference; children had particular difficulty with loop control and with executing sequences involving multiple directions.
+    effect_size: n/a
+    evidence_level: moderate
+    caveats: Abstract read; single region; constructed-response format needs trained scoring.
+    implication_for_curriculum: For grades 1-3, define 'loop control' and 'multi-direction sequencing' as stretch micro-skills,
+      not baseline expectations.
+    confidence: high
+  - id: moreno-leon-2015-dr-scratch
+    topic: assessment
+    citation: 'Moreno-Leon, J., Robles, G., & Roman-Gonzalez, M. (2015). Dr. Scratch: Automatic analysis of Scratch projects
+      to assess and foster computational thinking. RED. Revista de Educacion a Distancia, 46, Article 10.'
+    source_url: https://www.um.es/ead/red/46/moreno_robles.pdf
+    retrieved_at: 2026-09-13
+    study_type: instrument_validation
+    sample: 'Tool study: 100 random public Scratch projects; user study: n=109 students aged 10-14 (mean 11.5), mostly primary
+      (68.8%)'
+    finding: Dr. Scratch scores seven dimensions (abstraction/decomposition, logical thinking, synchronization, parallelism,
+      flow control, user interactivity, data representation) at 0-3 each from static code analysis; of 100 random projects
+      79% had non-personalised sprite names and 62% repeated code. In the user study, students who received Dr. Scratch feedback
+      improved project scores pre-to-post, with significant pre/post correlations; the paper acknowledges the tool measures
+      code features, not understanding.
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Artefact metrics reward block usage (e.g. one 'if' scores logic) and can be gamed; no evidence it reflects what
+      children understand; authors are the tool developers.
+    implication_for_curriculum: Use Dr. Scratch only as a formative, low-stakes signal of project complexity in grades 4-6,
+      never as a summative CT measure.
+    confidence: high
+  - id: hubwieser-muhling-2015-bebras-psychometrics
+    topic: assessment
+    citation: 'Hubwieser, P., & Muhling, A. (2015). Investigating the psychometric structure of Bebras contest: Towards measuring
+      computational thinking skills. Proceedings of LaTiCE 2015, 62-69.'
+    source_url: https://api.semanticscholar.org/graph/v1/paper/DOI:10.1109/LaTiCE.2015.19?fields=title,authors,year,venue,abstract,tldr
+    retrieved_at: 2026-09-13
+    study_type: instrument_validation
+    sample: Bebras contest response data (Germany); n not accessible
+    finding: Existence and venue confirmed (Crossref and Semantic Scholar); abstract elided by publisher. Bebras tasks are
+      contest items, not a validated test; this paper is the standard citation for treating them psychometrically. A separate
+      small study (Chiazzese et al. 2019, Informatics 6(4):43, n=51 vs 32, read via Crossref abstract) used Bebras tasks as
+      an outcome for primary robotics and found larger effects for third graders.
+    effect_size: n/a
+    evidence_level: weak
+    caveats: Could only confirm the paper exists; Bebras difficulty varies by year and task; no primary-school norms verified.
+    implication_for_curriculum: Use Bebras-style tasks for practice and classroom formative checks, but do not use raw Bebras
+      scores as a validated CT measure without local calibration.
+    confidence: low
+  synthesis:
+  - statement: 'Teachable at age 7 (grade 2): precise ordered instructions (sequence), recognising simple patterns, simple
+      event-action pairs, decomposition of everyday tasks, and unplugged debugging as ''find the wrong step''; loop control
+      and multi-direction sequences are stretch goals, and variables/state are not appropriate.'
+    supported_by:
+    - franklin-2017-conceptual-sequencing
+    - seiter-foreman-2013-pect
+    - zhang-wong-2023-cttlp
+    - kazakoff-2013-sequencing-robotics
+    - wang-2024-meta-ages-3-8
+    - rich-2017-k8-trajectories
+    evidence_level: moderate
+  - statement: 'Teachable at age 9 (grade 4): repetition with counts, initialization and program state (initialize-then-change),
+      coordinating two or three scripts/events, decomposition as plan-then-build, and systematic debugging with execution
+      feedback; simple conditionals can begin but nested/conditional-repetition should wait.'
+    supported_by:
+    - seiter-foreman-2013-pect
+    - franklin-2017-conceptual-sequencing
+    - rich-2017-k8-trajectories
+    - rich-2019-debugging-trajectory
+    - sun-yang-becker-2024-debugging-meta
+    evidence_level: moderate
+  - statement: 'Teachable at age 11 (grade 6): conditionals including nested, variables as single-value containers used for
+      counting/scoring, Boolean operators, procedures/custom blocks, and CTt-type transfer items; even here, projects can
+      be completed without understanding variables, loops and Booleans, so conceptual assessment is mandatory.'
+    supported_by:
+    - grover-basu-2017-block-misconceptions
+    - meerbaum-salant-2013-scratch-concepts
+    - seiter-foreman-2013-pect
+    - brackmann-2017-unplugged-spain
+    - el-hamamsy-2025-cctt
+    evidence_level: moderate
+  - statement: 'Design explicitly against five misconceptions: the ''superbug'' (an intelligent interpreter inside the machine),
+      parallel execution of sequential lines, a variable holding several values or its name carrying meaning, loops producing
+      the same output every iteration, and programs ''waiting'' intelligently for input; teach a named notional machine and
+      use prediction/tracing tasks at every grade.'
+    supported_by:
+    - pea-1986-superbug
+    - swidan-2018-school-misconceptions
+    - grover-basu-2017-block-misconceptions
+    - meerbaum-salant-2013-scratch-concepts
+    - sorva-2013-notional-machines
+    - qian-lehman-2017-review
+    evidence_level: moderate
+  - statement: Unplugged teaching is defensible as (a) the opening weeks of each grade and (b) the main mode for grades 1-2,
+      and roughly 10 hours of well-designed unplugged work moves CT test scores in grades 5-6; but it is not shown to be superior
+      to conventional teaching, its pooled effect sizes above 1.0 are implausible, and programming-based interventions show
+      larger CT gains, so unplugged should be a strand (perhaps 30-40% of time in grades 1-3, less later), not the programme.
+    supported_by:
+    - brackmann-2017-unplugged-spain
+    - hermans-aivaloglou-2017-scratch-or-not
+    - del-olmo-munoz-2020-unplugged-then-plugged
+    - chen-2023-unplugged-meta
+    - bell-vahrenhold-2018-cs-unplugged
+    - merino-armero-2022-ct-meta
+    - huang-looi-2021-unplugged-review
+    evidence_level: moderate
+  - statement: 'Unplugged work does not teach debugging-with-feedback or state/variables well: the strongest debugging interventions
+      use enhanced debuggers and systematic instruction, one small study found debugging was the only domain where a ScratchJr
+      group did not outperform controls, and initialization/state proficiency appears only with plugged practice around grades
+      3-4; plan plugged time for these from grade 3.'
+    supported_by:
+    - sun-yang-becker-2024-debugging-meta
+    - louka-papadakis-2024-scratchjr
+    - seiter-foreman-2013-pect
+    - rich-2019-debugging-trajectory
+    evidence_level: weak
+  - statement: 'Transfer claims we may make: programming plausibly supports mathematics, creative thinking and metacognition
+      (moderate pooled effects). Claims we may not make: gains in literacy or general school achievement, or that CT ''makes
+      children better thinkers'' in general, because far-transfer estimates shrink with active controls and are inflated by
+      publication bias, and general far transfer rarely survives good designs.'
+    supported_by:
+    - scherer-2019-transfer-meta
+    - sala-gobet-2017-far-transfer
+    - denning-2017-trouble-spots
+    - popat-starkey-2019-review
+    evidence_level: strong
+  - statement: A realistic PD budget for generalists is 20-40 hours in year one, which reliably raises confidence for sequence,
+      loops, patterns and algorithms (grades 1-4 content) but not for conditionals, variables, functions and abstraction;
+      grade 5-6 content needs either recurring CPD (the 35 h/year norm), scripted lessons, an in-school coach/co-teacher,
+      or a remote specialist model, and self-reported confidence must not be read as pupil learning.
+    supported_by:
+    - rich-mason-oleary-2021-teacher-self-efficacy
+    - royal-society-2017-after-the-reboot
+    - ncce-2022-impact-report
+    - sentance-csizmadia-2017-teacher-challenges
+    - israel-2015-schoolwide-ct
+    - ceibal-remote-teacher-model
+    - outlier-codeorg-evaluation
+    evidence_level: moderate
+  - statement: 'Integration versus standalone: integrating programming into other subjects is at least as effective for CT
+      as standalone (meta-analytic moderator), generalists in crowded timetables will only implement integrated or short standalone
+      units, and with about a week of PD they can integrate unplugged CT practices into mathematics (science is harder); a
+      hybrid of a small standalone spine plus mathematics-integrated applications, taught in pairs, is the best-supported
+      design.'
+    supported_by:
+    - sun-hu-zhou-2021-programming-ct-meta
+    - israel-2015-schoolwide-ct
+    - rich-yadav-larimore-2020-implementation-profiles
+    - lai-wong-2022-collaborative-meta
+    - weintrop-2016-ct-math-science
+    - zhang-2025-umbrella-review
+    evidence_level: moderate
+  - statement: 'Assessment anchors per grade band: grades 1-2 TechCheck-K/1 or BCTt (unplugged, multiple choice, under 15
+      minutes, use grade norms); grades 3-6 the cCTt (validated n=2,709, IRT, longitudinal scales); from grade 5 the CTt (ages
+      10-16) if comparability with secondary is needed; Dr. Scratch and Bebras only as formative, uncalibrated signals. An
+      ''assessable micro-skill'' is therefore an item family these instruments already contain (e.g. ''completes a repeat-n
+      loop in a maze'', ''predicts the output of a nested if'').'
+    supported_by:
+    - relkin-2020-techcheck
+    - zapata-caceres-2020-bctt
+    - el-hamamsy-2025-cctt
+    - roman-gonzalez-2017-ctt
+    - zhang-wong-2023-cttlp
+    - moreno-leon-2015-dr-scratch
+    - hubwieser-muhling-2015-bebras-psychometrics
+    evidence_level: moderate
+  - statement: Developmental sequencing in this field is literature-derived, not cohort-validated (the K-8 trajectories synthesise
+      studies rather than follow children), so our age bands should be treated as hypotheses and checked yearly with cCTt/TechCheck
+      data and misconception-targeted items.
+    supported_by:
+    - rich-2017-k8-trajectories
+    - rich-2018-decomposition-trajectory
+    - grover-pea-2013-review
+    - franklin-2017-conceptual-sequencing
+    evidence_level: moderate
+  - statement: 'Evidence quality caveat for the whole file: most primary-age studies are small, short, single-site, use author-made
+      measures and passive controls, and several key sources were readable only at abstract level in this session (Bell &
+      Vahrenhold, Roman-Gonzalez CTt, Hubwieser & Muhling, Rich-Mason-O''Leary); no claim here should be presented to stakeholders
+      as ''proven''.'
+    supported_by:
+    - scherer-2019-transfer-meta
+    - zhang-2025-umbrella-review
+    - bell-vahrenhold-2018-cs-unplugged
+    - chen-2023-unplugged-meta
+    evidence_level: strong
+frameworks_second_retrieval:
+  status: not_run
+  reason: The frameworks survey agent was terminated by an API rate limit before producing output. research/findings.yaml
+    already holds 23 framework records; no second retrieval is available for cross-check.

@@ -1,0 +1,2239 @@
+schema_version: phase1-research-1.0
+metadata:
+  phase: 1
+  status: research_complete_with_explicit_gaps
+  cutoff_date: '2026-09-13'
+  cutoff_timezone: America/Bogota
+  retrieval_session: 2026-09-14 UTC
+  retrieved_at_semantics: Research-session observation timestamp, not original publication or event date
+  baseline_version: sv-2026-09-13-v1
+  production_code_written: false
+  git_commit: null
+  git_reason: Workspace is not a Git checkout; no commit or feat/context branch exists here
+  scope: Evidence and proposed decisions only; no solved curriculum, empirical pilot, production schemas
+    or domain tests claimed
+  contract_override: Latest user Phase 1 request replaces earlier CLAUDE.md phase ordering and reserved
+    decision filenames. Budget is nested in 0001; vocabulary in 0003. CLAUDE.md is not silently rewritten.
+  request_sha256: 85116af02a78235f8e5440d96e322044102f7ae643e91da7f479b1d78d08a208
+  contract_sha256: 21c50df790afb28c87bd8697ca7cbe871b961298c3fa0fa6d1b30fac9ed22a8c
+  external_llm_calls: 0
+  reproducibility_scope: Hash-pinned acquired sources and processed inventory; manually authored research
+    and reviewable declarative checks. This phase is not the future deterministic LLM/solver pipeline.
+methodology:
+  claim_policy: Each substantive record carries source_url, retrieved_at, confidence and evidence_kind.
+    Nested fields inherit that record provenance; additional sources are separate records or source_refs.
+    Proposed mappings and constraints are explicitly inferences, not source quotations.
+  confidence_policy:
+    high: Direct official/primary statement or deterministic count from acquired source
+    medium: Supported interpretation, secondary attribution, observational inference or contextual extrapolation
+    low: Unverified, bounded absence, incomplete retrieval or untested design hypothesis
+  license_policy: Only official publications or verified open licenses are admitted to the corpus. Rejected
+    full-text sources remain bibliographic references for the requested contrast and critical appraisal;
+    their full text is not stored in the corpus or admitted to a production pipeline. Official publication
+    is not a claim of open copyright.
+  search_method: Official MINED portals first; then current official international frameworks and primary
+    study records. Independent reporting only for local policy announcements and device-audit contrast.
+    Dates, populations, outcomes and publication status kept separate.
+  limitations: Manual research snapshot. Not an exhaustive all-subject nationwide implementation audit.
+    Live URLs can differ from indexed copies. No external messages sent. No experimental evidence collected
+    in Salvadoran classrooms.
+official_baseline:
+- id: sv_2022_replacement
+  claim: MINED dates the replacement of CSMA by Science and Technology in grades 2–6 to March 2022; third
+    cycle followed in 2024.
+  source_url: https://www.mined.gob.sv/ciencia-educativa/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cyt_landing
+  confidence: high
+  evidence_kind: documented
+  event_date: 2022-03
+- id: sv_annual_updates
+  claim: The 2024 guidance retains the 2022 grades 2–6 programmes while requiring updated downloads; a
+    2026 URL alone does not prove a new syllabus.
+  source_url: https://www.mined.gob.sv/orientaciones2024/orientaciones_pedagogicas_2024.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_guidance
+  confidence: high
+  evidence_kind: documented
+  locator: Science and Technology guidance
+- id: sv_cs_start
+  claim: From 2025 Computer Science replaces Informatics in public general bachillerato. This statement
+    does not establish the same implementation in every technical or private pathway.
+  source_url: https://www.mined.gob.sv/ciencias-de-la-computacion/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs_landing
+  confidence: high
+  evidence_kind: documented
+  event_date: '2025'
+- id: sv_cyt_count_method
+  claim: Count only numbered standard achievement indicators, once per grade/unit/ID; exclude procedural-column
+    duplicates and unnumbered advanced indicators. Technology means the official T-axis units, not all
+    potentially technological content.
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cyt
+  confidence: high
+  evidence_kind: derived
+  locator: PDF pp. 12–13, 33–102
+  total_numbered_indicators: 339
+  technology_axis_indicators: 34
+  technology_axis_suggested_periods: 90
+  broader_semantic_total: null
+  broader_semantic_reason: Tools and design can also occur outside T-axis units; mixed-unit time cannot
+    be attributed exclusively without a reviewed finer coding rubric.
+  extraction_artifact: data/processed/baseline/sv-2026-09-13-v1/cyt_unit_inventory.json
+- id: sv_cyt_grade_2
+  claim: Build, measure, test and improve artefacts and animal habitats
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cyt
+  confidence: high
+  evidence_kind: derived
+  grade: 2
+  locator: PDF p. 13 and unit pages in extraction artifact
+  standard_indicator_count: 61
+  technology_unit: Objects and structures
+  technology_indicator_count: 9
+  technology_indicator_ids:
+  - SV_CYT_G2_U5_5.1
+  - SV_CYT_G2_U5_5.2
+  - SV_CYT_G2_U5_5.3
+  - SV_CYT_G2_U5_5.4
+  - SV_CYT_G2_U5_5.5
+  - SV_CYT_G2_U5_5.6
+  - SV_CYT_G2_U5_5.7
+  - SV_CYT_G2_U5_5.8
+  - SV_CYT_G2_U5_5.9
+  technology_weeks: 5
+  technology_suggested_class_periods: 20
+  minutes_per_class_period: null
+- id: sv_cyt_grade_3
+  claim: Select instruments; investigate and communicate force effects
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cyt
+  confidence: high
+  evidence_kind: derived
+  grade: 3
+  locator: PDF p. 13 and unit pages in extraction artifact
+  standard_indicator_count: 66
+  technology_unit: Measurement and forces
+  technology_indicator_count: 6
+  technology_indicator_ids:
+  - SV_CYT_G3_U1_1.1
+  - SV_CYT_G3_U1_1.2
+  - SV_CYT_G3_U1_1.3
+  - SV_CYT_G3_U1_1.4
+  - SV_CYT_G3_U1_1.5
+  - SV_CYT_G3_U1_1.6
+  technology_weeks: 5
+  technology_suggested_class_periods: 25
+  minutes_per_class_period: null
+- id: sv_cyt_grade_4
+  claim: Classify, construct and explain machines and energy transformations
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cyt
+  confidence: high
+  evidence_kind: derived
+  grade: 4
+  locator: PDF p. 13 and unit pages in extraction artifact
+  standard_indicator_count: 72
+  technology_unit: Machines and energy
+  technology_indicator_count: 10
+  technology_indicator_ids:
+  - SV_CYT_G4_U1_1.1
+  - SV_CYT_G4_U1_1.2
+  - SV_CYT_G4_U1_1.3
+  - SV_CYT_G4_U1_1.4
+  - SV_CYT_G4_U1_1.5
+  - SV_CYT_G4_U1_1.6
+  - SV_CYT_G4_U1_1.7
+  - SV_CYT_G4_U1_1.8
+  - SV_CYT_G4_U1_1.9
+  - SV_CYT_G4_U1_1.10
+  technology_weeks: 5
+  technology_suggested_class_periods: 25
+  minutes_per_class_period: null
+- id: sv_cyt_grade_5
+  claim: Zero is an axis-label count, not absence of technological activity
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cyt
+  confidence: high
+  evidence_kind: derived
+  grade: 5
+  locator: PDF p. 13 and unit pages in extraction artifact
+  standard_indicator_count: 72
+  technology_unit: No unit labelled T
+  technology_indicator_count: 0
+  technology_indicator_ids: []
+  technology_weeks: 0
+  technology_suggested_class_periods: 0
+  minutes_per_class_period: null
+- id: sv_cyt_grade_6
+  claim: Measure electrical quantities; build and compare circuits; investigate magnetism
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cyt
+  confidence: high
+  evidence_kind: derived
+  grade: 6
+  locator: PDF p. 13 and unit pages in extraction artifact
+  standard_indicator_count: 68
+  technology_unit: Electricity and magnetism
+  technology_indicator_count: 9
+  technology_indicator_ids:
+  - SV_CYT_G6_U3_3.1
+  - SV_CYT_G6_U3_3.2
+  - SV_CYT_G6_U3_3.3
+  - SV_CYT_G6_U3_3.4
+  - SV_CYT_G6_U3_3.5
+  - SV_CYT_G6_U3_3.6
+  - SV_CYT_G6_U3_3.7
+  - SV_CYT_G6_U3_3.8
+  - SV_CYT_G6_U3_3.9
+  technology_weeks: 4
+  technology_suggested_class_periods: 20
+  minutes_per_class_period: null
+- id: sv_cs_entry
+  claim: The explicit entry profile names problem solving, information search, numerical data representation
+    and assembly from instructions. It refers to prior schooling, not specifically primary school.
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs
+  confidence: high
+  evidence_kind: documented
+  locator: PDF p. 12
+  primary_prerequisites_explicit: false
+  implication: Grade 7–9 bridging is necessary in the mapping; do not move all first-year learning outcomes
+    to grade 6.
+- id: sv_cs_targets
+  claim: First-year units cover computing foundations, logic, data structures, software development, cybersecurity/citizenship
+    and AI. The older programme already maps robotics and data-related second-year content.
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs
+  confidence: high
+  evidence_kind: documented
+  locator: PDF pp. 13, 30–41
+  year_one_units: 6
+  first_year_periods_per_week: 4
+  annual_periods: 160
+  effective_unit_weeks: 32
+  reserve_weeks: 8
+- id: sv_cs_newness
+  claim: 'The claim that robotics, cybersecurity, programming and data analysis were first added in 2026
+    is not verified: these themes already appear in the older cover-2024 programme. The current linked
+    59-page version is web-indexed but its live binary returned 404.'
+  source_url: https://www.mined.gob.sv/docs/Programas_de_estudio_Ciencias_de_la_Computacion.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs_current
+  confidence: low
+  evidence_kind: unverified
+  comparison_source_ids:
+  - sv_cs
+  live_binary_status: http_404
+  current_binary_sha256: null
+  historical_content_diff_status: not_established
+publication_inventory:
+- id: published_cyt_primary
+  claim: Grades 2–6 combined programme downloaded from current 2026 directory.
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cyt
+  confidence: high
+  evidence_kind: documented
+  publication_status: binary_acquired
+  implementation_verified: false
+- id: published_cyt_iii
+  claim: Third-cycle programme is published and web-readable, 92 pages.
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_III%20ciclo.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cyt_iii
+  confidence: high
+  evidence_kind: documented
+  publication_status: web_readable
+  implementation_verified: false
+- id: published_cyt_media
+  claim: Bachillerato CyT programme is published and web-readable, 77 pages.
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_Bachillerato.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cyt_media
+  confidence: high
+  evidence_kind: documented
+  publication_status: web_readable
+  implementation_verified: false
+- id: published_cs_legacy
+  claim: Older 45-page first-year CS programme downloaded; cover 2024 and file metadata 2025 are distinct
+    dates.
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs
+  confidence: high
+  evidence_kind: documented
+  publication_status: binary_acquired
+  implementation_verified: false
+- id: published_cs_current
+  claim: Current CS landing links a 59-page indexed programme; live download failed, so this is not a
+    reproducible binary baseline.
+  source_url: https://www.mined.gob.sv/docs/Programas_de_estudio_Ciencias_de_la_Computacion.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs_current
+  confidence: low
+  evidence_kind: documented
+  publication_status: linked_binary_unavailable
+  implementation_verified: false
+- id: published_early
+  claim: Early-childhood framework and age-banded programmes through first grade are listed for download.
+  source_url: https://www.mined.gob.sv/materiales-educacion-inicial-y-parvularia/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_early
+  confidence: high
+  evidence_kind: documented
+  publication_status: listed
+  implementation_verified: false
+- id: primary_generic
+  claim: Generic primary page exposes activity guidance, not an all-subject 2026 programme release inventory.
+  source_url: https://www.mined.gob.sv/educacion-primaria-y-educacion-especial/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_primary
+  confidence: high
+  evidence_kind: documented
+  publication_status: no_comprehensive_release_register_found
+  implementation_verified: false
+- id: catalogue_subjects
+  claim: Download catalogue links mathematics, language, citizenship, English, arts and other areas; links
+    alone do not certify revision dates or classroom rollout.
+  source_url: https://www.mined.gob.sv/descargas/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_catalog
+  confidence: high
+  evidence_kind: documented
+  publication_status: subject_landings_listed
+  implementation_verified: false
+- id: legacy_archive
+  claim: Programme archive retains older entries; publication and replacement status cannot be inferred
+    from the archive label.
+  source_url: https://www.mined.gob.sv/programas-de-estudio/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_programmes
+  confidence: high
+  evidence_kind: documented
+  publication_status: mixed_versions
+  implementation_verified: false
+- id: reform_2026_announcement
+  claim: The November 2025 report attributes approximately USD 71.4 million and six million textbooks
+    to the 2026 reform plan. It does not establish completion of all programme revisions or all deliveries.
+  source_url: https://www.elsalvador.com/noticias/nacional/educacion-basica-ministerio-de-hard-news/1251125/2025/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_reform
+  confidence: medium
+  evidence_kind: documented
+  event_date: 2025-11
+  status: announcement_not_completion
+  source_refs:
+  - sv_catalog
+  - sv_early
+- id: reform_unpublished
+  claim: No complete list of unpublished 2026 subject programmes was found in the inspected release catalogue.
+    Record absence of a release register, not a fabricated list of missing programmes.
+  source_url: https://www.mined.gob.sv/descargas/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_catalog
+  confidence: low
+  evidence_kind: bounded_absence
+  searched_pages:
+  - sv_catalog
+  - sv_early
+  - sv_primary
+  - sv_programmes
+  - sv_cyt_landing
+  - sv_cs_landing
+  consequence: Version only observed binaries; unresolved publication/implementation status remains explicit.
+budget_comparisons:
+- id: sv_time
+  claim: The combined subject assigns four weekly periods in grade 2 and five in grades 3–6 over 40 weeks.
+    Units occupy 32 weeks; eight remain for adaptations, assessment and reinforcement.
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cyt
+  confidence: high
+  evidence_kind: documented
+  locator: PDF p. 12
+  combined_annual_periods:
+    '2': 160
+    '3': 200
+    '4': 200
+    '5': 200
+    '6': 200
+  technology_only_clock_hours: null
+  period_minutes: null
+- id: sv_no_standalone_allocation
+  claim: No separate Technology subject allocation was found in the inspected primary plan; the cited
+    allocation belongs to combined Science and Technology.
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cyt
+  confidence: low
+  evidence_kind: bounded_absence
+  search_scope:
+  - sv_cyt
+  - sv_cyt_landing
+  - sv_catalog
+  - sv_guidance
+  consequence: Do not turn all CyT periods into a standalone CS budget or silently borrow them.
+- id: sv_period_length
+  claim: A November 2025 report describes 55-minute lessons in a reform/pilot context. A binding current
+    grade-specific conversion for all primary subjects was not verified.
+  source_url: https://www.laprensagrafica.com/elsalvador/MINED-implementara-nuevo-formato-para-impartir-clases-en-2026-20251104-0083.html
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_periods
+  confidence: low
+  evidence_kind: unverified
+  prohibited_inference: Neither 45 nor 55 minutes is installed as an official default.
+- id: chile_time
+  claim: The indexed official plan lists Technology in grades 1–4 as 38/19 annual periods and 1/0.5 weekly
+    periods for the two timetable regimes. Full PDF retrieval failed in this session.
+  source_url: https://www.curriculumnacional.cl/614/articles-241604_recurso_pdf.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: chile_hours
+  confidence: low
+  evidence_kind: partially_verified
+  grades_5_6_allocation: null
+  usage: Contrast only; verify complete current regime and period length before importing numbers.
+- id: england_time
+  claim: Computing specifies key-stage outcomes and repeated practical programming, but this programme
+    does not specify a weekly hour allocation.
+  source_url: https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study/national-curriculum-in-england-computing-programmes-of-study
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: eng_computing
+  confidence: high
+  evidence_kind: documented
+  hours: null
+  absence_scope: This programme document only.
+- id: ontario_time
+  claim: Coding is embedded in Science and Technology across grades 1–8; it is not presented as a separately
+    timetabled coding subject in this release.
+  source_url: https://news.ontario.ca/en/release/1001723/supporting-stem-achievement-in-ontario
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: ontario_science
+  confidence: high
+  evidence_kind: documented
+  hours: null
+- id: ceibal_time
+  claim: The implementation guide combines classroom teaching, remote specialist collaboration and activities;
+    its support model is not a transferable national standalone hourly entitlement.
+  source_url: https://pensamientocomputacional.ceibal.edu.uy/wp-content/uploads/2023/06/2022-Internet-y-las-Personas_Guia-docentes.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: ceibal_guide
+  confidence: medium
+  evidence_kind: documented
+  hours: null
+- id: budget_recommendation
+  claim: Keep 160 clock hours as an explicitly unverified scenario only. Require a budget policy and unit
+    conversion; no official Technology default can be justified from the observed combined-subject allocation.
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cyt
+  confidence: medium
+  evidence_kind: design_inference
+  recommended_default: null
+  modes:
+  - standalone
+  - transversal
+  - hybrid
+  source_refs:
+  - sv_no_standalone_allocation
+  - sv_period_length
+  - chile_time
+  publication_gate: Verified minutes, calendar, mode, host capacities and approved policy required.
+devices_and_policy:
+- id: devices_2021
+  claim: Official rollout describes tablets for grades 1–3 and laptops from grade 4 through bachillerato,
+    with connectivity support.
+  source_url: https://www.presidencia.gob.sv/las-computadoras-que-entrega-el-gobierno-a-los-estudiantes-son-de-calidad-con-acceso-a-internet-y-gratuitas/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_devices_2021
+  confidence: high
+  evidence_kind: documented
+  event_year: 2021
+  measure: delivery_programme_design
+  fleet_functionality_measured: false
+- id: devices_2022
+  claim: Presidency reports 770,000 laptops and more than 298,000 tablets distributed by this 2022 announcement.
+  source_url: https://www.presidencia.gob.sv/gobierno-avanza-en-el-cierre-de-la-brecha-digital-con-la-entrega-de-770000-laptops-y-mas-de-298000-tablets-a-estudiantes-del-sector-publico/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_devices_2022
+  confidence: high
+  evidence_kind: documented
+  event_year: 2022
+  laptops: 770000
+  tablets_lower_bound: 298000
+  measure: cumulative_delivery
+  fleet_functionality_measured: false
+- id: devices_offline
+  claim: The May 2022 official tablet announcement describes preinstalled offline learning applications.
+  source_url: https://www.presidencia.gob.sv/gobierno-del-presidente-nayib-bukele-entrega-tablets-a-ninos-y-ninas-de-escuelas-publicas-en-el-oriente-del-pais/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_offline
+  confidence: high
+  evidence_kind: documented
+  event_date: 2022-05
+  implication: Offline provision exists in programme design; actual installed versions and working batteries
+    still need classroom inspection.
+- id: devices_renewal
+  claim: 2026 reporting attributes renewed targeting to kindergarten age four, grade 1, grade 4 and first-year
+    bachillerato. This is a distribution announcement, not verified universal replacement.
+  source_url: https://diario.elmundo.sv/nacionales/quienes-recibiran-laptops-y-tablets-como-parte-del-paquete-escolar-esto-explica-educacion
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_devices_2026
+  confidence: medium
+  evidence_kind: documented
+  event_year: 2026
+  measure: announced_renewal
+  original_official_2026_inventory_acquired: false
+- id: device_audit_contrast
+  claim: 'February 2026 reporting cites a 2023 independent audit: of 3,554 sampled devices in 60 schools,
+    1,241 were physically verified and 2,313 were not. Delivery records and physically located stock differ.'
+  source_url: https://www.laprensagrafica.com/amp/elsalvador/computadoras-no-frenaron-desercion-escolar-al-menos-1439-estudiantes-dejaron-los-estudios-tras-recibir-equipos-de-mined-revela-auditoria-20260206-0079.html
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_audit
+  confidence: medium
+  evidence_kind: documented
+  event_date: '2023'
+  publication_date: '2026-02-06'
+  sample_devices: 3554
+  physically_verified: 1241
+  not_physically_verified: 2313
+  schools: 60
+  original_audit_acquired: false
+  limitations: Unverified location is not a measured hardware failure. This historical sample does not
+    estimate the functioning national fleet in September 2026; the headline does not prove a causal dropout
+    effect.
+- id: fleet_current_absence
+  claim: No representative current national battery, functionality or connectivity inventory was found
+    in the inspected official announcements and independent audit reporting.
+  source_url: https://www.laprensagrafica.com/amp/elsalvador/computadoras-no-frenaron-desercion-escolar-al-menos-1439-estudiantes-dejaron-los-estudios-tras-recibir-equipos-de-mined-revela-auditoria-20260206-0079.html
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_audit
+  confidence: low
+  evidence_kind: bounded_absence
+  source_refs:
+  - sv_devices_2021
+  - sv_devices_2022
+  - sv_devices_2026
+  discrepancy: Official claims count deliveries; the contrast concerns verification of physical stock.
+    Different dates, denominators and outcomes cannot be averaged.
+  planning_consequence: Classroom capability survey, repair provision and offline/T0 fallback; do not
+    classify an entire country as T2/T3 from procurement totals.
+- id: ai_policy_2026
+  claim: UNESCO reports that El Salvador presented its National AI Strategy 2026 at the June 2026 RAM
+    event.
+  source_url: https://www.unesco.org/es/articles/el-salvador-avanza-hacia-una-inteligencia-artificial-centrada-en-las-personas?hub=66919
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_ai
+  confidence: high
+  evidence_kind: documented
+  event_date: '2026-06-18'
+  policy_exists: true
+  school_implementation_verified: false
+- id: ai_law_2025
+  claim: The July 2025 amendment establishes ANIA within the AI legal framework.
+  source_url: https://www.jurisprudencia.gob.sv/busqueda/showExtractos.php?bd=2&doc=1084094&nota=1097515&singlePage=false
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_ai_law
+  confidence: high
+  evidence_kind: documented
+  event_date: 2025-07
+  implication: National AI policy exists; a strategy is not a grade-specific student competency framework.
+- id: ai_profile_staleness
+  claim: The country profile describes readiness work preceding a strategy; the later June 2026 UNESCO
+    report supersedes that temporal inference.
+  source_url: https://www.unesco.org/ethics-ai/en/elsalvador
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_ai_profile
+  confidence: medium
+  evidence_kind: documented
+  source_refs:
+  - sv_ai
+  resolution: Use event date, not search-result ranking, for current policy status.
+- id: national_digital_framework_absence
+  claim: No adopted national student digital-competence framework was located in the inspected MINED catalogue,
+    teacher portals, AI materials and targeted official-site searches; the 2022 diagnostic recommends
+    one.
+  source_url: https://documents1.worldbank.org/curated/en/099945208102227561/pdf/P1759850783530062093a4058a8b559ebc5.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_digital_diagnostic
+  confidence: low
+  evidence_kind: bounded_absence
+  status: absent_in_searched_corpus
+  search_queries:
+  - site:mined.gob.sv "marco" "competencias digitales"
+  - El Salvador marco nacional competencias digitales 2026 MINED
+  - El Salvador ANIA competencias digitales estudiantes marco
+  search_scope:
+  - sv_catalog
+  - sv_pd
+  - sv_ai
+  - sv_digital_diagnostic
+  universal_nonexistence_claim: false
+- id: teacher_training_exists
+  claim: The official teacher training strand includes digital tools and AI-related tools during 2025–26.
+  source_url: https://sites.google.com/mined.gob.sv/franja-formativa/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_pd
+  confidence: high
+  evidence_kind: documented
+  initiative_exists: true
+  computing_pedagogy_effectiveness_verified: false
+  implication: Tool-use training does not establish ability to diagnose variable, execution or conditional
+    misconceptions.
+- id: teacher_cs_registration
+  claim: Computer Science appears in the official training registration context, but primary-generalist
+    duration, completion and learning effects were not verified.
+  source_url: https://formaciondocente.edu.sv/public/registro
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_pd_cs
+  confidence: low
+  evidence_kind: partially_verified
+  initiative_exists: true
+  primary_generalist_impact_evidence: absent_in_searched_corpus
+frameworks:
+- id: icils_cil
+  claim: Framework structure and applicability to the proposed primary curriculum.
+  source_url: https://www.iea.nl/sites/default/files/2023-12/20231221%20ICILS2023_Assessment_Framework__Final_0.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: icils_framework
+  confidence: high
+  evidence_kind: documented
+  minimum_learning_unit: Assessment aspect operationalized by scored tasks, not a taught micro-skill
+  nesting:
+  - construct
+  - strand
+  - aspect
+  - assessment task/item
+  explicit_prerequisites: No explicit necessary-precondition edge set in the inspected framework; order/bands
+    must not be converted automatically into prerequisite edges.
+  progression: Grade 8 assessment target; proficiency is empirical performance, not a primary-age schedule.
+  equipment_assumptions: Computer-based assessment and digital artefact manipulation; paper variants are
+    not calibrated ICILS scores.
+  domains:
+  - 'Understanding computer use: foundations and conventions'
+  - 'Gathering information: access/evaluation and management'
+  - 'Producing information: transformation and creation'
+  - 'Digital communication: sharing and responsible/safe use'
+- id: icils_ct
+  claim: Framework structure and applicability to the proposed primary curriculum.
+  source_url: https://www.iea.nl/sites/default/files/2023-12/20231221%20ICILS2023_Assessment_Framework__Final_0.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: icils_framework
+  confidence: high
+  evidence_kind: documented
+  minimum_learning_unit: Scored task within an aspect
+  nesting:
+  - construct
+  - strand
+  - aspect
+  - assessment task/item
+  explicit_prerequisites: No explicit necessary-precondition edge set in the inspected framework; order/bands
+    must not be converted automatically into prerequisite edges.
+  progression: Grade 8 target; backward mapping to grade 6 leaves grades 7–8 development.
+  equipment_assumptions: Interactive computer-based problem solving.
+  domains:
+  - 'Conceptualizing problems: digital systems, problem formulation/analysis, data collection/representation'
+  - 'Operationalizing solutions: planning/evaluation and algorithms/programs/interfaces'
+- id: icils_proficiency
+  claim: CIL and CT each report four substantive levels, plus below Level 1.
+  source_url: https://www.iea.nl/sites/default/files/2024-11/ICILS-2023-Results-JF.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: icils_levels
+  confidence: high
+  evidence_kind: documented
+  locator: PDF pp. 9 and 12
+  cil_levels:
+    '1': Routine operations with explicit guidance
+    '2': Supported information finding and product creation
+    '3': Independent work and critical information evaluation
+    '4': Precise creation and evaluative judgment
+  ct_levels:
+    '1': Simple sequencing and patterns
+    '2': Structured solutions using a restricted command set
+    '3': Integrated conditional and nested-loop solutions
+    '4': Structured problem formulation and efficient systems solutions
+  curriculum_use: Reference descriptors for rubrics, not a promise of grade-6 ICILS scores.
+- id: icils_cil_cutpoints
+  claim: CIL intervals are below/at 407, (407,492], (492,576], (576,661], and above 661 for below Level
+    1 through Level 4.
+  source_url: https://www.iea.nl/sites/default/files/2024-11/ICILS_2023_International_Report_0.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: icils_report
+  confidence: medium
+  evidence_kind: documented
+  locator: Section 3.4
+  ct_cutpoints: null
+  ct_cutpoint_status: Not extracted; descriptors are available from icils_proficiency.
+- id: csta_2026
+  claim: Framework structure and applicability to the proposed primary curriculum.
+  source_url: https://csteachers.org/pk12standards/view/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: csta
+  confidence: high
+  evidence_kind: documented
+  minimum_learning_unit: Grade/band standard with concept/subconcept and practice tags
+  nesting:
+  - foundational or specialty
+  - grade/band
+  - concept/subconcept
+  - standard with practices
+  explicit_prerequisites: No explicit necessary-precondition edge set in the inspected framework; order/bands
+    must not be converted automatically into prerequisite edges.
+  progression: 2026 version separates PK/K and grades 1–5, then grades 6–8 and 9–12. Do not use 2017 band
+    IDs as if current.
+  equipment_assumptions: Delivery filters distinguish computer-based, unplugged and teacher choice; verify
+    each standard.
+  domains:
+  - Algorithms and Design
+  - Programming
+  - Data and Analysis
+  - Systems and Security
+  - Computing and Society
+- id: csta_practices
+  claim: The 2026 interface groups 12 practices into ethics/social responsibility, inclusive collaboration,
+    computational thinking and human-centered design.
+  source_url: https://csteachers.org/pk12standards/view/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: csta
+  confidence: high
+  evidence_kind: documented
+  consequence: Version concepts and practices separately; do not copy the seven-practice 2016/2017 taxonomy
+    into a 2026 CSTA record.
+- id: k12cs_2016
+  claim: Framework structure and applicability to the proposed primary curriculum.
+  source_url: https://k12cs.org/framework-statements-by-concept/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: k12cs
+  confidence: high
+  evidence_kind: documented
+  minimum_learning_unit: Core concept statement at a band endpoint
+  nesting:
+  - concept
+  - subconcept
+  - band-end statement
+  explicit_prerequisites: No explicit necessary-precondition edge set in the inspected framework; order/bands
+    must not be converted automatically into prerequisite edges.
+  progression: Endpoints grades 2, 5, 8, 12; practices complement concept learning.
+  equipment_assumptions: Includes computing systems and artefact creation; conceptual statements alone
+    do not guarantee unplugged operational mastery.
+  domains:
+  - Computing systems
+  - Networks and Internet
+  - Data and analysis
+  - Algorithms and programming
+  - Impacts of computing
+- id: k12cs_practices
+  claim: The framework is not a set of measurable standards; its seven practices are not grade-banded
+    in the same manner as concept statements.
+  source_url: https://k12cs.org/faq/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: k12cs_faq
+  confidence: high
+  evidence_kind: documented
+  consequence: Do not invent a prerequisite chain by assigning a practice to each successive grade.
+- id: anep_ceibal
+  claim: Framework structure and applicability to the proposed primary curriculum.
+  source_url: https://www.anep.edu.uy/unidad-curricular-ciencias-computaci-n-y-tecnolog-educativa
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: anep
+  confidence: medium
+  evidence_kind: documented
+  minimum_learning_unit: Achievement criterion linked to specific competencies and content
+  nesting:
+  - learning space
+  - curricular unit
+  - tramo
+  - competency/content
+  - achievement criterion
+  explicit_prerequisites: No explicit necessary-precondition edge set in the inspected framework; order/bands
+    must not be converted automatically into prerequisite edges.
+  progression: 'Tramos: early childhood; grades 1–2; 3–4; 5–6. Distinguish normative EBI programme from
+    Ceibal implementation.'
+  equipment_assumptions: Computing and educational technology include digital activity; the Ceibal programme
+    adds a supported delivery model.
+  domains:
+  - Computer science
+  - Educational technology
+  - Computational thinking
+- id: ceibal_delivery
+  claim: Ceibal combines a classroom teacher with a remote specialist, coordination and digital platforms.
+  source_url: https://pensamientocomputacional.ceibal.edu.uy/wp-content/uploads/2023/06/2022-Internet-y-las-Personas_Guia-docentes.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: ceibal_guide
+  confidence: high
+  evidence_kind: documented
+  consequence: Its scale is not evidence that an unsupported generalist can reproduce the model after
+    a brief tools course.
+- id: ceibal_evaluation
+  claim: The report records grade 4–6 programme coverage of 74% in 2024 and 80% in 2025; the latter uses
+    the 2024 enrolment denominator. Three-year exposure is associated with 13–18 additional ICILS CT points
+    in the cited study.
+  source_url: https://www.gub.uy/ministerio-educacion-cultura/sites/ministerio-educacion-cultura/files/documentos/noticias/Informe-estado-educacion-Uruguay-2023-2024-Tomo2.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: ceibal_eval
+  confidence: medium
+  evidence_kind: documented
+  locator: PDF pp. 62–65; printed pp. 63–66
+  evidence_level: Observational analysis reported by INEEd, not randomized causal evidence
+  population: ICILS 2023 public-school cohort, n=2471
+  limitations: Earlier cohort exposure was lower and affected by pandemic schooling; selection and contextual
+    confounding remain. Grade 7–8 teaching is a missing link between primary exposure and grade-8 assessment.
+  source_authority: INEEd synthesis of Ceibal data/study, hosted by government
+- id: colombia_guide30
+  claim: Framework structure and applicability to the proposed primary curriculum.
+  source_url: https://www.mineducacion.gov.co/1621/articles-160915_archivo_pdf.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: colombia
+  confidence: high
+  evidence_kind: documented
+  minimum_learning_unit: Performance statement attached to a competence
+  nesting:
+  - grade group
+  - component
+  - competence
+  - performance
+  explicit_prerequisites: No explicit necessary-precondition edge set in the inspected framework; order/bands
+    must not be converted automatically into prerequisite edges.
+  progression: Groups 1–3, 4–5, 6–7, 8–9, 10–11; increasing complexity and autonomy.
+  equipment_assumptions: Mix of materials, artefacts and digital tools; technology is broader than computers.
+  domains:
+  - Nature/evolution of technology
+  - Appropriation/use
+  - Technology problem solving
+  - Technology and society
+- id: colombia_2022_update
+  claim: The 2022 guidance updates technology and informatics beyond Guide 30; retain Guide 30 as a requested
+    historical reference, not the only current version.
+  source_url: https://www.mineducacion.gov.co/1780/articles-411706_recurso_4.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: colombia_update
+  confidence: high
+  evidence_kind: documented
+- id: chile_technology
+  claim: Framework structure and applicability to the proposed primary curriculum.
+  source_url: https://www.curriculumnacional.cl/curriculum/1o-6o-basico/tecnologia
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: chile
+  confidence: high
+  evidence_kind: documented
+  minimum_learning_unit: Grade-specific learning objective (OA)
+  nesting:
+  - subject
+  - grade
+  - axis
+  - learning objective
+  explicit_prerequisites: No explicit necessary-precondition edge set in the inspected framework; order/bands
+    must not be converted automatically into prerequisite edges.
+  progression: Design, make and evaluate interact rather than forming a universal one-way sequence; digital
+    tasks also progress by grade.
+  equipment_assumptions: Tools/materials plus drawing/productivity software and Internet-related activity.
+  domains:
+  - Design, making and testing
+  - Information and communication technologies
+- id: chile_2026_transition
+  claim: CNED agreement 018/2026 approves the Technology and Innovation proposal for grades 1–6. Approval
+    does not by itself verify classroom implementation dates.
+  source_url: https://cned.cl/resolucion/acuerdo-n-018-2026/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: chile_transition
+  confidence: medium
+  evidence_kind: documented
+  consequence: Pin the cited Technology version and record transition; do not silently merge objectives
+    across versions.
+- id: england_computing
+  claim: Framework structure and applicability to the proposed primary curriculum.
+  source_url: https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study/national-curriculum-in-england-computing-programmes-of-study
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: eng_computing
+  confidence: high
+  evidence_kind: documented
+  minimum_learning_unit: Key-stage attainment statement
+  nesting:
+  - subject
+  - key stage
+  - attainment statement
+  explicit_prerequisites: No explicit necessary-precondition edge set in the inspected framework; order/bands
+    must not be converted automatically into prerequisite edges.
+  progression: KS1 algorithms, simple programs and safe use; KS2 decomposition, sequence/selection/repetition,
+    variables, data and networks.
+  equipment_assumptions: Repeated practical programming and digital creation required; unplugged work
+    supports conceptual parts.
+  domains:
+  - Computer science
+  - Information technology
+  - Digital literacy
+- id: england_dt
+  claim: Framework structure and applicability to the proposed primary curriculum.
+  source_url: https://assets.publishing.service.gov.uk/media/5a7ca43640f0b6629523adc1/PRIMARY_national_curriculum_-_Design_and_technology.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: eng_dt
+  confidence: high
+  evidence_kind: documented
+  minimum_learning_unit: Key-stage statement of design/making/evaluation or technical knowledge
+  nesting:
+  - subject
+  - key stage
+  - area
+  - statement
+  explicit_prerequisites: No explicit necessary-precondition edge set in the inspected framework; order/bands
+    must not be converted automatically into prerequisite edges.
+  progression: Increasingly independent design and technical systems; KS2 includes mechanical/electrical
+    systems and computer control.
+  equipment_assumptions: Physical tools/materials; some KS2 outcomes require circuits and programming/control
+    equipment.
+  domains:
+  - Design
+  - Make
+  - Evaluate
+  - Technical knowledge
+  - Cooking and nutrition
+- id: ontario_math
+  claim: Framework structure and applicability to the proposed primary curriculum.
+  source_url: https://assets-us-01.kc-usercontent.com/fbd574c4-da36-0066-a0c5-849ffb2de96e/3ed76499-9df4-4524-8cc2-3c0010a51811/The%20Ontario%20Curriculum%20Grades%201%E2%80%938%20-%20Mathematics%2C%202020%20%28January%202021%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: ontario_math
+  confidence: high
+  evidence_kind: documented
+  minimum_learning_unit: Specific coding expectation (C3) within a general expectation
+  nesting:
+  - grade
+  - strand
+  - general expectation
+  - specific expectation
+  explicit_prerequisites: No explicit necessary-precondition edge set in the inspected framework; order/bands
+    must not be converted automatically into prerequisite edges.
+  progression: C3.1 progresses from sequence (grade 1), concurrency (2), repetition (3), nesting (4),
+    conditions/control (5), efficiency (6), subprogram/count control (7), to data analysis (8). C3.2 addresses
+    reading, altering and explaining code.
+  equipment_assumptions: Writing/executing code needs devices; conceptual tracing can be adapted.
+  domains:
+  - 'Mathematics: algebra/coding'
+  locator: Grade-specific Algebra/C3 expectations in acquired official PDF.
+- id: ontario_science
+  claim: Framework structure and applicability to the proposed primary curriculum.
+  source_url: https://assets-us-01.kc-usercontent.com/fbd574c4-da36-0066-a0c5-849ffb2de96e/36038265-bd6d-4991-882b-52b4b06c32d0/The%20Ontario%20Curriculum%20Grades%201%E2%80%938%20%E2%80%93%20Science%20and%20Technology%202022_2.pdf
+  retrieved_at: '2026-09-14T01:55:43Z'
+  source_id: ontario_science_programme
+  confidence: high
+  evidence_kind: documented
+  minimum_learning_unit: Curriculum expectation associated with STEM skills and connections
+  nesting:
+  - grade
+  - strand
+  - general expectation
+  - specific expectation
+  explicit_prerequisites: No explicit necessary-precondition edge set in the inspected framework; order/bands
+    must not be converted automatically into prerequisite edges.
+  progression: 'A2.1 emphasis by grade: precise algorithms (1), decomposition (2), test/debug/refine (3),
+    outputs (4), data storage/processing (5), inputs (6), program planning/design (7), automation (8).
+    A2.2 addresses impacts, with explicit AI examples in grades 7–8.'
+  equipment_assumptions: Applied digital coding, with scientific equipment depending on the task.
+  domains:
+  - STEM skills and connections
+  - Science and technology applications
+  locator: PDF pp. 93, 104, 115, 126, 137, 148, 159, 170.
+- id: digcomp_22
+  claim: Framework structure and applicability to the proposed primary curriculum.
+  source_url: https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: digcomp
+  confidence: high
+  evidence_kind: documented
+  minimum_learning_unit: Competence descriptor and proficiency example
+  nesting:
+  - area
+  - competence
+  - proficiency level
+  - knowledge/skill/attitude example
+  explicit_prerequisites: No explicit necessary-precondition edge set in the inspected framework; order/bands
+    must not be converted automatically into prerequisite edges.
+  progression: 21 competencies, five areas, eight proficiency levels grouped into four bands; autonomy
+    and complexity, not school ages.
+  equipment_assumptions: Digital settings implicit in operational competence; scenarios can be discussed
+    unplugged.
+  domains:
+  - Information/data literacy
+  - Communication/collaboration
+  - Digital content creation
+  - Safety
+  - Problem solving
+- id: unesco_ai_2024
+  claim: Framework structure and applicability to the proposed primary curriculum.
+  source_url: https://www.unesco.org/en/articles/ai-competency-framework-students
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: unesco_ai
+  confidence: high
+  evidence_kind: documented
+  minimum_learning_unit: Competency at a dimension/level intersection
+  nesting:
+  - dimension
+  - level
+  - competency and learning content
+  explicit_prerequisites: No explicit necessary-precondition edge set in the inspected framework; order/bands
+    must not be converted automatically into prerequisite edges.
+  progression: 12 competencies across four dimensions and understand/apply/create; not mandatory age thresholds.
+  equipment_assumptions: Some understanding/ethics tasks need no AI account; applying/creating actual
+    systems can need computing.
+  domains:
+  - Human-centered mindset
+  - Ethics of AI
+  - AI techniques and applications
+  - AI system design
+- id: iste_students
+  claim: Framework structure and applicability to the proposed primary curriculum.
+  source_url: https://iste.org/standards/students
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: iste
+  confidence: high
+  evidence_kind: documented
+  minimum_learning_unit: Indicator beneath a student standard
+  nesting:
+  - standard
+  - indicator
+  explicit_prerequisites: No explicit necessary-precondition edge set in the inspected framework; order/bands
+    must not be converted automatically into prerequisite edges.
+  progression: Seven standards with four indicators each; increasing agency is not a prescribed grade
+    sequence.
+  equipment_assumptions: Technology-supported production, communication and collaboration; full operational
+    performance not available in pure T0.
+  domains:
+  - Empowered learner
+  - Digital citizen
+  - Knowledge constructor
+  - Innovative designer
+  - Computational thinker
+  - Creative communicator
+  - Global collaborator
+- id: argentina_nap
+  claim: Framework structure and applicability to the proposed primary curriculum.
+  source_url: https://www.argentina.gob.ar/sites/default/files/nap_de_educacion_digital_programacion_y_robotica.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: argentina
+  confidence: high
+  evidence_kind: documented
+  minimum_learning_unit: Numbered priority learning statement
+  nesting:
+  - education level
+  - cycle
+  - priority learning
+  explicit_prerequisites: No explicit necessary-precondition edge set in the inspected framework; order/bands
+    must not be converted automatically into prerequisite edges.
+  progression: Initial, primary cycles and secondary; programming/robotics and digital participation become
+    more complex.
+  equipment_assumptions: Digital environments, programmable devices and networks assumed for some outcomes;
+    simulations cannot certify all operations.
+  domains:
+  - Digital education
+  - Programming
+  - Robotics
+backward_mapping:
+- id: map_problem_decomposition
+  claim: Proposed backward allocation from a bachillerato target; it is not an official primary prerequisite
+    prescription.
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs
+  confidence: medium
+  evidence_kind: design_inference
+  anchor_ids:
+  - entry_profile
+  - '1.3'
+  - '1.4'
+  - '1.5'
+  locator: PDF p. 12 and pp. 30–41
+  upper_secondary_target: Planning, pattern identification and abstraction
+  grades_2_3_foundation: Order and test everyday instructions; notice repeated patterns.
+  grades_4_6_exit: Decompose a design problem, choose relevant features and justify a solution.
+  grades_7_9_bridge: Model multi-step problems with explicit constraints and multiple representations.
+  t0_evidence: Explain a plan, identify an irrelevant detail and repair a failing step.
+  practical_residual: None for conceptual planning; practical project execution remains separately assessed.
+  cross_subject_links:
+  - 'Language: narrative sequence and explanation'
+  - 'Mathematics: patterns and comparisons'
+  bridge_status: required_design_bridge_not_verified_as_existing_grade_7_9_CS_curriculum
+  mastery_status: not_empirically_validated
+- id: map_sequence_execution
+  claim: Proposed backward allocation from a bachillerato target; it is not an official primary prerequisite
+    prescription.
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs
+  confidence: medium
+  evidence_kind: design_inference
+  anchor_ids:
+  - '1.6'
+  - '1.7'
+  - '1.8'
+  - '2.3'
+  - '2.4'
+  locator: PDF p. 12 and pp. 30–41
+  upper_secondary_target: Algorithms and sequential representations
+  grades_2_3_foundation: Act out commands with a visible current position.
+  grades_4_6_exit: Trace input/state/output; distinguish human intention from specified commands.
+  grades_7_9_bridge: Translate between natural language, flowcharts and executable representations.
+  t0_evidence: Trace an unseen instruction sequence and justify each state change.
+  practical_residual: Running and saving an executable digital artefact requires device access.
+  cross_subject_links:
+  - 'Language: imperative instructions'
+  bridge_status: required_design_bridge_not_verified_as_existing_grade_7_9_CS_curriculum
+  mastery_status: not_empirically_validated
+- id: map_conditional_logic
+  claim: Proposed backward allocation from a bachillerato target; it is not an official primary prerequisite
+    prescription.
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs
+  confidence: medium
+  evidence_kind: design_inference
+  anchor_ids:
+  - '2.1'
+  - '2.2'
+  - '2.5'
+  - '2.6'
+  locator: PDF p. 12 and pp. 30–41
+  upper_secondary_target: Logical operators and selection
+  grades_2_3_foundation: Classify objects by one observable rule and test true/false cases.
+  grades_4_6_exit: Execute both branches on separate inputs; explain mutually exclusive alternatives.
+  grades_7_9_bridge: Combine conditions and truth tables; implement/test branches in a programming environment.
+  t0_evidence: Correctly trace true and false cases, including a counterexample.
+  practical_residual: Implementing digital branches is not measured by paper tracing.
+  cross_subject_links:
+  - 'Mathematics: comparison and classification'
+  - 'Language: if/otherwise meanings'
+  bridge_status: required_design_bridge_not_verified_as_existing_grade_7_9_CS_curriculum
+  mastery_status: not_empirically_validated
+- id: map_iteration_debugging
+  claim: Proposed backward allocation from a bachillerato target; it is not an official primary prerequisite
+    prescription.
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs
+  confidence: medium
+  evidence_kind: design_inference
+  anchor_ids:
+  - '2.7'
+  - '2.8'
+  - '2.9'
+  - '2.10'
+  locator: PDF p. 12 and pp. 30–41
+  upper_secondary_target: Repetition and debugging
+  grades_2_3_foundation: Find a wrong step in a repeated physical pattern.
+  grades_4_6_exit: Track repeat count and state; debug an off-by-one error with a trace.
+  grades_7_9_bridge: Compare fixed and condition-controlled repetition, then nested cases; test systematically.
+  t0_evidence: Predict exact execution counts and explain a repair.
+  practical_residual: Using an editor/debugger requires device practice.
+  cross_subject_links:
+  - 'Mathematics: repeated operations'
+  bridge_status: required_design_bridge_not_verified_as_existing_grade_7_9_CS_curriculum
+  mastery_status: not_empirically_validated
+- id: map_variables_state
+  claim: Proposed backward allocation from a bachillerato target; it is not an official primary prerequisite
+    prescription.
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs
+  confidence: medium
+  evidence_kind: design_inference
+  anchor_ids:
+  - '3.1'
+  - '3.2'
+  - '4.3'
+  locator: PDF p. 12 and pp. 30–41
+  upper_secondary_target: Variables and basic types
+  grades_2_3_foundation: Use labelled places holding one current value.
+  grades_4_6_exit: Track assignment as replacement, copying and update, without confusing it with equality.
+  grades_7_9_bridge: Relate types and expressions to state and execution; test implementation.
+  t0_evidence: Trace two assignments and a copy; explain why later changes do not retroactively alter
+    the copy.
+  practical_residual: Typing, execution errors and runtime inspection need device access.
+  cross_subject_links:
+  - 'Mathematics: quantities; explicitly distinguish assignment from equality'
+  bridge_status: required_design_bridge_not_verified_as_existing_grade_7_9_CS_curriculum
+  mastery_status: not_empirically_validated
+- id: map_data_structures
+  claim: Proposed backward allocation from a bachillerato target; it is not an official primary prerequisite
+    prescription.
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs
+  confidence: medium
+  evidence_kind: design_inference
+  anchor_ids:
+  - entry_profile
+  - '3.3'
+  - '3.4'
+  - '3.5'
+  - '3.6'
+  - '3.7'
+  - '3.8'
+  - '3.9'
+  - '3.10'
+  locator: PDF p. 12 and pp. 30–41
+  upper_secondary_target: Lists, lookup and search
+  grades_2_3_foundation: Collect, label and sort a small physical set.
+  grades_4_6_exit: Represent records in tables/lists and compare simple search strategies.
+  grades_7_9_bridge: Introduce indexed structures, queues/stacks and search preconditions; implement on
+    devices.
+  t0_evidence: Search paper records and explain why a halving strategy needs ordered data.
+  practical_residual: Digital list manipulation and imported files require practice beyond the paper proxy.
+  cross_subject_links:
+  - 'Mathematics: tables, order and data'
+  - 'Language: labels and categories'
+  bridge_status: required_design_bridge_not_verified_as_existing_grade_7_9_CS_curriculum
+  mastery_status: not_empirically_validated
+- id: map_systems_design
+  claim: Proposed backward allocation from a bachillerato target; it is not an official primary prerequisite
+    prescription.
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs
+  confidence: medium
+  evidence_kind: design_inference
+  anchor_ids:
+  - entry_profile
+  - '1.1'
+  - '1.9'
+  - '1.10'
+  locator: PDF p. 12 and pp. 30–41
+  upper_secondary_target: Systems and assembly
+  grades_2_3_foundation: Build a paper/card structure from instructions and test it.
+  grades_4_6_exit: Relate parts, inputs, outputs and constraints; document a redesign.
+  grades_7_9_bridge: Operate a computer, organize files and distinguish hardware, software and operating
+    system.
+  t0_evidence: Explain component roles and test a model against stated criteria.
+  practical_residual: Computer operation and physical electrical assembly cannot be certified with a drawing.
+  cross_subject_links:
+  - 'CyT: SV_CYT_G2_U5_5.3'
+  - 'CyT: SV_CYT_G4_U1_1.6'
+  bridge_status: required_design_bridge_not_verified_as_existing_grade_7_9_CS_curriculum
+  mastery_status: not_empirically_validated
+- id: map_software_bridge
+  claim: Proposed backward allocation from a bachillerato target; it is not an official primary prerequisite
+    prescription.
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs
+  confidence: medium
+  evidence_kind: design_inference
+  anchor_ids:
+  - '4.1'
+  - '4.2'
+  - '4.3'
+  - '4.4'
+  - '4.5'
+  locator: PDF p. 12 and pp. 30–41
+  upper_secondary_target: Python environment and basic software development
+  grades_2_3_foundation: Communicate precise instructions to a peer.
+  grades_4_6_exit: Design and test a small algorithmic artefact in paper or blocks as equipment permits.
+  grades_7_9_bridge: Gain editor/file fluency and transition from blocks to text; retain accessible representations.
+  t0_evidence: Explain algorithm behavior independently of syntax.
+  practical_residual: Installing/configuring/running Python is a bachillerato outcome, not a grade-6 prerequisite
+    or T0 achievement.
+  cross_subject_links:
+  - 'Language: explanation and documentation'
+  bridge_status: required_design_bridge_not_verified_as_existing_grade_7_9_CS_curriculum
+  mastery_status: not_empirically_validated
+- id: map_information_literacy
+  claim: Proposed backward allocation from a bachillerato target; it is not an official primary prerequisite
+    prescription.
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs
+  confidence: medium
+  evidence_kind: design_inference
+  anchor_ids:
+  - entry_profile
+  - '5.4'
+  locator: PDF p. 12 and pp. 30–41
+  upper_secondary_target: Information search and credibility
+  grades_2_3_foundation: Distinguish an observation, a claim and its source.
+  grades_4_6_exit: Compare dated sources and explain uncertainty and purpose.
+  grades_7_9_bridge: Search digital sources, inspect provenance and synthesize with attribution.
+  t0_evidence: Compare two provided source cards and justify trust cautiously.
+  practical_residual: Real search navigation, query reformulation and file handling need devices/network
+    or an offline corpus.
+  cross_subject_links:
+  - 'Language: reading and source comparison'
+  bridge_status: required_design_bridge_not_verified_as_existing_grade_7_9_CS_curriculum
+  mastery_status: not_empirically_validated
+- id: map_digital_citizenship
+  claim: Proposed backward allocation from a bachillerato target; it is not an official primary prerequisite
+    prescription.
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs
+  confidence: medium
+  evidence_kind: design_inference
+  anchor_ids:
+  - '5.1'
+  - '5.2'
+  - '5.3'
+  - '5.5'
+  - '5.6'
+  - '5.7'
+  - '5.8'
+  locator: PDF p. 12 and pp. 30–41
+  upper_secondary_target: Safety, reputation and responsible participation
+  grades_2_3_foundation: Protect personal information and identify a trusted adult.
+  grades_4_6_exit: Explain consent, traces, suspicious requests and respectful responses.
+  grades_7_9_bridge: Apply privacy/reporting settings, password practices and threat detection in controlled
+    environments.
+  t0_evidence: Respond to a paper scenario and justify help-seeking without disclosing real personal data.
+  practical_residual: Operating privacy settings or reporting/blocking in an interface is separate practical
+    evidence.
+  cross_subject_links:
+  - 'Language: communication and audience'
+  - 'Citizenship: rights and responsibilities'
+  bridge_status: required_design_bridge_not_verified_as_existing_grade_7_9_CS_curriculum
+  mastery_status: not_empirically_validated
+- id: map_ai_data_judgment
+  claim: Proposed backward allocation from a bachillerato target; it is not an official primary prerequisite
+    prescription.
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs
+  confidence: medium
+  evidence_kind: design_inference
+  anchor_ids:
+  - '6.1'
+  - '6.2'
+  - '6.3'
+  - '6.5'
+  - '6.6'
+  - '6.7'
+  - '6.8'
+  - '6.9'
+  - '6.10'
+  - '6.11'
+  - '6.12'
+  locator: PDF p. 12 and pp. 30–41
+  upper_secondary_target: AI foundations, prediction and model limitations
+  grades_2_3_foundation: Sort examples by a stated rule and discuss who chose it.
+  grades_4_6_exit: Compare rules and example-based classification; test held-out cards, spot bias and
+    retain human accountability.
+  grades_7_9_bridge: Study training/test distinctions, uncertainty and model evaluation before formal
+    ML content.
+  t0_evidence: Evaluate a card-based classifier on unseen examples and explain one failure and one human
+    responsibility.
+  practical_residual: Operating or training an actual model, online generation and technical regression/neural-network
+    content are deferred; no child accounts are required in primary.
+  cross_subject_links:
+  - 'Mathematics: data and uncertainty'
+  - 'Language: claims and justification'
+  bridge_status: required_design_bridge_not_verified_as_existing_grade_7_9_CS_curriculum
+  mastery_status: not_empirically_validated
+learning_science:
+- id: unplugged_effects
+  claim: The review includes 49 studies; its meta-analysis uses 12 studies and 16 effects, with g=1.028
+    and very high heterogeneity (I²≈95.7%).
+  source_url: https://link.springer.com/article/10.1186/s40594-023-00434-7
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: unplugged
+  confidence: medium
+  evidence_kind: documented
+  evidence_level: Systematic review/meta-analysis; mixed interventions and designs
+  outcome: CT measures
+  limitations: Supports unplugged conceptual instruction, not equivalence in digital operations, long-term
+    transfer, or an entire Salvadoran curriculum.
+  source_locator: Meta-analysis results and limitations
+- id: programming_transfer
+  claim: 'The meta-analysis aggregates 105 studies and 539 effects: overall g=.49, near transfer .75 and
+    far transfer .47. Active-control and unpublished studies yield smaller effects.'
+  source_url: https://eric.ed.gov/?id=EJ1220317
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: transfer
+  confidence: medium
+  evidence_kind: documented
+  evidence_level: Meta-analysis with heterogeneous designs
+  limitations: Average effects do not establish reliable reading/maths gains for this curriculum. Selection,
+    publication and control-group differences constrain causal generalization.
+  curriculum_rule: Measure transfer separately using novel host-subject tasks and an active comparison;
+    do not multiply teaching hours by an assumed transfer benefit.
+- id: scratchmaths_trial
+  claim: The 110-school trial found improved CT after one year but no KS2 mathematics effect after two
+    years (effect size 0.00, 95% CI −.12 to .12).
+  source_url: https://d2tic4wvo1iusb.cloudfront.net/production/documents/projects/ScratchMaths.pdf?v=1739945607
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: scratchmaths
+  confidence: high
+  evidence_kind: documented
+  evidence_level: School-randomized efficacy trial
+  locator: PDF pp. 5–6
+  population: England, ages 9–11
+  teacher_development: Two initial full days for each participating year-group teacher before implementation,
+    with optional follow-up sessions; structured curriculum and classroom practice.
+  equipment: At least one computer per two pupils
+  implementation: 'High fidelity: 44% in Year 5 and 24% in Year 6; protected teacher preparation time
+    mattered.'
+  implication: Brief initial training can support a bounded programme; it does not establish reliable
+    implementation or far transfer without sustained support.
+- id: ceibal_training_length
+  claim: The primary introductory CT course specifies 12 weeks at 10 hours per week (120 hours).
+  source_url: https://edux.ceibal.edu.uy/courses/course-v1%3Aceibal%2BCEIBAL18_C1%2B1/about
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: ceibal_pd
+  confidence: high
+  evidence_kind: documented
+  implication: Do not describe this primary course as a short induction. Remote-specialist co-teaching
+    is also part of Ceibal implementation evidence.
+- id: child_execution_misconceptions
+  claim: A think-aloud study of 34 children in grades 2–4 (mean age 8.65) examines unplugged, Scratch
+    and Python preconceptions, including loop-count and conditional interpretation errors.
+  source_url: https://icer2025.acm.org/details/icer-2025-papers/24/Unplugged-Scratch-and-Python-Tracing-Primary-Students-Preconceptions-of-Programmi
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: misconceptions
+  confidence: medium
+  evidence_kind: documented
+  evidence_level: Small qualitative study
+  limitations: Documents possible reasoning errors, not population prevalence or a universal developmental
+    order.
+  design_response: Use trace tables, branch counterexamples and explain-the-next-step assessments rather
+    than rewarding only a finished artefact.
+- id: child_variable_misconceptions
+  claim: Interviews with children aged 8–11 document confusion between a variable name and its value,
+    retaining multiple assignments, copying direction and sequential state changes.
+  source_url: https://theses.liacs.nl/pdf/2018-2019-KrabbendamTS.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: variables
+  confidence: low
+  evidence_kind: documented
+  evidence_level: Bachelor thesis; small qualitative sample, not peer-reviewed population evidence
+  locator: PDF pp. 12–14
+  design_response: Ask learners to trace overwrite and copy with counters; treat the box analogy as a
+    limited representation, not a complete model of all programming objects.
+- id: age_7_proposal
+  claim: For approximately age 7, propose concrete execution, short sequences, simple debugging and one-rule
+    branches with visible state; this follows a curriculum precedent, not an age law.
+  source_url: https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study/national-curriculum-in-england-computing-programmes-of-study
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: eng_computing
+  confidence: low
+  evidence_kind: design_inference
+  evaluation: Diagnostic task performance, language access and prior experience determine support; chronological
+    age alone does not create a prerequisite edge.
+- id: age_11_proposal
+  claim: For approximately age 11, propose explicit state, variables, repetition/selection and comparison
+    of representations with scaffolding; nested complexity depends on demonstrated readiness.
+  source_url: https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study/national-curriculum-in-england-computing-programmes-of-study
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: eng_computing
+  confidence: low
+  evidence_kind: design_inference
+  evaluation: Pilot unfamiliar traces and explanations; distinguish standards-based aspiration from empirical
+    readiness of every learner.
+  source_refs:
+  - child_variable_misconceptions
+  - scratchmaths_trial
+- id: generalist_pd_design
+  claim: Pilot a bounded sequence with worked examples, misconception guides, rehearsal, preparation time
+    and coaching. Do not promise that a single short course qualifies generalists to deliver the full
+    hybrid scope.
+  source_url: https://d2tic4wvo1iusb.cloudfront.net/production/documents/projects/ScratchMaths.pdf?v=1739945607
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: scratchmaths
+  confidence: low
+  evidence_kind: design_inference
+  proposed_pilot: Initial two-day module plus supported teaching and review; duration is a proposal, not
+    an established optimal dose.
+  success_measures:
+  - Teacher explanation and error diagnosis before/after
+  - Independent lesson observation and delivery fidelity
+  - Student conceptual and practical assessments separately
+  - Preparation time and equity by classroom capability
+  source_refs:
+  - ceibal_delivery
+  - ceibal_training_length
+  - teacher_training_exists
+- id: obsolescence_policy
+  claim: Keep human agency, data quality, bias, uncertainty, privacy and system evaluation as stable learning
+    objectives; version vendor-specific activities as replaceable representations.
+  source_url: https://www.unesco.org/en/articles/ai-competency-framework-students
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: unesco_ai
+  confidence: medium
+  evidence_kind: design_inference
+  ai_scope: AI literacy begins with accessible examples and critical judgment; do not require online accounts,
+    prompt tricks or technical model training for all grades.
+knowledge_structure_evidence:
+- id: and_or_basis
+  claim: Knowledge-space and surmise-system approaches motivate multiple alternative sufficient sets;
+    a single binary prerequisite order is a restricted representation.
+  source_url: https://escholarship.org/uc/item/94b9x5sw
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: knowledge_spaces
+  confidence: medium
+  evidence_kind: documented
+  implication: Represent required sets and alternatives explicitly, while distinguishing empirical dependencies
+    from expert hypotheses.
+- id: q_matrix_role
+  claim: A Q matrix relates assessment items to attributes; it is not by itself a sequencing graph.
+  source_url: https://www.tandfonline.com/doi/full/10.1080/15434300902801917
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: qmatrix
+  confidence: medium
+  evidence_kind: documented
+  implication: Keep it as an assessment projection; validation of attributes and item mappings remains
+    necessary.
+- id: probability_calibration
+  claim: Educational Bayesian networks require defensible parameter sources and calibration; structure
+    alone does not supply probabilities.
+  source_url: https://arxiv.org/abs/1301.6722
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: bayes
+  confidence: medium
+  evidence_kind: documented
+  implication: No invented prerequisite probabilities. Defer learner-state inference until suitable local
+    response data and an approved calibration study exist.
+- id: corequisite_not_prevalence
+  claim: Design, programming and debugging are coupled practices in the programme; no evidence here quantifies
+    that Technology has more corequisites than other subjects.
+  source_url: https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study/national-curriculum-in-england-computing-programmes-of-study
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: eng_computing
+  confidence: medium
+  evidence_kind: design_inference
+  consequence: Permit co-learning bundles, but reject the unverified comparative prevalence claim as a
+    graph-construction prior.
+- id: cross_subject_semantics
+  claim: The upper-secondary programme explicitly builds on prior mathematics and CyT. Proposed primary
+    links to narrative sequence, coordinates and conditional language need task-specific review.
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs
+  confidence: medium
+  evidence_kind: design_inference
+  consequence: A shared word such as conditional does not prove a hard prerequisite. Record supports versus
+    necessary dependency and exact external skill/version.
+open_items:
+- id: gap_period_minutes
+  claim: Current binding grade-specific class-period duration remains unverified.
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cyt
+  confidence: low
+  evidence_kind: unverified
+  next_action: Obtain authoritative timetable guidance before converting to minutes or selecting an official
+    default.
+  blocks: Relevant normative publication claim; not delivery of the research record.
+- id: gap_current_cs_binary
+  claim: Current linked CS binary is unavailable live; indexed text is not a hash-pinned source.
+  source_url: https://www.mined.gob.sv/docs/Programas_de_estudio_Ciencias_de_la_Computacion.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_cs_current
+  confidence: low
+  evidence_kind: unverified
+  next_action: Resolve the official replacement URL or a licensed official archive, then diff against
+    the acquired version.
+  blocks: Relevant normative publication claim; not delivery of the research record.
+- id: gap_reform_diff
+  claim: No complete authoritative all-level release/change register was found.
+  source_url: https://www.mined.gob.sv/descargas/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_catalog
+  confidence: low
+  evidence_kind: unverified
+  next_action: Compare dated official programme versions; do not claim universal 2026 replacement or technological
+    changes from budget announcements.
+  blocks: Relevant normative publication claim; not delivery of the research record.
+- id: gap_fleet
+  claim: Current representative functioning-device and rural-connectivity measurements were not found.
+  source_url: https://www.laprensagrafica.com/amp/elsalvador/computadoras-no-frenaron-desercion-escolar-al-menos-1439-estudiantes-dejaron-los-estudios-tras-recibir-equipos-de-mined-revela-auditoria-20260206-0079.html
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_audit
+  confidence: low
+  evidence_kind: unverified
+  next_action: Survey deployment classrooms and obtain dated inventories; retain historical delivery and
+    audit measures separately.
+  blocks: Relevant normative publication claim; not delivery of the research record.
+- id: gap_primary_pd
+  claim: No evaluated short Salvadoran primary-generalist CS training programme was located.
+  source_url: https://formaciondocente.edu.sv/public/registro
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: sv_pd_cs
+  confidence: low
+  evidence_kind: unverified
+  next_action: Pilot bounded supported instruction and assess teacher and student performance before scaling.
+  blocks: Relevant normative publication claim; not delivery of the research record.
+- id: gap_t0_equivalence
+  claim: Whole-curriculum T0 equivalence has not been empirically established; strict operational equivalence
+    has counterexamples.
+  source_url: https://link.springer.com/article/10.1186/s40594-023-00434-7
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: unplugged
+  confidence: low
+  evidence_kind: unverified
+  next_action: Approve or reject the explicit conceptual/practical distinction before implementation.
+  blocks: Relevant normative publication claim; not delivery of the research record.
+- id: gap_reference_hours
+  claim: Reference timetable comparisons are partial; no complete current cross-country hours table is
+    justified.
+  source_url: https://www.curriculumnacional.cl/614/articles-241604_recurso_pdf.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_id: chile_hours
+  confidence: low
+  evidence_kind: unverified
+  next_action: Verify Chile regimes and period lengths, and local allocation rules for the integrated/reference
+    programmes.
+  blocks: Relevant normative publication claim; not delivery of the research record.
+sources:
+- id: sv_cyt
+  title: Science and Technology, grades 2–6, current 2026 download
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: true
+  sha256: 8127beee05165a7e5a73c1b33fcdd5a921744354fd330939714660e6a70d6486
+  local_path: data/raw/research/sv_cyt_g2_g6_2026.pdf
+  bytes: 2217899
+- id: sv_cyt_landing
+  title: MINED Science Education
+  source_url: https://www.mined.gob.sv/ciencia-educativa/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_cyt_legacy
+  title: MINED CyT programme landing
+  source_url: https://www.mined.gob.sv/programa-de-estudio-cyt/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_guidance
+  title: MINED pedagogical guidance 2024
+  source_url: https://www.mined.gob.sv/orientaciones2024/orientaciones_pedagogicas_2024.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_cs
+  title: Computer Science, cover 2024, first-year detailed programme
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: true
+  sha256: 330972de0ad7ffcf336060cdd41ad48959bd58a0033673178c68931226178440
+  local_path: data/raw/research/sv_cs_2024.pdf
+  bytes: 728638
+- id: sv_cs_current
+  title: Current linked Computer Science programme; web-indexed 59 pages, live download failed
+  source_url: https://www.mined.gob.sv/docs/Programas_de_estudio_Ciencias_de_la_Computacion.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_cs_landing
+  title: MINED Computer Science introduction
+  source_url: https://www.mined.gob.sv/ciencias-de-la-computacion/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_cyt_iii
+  title: CyT third-cycle programme, 92 pages
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_III%20ciclo.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_cyt_media
+  title: CyT bachillerato programme, 77 pages
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_Bachillerato.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_catalog
+  title: MINED download catalogue
+  source_url: https://www.mined.gob.sv/descargas/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_early
+  title: Early childhood and first-grade publications
+  source_url: https://www.mined.gob.sv/materiales-educacion-inicial-y-parvularia/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_primary
+  title: Primary and special education landing
+  source_url: https://www.mined.gob.sv/educacion-primaria-y-educacion-especial/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_programmes
+  title: Programme archive, including 2020 entries
+  source_url: https://www.mined.gob.sv/programas-de-estudio/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_reform
+  title: Report of 2026 curriculum and textbook budget announcement
+  source_url: https://www.elsalvador.com/noticias/nacional/educacion-basica-ministerio-de-hard-news/1251125/2025/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: secondary_reporting
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: sv_periods
+  title: Report on proposed 55-minute lessons
+  source_url: https://www.laprensagrafica.com/elsalvador/MINED-implementara-nuevo-formato-para-impartir-clases-en-2026-20251104-0083.html
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: secondary_reporting
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: sv_devices_2021
+  title: Presidency device distribution announcement, 2021
+  source_url: https://www.presidencia.gob.sv/las-computadoras-que-entrega-el-gobierno-a-los-estudiantes-son-de-calidad-con-acceso-a-internet-y-gratuitas/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_devices_2022
+  title: Presidency cumulative distributions, 2022
+  source_url: https://www.presidencia.gob.sv/gobierno-avanza-en-el-cierre-de-la-brecha-digital-con-la-entrega-de-770000-laptops-y-mas-de-298000-tablets-a-estudiantes-del-sector-publico/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_devices_2026
+  title: 2026 renewal targeting, attributed to MINED
+  source_url: https://diario.elmundo.sv/nacionales/quienes-recibiran-laptops-y-tablets-como-parte-del-paquete-escolar-esto-explica-educacion
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: secondary_reporting
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: sv_audit
+  title: Independent reporting on 2023 audit of 2021–22 device programme
+  source_url: https://www.laprensagrafica.com/amp/elsalvador/computadoras-no-frenaron-desercion-escolar-al-menos-1439-estudiantes-dejaron-los-estudios-tras-recibir-equipos-de-mined-revela-auditoria-20260206-0079.html
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: secondary_reporting
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: sv_offline
+  title: Presidency eastern-region tablet delivery, May 2022
+  source_url: https://www.presidencia.gob.sv/gobierno-del-presidente-nayib-bukele-entrega-tablets-a-ninos-y-ninas-de-escuelas-publicas-en-el-oriente-del-pais/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_ai
+  title: UNESCO, El Salvador RAM and national AI strategy, 18 June 2026
+  source_url: https://www.unesco.org/es/articles/el-salvador-avanza-hacia-una-inteligencia-artificial-centrada-en-las-personas?hub=66919
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_ai_profile
+  title: UNESCO El Salvador AI policy profile
+  source_url: https://www.unesco.org/ethics-ai/en/elsalvador
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_ai_law
+  title: Decree 363, July 2025 amendment establishing ANIA
+  source_url: https://www.jurisprudencia.gob.sv/busqueda/showExtractos.php?bd=2&doc=1084094&nota=1097515&singlePage=false
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_digital_diagnostic
+  title: World Bank El Salvador digital economy diagnostic, 2022
+  source_url: https://documents1.worldbank.org/curated/en/099945208102227561/pdf/P1759850783530062093a4058a8b559ebc5.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_pd
+  title: MINED teacher training strand, 2025–26
+  source_url: https://sites.google.com/mined.gob.sv/franja-formativa/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: sv_pd_cs
+  title: Official teacher training registration including Computer Science
+  source_url: https://formaciondocente.edu.sv/public/registro
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: icils_framework
+  title: ICILS 2023 assessment framework
+  source_url: https://www.iea.nl/sites/default/files/2023-12/20231221%20ICILS2023_Assessment_Framework__Final_0.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: primary_framework
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: icils_levels
+  title: IEA ICILS 2023 results presentation, pages 9 and 12
+  source_url: https://www.iea.nl/sites/default/files/2024-11/ICILS-2023-Results-JF.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: primary_framework
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: icils_report
+  title: ICILS 2023 international report
+  source_url: https://www.iea.nl/sites/default/files/2024-11/ICILS_2023_International_Report_0.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: primary_research
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: csta
+  title: CSTA 2026 PK–12 standards
+  source_url: https://csteachers.org/pk12standards/view/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: primary_framework
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: csta_about
+  title: CSTA 2026 standards purpose and interpretation
+  source_url: https://csteachers.org/pk12standards/about/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: primary_framework
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: k12cs
+  title: K–12 CS Framework 2016 concept statements
+  source_url: https://k12cs.org/framework-statements-by-concept/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: primary_framework
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: k12cs_faq
+  title: K–12 CS Framework band and practice explanation
+  source_url: https://k12cs.org/faq/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: primary_framework
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: anep
+  title: ANEP Computer Science and Educational Technology, tramos 1–4
+  source_url: https://www.anep.edu.uy/unidad-curricular-ciencias-computaci-n-y-tecnolog-educativa
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: ceibal_guide
+  title: Ceibal classroom and remote teacher guide
+  source_url: https://pensamientocomputacional.ceibal.edu.uy/wp-content/uploads/2023/06/2022-Internet-y-las-Personas_Guia-docentes.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: ceibal_eval
+  title: INEEd education status report 2023–24 volume 2, chapter 3
+  source_url: https://www.gub.uy/ministerio-educacion-cultura/sites/ministerio-educacion-cultura/files/documentos/noticias/Informe-estado-educacion-Uruguay-2023-2024-Tomo2.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: ceibal_pd
+  title: Ceibal introductory primary CT course, 120 hours
+  source_url: https://edux.ceibal.edu.uy/courses/course-v1%3Aceibal%2BCEIBAL18_C1%2B1/about
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: colombia
+  title: MEN Guide 30, Ser competente en tecnología, 2008
+  source_url: https://www.mineducacion.gov.co/1621/articles-160915_archivo_pdf.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: colombia_update
+  title: MEN technology and informatics curriculum guidelines, 2022
+  source_url: https://www.mineducacion.gov.co/1780/articles-411706_recurso_4.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: chile
+  title: Chile Technology grades 1–6
+  source_url: https://www.curriculumnacional.cl/curriculum/1o-6o-basico/tecnologia
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: chile_hours
+  title: Chile basic education study plans
+  source_url: https://www.curriculumnacional.cl/614/articles-241604_recurso_pdf.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: chile_transition
+  title: CNED agreement 018/2026, Technology and Innovation proposal
+  source_url: https://cned.cl/resolucion/acuerdo-n-018-2026/
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: eng_computing
+  title: England Computing programmes of study
+  source_url: https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study/national-curriculum-in-england-computing-programmes-of-study
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: Open Government Licence v3.0, except third-party material
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: eng_dt
+  title: England Design and Technology KS1–2
+  source_url: https://assets.publishing.service.gov.uk/media/5a7ca43640f0b6629523adc1/PRIMARY_national_curriculum_-_Design_and_technology.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: ontario_math
+  title: Ontario Mathematics 2020, January 2021 PDF
+  source_url: https://assets-us-01.kc-usercontent.com/fbd574c4-da36-0066-a0c5-849ffb2de96e/3ed76499-9df4-4524-8cc2-3c0010a51811/The%20Ontario%20Curriculum%20Grades%201%E2%80%938%20-%20Mathematics%2C%202020%20%28January%202021%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: true
+  sha256: 4300ce0a69935a1038699409da8eea2a601d20cee640b5c6e6dc295844c90bc0
+  local_path: null
+  bytes: 7609487
+  download_note: Read from a temporary official-source download; not added to the Salvadoran baseline.
+    Re-download by URL and verify this hash.
+- id: ontario_science
+  title: Ontario 2022 Science and Technology curriculum release
+  source_url: https://news.ontario.ca/en/release/1001723/supporting-stem-achievement-in-ontario
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: digcomp
+  title: JRC DigComp 2.2, 2022
+  source_url: https://publications.jrc.ec.europa.eu/repository/bitstream/JRC128415/JRC128415_01.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: unesco_ai
+  title: UNESCO AI competency framework for students, 2024
+  source_url: https://www.unesco.org/en/articles/ai-competency-framework-students
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: iste
+  title: ISTE Standards for Students
+  source_url: https://iste.org/standards/students
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: primary_framework
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: argentina
+  title: Argentina NAP Digital Education, Programming and Robotics, 343/18
+  source_url: https://www.argentina.gob.ar/sites/default/files/nap_de_educacion_digital_programacion_y_robotica.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+- id: transfer
+  title: Scherer, Siddiq and Sánchez Viveros, 2019 meta-analysis
+  source_url: https://eric.ed.gov/?id=EJ1220317
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: primary_research
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: scratchmaths
+  title: Boylan et al., EEF ScratchMaths randomized evaluation, 2018
+  source_url: https://d2tic4wvo1iusb.cloudfront.net/production/documents/projects/ScratchMaths.pdf?v=1739945607
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: primary_research
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: unplugged
+  title: 2023 systematic review and meta-analysis of unplugged CT
+  source_url: https://link.springer.com/article/10.1186/s40594-023-00434-7
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: primary_research
+  license: CC BY 4.0
+  corpus_status: accepted
+  corpus_reason: Verified open license
+  downloaded: false
+  sha256: null
+- id: misconceptions
+  title: Kunz et al., ICER 2025 primary student preconceptions
+  source_url: https://icer2025.acm.org/details/icer-2025-papers/24/Unplugged-Scratch-and-Python-Tracing-Primary-Students-Preconceptions-of-Programmi
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: primary_research
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: variables
+  title: Krabbendam, 2019 bachelor thesis, ages 8–11 programming misconceptions
+  source_url: https://theses.liacs.nl/pdf/2018-2019-KrabbendamTS.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: primary_research
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: knowledge_spaces
+  title: Doignon and Falmagne, Knowledge Spaces, 2015
+  source_url: https://escholarship.org/uc/item/94b9x5sw
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: primary_research
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: qmatrix
+  title: Q-matrix construction in cognitive diagnosis
+  source_url: https://www.tandfonline.com/doi/full/10.1080/15434300902801917
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: primary_research
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: bayes
+  title: 'Bayes nets in educational assessment: where do the numbers come from?'
+  source_url: https://arxiv.org/abs/1301.6722
+  retrieved_at: '2026-09-14T01:45:00Z'
+  source_type: primary_research
+  license: Unverified
+  corpus_status: rejected
+  corpus_reason: No verified reuse license; bibliographic citation and research commentary only, not an
+    ingestible corpus source
+  downloaded: false
+  sha256: null
+- id: ontario_science_programme
+  title: Ontario Science and Technology 2022, official full programme
+  source_url: https://assets-us-01.kc-usercontent.com/fbd574c4-da36-0066-a0c5-849ffb2de96e/36038265-bd6d-4991-882b-52b4b06c32d0/The%20Ontario%20Curriculum%20Grades%201%E2%80%938%20%E2%80%93%20Science%20and%20Technology%202022_2.pdf
+  retrieved_at: '2026-09-14T01:55:43Z'
+  source_type: official_publication
+  license: No open license asserted; official-publication exception
+  corpus_status: accepted
+  corpus_reason: Official publication allowed by user policy; do not infer unrestricted redistribution
+  downloaded: false
+  sha256: null
+validation:
+  status: passed_structural_and_research_checks
+  validator: Pydantic 2.10.6 and PyYAML, temporary research-only validator outside the repository
+  schema_scope: Typed evidence/source/decision fields, required provenance, low confidence for absence/unverified
+    records, valid decision selection. Additional domain fields remain proposed, not production Pydantic
+    contracts.
+  checks:
+    evidence_records: 99
+    source_records: 59
+    decision_records: 3
+    duplicate_yaml_keys: rejected
+    unique_record_ids: true
+    source_references_resolve: true
+    missing_required_provenance_negative_cases: 3
+    acquired_baseline_hashes_match: true
+    processed_inventory_hash_matches: true
+    unit_count: 30
+    numbered_indicators: 339
+    technology_indicators: 34
+    technology_suggested_periods: 90
+    all_grades_have_32_unit_weeks: true
+    cycle_weights_valid: true
+    t0_counterexample_vectors: 5
+    and_or_truth_table_cases: 8
+  not_run:
+  - Production Pydantic schema tests
+  - Domain implementation tests
+  - Hypothesis
+  - VCR replay
+  - pytest-benchmark
+  - Curriculum solver feasibility
+  - Empirical T0 equivalence
+  - Byte-identical full pipeline replay
+  reproducibility_note: Rules and input vectors are preserved in these artifacts; the temporary validation
+    harness is not production code or a committed test suite.

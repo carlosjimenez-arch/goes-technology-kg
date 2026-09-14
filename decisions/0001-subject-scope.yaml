@@ -1,0 +1,207 @@
+schema_version: phase1-decision-1.0
+id: '0001'
+title: Technology subject scope and time-budget policy
+status: accepted
+date: '2026-09-13'
+supersedes: []
+roles:
+- technology_curriculum_designer
+- computational_thinking_researcher
+- knowledge_graph_researcher
+- ai_software_engineer
+approval_required_before_implementation: false
+affected_invariants:
+- vertical_alignment
+- teacher_feasibility
+- T0_access
+- budget_parameterization
+- provenance
+context: 'Phase 1 direction accepted by maintainer: A todo Ok. Empirical uncertainties and deferred implementation
+  checks remain explicit.'
+options:
+- id: A
+  name: Design and technology
+  scores:
+    vertical_alignment: 2
+    generalist_feasibility: 4
+    t0_feasibility: 4
+    transfer: 3
+    obsolescence: 5
+  pros:
+  - Strong existing CyT connection; tangible design and systems.
+  cons:
+  - Insufficient computing/data emphasis for the vertical anchor; some circuits exceed paper-only resources.
+  weighted_score: 3.45
+- id: B
+  name: Digital competence
+  scores:
+    vertical_alignment: 3
+    generalist_feasibility: 3
+    t0_feasibility: 1
+    transfer: 3
+    obsolescence: 2
+  pros:
+  - Information literacy, safety and purposeful digital production.
+  cons:
+  - Operational outcomes require devices; tool emphasis risks obsolescence and weak computational depth.
+  weighted_score: 2.45
+- id: C
+  name: Computer science and CT
+  scores:
+    vertical_alignment: 5
+    generalist_feasibility: 2
+    t0_feasibility: 4
+    transfer: 3
+    obsolescence: 5
+  pros:
+  - Direct vertical alignment; durable conceptual nucleus with unplugged options.
+  cons:
+  - Generalist pedagogy demanding; can marginalize material design and citizenship. Practical programming
+    still needs devices.
+  weighted_score: 3.85
+- id: D
+  name: Explicit hybrid with an early CT strand
+  scores:
+    vertical_alignment: 5
+    generalist_feasibility: 3
+    t0_feasibility: 4
+    transfer: 4
+    obsolescence: 5
+  pros:
+  - Retains technical design, deliberate CS progression and a protected citizenship strand.
+  cons:
+  - Broader scope and integration burden; allocation weights need feasibility and learning pilots.
+  weighted_score: 4.2
+criteria:
+- id: vertical_alignment
+  weight: 0.3
+  interpretation: Explicit bridge to Salvadoran first-year Computer Science, without importing its whole
+    syllabus into primary.
+- id: generalist_feasibility
+  weight: 0.25
+  interpretation: Deliverable by primary teachers with bounded preparation and sustained support.
+- id: t0_feasibility
+  weight: 0.2
+  interpretation: Conceptual teaching and assessment under T0; practical residuals visible.
+- id: transfer
+  weight: 0.1
+  interpretation: Opportunities for directly taught cross-subject application; not assumed far-transfer
+    effects.
+- id: obsolescence
+  weight: 0.15
+  interpretation: Stable concepts, practices and judgment rather than vendor operations.
+selected_option: D
+rationale:
+- 'Accept the direction of the proposed A-to-C shift, but reject delaying CT until upper primary: early
+  precise execution and debugging have curricular precedent.'
+- Keep B at an explicit floor for safety, source evaluation, data responsibility and AI judgment; do not
+  make it a productivity-software course.
+- The exact 40/20/40 and 25/20/55 mixes are pilot hypotheses, not values derived from a meta-analysis.
+- Existing CyT already carries design/material systems. Reuse compatible objectives and avoid adding a
+  duplicate subject load.
+- 'Generalist feasibility is the binding risk: begin with a bounded supported sequence and observable
+  assessment, then revise weights from workload and learning evidence.'
+consequences:
+- Do not implement or publish weighted curriculum until this proposal is accepted.
+- Require an explicit grade 7–9 bridge, not a promise that grade 6 alone guarantees bachillerato readiness.
+- New evidence or changed official programmes triggers a new baseline version and impact analysis.
+source_evidence:
+- source_id: sv_cyt
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+- source_id: sv_cs
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+- source_id: eng_computing
+  source_url: https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study/national-curriculum-in-england-computing-programmes-of-study
+  retrieved_at: '2026-09-14T01:45:00Z'
+- source_id: colombia
+  source_url: https://www.mineducacion.gov.co/1621/articles-160915_archivo_pdf.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+- source_id: chile
+  source_url: https://www.curriculumnacional.cl/curriculum/1o-6o-basico/tecnologia
+  retrieved_at: '2026-09-14T01:45:00Z'
+- source_id: scratchmaths
+  source_url: https://d2tic4wvo1iusb.cloudfront.net/production/documents/projects/ScratchMaths.pdf?v=1739945607
+  retrieved_at: '2026-09-14T01:45:00Z'
+- source_id: ceibal_eval
+  source_url: https://www.gub.uy/ministerio-educacion-cultura/sites/ministerio-educacion-cultura/files/documentos/noticias/Informe-estado-educacion-Uruguay-2023-2024-Tomo2.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+- source_id: unesco_ai
+  source_url: https://www.unesco.org/en/articles/ai-competency-framework-students
+  retrieved_at: '2026-09-14T01:45:00Z'
+enforced_by:
+  status: specified_not_implemented
+  tests:
+  - id: scope_weights_sum_to_one
+    assertion: Each cycle weights sum to 1 and all grades 2..6 occur exactly once.
+  - id: budget_all_modes
+    assertion: For each mode, ledger sums equal allocations, capacities hold and each elapsed minute is
+      charged once.
+  - id: reject_unverified_official_budget
+    assertion: A scenario labelled unverified cannot publish as official; absent period duration fails
+      conversion.
+  - id: vertical_coverage
+    assertion: All required primary outcomes have explicit anchor and bridge mappings; coverage is not
+      inferred from a strand weight.
+score_semantics: 1–5 expert comparative judgments, not measured effect sizes. Weights reflect stated project
+  priorities and remain contestable.
+cycle_weights:
+- grades:
+  - 2
+  - 3
+  A: 0.4
+  B: 0.2
+  C: 0.4
+- grades:
+  - 4
+  - 5
+  - 6
+  A: 0.25
+  B: 0.2
+  C: 0.55
+weight_semantics: Share of approved instructional minutes for primary objectives, not indicator counts
+  or effectiveness estimates. Assign one primary strand per ledger allocation; secondary tags do not double
+  count time. Grades 2–3 and 4–6 match the relevant portions of first/second basic cycles.
+role_tensions:
+- from: technology_curriculum_designer
+  position: Preserve material design, technical systems and social impact despite the upper-secondary
+    CS anchor.
+- from: computational_thinking_researcher
+  position: Introduce CT early; do not claim generic mathematical transfer or age-determined mastery.
+- from: ai_software_engineer
+  position: Weights and budgets must be explicit inputs; reject infeasible allocations instead of silently
+    dropping skills.
+budget_policy:
+  status: pending_verification
+  official_default_hours: null
+  requested_scenario_hours: 160
+  requested_scenario_label: unverified_clock_hours_per_grade
+  evidence_summary: CyT has 4/5 class periods weekly, not a separate technology entitlement. The T-axis
+    proxy totals 20/25/25/0/20 periods by grade. Period duration is unverified.
+  internal_unit: integer_minutes
+  conversion_rule: Require verified period_minutes and weeks where converting official periods; preserve
+    original units and citations. Do not treat class periods as 60-minute hours.
+  modes:
+    standalone: Each grade allocation <= approved own_minutes.
+    transversal: Every minute charged to an identified host subject and unit/indicator, bounded by host
+      capacity and total borrowing capacity; mandatory host coverage preserved.
+    hybrid: Separate own and borrowed components, enforce both limits and disjoint minute accounting.
+  recommended_deployment: Evaluate hybrid/transversal against actual host capacity; no authorized standalone
+    allocation is assumed.
+  required_inputs:
+  - mode
+  - grade
+  - own_minutes
+  - borrowed_minutes_cap
+  - host_subject_capacities
+  - period_minutes_when_converting
+  - calendar_version
+  - source_evidence
+  - policy_approval
+  shared_activity_rule: Count elapsed classroom time once; record multiple learning contributions separately.
+    A contribution is not extra time.
+  infeasible_behavior: Return uncovered mandatory targets, saturated hosts and blocking constraints; never
+    auto-expand the budget or weaken T0/coverage.
+  sensitivity_plan: Compare user-specified scenarios in all three modes; report coverage, preparation
+    burden and practical residuals. No solver run is claimed in Phase 1.

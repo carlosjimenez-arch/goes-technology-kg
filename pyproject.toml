@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "goes-tech-kg"
+version = "0.1.0"
+description = "Auditable technology curriculum contracts and evidence ingestion."
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+  "pydantic>=2.10,<3", "pydantic-settings>=2.8,<3", "typer>=0.15,<1",
+  "PyYAML>=6,<7", "httpx>=0.28,<1", "beautifulsoup4>=4.13,<5",
+  "pypdf>=6.15,<7", "fonttools>=4.60,<5", "numpy>=2,<3", "polars>=1,<2", "scipy>=1.15,<2",
+]
+
+[project.optional-dependencies]
+embeddings = ["sentence-transformers>=3.4,<4", "transformers>=4.48,<5", "torch>=2.6,<3"]
+
+[project.scripts]
+goes-tech = "goes_tech_kg.cli:app"
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "pytest-cov>=6,<8", "hypothesis>=6,<7", "pytest-benchmark>=5,<6", "pytest-socket>=0.7,<1", "vcrpy>=7,<9", "ruff>=0.11,<1", "mypy>=1.15,<3", "types-PyYAML", "types-beautifulsoup4"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/goes_tech_kg"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --import-mode=importlib --disable-socket"
+markers = ["benchmark: real parser and index performance"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "TID"]
+ignore = ["E501"]
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+files = ["src/goes_tech_kg"]
+plugins = ["pydantic.mypy"]
+[[tool.mypy.overrides]]
+module = ["scipy.*", "sentence_transformers.*"]
+ignore_missing_imports = true
+
+[tool.coverage.run]
+source = ["goes_tech_kg"]
+branch = true

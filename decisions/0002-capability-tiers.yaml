@@ -1,0 +1,258 @@
+schema_version: phase1-decision-1.0
+id: '0002'
+title: Capability tiers, T0 coverage and practical competence limits
+status: accepted
+date: '2026-09-13'
+supersedes: []
+roles:
+- technology_curriculum_designer
+- computational_thinking_researcher
+- knowledge_graph_researcher
+- ai_software_engineer
+approval_required_before_implementation: false
+affected_invariants:
+- T0_access
+- honest_mastery_claims
+- material_feasibility
+- coverage
+- teacher_feasibility
+context: 'Phase 1 direction accepted by maintainer: A todo Ok. Empirical uncertainties and deferred implementation
+  checks remain explicit.'
+options:
+- id: strict_full_equivalence
+  name: All anchor performances certified in T0
+  pros:
+  - Literal strongest coverage guarantee.
+  cons:
+  - Infeasible for operating software, configuring Python or measuring with a multimeter; would create
+    false certification.
+- id: conceptual_t0_with_practical_bridge
+  name: Complete T0 primary conceptual route, explicit later practical bridge
+  pros:
+  - Robust conceptual access and honest residuals; compatible with staged vertical mapping.
+  cons:
+  - Requires explicit maintainer acceptance of the coverage definition and funded practical access before
+    full digital readiness.
+- id: minimum_t1
+  name: Require shared devices for all learners
+  pros:
+  - Can observe individual digital operations with rotations.
+  cons:
+  - Violates the requested no-device robustness; power, access and time are not guaranteed.
+criteria:
+- Teach and assess conceptual objectives without devices
+- Never substitute a conceptual proxy for observed digital execution
+- Make resource and time constraints visible
+- Preserve individual evidence under shared access
+- Prevent unnoticed mandatory-coverage loss
+selected_option: conceptual_t0_with_practical_bridge
+rationale:
+- Unplugged evidence supports conceptual CT; it does not establish full operational equivalence.
+- The official anchor distinguishes reasoning from actual use of computing environments; the primary CyT
+  programme also requires real instruments.
+- Coverage by topic label is too weak. Assess the observable construct and keep practical residuals explicit.
+consequences:
+- Full T0-equivalence is disproved by a necessary-resource counterexample; no production test suite or
+  population equivalence result exists yet.
+- T1 practical rotations require individual access time in the solver, not merely presence of a teacher
+  laptop.
+- Reassess classroom capabilities per deployment; distribution counts cannot assign a tier.
+source_evidence:
+- source_id: sv_cyt
+  source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+- source_id: sv_cs
+  source_url: https://www.mined.gob.sv/docs/Programa%20de%20estudios%20de%20Ciencias%20de%20la%20Computaci%C3%B3n%20%281er%20A%C3%B1o%29.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+- source_id: unplugged
+  source_url: https://link.springer.com/article/10.1186/s40594-023-00434-7
+  retrieved_at: '2026-09-14T01:45:00Z'
+- source_id: eng_computing
+  source_url: https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study/national-curriculum-in-england-computing-programmes-of-study
+  retrieved_at: '2026-09-14T01:45:00Z'
+- source_id: icils_framework
+  source_url: https://www.iea.nl/sites/default/files/2023-12/20231221%20ICILS2023_Assessment_Framework__Final_0.pdf
+  retrieved_at: '2026-09-14T01:45:00Z'
+- source_id: sv_audit
+  source_url: https://www.laprensagrafica.com/amp/elsalvador/computadoras-no-frenaron-desercion-escolar-al-menos-1439-estudiantes-dejaron-los-estudios-tras-recibir-equipos-de-mined-revela-auditoria-20260206-0079.html
+  retrieved_at: '2026-09-14T01:45:00Z'
+enforced_by:
+  status: specified_not_implemented
+  tests:
+  - id: t0_required_outcome_coverage
+    assertion: For every required outcome, require a feasible assessed variant at T0; proxy-only evidence
+      cannot satisfy an operational outcome.
+  - id: reject_missing_variants
+    assertion: Missing variant, assessment, bridge or capability yields a diagnostic, not skipped coverage.
+  - id: tier_resource_counterexample
+    assertion: T3 without a multimeter fails a multimeter task; T1 teacher-only demo fails individual-operation
+      evidence.
+  - id: t0_budget_feasibility
+    assertion: Substitute T0 durations before solving; a slower fallback cannot inherit the digital activity
+      duration.
+approval_blocker: This selection is a proposed clarification of acceptable degradation, not an accepted
+  weakening of the hard rule. The strict full-anchor-equivalence gate remains failed. No complete curriculum
+  has yet been built or tested.
+tiers:
+- id: T0
+  rank: 0
+  name: unplugged
+  conditions: No digital device, power or Internet assumed; paper, body, ordinary objects and board.
+- id: T1
+  rank: 1
+  name: shared
+  conditions: At least one usable shared device; offline baseline. Teacher-only display and group hands-on
+    access are distinct access profiles.
+- id: T2
+  rank: 2
+  name: one_to_one_offline
+  conditions: A usable device per learner with required applications/content installed; no reliable Internet
+    assumed.
+- id: T3
+  rank: 3
+  name: one_to_one_online
+  conditions: T2 plus adequate usable connectivity for the specified task; privacy and account constraints
+    still checked.
+tier_limits: 'Ordinal digital access is not a complete material model: electricity, accessible input/output,
+  language, offline software, projection, consumables, safe electrical kits and teacher competence are
+  independent capabilities. T3 does not imply a multimeter. Teacher-only demonstration is not individual
+  hands-on performance.'
+micro_skill_contract:
+  required_fields:
+  - id
+  - observable_outcome
+  - success_criteria
+  - anchor_ids
+  - min_tier
+  - required_capabilities
+  - evidence_modality
+  - estimated_minutes
+  - downgrade_variant
+  min_tier_semantics: Lowest tier allowing the stated outcome AND assessment, not merely a discussion
+    of the topic.
+  downgrade_variant: Null only when min_tier=T0 or no honest substitute exists; otherwise a referenced
+    variant for each lower feasible tier, with reason for unsupported tiers.
+  variant_fields:
+  - id
+  - target_tier
+  - preserved_constructs
+  - assessment
+  - rubric
+  - estimated_minutes
+  - required_capabilities
+  - lost_performances
+  - equivalence_status
+  - practical_bridge
+  - evidence_ids
+  equivalence_status_values:
+  - same_construct_candidate
+  - validated_same_construct
+  - conceptual_proxy_only
+  - no_valid_variant
+  identity_rule: A variant is a representation/activity linked to the same concept where valid; changed
+    observable outcomes must not retain an equivalence claim. Preserve sibling micro_skill and representation
+    entities.
+acceptable_degradation_proposal:
+  definition: All approved primary conceptual outcomes remain teachable and individually assessable in
+    T0, with no missing conceptual anchor mapping and no reduced success criterion. Digital/physical operational
+    outcomes are explicitly separate and require a scheduled practical bridge.
+  structural_gate:
+  - Every required conceptual outcome maps to at least one feasible T0 variant and an assessment.
+  - Each variant preserves the construct and rubric; no hidden device, power, network, literacy or materials
+    dependency.
+  - Every required anchor strand has conceptual coverage; coverage does not certify terminal practical
+    performance.
+  - T0 variant duration and material/teacher requirements fit the approved budget.
+  - Every lost operation has a named bridge outcome, responsible stage and required capability; no unresolved
+    residual may be published as full readiness.
+  empirical_gate:
+    status: not_run
+    proposed_design: Pilot equivalent-form conceptual assessments with T0 and device-supported teaching,
+      account for initial ability, classroom clustering and access needs.
+    proposed_noninferiority_margin_percentage_points: 10
+    margin_status: Policy hypothesis requiring educational justification and approval, not an evidence-derived
+      universal threshold.
+    pass_rule: Lower confidence bound of T0 minus comparison performance is above the approved negative
+      margin for every mandatory conceptual strand; assess practical outcomes separately.
+    stop_rule: Missing data or an underpowered study is inconclusive, not a pass.
+  strict_original_gate: If complete coverage means every actual upper-secondary digital/physical performance
+    in T0, the decision is infeasible and must report failure.
+research_test_vectors:
+- id: unplugged_trace
+  required_outcomes:
+  - trace_sequence
+  t0_assessable:
+  - trace_sequence
+  proxy_only: []
+  expected_strict_coverage: true
+- id: paper_python_is_not_execution
+  required_outcomes:
+  - trace_sequence
+  - run_python
+  t0_assessable:
+  - trace_sequence
+  proxy_only:
+  - run_python
+  expected_strict_coverage: false
+  source_id: sv_cs
+  anchor: 4.1–4.3
+- id: paper_circuit_is_not_measurement
+  required_outcomes:
+  - explain_circuit
+  - measure_voltage
+  t0_assessable:
+  - explain_circuit
+  proxy_only:
+  - measure_voltage
+  expected_strict_coverage: false
+  source_id: sv_cyt
+  anchor: grade 6, 3.1
+- id: omitted_citizenship
+  required_outcomes:
+  - trace_sequence
+  - privacy_judgment
+  t0_assessable:
+  - trace_sequence
+  proxy_only: []
+  expected_strict_coverage: false
+- id: conceptual_route_no_false_certification
+  required_outcomes:
+  - trace_sequence
+  - privacy_judgment
+  t0_assessable:
+  - trace_sequence
+  - privacy_judgment
+  proxy_only: []
+  expected_strict_coverage: true
+  qualification: Does not certify full practical readiness or validate a real curriculum.
+role_tensions:
+- from: computational_thinking_researcher
+  position: A paper trace can be valid evidence of execution reasoning, not evidence of using an editor.
+- from: technology_curriculum_designer
+  position: Real construction and measurement can be essential to technological education; material limits
+    must not erase them silently.
+- from: ai_software_engineer
+  position: Fail the strict claim using counterexamples. Encode the proposed narrower guarantee only after
+    approval.
+research_validation:
+  status: passed_counterexample_checks_not_curriculum_validation
+  algorithm: required_outcomes subset_of (t0_assessable minus proxy_only)
+  results:
+  - id: unplugged_trace
+    observed_strict_coverage: true
+    matched_expected: true
+  - id: paper_python_is_not_execution
+    observed_strict_coverage: false
+    matched_expected: true
+  - id: paper_circuit_is_not_measurement
+    observed_strict_coverage: false
+    matched_expected: true
+  - id: omitted_citizenship
+    observed_strict_coverage: false
+    matched_expected: true
+  - id: conceptual_route_no_false_certification
+    observed_strict_coverage: true
+    matched_expected: true
+  strict_full_anchor_equivalence: fails
+  full_curriculum_gate: not_run_no_curriculum_exists
+  empirical_noninferiority: not_run

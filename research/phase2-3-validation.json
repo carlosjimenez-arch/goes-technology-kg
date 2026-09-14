@@ -1,0 +1,39 @@
+{
+  "benchmark_regression_limit_percent": 20,
+  "benchmarks": [
+    {
+      "change_percent": 2.859502550787263,
+      "median_seconds": 0.01346220847335644,
+      "name": "test_parse_pdf"
+    },
+    {
+      "change_percent": 2.3182192568427906,
+      "median_seconds": 0.0003678339999169111,
+      "name": "test_parse_html"
+    },
+    {
+      "change_percent": 4.751906869898681,
+      "median_seconds": 0.0003398544795345515,
+      "name": "test_index_1000x768"
+    }
+  ],
+  "benchmarks_passed": 3,
+  "blocking_source_ids": [
+    "source-sv-cs-current-81450eccc61d64f2"
+  ],
+  "byte_identical_replay": "research/replay-validation.json",
+  "combined_coverage_percent": 75.98,
+  "command": "make check",
+  "coverage_floor_percent": 75,
+  "exit_code": 0,
+  "git_commit": null,
+  "ingestion_report_sha256": "05148554d31e3f6de3bfb9ea915df2412dd7c1408d0aaefd086a4f6a649541c3",
+  "lock_check_passed": true,
+  "offline_tests_passed": 28,
+  "phase3_coverage_complete": false,
+  "remote_ci_run": false,
+  "ruff_passed": true,
+  "schema_version": "phase2-3-validation/1.0",
+  "source_tree_sha256": "f2220d23e2545090afd7d7e28d8a35c977a0b4003083dd03bc8f083fb0c25ff0",
+  "strict_mypy_passed": true
+}

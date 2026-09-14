@@ -1,0 +1,50 @@
+{
+  "benchmarks": [
+    {
+      "name": "test_parse_pdf",
+      "stats": {
+        "median": 0.013087957981042564
+      }
+    },
+    {
+      "name": "test_parse_html",
+      "stats": {
+        "median": 0.0003595000016503036
+      }
+    },
+    {
+      "name": "test_index_1000x768",
+      "stats": {
+        "median": 0.00032443751115351915
+      }
+    }
+  ],
+  "dependency_lock_sha256": "b01dcf6f6ca9c13515a8a946e27a385b598275b0eb7f5c02855f8d40df2cceef",
+  "machine_info": {
+    "cpu": {
+      "arch": "ARM_8",
+      "arch_string_raw": "arm64",
+      "bits": 64,
+      "count": 10,
+      "cpuinfo_version": [
+        10,
+        1,
+        1
+      ],
+      "cpuinfo_version_string": "10.1.1",
+      "python_version": "3.12.7.final.0 (64 bit)"
+    },
+    "machine": "arm64",
+    "processor": "arm",
+    "python_build": [
+      "v3.12.7:0b05ead877f",
+      "Sep 30 2024 23:18:00"
+    ],
+    "python_compiler": "Clang 13.0.0 (clang-1300.0.29.30)",
+    "python_implementation": "CPython",
+    "python_implementation_version": "3.12.7",
+    "python_version": "3.12.7",
+    "release": "25.5.0",
+    "system": "Darwin"
+  }
+}

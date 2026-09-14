@@ -1,0 +1,39 @@
+schema_version: architecture-decision/1.0
+id: '0004'
+title: Explicit sibling compatibility and technology contracts
+status: accepted
+date: '2026-09-13'
+context: Phases 2 and 3 authorized by the maintainer with "A todo Ok".
+roles:
+  - technology_curriculum_designer
+  - computational_thinking_researcher
+  - knowledge_graph_researcher
+  - ai_software_engineer
+options:
+  - id: copy
+    name: Copy sibling entities and budget defaults unchanged
+  - id: explicit_contracts
+    name: Preserve structure and archetypes with versioned technology-specific contracts
+criteria:
+  - Preserve context-free skills and source/target edge direction.
+  - Reject unverified time allocations and material equivalence.
+  - Make incompatible enum vocabularies explicit.
+selected_option: explicit_contracts
+rationale:
+  - Adopt src layout, uv/Hatch, Pydantic, Typer and pytest from sibling repositories.
+  - The available science sibling is goes-natural-science-kg, not goes-science-kg.
+  - ContextTag follows that sibling's type/domain contract. The mathematics contextual vocabulary needs an explicit adapter; no silent conversion is implemented.
+  - Preserve curriculum_skill/specific_skill/micro_skill naming. Edge types use the requested uppercase technology vocabulary under tech-edge/1.0; legacy edges require an adapter.
+  - Do not copy the science sibling's 9600-minute default. All three budget modes require explicit capacities.
+  - Intrinsic content determines slug plus 16 hexadecimal hash IDs. Relations, provenance and estimates can change without changing a micro-skill ID; intrinsic changes appear as remove/add in semantic diffs.
+  - VOLATILE bindings are excluded from graph snapshots entirely, so they cannot provide prerequisites.
+  - Logical AND/OR clauses are contracts only. Scheduling, inference and curriculum generation remain outside these phases.
+role_tension:
+  curriculum_designer: T0 conceptual evidence cannot certify device operation.
+  ct_researcher: Preserve explicit practical bridges and avoid assuming far transfer.
+  graph_researcher: Only strict prerequisite edges must be acyclic; co-requisites are symmetric.
+  ai_software_engineer: Reject invalid contracts before serialization; external-grade declarations still need authoritative sibling snapshot integration.
+validation:
+  - tests/unit/test_contracts.py
+  - tests/unit/test_decisions.py
+  - src/goes_tech_kg/graph/diff.py
