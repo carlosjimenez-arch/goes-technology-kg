@@ -36,6 +36,9 @@ class SourceDocument(Contract):
     license_evidence: Text | None
     reviewed_at: datetime
     root_selector: Text = "main"
+    # layout keeps horizontal positions (interleaves table columns line by line);
+    # plain follows the content stream, which reads multi-column tables column by column.
+    text_extraction: Literal["layout", "plain"] = "layout"
     unit_boundaries: tuple[UnitBoundary, ...] = ()
     required_baseline: bool = False
     reviewed_sha256: Digest | None = None
@@ -116,7 +119,7 @@ class Paragraph(Contract):
 class ParsedDocument(Contract):
     document_id: Text
     document_sha256: Digest
-    parser_version: Literal["parse/1.0"] = "parse/1.0"
+    parser_version: Literal["parse/1.1"] = "parse/1.1"
     paragraphs: tuple[Paragraph, ...]
 
     @model_validator(mode="after")

@@ -9,7 +9,7 @@ from pypdf import PdfReader
 from goes_tech_kg.schemas.base import byte_digest, stable_id
 from goes_tech_kg.schemas.corpus import Paragraph, ParsedDocument, SourceDocument
 
-PARSER_VERSION = "parse/1.0"
+PARSER_VERSION = "parse/1.1"
 
 
 def _paragraph(
@@ -46,9 +46,12 @@ def parse_pdf(document: SourceDocument, payload: bytes) -> ParsedDocument:
     if boundaries and boundaries[-1].start_page > len(reader.pages):
         raise ValueError("unit boundary outside PDF")
     for page_no, page in enumerate(reader.pages, 1):
-        text = page.extract_text(extraction_mode="layout", layout_mode_strip_rotated=False)
-        if not text.strip():
+        if document.text_extraction == "plain":
             text = page.extract_text()
+        else:
+            text = page.extract_text(extraction_mode="layout", layout_mode_strip_rotated=False)
+            if not text.strip():
+                text = page.extract_text()
 
         if page_no in document.page_text_overrides:
             if text.strip():

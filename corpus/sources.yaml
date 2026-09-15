@@ -2,6 +2,7 @@ schema_version: discovery/1.0
 sources:
 - slug: sv-cyt
   provenance: external
+  text_extraction: plain
   title: Science and Technology, grades 2–6, current 2026 download
   url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
   publisher: SV curriculum authority

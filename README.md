@@ -61,7 +61,7 @@ discover → license gate → fetch → hash + manifest
 
 Discovery reads a reviewed [source catalogue](corpus/sources.yaml). Every source declares `provenance: external`; the gate rejects `generated` so pipeline output can never re-enter the corpus. An allowed publisher does not automatically grant admission: each resource needs recorded evidence of an open license or official publication. Rejections and acquisition failures retain their reasons. `goes-tech fetch` deliberately acquires a new snapshot and archives the previous manifest.
 
-PDF parsing preserves page and unit boundaries. HTML parsing preserves complete activities and section/DOM locators. Reversible newline normalization maps evidence intervals back to extracted source text. Citations resolve through document hash, paragraph ID and character offsets. Unknown textless pages fail unless a digest-pinned manual review is recorded.
+PDF parsing preserves page and unit boundaries. Each source declares its text extraction mode: layout keeps horizontal positions, plain follows the content stream and is used for the Salvadoran programme, whose three-column tables layout mode interleaved line by line. HTML parsing preserves complete activities and section/DOM locators. Reversible newline normalization maps evidence intervals back to extracted source text. Citations resolve through document hash, paragraph ID and character offsets. Unknown textless pages fail unless a digest-pinned manual review is recorded.
 
 Long activities use token windows for embedding only; cited units remain complete. Search uses an exact float32 index with stable ordering and tie-breaking.
 
@@ -72,7 +72,10 @@ Long activities use token windows for embedding only; cited units remain complet
 | `src/goes_tech_kg/schemas/` | Pydantic contracts and graph/curriculum invariants |
 | `src/goes_tech_kg/corpus/` | Acquisition, parsing, traceability, embeddings and indexing |
 | `src/goes_tech_kg/graph/` | Semantic graph-version diffs |
-| `src/goes_tech_kg/eval/` | Confidence calibration; metrics, slices and judges follow decision 0011 |
+| `src/goes_tech_kg/eval/` | Confidence calibration, prompt-experiment harness, model-free metrics and report tables |
+| `src/goes_tech_kg/llm/` | Vertex AI boundary: canonical requests, immutable replay records, replay-first gateway |
+| `src/goes_tech_kg/prompts/` | Versioned Spanish prompts (decomposition variants, curricular judge); version derives from text |
+| `src/goes_tech_kg/retrieval/` | Deterministic context assembly from chunk locators |
 | `src/goes_tech_kg/curriculum/` | Declared cross-subject grade-conflict checks |
 | `src/goes_tech_kg/agents/` | License-gate pipeline node |
 | `corpus/`, `decisions/` | Reviewed sources and validated architecture decisions |
@@ -110,7 +113,18 @@ Version source manifests, reviewed configuration, decisions, processed locators,
 
 Build reports record source-tree, manifest, lock and model hashes, runtime versions and seed. Acquisition timestamps remain pinned. Offline replay uses recorded vectors; cross-platform numerical regeneration is not guaranteed. Earlier Python 3.12 reports are historical evidence, not current-runtime certification.
 
-No LLM is called in the implemented pipeline. Future LLM stages require Spanish versioned prompts and persisted responses keyed by canonical `(prompt_version, input)`, including model/settings metadata and checksums. Credentials belong in local `.env` files and must never appear in artifacts or logs.
+LLM calls happen only through `goes_tech_kg.llm`. A request is canonical JSON over prompt version, model, location, generation settings, output schema, replicate and the digest of the rendered user content; the rendered text is never stored because it embeds licensed corpus passages, only its locators are. Responses live under `data/processed/llm_responses/<sha256>.json`, credential-free and never overwritten. Replay never calls a model: `scripts/run_prompt_experiment.py <plan>` reproduces a report with zero acquisitions, and `--online` is the separately authorized acquisition mode (ADC, with the active gcloud account as fallback). Decision [0013](decisions/0013-llm-provider-and-prompt-selection.yaml) records the provider choice, the pre-declared selection criteria and the measured prompt/model tables; `scripts/summarize_prompt_experiment.py` prints them from a recorded report. Credentials belong in local `.env` files and must never appear in artifacts or logs.
+
+### Prompt and model selection (decision 0013)
+
+Three decomposition prompt variants and four Vertex AI Gemini models were run on twelve cases (five official technology-axis units and paraphrases, three computational thinking, one digital citizenship, two malformed, one injection), every proposal judged by two independent models. Eligibility gates were declared before inspection: no unsupported quote on any valid case, correct refusals, no injected content, schema adherence at least 0.95. Judge scores rank eligible cells but do not certify quality; judge-human agreement is still pending.
+
+| Eligible cell (v4, parse/1.1 chunks) | Judge mean | Worst cell | Quote exactness | Indicator coverage | Micro-skills per case |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| guided-v3 × gemini-3.1-pro-preview | 0.964 | 0.78 | 1.00 | 0.84 | 3.6 |
+| guided-v3 × gemini-2.5-flash | 0.906 | 0.60 | 0.96 | 0.78 | 5.9 |
+
+Four findings matter more than the ranking. Layout-mode PDF extraction interleaved the programme's table columns line by line, so faithful quotes were not verbatim substrings; switching the programme to plain extraction (parse/1.1) took strict quote exactness from about 0.6 to 1.0. Injecting programmatic quote verification into the judge prompt raised inter-judge verdict agreement from 0.56 to 0.85. Few-shot demonstrations helped two models and broke two others, so they are validated per model. Identical requests at temperature 0 and seed 0 returned byte-identical responses in only 4 of 8 pairs, so reproducibility rests on recorded responses, never on provider settings. Human calibration materials for the judges are under `evaluation/judges/`; judges gate nothing until the maintainer rates them. Reports replay offline from recorded responses; runs recorded before parse/1.1 are reproducible only at their recording commit.
 
 ## Status and limitations
 

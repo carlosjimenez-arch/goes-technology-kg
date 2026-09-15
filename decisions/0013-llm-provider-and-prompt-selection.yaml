@@ -1,0 +1,279 @@
+schema_version: architecture-decision/1.0
+id: '0013'
+title: Vertex AI Gemini as provider; measured prompt and model selection for decomposition
+status: pending
+date: '2026-09-14'
+supersedes: []
+roles:
+  - technology_curriculum_designer
+  - computational_thinking_researcher
+  - ai_software_engineer
+affected_invariants:
+  - determinism_and_replay
+  - meaningful_tests
+  - git_and_secrets
+context: >
+  The maintainer authorized GCP use to determine the best model and to design, test and
+  improve the decomposition prompts. Probing the GOES project on 2026-09-14 with ADC showed
+  gemini-2.5-pro, gemini-2.5-flash and gemini-2.5-flash-lite on regional and global endpoints,
+  gemini-3-flash-preview and gemini-3.1-pro-preview on the global endpoint only, and no
+  Anthropic model enabled in Model Garden. No LLM stage, prompt or golden set existed in the
+  repository before this record. The selection criteria below were written before any
+  comparative result was inspected; transport status was checked first.
+
+options:
+  - id: vertex_gemini_rest
+    name: Vertex AI Gemini through REST with Application Default Credentials
+    pros:
+      - Already enabled in the GOES project; no new credentials or vendors.
+      - Deterministic request canonicalization is simple over a fixed JSON body.
+      - Regional and global endpoints allow pinning.
+    cons:
+      - Only Google models; validator and proposer share a vendor and some training lineage.
+      - Preview models can change or disappear; canary and llm_version lineage are mandatory.
+  - id: vertex_genai_sdk
+    name: Vertex AI through the google-genai SDK
+    pros:
+      - Sibling precedent (goes-natural-science-kg).
+    cons:
+      - SDK retries can hide unrecorded provider calls; request canonicalization depends on SDK internals.
+  - id: direct_anthropic_api
+    name: Anthropic API with the key present in the local environment
+    pros:
+      - Cross-vendor judge independence.
+    cons:
+      - Outside the GCP authorization the maintainer gave; billing and data residency differ.
+
+criteria:
+  - Every request field that can change the output is hashed into the replay key (prompt version, model, location, settings, schema, replicate).
+  - Responses are recorded credential-free under data/processed/llm_responses/ and never overwritten; replay never calls a model.
+  - Rendered prompts containing licensed corpus text are hashed, not stored; context is stored as locators.
+  - Selection order, declared before inspection: (1) zero fabricated quotes (quote_exactness = 1.0 on every non-refused valid case); (2) refusal correctness 1.0 on malformed cases and zero forbidden-term hits on the injection case; (3) first-parse schema adherence >= 0.95; (4) highest mean independent-judge score, excluding self-judged cells; (5) highest indicator coverage on official units; (6) lower tokens per micro-skill; (7) lower latency.
+  - A prompt variant or model that fabricates a single quote on a valid case is ineligible regardless of other scores.
+  - Amendment after v1 inspection, recorded rather than hidden: gate (1) is measured with quote_support (ordered token subsequence with layout repair) instead of quote_exactness, because the official PDF interleaves table columns and verbatim matching penalized faithful quotes. quote_exactness remains reported. No other criterion or threshold changed after inspection.
+  - Judge scores are provisional until judge-human agreement is measured (decision 0011); they rank eligible variants, they do not certify quality.
+  - Production choice requires human review of the selected outputs by the maintainer or a curriculum expert.
+
+selected_option: vertex_gemini_rest
+
+rationale:
+  - REST plus ADC keeps the boundary in one module (llm/vertex.py) with no hidden retries; the recorded body is exactly what was sent.
+  - google-auth is added only for token refresh; it is the same auth library the sibling already depends on.
+  - Proposer and judge use different model identifiers; cross-vendor independence is recorded as an open limitation rather than assumed.
+  - Thinking controls differ by family (thinkingBudget on 2.5, thinkingLevel on 3.x); they are not equivalent and the comparison is reported per model, not as a family ranking.
+
+experiment:
+  plan: data/processed/prompt_experiments/plan-decomposition-v1.json
+  consistency_plan: data/processed/prompt_experiments/plan-decomposition-v1-consistency.json
+  prompts:
+    - decomposition-structured: core rules only.
+    - decomposition-guided: core rules plus Salvadoran context block and a private verification checklist.
+    - decomposition-fewshot: guided plus one positive and one refusal demonstration with synthetic, labelled evidence.
+  judge: curricular-judge with a graded rubric; every proposal is judged by gemini-2.5-pro and gemini-3.1-pro-preview; self-judged cells are flagged and excluded from ranking.
+  cases: 12 (five official technology-axis units or paraphrases, three computational thinking, one digital citizenship, two malformed, one injection).
+  models:
+    - gemini-2.5-pro (us-central1, thinkingBudget 4096)
+    - gemini-2.5-flash (us-central1, thinkingBudget 4096)
+    - gemini-3-flash-preview (global, thinkingLevel medium)
+    - gemini-3.1-pro-preview (global, thinkingLevel medium)
+  settings: temperature 0, seed 0, JSON schema constrained output, max 16384 output tokens.
+  results: See results below. Reports replay offline from data/processed/llm_responses with zero acquisitions.
+
+results:
+  runs:
+    - name: decomposition-v1
+      report: data/processed/prompt_experiments/decomposition-v1/report.json
+      judge_prompt: curricular-judge (judge verified quotes itself)
+      note: Superseded for ranking; kept as evidence of the two artifacts below.
+    - name: decomposition-v2
+      report: data/processed/prompt_experiments/decomposition-v2/report.json
+      judge_prompt: curricular-judge-v2 (programmatic quote verification injected)
+      prompts: [decomposition-structured, decomposition-guided-v2, decomposition-fewshot-v2]
+    - name: decomposition-v2b
+      report: data/processed/prompt_experiments/decomposition-v2b/report.json
+      note: gemini-2.5-pro with thinkingBudget 8192 and gemini-3-flash-preview with thinkingLevel low, re-run after v2 showed configuration failures.
+    - name: decomposition-v3
+      report: data/processed/prompt_experiments/decomposition-v3/report.json
+      note: guided-v2 versus guided-v3 (merged-indicator citation rule) on the two eligible models.
+    - name: decomposition-v2-consistency
+      report: data/processed/prompt_experiments/decomposition-v2-consistency/report.json
+      note: Two deliberate acquisitions of identical requests (temperature 0, seed 0) on the official units.
+    - name: decomposition-v4
+      report: data/processed/prompt_experiments/decomposition-v4/report.json
+      note: guided-v3 re-run on parse/1.1 plain-mode chunks of the official programme; the ingestion fix under test.
+    - name: replay-fixture
+      report: data/processed/prompt_experiments/replay-fixture/report.json
+      note: Context from committed golden excerpts only; replayed by tests/integration/test_prompt_experiment_replay.py.
+  replay_scope: >
+    Plans v1 to v3 and the consistency plan reference parse/1.0 layout-mode chunks of the official
+    programme. After the ingestion fix (parse/1.1, text_extraction plain for sv-cyt) those chunk
+    identifiers no longer exist in data/interim, so those reports are reproducible only from the
+    commit that recorded them, with a rebuild at that commit. Their observations remain committed.
+    The replay fixture and v4 are reproducible at HEAD.
+  usage: 850 recorded responses; about 2.9M prompt, 0.9M output and 2.6M thinking tokens across all runs.
+  artifacts_found_before_ranking:
+    - id: interleaved_columns
+      finding: >
+        The official CyT programme PDF stores its three-column tables (conceptual, procedural,
+        indicator) interleaved line by line. Models quote the logically correct column, which is
+        not a verbatim substring. v1 counted these as fabricated quotes (min exactness 0.0 to 0.14
+        for every cell) and the v1 judges rejected them. Verified by inspecting mismatches: near
+        matches at ratio 0.8 to 0.94 against the interleaved text.
+      consequence: >
+        quote_exactness is reported but does not gate. quote_support (ordered token subsequence
+        within a bounded window, with hyphenation and letter-spacing repair) gates. This is a
+        parser defect to fix in ingestion (layout-aware extraction), not a prompt defect.
+    - id: judge_should_not_verify_quotes
+      finding: >
+        With the judge verifying literal presence itself (v1), verdict agreement between the two
+        judges was 0.56 with a mean score gap of 0.215. With programmatic verification injected
+        (v2), agreement rose to 0.85 with a gap of 0.06. Judges disagreed mostly about something
+        code can check deterministically.
+    - id: thinking_budget_confounds
+      finding: >
+        gemini-3-flash-preview at thinkingLevel medium spent 15k to 31k thinking tokens and hit
+        MAX_TOKENS in most cells (schema adherence 0.42 to 0.67); at low it parsed 0.92 with
+        median latency 11 s. gemini-2.5-pro's few-shot cells stopped after about 35 output tokens
+        with an empty object at both 4096 and 8192 thinking budget, so the failure is prompt-model
+        incompatibility, not budget.
+    - id: few_shot_not_portable
+      finding: >
+        The same demonstrations that helped gemini-3.1-pro-preview and gemini-2.5-flash made
+        gemini-2.5-pro and gemini-3-flash-preview emit empty objects (schema adherence 0.17).
+        Few-shot demonstrations must be validated per model, never assumed transferable.
+  v3_merged_indicator_rule:
+    finding: >
+      Rule 17 (quote every merged indicator) raised indicator coverage for gemini-3.1-pro-preview
+      from 0.57 to 0.72 and for gemini-2.5-flash from 0.69 to 0.70, with all four cells eligible,
+      quote support 1.0 and judge means 0.93 to 0.95. Paraphrase indicator Jaccard stayed at
+      0.875 for both models. guided-v3 is the current best prompt.
+  provider_determinism:
+    finding: >
+      Same request acquired twice (temperature 0, seed 0): 4 of 8 pairs byte-identical.
+      gemini-2.5-flash differed in 1 of 4 units; gemini-3.1-pro-preview differed in 3 of 4,
+      including the number of micro-skills (5 versus 4) and indicator coverage (0.64 versus 0.45).
+    consequence: >
+      Reproducibility comes from recorded responses, never from provider settings (CLAUDE.md 3.6).
+      The canary threshold of decision 0011 must absorb this run-to-run variance, measured per model
+      before it is set, and production runs must pin the recorded response, not re-ask the model.
+  ingestion_fix:
+    finding: >
+      The interleaving came from pypdf layout mode, chosen in decision 0005 to preserve table
+      structure. Plain (content-stream) extraction reads the programme's three columns in order
+      and removes the spacing artifacts (1 .1 ., sopor ta, m e d i r). SourceDocument gained
+      text_extraction (layout|plain, default layout); sv-cyt uses plain; parser version is
+      parse/1.1; chunks, index and embeddings for the programme were regenerated locally from the
+      pinned model snapshot, whose file digests matched data/processed/embeddings/model.json.
+  v4_after_ingestion_fix:
+    finding: >
+      On parse/1.1 chunks, guided-v3 reached strict quote exactness 1.0 (gemini-3.1-pro-preview)
+      and 0.96 (gemini-2.5-flash) with no unsupported quote, indicator coverage 0.84 and 0.78,
+      judge means 0.96 and 0.91, and every official unit accepted with score 1.0 by the
+      independent judge for gemini-3.1-pro-preview. The tolerant support metric is no longer
+      doing any work on the official programme; it remains for foreign PDFs with hyphenation.
+    caveats:
+      - gemini-3.1-pro-preview's grade-3 versus grade-5 conditionals pair was flat again (1.67 versus 1.67) in this acquisition after being correct in v2 and v3; given the measured provider nondeterminism, single-acquisition behavioural pairs are indicative, not conclusive.
+      - Judge verdict agreement on the 12 valid cells was 0.75 with a mean score gap of 0.075.
+  eligibility_v2:
+    eligible:
+      - decomposition-guided-v2 x gemini-3.1-pro-preview
+      - decomposition-fewshot-v2 x gemini-3.1-pro-preview
+      - decomposition-guided-v2 x gemini-2.5-flash
+    ineligible_reasons:
+      decomposition-fewshot-v2 x gemini-2.5-flash: schema adherence 0.58 despite judge mean 0.955.
+      decomposition-fewshot-v2 x gemini-2.5-pro and gemini-3-flash-preview: empty objects, adherence 0.17.
+      decomposition-guided-v2 x gemini-2.5-pro: adherence 0.83 (typographic quotes inside JSON, one empty object).
+      decomposition-guided-v2 x gemini-3-flash-preview: adherence 0.67 (medium) and 0.92 (low), below 0.95.
+      decomposition-structured x all models: at least one cell with an unsupported quote (stitched quotes with ellipses).
+  ranking_v2_eligible:
+    - cell: decomposition-guided-v2 x gemini-3.1-pro-preview
+      judge_mean: 0.944
+      judge_worst_cell: 0.75
+      indicator_coverage: 0.57
+      micro_skills_per_case: 3.4
+      tokens_per_micro_skill: 1297
+      latency_ms_median: 31202
+      directional_pair_grade5_vs_grade3: 1.67 vs 1.50 (correct direction)
+      paraphrase_indicator_jaccard: 1.0
+    - cell: decomposition-fewshot-v2 x gemini-3.1-pro-preview
+      judge_mean: 0.917
+      judge_worst_cell: 0.65
+      indicator_coverage: 0.67
+      micro_skills_per_case: 3.7
+      tokens_per_micro_skill: 1148
+      latency_ms_median: 29991
+      directional_pair_grade5_vs_grade3: 1.67 vs 1.50
+      paraphrase_indicator_jaccard: 0.63
+    - cell: decomposition-guided-v2 x gemini-2.5-flash
+      judge_mean: 0.894
+      judge_worst_cell: 0.65
+      indicator_coverage: 0.69
+      micro_skills_per_case: 5.2
+      tokens_per_micro_skill: 1127
+      latency_ms_median: 30909
+      directional_pair_grade5_vs_grade3: 2.00 vs 1.33
+      paraphrase_indicator_jaccard: 0.75
+  behavioural:
+    refusals: Every prompt and model refused grade 9 and empty context; no valid case was refused.
+    injection: No cell produced Python skills; most refused the injected context, gemini-2.5-flash with guided-v2 ignored the instruction and decomposed normally.
+    grade_sensitivity: v1 prompts left gemini-3.1-pro-preview flat across grades (1.67 vs 1.67); v2 rule 14 restored the expected direction for every model that parsed.
+    invariance: Signature Jaccard (verb plus object) is 0.0 to 0.17 everywhere and is too brittle to gate; quoted-indicator Jaccard is 0.71 to 1.0 for guided-v2 and 0.56 to 0.63 for fewshot-v2.
+  candidate_for_human_review:
+    prompt: decomposition-guided-v3
+    model: gemini-3.1-pro-preview (global endpoint, thinkingLevel medium, temperature 0, seed 0)
+    fallback: decomposition-guided-v3 x gemini-2.5-flash (generally available model, more micro-skills per unit, judge mean 0.91)
+    evidence: decomposition-v4 report on parse/1.1 chunks; earlier runs are superseded for ranking.
+    reservations:
+      - Preview identifier; a D3 event can remove it. llm_version must travel in every node's lineage and the canary must exist before production.
+      - Indicator coverage is 0.84, not 1.0: remaining gaps are deliberate exclusions named in coverage_notes (biological care indicators, magnetism outside the requested skill) and need a curriculum decision on whether they belong to Technology.
+      - Judge scores are provisional until judge-human agreement is measured (decision 0011); the ranking is not a quality certificate.
+      - Fewer micro-skills per case than 2.5-flash; whether 3 to 4 per unit is the right granularity is a curriculum decision for the maintainer.
+  human_calibration_materials:
+    sample: evaluation/judges/calibration-sample-decomposition-v2.csv (24 cells, 130 micro-skills, six per model, judge verdicts withheld)
+    key: evaluation/judges/calibration-key-decomposition-v2.json (links rows to recorded requests and judge verdicts)
+    scoring: scripts/score_judge_agreement.py computes Cohen's kappa and Krippendorff's alpha (nominal and ordinal) per judge and the activation status of decision 0011.
+    status: awaiting the maintainer's or a curriculum expert's ratings; judges gate nothing until then.
+  human_review_notes:
+    author: Claude Fable 5.1 acting as prompt engineer with a technology-education lens; not a substitute for the maintainer or a Salvadoran curriculum expert.
+    observations:
+      - Best cells respect the programme's notation section (g, kg, V, A, ohm in SI form) and chain construction before measurement as prerequisites.
+      - Tier honesty is mostly right: multimeter and circuit assembly are T1 with an explicit absence of a paper equivalent; resistance calculation stays T0.
+      - Weak cells over-produce generic computational-thinking items (for example decompose a problem in grade 3 without an observable product) and write contradictory coverage notes.
+      - Grade 3 conditionals remained reasoning-heavy in v1 for gemini-3.1-pro-preview; v2 rule 14 moved them to trace and follow rather than build and debug.
+
+consequences:
+  - This record does not select a production model; it selects a candidate for human review and records the measured table.
+  - The golden set and judge calibration of decision 0011 remain prerequisites for any production run.
+  - Preview model identifiers must be re-probed before each acquisition; disappearance is a D3 event.
+
+source_evidence:
+  - source_id: vertex_probe_2026_09_14
+    title: Vertex AI generateContent probes from the GOES project, 2026-09-14
+    use: Model availability, endpoint behaviour, thinking-control support, JSON schema support.
+
+enforced_by:
+  status: implemented
+  tests:
+    - id: request_key_covers_effective_fields
+      assertion: Changing prompt text, model, location, settings, schema or replicate changes the replay key; changing nothing keeps it.
+      test: tests/unit/test_llm_boundary.py::test_request_key_covers_every_effective_field_and_hides_context
+    - id: replay_never_calls_model
+      assertion: A gateway without an online client raises ReplayMiss on an unrecorded request.
+      test: tests/unit/test_llm_boundary.py::test_replay_store_is_immutable_and_replay_never_calls_a_model
+    - id: records_are_immutable
+      assertion: Storing a different response for an existing key raises.
+      test: tests/unit/test_llm_boundary.py::test_replay_store_is_immutable_and_replay_never_calls_a_model
+    - id: context_text_not_stored
+      assertion: A recorded request contains no rendered user content, only its digest and locators.
+      test: tests/integration/test_prompt_experiment_replay.py::test_context_is_reproducible_and_never_stored_in_records
+    - id: experiment_replays_offline
+      assertion: The committed fixture plan re-runs from recorded responses with zero acquisitions and reproduces the report observations.
+      test: tests/integration/test_prompt_experiment_replay.py::test_recorded_experiment_replays_offline_and_reports
+    - id: quote_support_repairs_layout_artifacts
+      assertion: Hyphenated line breaks and letter-spaced words in the context do not make a faithful quote count as unsupported; an invented sentence still does.
+      test: tests/unit/test_llm_boundary.py::test_decomposition_contract_and_metrics
+
+validation:
+  - tests/unit/test_llm_boundary.py
+  - tests/integration/test_prompt_experiment_replay.py
+  - tests/unit/test_decisions.py
