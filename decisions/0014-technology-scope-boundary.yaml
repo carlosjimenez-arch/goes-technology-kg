@@ -1,0 +1,91 @@
+schema_version: architecture-decision/1.0
+id: '0014'
+title: Technology scope boundary for programme indicators; biological care and magnetism
+status: proposed
+date: '2026-09-15'
+supersedes: []
+roles:
+  - technology_curriculum_designer
+  - computational_thinking_researcher
+  - knowledge_graph_researcher
+affected_invariants:
+  - anti_circularity
+  - graph_semantics
+  - coverage
+context: >
+  The decomposition experiments (decision 0013) left indicator coverage below 1.0 on official
+  units because models excluded indicators about pet care, terrariums and magnetism. The
+  maintainer asked the agent, acting as subject and graph expert, to decide whether those
+  indicators belong to Technology so the coverage ceiling can be fixed. The Science and
+  Technology programme labels whole units with an integrating axis; that label does not make
+  every indicator of a technology-axis unit a Technology outcome, nor every indicator of another
+  unit a Science outcome.
+
+options:
+  - id: axis_label
+    name: Everything in a technology-axis unit counts as Technology
+    pros:
+      - Matches the programme's own labelling; coverage ceiling is always 1.0.
+    cons:
+      - Imports pet-care routines and field-line observations as Technology skills; duplicates Science nodes in the graph.
+  - id: performance_rule
+    name: Classify each indicator by the student performance it names
+    pros:
+      - Technology means designing, constructing, operating, measuring with or evaluating artefacts and systems, plus computational thinking; the rule is checkable indicator by indicator.
+      - Science knowledge the Technology graph needs becomes a cross-subject dependency, which is what the graph vocabulary already provides.
+    cons:
+      - Requires a reviewed classification file per baseline version and reopens when the programme changes.
+  - id: exclude_units
+    name: Drop whole units that mix Science and Technology
+    pros:
+      - Simplest.
+    cons:
+      - Loses the only official technology-axis content for grades 2 to 6.
+
+criteria:
+  - Do not duplicate Science outcomes as Technology nodes; reference them.
+  - Keep every construction, measurement and evaluation performance in the programme.
+  - Make the coverage ceiling explicit and reviewable per unit.
+
+selected_option: performance_rule
+
+rationale:
+  - "Biological care: recording care tasks for a pet (grade 2, 5.7) names no artefact and is excluded. Building a structure to care for wild animals (5.8) and using a self-built terrarium (5.9) are constructions with a biological brief; the construction and operation are Technology, the biology inside is Science. Both stay."
+  - "Magnetism: observing magnetic field lines (grade 6, 3.9) is a physics observation and becomes a Science dependency. Comparing a magnet with an electromagnet (3.8) requires building and operating an electromagnet, a technical artefact; it stays as Technology with the domain-alignment explanation as a dependency."
+  - "Forces (grade 3, 1.3 to 1.6) are physics content that structures and machines depend on; they become Science dependencies, while instrument selection and measurement (1.1, 1.2) remain Technology. The unit's technology axis reflects instruments, not forces."
+  - "Energy calculations for appliances (grade 4, 1.10) stay; the human-body half of the indicator is Science and is not required of a Technology micro-skill."
+  - The classification lives in config/technology_scope.yaml, validated by a Pydantic contract, and the coverage metric reports both raw coverage and coverage within scope, so the ceiling is visible instead of implicit.
+
+consequences:
+  - Coverage ceilings for the four experiment units are 0.889, 0.333, 1.0 and 0.889.
+  - Decomposition prompts may receive the in-scope indicator list per unit; the Phase 1 anti-circularity boundary is respected because the list narrows the target, it does not supply evidence.
+  - Grade 3 unit 1 contributes few Technology skills; its Science dependencies need the natural-science sibling snapshot to resolve.
+  - Maintainer acceptance turns this into the baseline-specific scope for sv-2026-09-13-v1; a new baseline version requires a new classification.
+
+role_tensions:
+  - from: technology_curriculum_designer
+    position: Material construction with a biological purpose is still technology education; do not lose 5.8 and 5.9.
+  - from: computational_thinking_researcher
+    position: None of these indicators is computational thinking; the CT strand must come from the skill map and foreign evidence, not from relabelling Science.
+  - from: knowledge_graph_researcher
+    position: Duplicating Science nodes inside the Technology graph breaks sibling compatibility; use CrossSubjectDependency with an explicit snapshot when the sibling export exists.
+
+source_evidence:
+  - source_id: sv_cyt
+    source_url: https://www.mined.gob.sv/materiales/2026/CIENCIA_Y_TECNOLOGIA/1.%20Programas%20de%20estudio/Programas%20de%20estudio_Ciencia%20y%20Tecnolog%C3%ADa_2.%C2%B0%20a%206.%C2%B0%20grados.pdf
+    locator: PDF pages 41, 46, 59 and 93 (grade 2 unit 5, grade 3 unit 1, grade 4 unit 1, grade 6 unit 3)
+    retrieved_at: '2026-09-14T02:51:00Z'
+
+enforced_by:
+  status: implemented
+  tests:
+    - id: scope_file_validates_and_ceilings_match
+      assertion: config/technology_scope.yaml validates and each declared ceiling equals technology indicators over all indicators of the unit.
+      test: tests/unit/test_scope.py::test_scope_file_validates_and_ceilings_match
+    - id: scoped_coverage_ignores_out_of_scope_indicators
+      assertion: A decomposition quoting every technology indicator reaches scoped coverage 1.0 even when Science-dependency indicators are unquoted.
+      test: tests/unit/test_scope.py::test_scoped_coverage_ignores_out_of_scope_indicators
+
+validation:
+  - tests/unit/test_scope.py
+  - tests/unit/test_decisions.py

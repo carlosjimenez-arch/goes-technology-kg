@@ -1,0 +1,16 @@
+schema_version: golden-protocol/1.0
+decision: "0011"
+purpose: Reference decompositions and prerequisite edges used to evaluate every baseline and the full system on identical items.
+rules:
+  - Records are authored from the source documents only; never from system output, never with help from any component under evaluation.
+  - annotation_method human_unaided requires two independent annotators and an adjudication note; it is the only method that gates promotion.
+  - annotation_method llm_expert_cross_vendor marks records authored by an expert model of a vendor absent from the judge panel; they enable the harness and are provisional until a person reviews them.
+  - Golden text is never chunked, embedded or retrievable; the retrieval stage asserts that no golden statement digest appears in any assembled context.
+  - Disagreements are kept as status disputed with both positions in adjudication; disputed items are excluded from thresholds and reported.
+alignment: >
+  A system micro-skill matches a golden micro-skill when their evidence keys intersect: indicator
+  numbers for the official programme, paragraph keys for foreign sources. Prerequisite edges are
+  compared after alignment, direction included.
+current_status:
+  records: 7 provisional records authored 2026-09-15 by Claude Fable 5.1 from the programme units and the foreign paragraphs used as prompt context.
+  contamination_disclosure: The author had read system outputs for the same cases before writing these records; independence from the system is therefore partial. A human re-annotation from the sources alone supersedes these records.

@@ -1,0 +1,22 @@
+schema_version: golden-record/1.0
+case_id: ct-g5-condicionales
+grade: 5
+skill_map_entry: Usar selección (condicionales) y repetición en algoritmos y programas, y explicar con razonamiento lógico cómo funcionan y dónde fallan.
+baseline_version: sv-2026-09-13-v1
+annotation_method: llm_expert_cross_vendor
+annotators: [Claude Fable 5.1]
+status: provisional
+adjudication: England KS2 paragraphs p108, p110, p112 and p94; Argentina p93 and p106. Grade 5 adds construction and explanation; the grade 3 variant of this entry would keep only tracing and following.
+micro_skills:
+  - {id: ct5-trazar-condicional, statement: "Traza en papel un algoritmo con una condición y da el resultado para un caso verdadero y uno falso.", grade: 5, strand: computational_thinking, cognitive_domain: reasoning, min_tier: T0, evidence_keys: ["p94", "p110"]}
+  - {id: ct5-trazar-repeticion, statement: "Traza un algoritmo con repetición contando cuántas veces se ejecuta el cuerpo.", grade: 5, strand: computational_thinking, cognitive_domain: reasoning, min_tier: T0, evidence_keys: ["p94", "p110"]}
+  - {id: ct5-construir-con-seleccion, statement: "Construye un algoritmo que usa una condición para elegir entre dos acciones y lo prueba con ambos casos.", grade: 5, strand: computational_thinking, cognitive_domain: applying, min_tier: T0, evidence_keys: ["p110", "p108", "p106"]}
+  - {id: ct5-construir-con-repeticion, statement: "Reemplaza instrucciones repetidas por una estructura de repetición equivalente.", grade: 5, strand: computational_thinking, cognitive_domain: applying, min_tier: T0, evidence_keys: ["p110", "p93"]}
+  - {id: ct5-explicar-funcionamiento, statement: "Explica con razonamiento lógico por qué un algoritmo con selección y repetición produce su resultado.", grade: 5, strand: computational_thinking, cognitive_domain: reasoning, min_tier: T0, evidence_keys: ["p112"]}
+  - {id: ct5-depurar-condicional, statement: "Detecta y corrige un error en la condición o en el límite de una repetición usando casos de prueba.", grade: 5, strand: computational_thinking, cognitive_domain: reasoning, min_tier: T0, evidence_keys: ["p112", "p108"]}
+edges:
+  - {source: ct5-trazar-condicional, target: ct5-construir-con-seleccion, justification: "Construir una selección exige saber cómo se evalúa."}
+  - {source: ct5-trazar-repeticion, target: ct5-construir-con-repeticion, justification: "Construir una repetición exige saber cómo se ejecuta."}
+  - {source: ct5-construir-con-seleccion, target: ct5-explicar-funcionamiento, justification: "Explicar presupone haber construido y probado."}
+  - {source: ct5-construir-con-repeticion, target: ct5-explicar-funcionamiento, justification: "Explicar presupone haber construido y probado."}
+  - {source: ct5-explicar-funcionamiento, target: ct5-depurar-condicional, justification: "Depurar una condición exige explicar por qué falla."}

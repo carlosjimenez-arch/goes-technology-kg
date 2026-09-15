@@ -1,0 +1,29 @@
+schema_version: golden-record/1.0
+case_id: sv-g4-u1-maquinas-energia
+grade: 4
+skill_map_entry: Identificar máquinas simples y complejas en dispositivos cotidianos, construir una máquina compleja y relacionar la energía que usa un dispositivo con su utilidad.
+baseline_version: sv-2026-09-13-v1
+annotation_method: llm_expert_cross_vendor
+annotators: [Claude Fable 5.1]
+status: provisional
+adjudication: All ten indicators are Technology; 1.10 counts for appliances only.
+micro_skills:
+  - {id: g4-ejemplificar-simples, statement: "Señala máquinas simples en dispositivos del entorno y las nombra.", grade: 4, strand: technical_systems, cognitive_domain: knowing, min_tier: T0, evidence_keys: ["1.1"]}
+  - {id: g4-clasificar-simples, statement: "Clasifica máquinas simples dadas según sus definiciones clásicas.", grade: 4, strand: technical_systems, cognitive_domain: applying, min_tier: T0, evidence_keys: ["1.2"]}
+  - {id: g4-identificar-palancas, statement: "Identifica la clase de palanca en un dispositivo cotidiano señalando fulcro, fuerza y resistencia.", grade: 4, strand: technical_systems, cognitive_domain: applying, min_tier: T0, evidence_keys: ["1.3"]}
+  - {id: g4-ejemplificar-complejas, statement: "Señala máquinas complejas del entorno y las distingue de las simples.", grade: 4, strand: technical_systems, cognitive_domain: knowing, min_tier: T0, evidence_keys: ["1.4"]}
+  - {id: g4-descomponer-compleja, statement: "Identifica las máquinas simples que componen una máquina compleja dada.", grade: 4, strand: technical_systems, cognitive_domain: reasoning, min_tier: T0, evidence_keys: ["1.5"]}
+  - {id: g4-construir-compleja, statement: "Construye una máquina compleja funcional que combina al menos dos máquinas simples.", grade: 4, strand: design_process, cognitive_domain: applying, min_tier: T0, evidence_keys: ["1.6"]}
+  - {id: g4-inventario, statement: "Elabora un inventario de objetos tecnológicos de uso diario con su función.", grade: 4, strand: technical_systems, cognitive_domain: knowing, min_tier: T0, evidence_keys: ["1.7"]}
+  - {id: g4-fuentes-energia, statement: "Identifica la fuente de energía de cada objeto de su inventario.", grade: 4, strand: technical_systems, cognitive_domain: knowing, min_tier: T0, evidence_keys: ["1.8"]}
+  - {id: g4-energia-utilidad, statement: "Relaciona la forma de energía que usa un dispositivo con la utilidad que presta.", grade: 4, strand: technical_systems, cognitive_domain: reasoning, min_tier: T0, evidence_keys: ["1.9"]}
+  - {id: g4-calcular-transformacion, statement: "Efectúa cálculos simples de energía en J para un electrodoméstico a partir de su potencia en W y el tiempo.", grade: 4, strand: technical_systems, cognitive_domain: applying, min_tier: T0, evidence_keys: ["1.10"]}
+edges:
+  - {source: g4-ejemplificar-simples, target: g4-clasificar-simples, justification: "Clasificar exige reconocer antes los ejemplares."}
+  - {source: g4-clasificar-simples, target: g4-identificar-palancas, justification: "La palanca es una clase dentro de la clasificación."}
+  - {source: g4-clasificar-simples, target: g4-descomponer-compleja, justification: "Descomponer una máquina compleja requiere conocer los tipos simples."}
+  - {source: g4-ejemplificar-complejas, target: g4-descomponer-compleja, justification: "Hay que reconocer la máquina compleja antes de descomponerla."}
+  - {source: g4-descomponer-compleja, target: g4-construir-compleja, justification: "Combinar máquinas simples con propósito requiere saber cómo se componen."}
+  - {source: g4-inventario, target: g4-fuentes-energia, justification: "Las fuentes se identifican sobre los objetos inventariados."}
+  - {source: g4-fuentes-energia, target: g4-energia-utilidad, justification: "Relacionar forma de energía y utilidad presupone identificar la fuente."}
+  - {source: g4-energia-utilidad, target: g4-calcular-transformacion, justification: "El cálculo cuantifica una transformación ya identificada."}

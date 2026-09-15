@@ -1,0 +1,26 @@
+schema_version: golden-record/1.0
+case_id: ct-g3-secuencias-depuracion
+grade: 3
+skill_map_entry: Crear, seguir y depurar secuencias de instrucciones precisas para que un agente alcance una meta, prediciendo el resultado antes de ejecutarlas.
+baseline_version: sv-2026-09-13-v1
+annotation_method: llm_expert_cross_vendor
+annotators: [Claude Fable 5.1]
+status: provisional
+adjudication: Evidence keys are paragraph keys of the England programme (p90, p94, p108, p112) and the CS Unplugged lesson (p161, p167, p236, p259, p293, p377, p440, p470, p484, p500, p514); Argentina p93 and p106 support sequencing.
+micro_skills:
+  - {id: ct3-ejecutar-secuencia, statement: "Ejecuta como agente una secuencia de instrucciones escritas sin añadir ni omitir pasos.", grade: 3, strand: computational_thinking, cognitive_domain: applying, min_tier: T0, evidence_keys: ["p236", "p259", "p90"]}
+  - {id: ct3-escribir-secuencia, statement: "Escribe con símbolos acordados una secuencia que lleva al agente de inicio a meta.", grade: 3, strand: computational_thinking, cognitive_domain: applying, min_tier: T0, evidence_keys: ["p161", "p106", "p93"]}
+  - {id: ct3-predecir-resultado, statement: "Predice la casilla final de un agente antes de ejecutar una secuencia dada.", grade: 3, strand: computational_thinking, cognitive_domain: reasoning, min_tier: T0, evidence_keys: ["p94", "p514"]}
+  - {id: ct3-localizar-error, statement: "Señala la instrucción exacta donde el agente se desvía de lo esperado.", grade: 3, strand: computational_thinking, cognitive_domain: reasoning, min_tier: T0, evidence_keys: ["p167", "p293", "p514"]}
+  - {id: ct3-corregir-secuencia, statement: "Corrige la secuencia y la vuelve a probar hasta que alcanza la meta.", grade: 3, strand: computational_thinking, cognitive_domain: applying, min_tier: T0, evidence_keys: ["p167", "p377", "p112"]}
+  - {id: ct3-descomponer-recorrido, statement: "Divide un recorrido largo en tramos y prueba cada tramo por separado.", grade: 3, strand: computational_thinking, cognitive_domain: applying, min_tier: T0, evidence_keys: ["p470", "p108"]}
+  - {id: ct3-reusar-patron, statement: "Reconoce un patrón de instrucciones repetido y lo reutiliza en otro tramo.", grade: 3, strand: computational_thinking, cognitive_domain: reasoning, min_tier: T0, evidence_keys: ["p484"]}
+  - {id: ct3-comparar-soluciones, statement: "Compara dos secuencias que logran la meta y dice cuál usa menos instrucciones.", grade: 3, strand: computational_thinking, cognitive_domain: reasoning, min_tier: T0, evidence_keys: ["p500"]}
+edges:
+  - {source: ct3-ejecutar-secuencia, target: ct3-predecir-resultado, justification: "Predecir requiere conocer el efecto de cada instrucción al ejecutarla."}
+  - {source: ct3-ejecutar-secuencia, target: ct3-escribir-secuencia, justification: "Escribir instrucciones presupone haberlas seguido."}
+  - {source: ct3-predecir-resultado, target: ct3-localizar-error, justification: "Localizar el error compara lo esperado con lo observado."}
+  - {source: ct3-localizar-error, target: ct3-corregir-secuencia, justification: "Se corrige lo que se localizó."}
+  - {source: ct3-escribir-secuencia, target: ct3-descomponer-recorrido, justification: "Descomponer es una estrategia para escribir secuencias largas."}
+  - {source: ct3-escribir-secuencia, target: ct3-reusar-patron, justification: "Los patrones aparecen al escribir varias secuencias."}
+  - {source: ct3-escribir-secuencia, target: ct3-comparar-soluciones, justification: "Comparar exige al menos dos secuencias escritas."}

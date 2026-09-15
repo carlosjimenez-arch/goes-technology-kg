@@ -1,0 +1,22 @@
+system,model,case_id,grade,golden_micro_skills,covered_by_indicators,decomposition_recall,indicators,granularity_golden_per_indicator,edge_recall,note,system_micro_skills,decomposition_precision,edge_precision,edge_f1,system_edges,golden_edges,cognitive_agreement,tier_agreement,strand_agreement,unmatched_golden
+B0-official-programme,none,ct-g3-secuencias-depuracion,3,8,0,0.0,0,,0.0,"The programme states indicators, not prerequisite edges, cognitive domains or tiers.",,,,,,,,,,
+B0-official-programme,none,ct-g5-condicionales,5,6,0,0.0,0,,0.0,"The programme states indicators, not prerequisite edges, cognitive domains or tiers.",,,,,,,,,,
+B0-official-programme,none,dc-g4-datos-personales,4,3,0,0.0,0,,0.0,"The programme states indicators, not prerequisite edges, cognitive domains or tiers.",,,,,,,,,,
+B0-official-programme,none,sv-g2-u5-objetos-tecnicos,2,8,8,1.0,8,1.0,0.0,"The programme states indicators, not prerequisite edges, cognitive domains or tiers.",,,,,,,,,,
+B0-official-programme,none,sv-g3-u1-medidas-fuerzas,3,2,2,1.0,2,1.0,0.0,"The programme states indicators, not prerequisite edges, cognitive domains or tiers.",,,,,,,,,,
+B0-official-programme,none,sv-g4-u1-maquinas-energia,4,10,10,1.0,10,1.0,0.0,"The programme states indicators, not prerequisite edges, cognitive domains or tiers.",,,,,,,,,,
+B0-official-programme,none,sv-g6-u3-electricidad,6,8,8,1.0,8,1.0,0.0,"The programme states indicators, not prerequisite edges, cognitive domains or tiers.",,,,,,,,,,
+B1-decomposition-guided-v3,gemini-3.1-pro-preview,sv-g2-u5-objetos-tecnicos,2,8,,1.0,,,0.0,,4,1.0,,0.0,0,3,0.875,1.0,0.625,[]
+B1-decomposition-guided-v3,gemini-3.1-pro-preview,sv-g3-u1-medidas-fuerzas,3,2,,1.0,,,0.0,,2,0.5,,0.0,0,1,0.5,1.0,1.0,[]
+B1-decomposition-guided-v3,gemini-3.1-pro-preview,sv-g4-u1-maquinas-energia,4,10,,1.0,,,0.375,,5,1.0,1.0,0.5454545454545454,3,8,0.5,1.0,1.0,[]
+B1-decomposition-guided-v3,gemini-3.1-pro-preview,sv-g6-u3-electricidad,6,8,,0.875,,,0.3333333333333333,,4,1.0,0.5,0.4,2,6,0.8571428571428571,1.0,1.0,"[""g6-electroiman""]"
+B1-decomposition-guided-v3,gemini-3.1-pro-preview,ct-g3-secuencias-depuracion,3,8,,0.625,,,0.42857142857142855,,4,1.0,0.75,0.5454545454545454,4,7,0.7142857142857143,1.0,1.0,"[""ct3-comparar-soluciones"", ""ct3-descomponer-recorrido"", ""ct3-reusar-patron""]"
+B1-decomposition-guided-v3,gemini-3.1-pro-preview,ct-g5-condicionales,5,6,,1.0,,,0.8,,3,1.0,1.0,0.888888888888889,2,5,0.7272727272727273,1.0,1.0,[]
+B1-decomposition-guided-v3,gemini-3.1-pro-preview,dc-g4-datos-personales,4,3,,1.0,,,1.0,,2,1.0,1.0,1.0,1,2,0.6666666666666666,1.0,1.0,[]
+B1-decomposition-guided-v3,gemini-2.5-flash,sv-g2-u5-objetos-tecnicos,2,8,,0.75,,,1.0,,6,1.0,1.0,1.0,3,3,1.0,1.0,0.5,"[""g2-construir-refugio"", ""g2-usar-terrario""]"
+B1-decomposition-guided-v3,gemini-2.5-flash,sv-g3-u1-medidas-fuerzas,3,2,,1.0,,,1.0,,6,0.3333333333333333,1.0,1.0,1,1,0.5,1.0,1.0,[]
+B1-decomposition-guided-v3,gemini-2.5-flash,sv-g4-u1-maquinas-energia,4,10,,1.0,,,0.75,,10,1.0,0.75,0.75,8,8,0.7,1.0,1.0,[]
+B1-decomposition-guided-v3,gemini-2.5-flash,sv-g6-u3-electricidad,6,8,,0.875,,,0.3333333333333333,,8,1.0,0.4,0.3636363636363636,5,6,0.625,0.375,1.0,"[""g6-electroiman""]"
+B1-decomposition-guided-v3,gemini-2.5-flash,ct-g3-secuencias-depuracion,3,8,,0.75,,,0.42857142857142855,,4,1.0,1.0,0.6,4,7,0.6666666666666666,1.0,1.0,"[""ct3-comparar-soluciones"", ""ct3-reusar-patron""]"
+B1-decomposition-guided-v3,gemini-2.5-flash,ct-g5-condicionales,5,6,,1.0,,,1.0,,4,1.0,1.0,1.0,3,5,0.5882352941176471,0.7058823529411765,1.0,[]
+B1-decomposition-guided-v3,gemini-2.5-flash,dc-g4-datos-personales,4,3,,1.0,,,1.0,,3,1.0,1.0,1.0,2,2,0.4,1.0,1.0,[]

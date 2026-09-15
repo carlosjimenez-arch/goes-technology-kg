@@ -1,0 +1,16 @@
+schema_version: golden-record/1.0
+case_id: dc-g4-datos-personales
+grade: 4
+skill_map_entry: Identificar qué datos personales produce al usar servicios digitales y elegir formas simples de protegerlos y de respetar la privacidad ajena.
+baseline_version: sv-2026-09-13-v1
+annotation_method: llm_expert_cross_vendor
+annotators: [Claude Fable 5.1]
+status: provisional
+adjudication: DigComp foundation level (p156, p165, p203, p211) scaled to age 9 to 10; Argentina p119 for respecting others' data.
+micro_skills:
+  - {id: dc4-identificar-datos, statement: "Nombra al menos tres datos personales que deja al usar un servicio digital.", grade: 4, strand: digital_citizenship, cognitive_domain: knowing, min_tier: T0, evidence_keys: ["p156"]}
+  - {id: dc4-elegir-proteccion, statement: "Elige una medida simple de protección ante una situación dada y explica qué dato protege.", grade: 4, strand: digital_citizenship, cognitive_domain: applying, min_tier: T0, evidence_keys: ["p211", "p203"]}
+  - {id: dc4-respetar-privacidad-ajena, statement: "Decide si compartir una foto o dato de otra persona y justifica pedir permiso.", grade: 4, strand: digital_citizenship, cognitive_domain: reasoning, min_tier: T0, evidence_keys: ["p165", "p119"]}
+edges:
+  - {source: dc4-identificar-datos, target: dc4-elegir-proteccion, justification: "No se protege lo que no se reconoce como dato."}
+  - {source: dc4-identificar-datos, target: dc4-respetar-privacidad-ajena, justification: "Reconocer datos propios precede a reconocer los ajenos."}

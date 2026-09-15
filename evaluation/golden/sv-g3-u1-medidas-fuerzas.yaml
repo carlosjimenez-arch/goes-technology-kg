@@ -1,0 +1,14 @@
+schema_version: golden-record/1.0
+case_id: sv-g3-u1-medidas-fuerzas
+grade: 3
+skill_map_entry: Seleccionar y usar instrumentos de medición directa y experimentar con fuerzas de contacto y a distancia para explicar sus efectos sobre el movimiento.
+baseline_version: sv-2026-09-13-v1
+annotation_method: llm_expert_cross_vendor
+annotators: [Claude Fable 5.1]
+status: provisional
+adjudication: Indicators 1.3 to 1.6 are Science dependencies (decision 0014); only instrument use and selection are Technology.
+micro_skills:
+  - {id: g3-medir-varios-instrumentos, statement: "Obtiene valores enteros de una misma magnitud con dos instrumentos distintos y los anota con símbolo del SI.", grade: 3, strand: technical_systems, cognitive_domain: applying, min_tier: T0, evidence_keys: ["1.1"]}
+  - {id: g3-seleccionar-instrumento, statement: "Selecciona el instrumento apropiado para medir un objeto dado y nombra la magnitud.", grade: 3, strand: technical_systems, cognitive_domain: reasoning, min_tier: T0, evidence_keys: ["1.2"]}
+edges:
+  - {source: g3-medir-varios-instrumentos, target: g3-seleccionar-instrumento, justification: "Elegir entre instrumentos presupone haber medido con varios."}

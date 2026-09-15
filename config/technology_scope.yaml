@@ -1,0 +1,70 @@
+schema_version: technology-scope/1.0
+decision: "0014"
+baseline_version: sv-2026-09-13-v1
+rule: >
+  An achievement indicator of the Science and Technology programme belongs to Technology when
+  the student designs, constructs, operates, measures with, or evaluates an artefact or
+  technical system, or applies computational thinking to it. Observing or explaining a natural
+  phenomenon belongs to Science; when a Technology micro-skill needs that knowledge, the graph
+  references it as a cross-subject dependency instead of duplicating it as a Technology node.
+classes:
+  technology: Counts toward Technology coverage; may become a micro-skill.
+  science_dependency: Science content the Technology graph references through CrossSubjectDependency; never a Technology micro-skill and never counted as missing coverage.
+  excluded: Outside both Technology and its dependencies for this programme unit.
+units:
+  - grade: 2
+    unit: 5
+    label: Objetos técnicos
+    indicators:
+      "5.1": {class: technology, reason: "Construction of a measuring artefact."}
+      "5.2": {class: technology, reason: "Measurement with a self-built instrument."}
+      "5.3": {class: technology, reason: "Construction of a rigid structure."}
+      "5.4": {class: technology, reason: "Load testing of a structure."}
+      "5.5": {class: technology, reason: "Construction of an energy-transforming device."}
+      "5.6": {class: technology, reason: "Optimization of a self-built device."}
+      "5.7": {class: excluded, reason: "Recording care routines for a pet is biology and habits, no artefact is designed or evaluated."}
+      "5.8": {class: technology, reason: "Construction of a structure for a purpose; the biological use is the design brief."}
+      "5.9": {class: technology, reason: "Use of a self-built terrarium; the construction and operation of the enclosed system is the technological performance, the biology inside it is Science."}
+  - grade: 3
+    unit: 1
+    label: Medidas y fuerzas
+    indicators:
+      "1.1": {class: technology, reason: "Measuring with different instruments."}
+      "1.2": {class: technology, reason: "Selecting an instrument for the object measured."}
+      "1.3": {class: science_dependency, reason: "Contact forces experiment is physics content that structures and machines later depend on."}
+      "1.4": {class: science_dependency, reason: "Forces at a distance experiment is physics content."}
+      "1.5": {class: science_dependency, reason: "Comparing force behaviour is physics reasoning."}
+      "1.6": {class: science_dependency, reason: "Communicating observations about motion is a science practice."}
+  - grade: 4
+    unit: 1
+    label: Máquinas y energía
+    indicators:
+      "1.1": {class: technology, reason: "Identifying simple machines in devices."}
+      "1.2": {class: technology, reason: "Classifying simple machines."}
+      "1.3": {class: technology, reason: "Identifying lever classes in devices."}
+      "1.4": {class: technology, reason: "Identifying complex machines in devices."}
+      "1.5": {class: technology, reason: "Decomposing complex machines into simple ones."}
+      "1.6": {class: technology, reason: "Constructing a complex machine."}
+      "1.7": {class: technology, reason: "Inventory of technological objects."}
+      "1.8": {class: technology, reason: "Energy sources of technological objects."}
+      "1.9": {class: technology, reason: "Relating energy form to device utility."}
+      "1.10": {class: technology, reason: "Energy calculations for appliances count; the human-body part is Science and is not required of a Technology micro-skill."}
+  - grade: 6
+    unit: 3
+    label: Electricidad y magnetismo
+    indicators:
+      "3.1": {class: technology, reason: "Measuring with a multimeter."}
+      "3.2": {class: technology, reason: "Reading resistor values and verifying with an instrument."}
+      "3.3": {class: technology, reason: "Representing circuits with symbols."}
+      "3.4": {class: technology, reason: "Constructing a series circuit."}
+      "3.5": {class: technology, reason: "Calculating equivalent resistance in series."}
+      "3.6": {class: technology, reason: "Constructing a parallel circuit."}
+      "3.7": {class: technology, reason: "Calculating equivalent resistance and voltage in parallel."}
+      "3.8": {class: technology, reason: "Comparing a magnet with an electromagnet requires building and operating an electromagnet; the domain-alignment explanation is a Science dependency inside the same indicator."}
+      "3.9": {class: science_dependency, reason: "Observing magnetic field lines is a physics observation."}
+coverage_ceilings:
+  # technology indicators divided by all indicators in the unit; what indicator_coverage can reach.
+  "2/5": 0.889
+  "3/1": 0.333
+  "4/1": 1.0
+  "6/3": 0.889

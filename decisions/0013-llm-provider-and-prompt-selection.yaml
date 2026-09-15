@@ -228,11 +228,63 @@ results:
       - Indicator coverage is 0.84, not 1.0: remaining gaps are deliberate exclusions named in coverage_notes (biological care indicators, magnetism outside the requested skill) and need a curriculum decision on whether they belong to Technology.
       - Judge scores are provisional until judge-human agreement is measured (decision 0011); the ranking is not a quality certificate.
       - Fewer micro-skills per case than 2.5-flash; whether 3 to 4 per unit is the right granularity is a curriculum decision for the maintainer.
+  golden_comparison_b0_b1:
+    golden: evaluation/golden (7 provisional records, annotation_method llm_expert_cross_vendor, decision 0011 protocol)
+    table: evaluation/baselines/results/ba5b8fc2e88d/table.csv
+    alignment: many-to-many on evidence keys (indicator numbers, paragraph keys); a merged skill covers every golden item it cites.
+    results:
+      - system: B0 official programme
+        decomposition_recall: 0.571 (1.0 on the four official units, 0.0 on computational thinking and digital citizenship)
+        edge_recall: 0.0 (the programme states no prerequisites, cognitive domains or tiers)
+      - system: B1 guided-v3 x gemini-2.5-flash
+        decomposition_recall: 0.911 (worst case 0.75)
+        decomposition_precision: 0.905
+        edge_precision: 0.879
+        edge_recall: 0.787
+        edge_f1: 0.816
+        cognitive_agreement: 0.640
+        tier_agreement: 0.869
+      - system: B1 guided-v3 x gemini-3.1-pro-preview
+        decomposition_recall: 0.929 (worst case 0.625)
+        decomposition_precision: 0.929
+        edge_precision: 0.850
+        edge_recall: 0.420
+        edge_f1: 0.483
+        cognitive_agreement: 0.691
+        tier_agreement: 1.0
+    reading: >
+      The judge ranking and the golden ranking disagree. Judges scored gemini-3.1-pro-preview
+      higher for terse, precise decompositions; against the golden set it emits fewer than half
+      of the reference prerequisite edges, while gemini-2.5-flash recovers 79 percent of them at
+      88 percent precision. Prerequisite structure is the graph's purpose and the judges do not
+      measure it. Both models under-cover computational thinking breadth (patterns, comparing
+      solutions by instruction count) on the CS Unplugged evidence. B2 and S are not built, so
+      the question whether an agentic system beats B1 is still open; B1 with gemini-2.5-flash is
+      the bar to beat.
+    caveats:
+      - The golden set was authored by the same model that annotated the judge sample, after having read system outputs; a human golden supersedes it.
+      - Seven cases and one acquisition per cell; provider nondeterminism measured above means a second acquisition could move edge recall by several points.
+  candidate_revision_after_golden:
+    proposer_for_prerequisite_structure: decomposition-guided-v3 x gemini-2.5-flash
+    proposer_for_tier_and_citation_precision: decomposition-guided-v3 x gemini-3.1-pro-preview
+    recommendation: >
+      Do not select on judge score alone. Until a human golden exists, treat gemini-2.5-flash
+      as the B1 reference because it preserves prerequisite structure, and use gemini-3.1-pro-preview
+      only where tier honesty and citation precision dominate. A two-model design (flash proposes
+      edges, pro verifies tiers) is a hypothesis for S, to be measured against this B1 table.
   human_calibration_materials:
     sample: evaluation/judges/calibration-sample-decomposition-v2.csv (24 cells, 130 micro-skills, six per model, judge verdicts withheld)
     key: evaluation/judges/calibration-key-decomposition-v2.json (links rows to recorded requests and judge verdicts)
     scoring: scripts/score_judge_agreement.py computes Cohen's kappa and Krippendorff's alpha (nominal and ordinal) per judge and the activation status of decision 0011.
-    status: awaiting the maintainer's or a curriculum expert's ratings; judges gate nothing until then.
+    status: >
+      Rated on 2026-09-15 by the agent as a cross-vendor expert model (annotation-method file
+      alongside the sample); this does not satisfy the human gate. Against those ratings on 24
+      cells: gemini-2.5-pro kappa -0.04 (accepted 6 of 7 cells the annotator marked revise:
+      lenient), gemini-3.1-pro-preview kappa 0.33 (caught 4 of 7 revises). Excluding the four
+      cells the judges rejected for quotes later shown to be layout artifacts: -0.18 and 0.35.
+      Both judges are below the 0.6 gating floor of decision 0011 and remain advisory at most.
+      The sample predates parse/1.1, so part of the disagreement is the quote confound; a fresh
+      sample from decomposition-v4 is the next calibration step.
   human_review_notes:
     author: Claude Fable 5.1 acting as prompt engineer with a technology-education lens; not a substitute for the maintainer or a Salvadoran curriculum expert.
     observations:

@@ -231,6 +231,14 @@ promotion_thresholds:
     trigger: Any change to prompt_version, topology_version, llm_version, generation settings, retrieval_version or judge_panel_version.
   status: Values are proposals for maintainer acceptance; they must be revisited with the first baseline table and cannot be tuned after seeing S results without a recorded decision.
 
+implementation_status:
+  date: '2026-09-15'
+  golden_set: 7 provisional records under evaluation/golden, authored by a cross-vendor expert model from the sources; contract in schemas/golden.py rejects them for gating (require_human).
+  baselines_measured: B0 and B1 on decomposition-v4 (table in evaluation/baselines/results/ba5b8fc2e88d/); B2 and S not built.
+  judge_calibration: 24-cell sample rated by the same model; gemini-2.5-pro kappa -0.04, gemini-3.1-pro-preview kappa 0.33; both below the 0.6 gate, advisory at most. Human rating pending.
+  metrics_code: eval/golden_metrics.py (decomposition recall and precision, prerequisite precision, recall and F1, cognitive, tier and strand agreement) with known-value tests; eval/agreement.py (kappa, weighted kappa, Krippendorff alpha nominal and ordinal, Spearman).
+  slices: not yet reported per grade and strand; the case set is too small (one case per grade cell).
+
 consequences:
   - Human annotation is the first cost of the project; no LLM run is evaluable before the golden set exists.
   - Judges gate nothing until their agreement statistics are committed.

@@ -1,0 +1,22 @@
+schema_version: golden-record/1.0
+case_id: sv-g2-u5-objetos-tecnicos
+grade: 2
+skill_map_entry: Construir objetos técnicos comunes (balanza, puente rígido, dispositivo transformador de energía) y registrar magnitudes con instrumentos de construcción propia.
+baseline_version: sv-2026-09-13-v1
+annotation_method: llm_expert_cross_vendor
+annotators: [Claude Fable 5.1]
+status: provisional
+adjudication: Indicator 5.7 excluded per decision 0014; 5.8 and 5.9 kept as constructions.
+micro_skills:
+  - {id: g2-construir-balanza, statement: "Construye una balanza de brazos con materiales del aula que se equilibra con dos masas iguales.", grade: 2, strand: technical_systems, cognitive_domain: applying, min_tier: T0, evidence_keys: ["5.1"]}
+  - {id: g2-registrar-magnitud, statement: "Registra en g o kg valores de masa medidos con la balanza que construyó.", grade: 2, strand: technical_systems, cognitive_domain: applying, min_tier: T0, evidence_keys: ["5.2"]}
+  - {id: g2-construir-puente, statement: "Construye un modelo de puente rígido que se sostiene solo.", grade: 2, strand: design_process, cognitive_domain: applying, min_tier: T0, evidence_keys: ["5.3"]}
+  - {id: g2-registrar-resistencia, statement: "Registra en g o kg la masa máxima que soporta su puente sin perder integridad.", grade: 2, strand: technical_systems, cognitive_domain: applying, min_tier: T0, evidence_keys: ["5.4"]}
+  - {id: g2-construir-transformador, statement: "Construye un dispositivo que transforma una forma de energía en otra observable.", grade: 2, strand: technical_systems, cognitive_domain: applying, min_tier: T0, evidence_keys: ["5.5"]}
+  - {id: g2-optimizar-dispositivo, statement: "Explica un cambio concreto para mejorar su dispositivo y el efecto que espera.", grade: 2, strand: design_process, cognitive_domain: reasoning, min_tier: T0, evidence_keys: ["5.6"]}
+  - {id: g2-construir-refugio, statement: "Construye una estructura que facilita el cuidado de animales silvestres según un criterio dado.", grade: 2, strand: design_process, cognitive_domain: applying, min_tier: T0, evidence_keys: ["5.8"]}
+  - {id: g2-usar-terrario, statement: "Arma y mantiene en funcionamiento un terrario de construcción propia.", grade: 2, strand: technical_systems, cognitive_domain: applying, min_tier: T0, evidence_keys: ["5.9"]}
+edges:
+  - {source: g2-construir-balanza, target: g2-registrar-magnitud, justification: "No se puede registrar con un instrumento propio antes de construirlo."}
+  - {source: g2-construir-puente, target: g2-registrar-resistencia, justification: "La prueba de carga requiere la estructura construida."}
+  - {source: g2-construir-transformador, target: g2-optimizar-dispositivo, justification: "Optimizar exige un dispositivo propio existente."}

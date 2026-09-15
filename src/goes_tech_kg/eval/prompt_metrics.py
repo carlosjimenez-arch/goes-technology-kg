@@ -128,9 +128,17 @@ def indicator_ids(context: str) -> set[str]:
     return {f"{a}.{b}" for a, b in INDICATOR.findall(context)}
 
 
-def indicator_coverage(output: DecompositionOutput, context: str) -> float | None:
-    """Share of numbered achievement indicators in the context quoted by some micro-skill."""
+def indicator_coverage(
+    output: DecompositionOutput, context: str, in_scope: frozenset[str] | None = None
+) -> float | None:
+    """Share of numbered indicators in the context quoted by some micro-skill.
+
+    With in_scope (decision 0014), only Technology indicators count; Science dependencies and
+    excluded indicators are neither required nor credited.
+    """
     ids = indicator_ids(context)
+    if in_scope is not None:
+        ids &= in_scope
     if not ids:
         return None
     quoted: set[str] = set()

@@ -1,0 +1,25 @@
+schema_version: golden-record/1.0
+case_id: sv-g6-u3-electricidad
+grade: 6
+skill_map_entry: Medir voltaje, corriente y resistencia con multímetro, construir y representar circuitos en serie y paralelo y calcular resistencia equivalente.
+baseline_version: sv-2026-09-13-v1
+annotation_method: llm_expert_cross_vendor
+annotators: [Claude Fable 5.1]
+status: provisional
+adjudication: 3.9 is a Science dependency; 3.8 kept for the electromagnet construction facet even though the skill-map entry omits it.
+micro_skills:
+  - {id: g6-medir-multimetro, statement: "Mide voltaje en V y corriente en A en un circuito con un multímetro, conectándolo en paralelo y en serie según corresponda.", grade: 6, strand: technical_systems, cognitive_domain: applying, min_tier: T1, evidence_keys: ["3.1"]}
+  - {id: g6-leer-resistencias, statement: "Determina el valor en ohms de una resistencia por su código de colores y lo verifica con multímetro.", grade: 6, strand: technical_systems, cognitive_domain: applying, min_tier: T1, evidence_keys: ["3.2"]}
+  - {id: g6-representar-circuitos, statement: "Dibuja circuitos en serie y en paralelo con simbología estándar.", grade: 6, strand: technical_systems, cognitive_domain: applying, min_tier: T0, evidence_keys: ["3.3"]}
+  - {id: g6-construir-serie, statement: "Construye un circuito en serie funcional a partir de su diagrama.", grade: 6, strand: technical_systems, cognitive_domain: applying, min_tier: T1, evidence_keys: ["3.4"]}
+  - {id: g6-calcular-serie, statement: "Calcula la resistencia equivalente en ohms de un circuito en serie y explica la continuidad de la corriente.", grade: 6, strand: technical_systems, cognitive_domain: reasoning, min_tier: T0, evidence_keys: ["3.5"]}
+  - {id: g6-construir-paralelo, statement: "Construye un circuito en paralelo funcional a partir de su diagrama.", grade: 6, strand: technical_systems, cognitive_domain: applying, min_tier: T1, evidence_keys: ["3.6"]}
+  - {id: g6-calcular-paralelo, statement: "Calcula la resistencia equivalente y el voltaje en un circuito en paralelo.", grade: 6, strand: technical_systems, cognitive_domain: reasoning, min_tier: T0, evidence_keys: ["3.7"]}
+  - {id: g6-electroiman, statement: "Construye un electroimán y compara su efecto con el de un imán permanente.", grade: 6, strand: technical_systems, cognitive_domain: applying, min_tier: T1, evidence_keys: ["3.8"]}
+edges:
+  - {source: g6-representar-circuitos, target: g6-construir-serie, justification: "Se construye a partir del diagrama."}
+  - {source: g6-representar-circuitos, target: g6-construir-paralelo, justification: "Se construye a partir del diagrama."}
+  - {source: g6-leer-resistencias, target: g6-calcular-serie, justification: "El cálculo usa valores de resistencia identificados."}
+  - {source: g6-leer-resistencias, target: g6-calcular-paralelo, justification: "El cálculo usa valores de resistencia identificados."}
+  - {source: g6-construir-serie, target: g6-medir-multimetro, justification: "Medir voltaje y corriente exige un circuito construido."}
+  - {source: g6-construir-serie, target: g6-electroiman, justification: "El electroimán es un circuito en serie con una bobina."}

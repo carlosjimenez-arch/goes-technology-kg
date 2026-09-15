@@ -1,0 +1,16 @@
+schema_version: judge-calibration-annotation/1.0
+sample: calibration-sample-decomposition-v2.csv
+annotator: Claude Fable 5.1 (Anthropic), acting as technology-education and computational-thinking expert
+annotation_method: llm_expert_cross_vendor
+counts_as_human_unaided: false
+date: '2026-09-15'
+protocol: >
+  Rated every micro-skill of 24 sampled cells against the source units and the decision 0011
+  rubric without opening the judge verdicts in the calibration key. Cell verdict is the strictest
+  item verdict. The annotator had seen a handful of v2 judge rationales during earlier debugging
+  of unrelated cells; that exposure is disclosed here and cannot be undone.
+scope_note: >
+  Scores from this file measure judge agreement with an independent model of another vendor.
+  They do not satisfy the human gate of decision 0011; judges stay non-gating until a person rates
+  the same sample. The maintainer can overwrite the human columns of the CSV and re-run
+  scripts/score_judge_agreement.py.
