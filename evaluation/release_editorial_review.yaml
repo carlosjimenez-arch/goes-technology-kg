@@ -1,0 +1,71 @@
+schema_version: editorial-review/1.0
+status: agent_authored_not_independent_human_validation
+reviewer_roles:
+- technology_curriculum_design
+- computational_thinking_progressions
+- knowledge_graph_theory
+- ai_software_engineering
+units:
+  g6-design-process:
+    finding: The revised design unit duplicates circuit measurement and does not meet
+      the declared design-evaluation goal.
+    correction: Restore designing and evaluating an artifact for a user, comparing
+      explicit criteria, proposing a repair or improvement, and qualitatively discussing
+      materials and waste. Use the supplied England design evidence for design practices.
+      Do not relabel science measurement as a full design process. Keep lifecycle
+      extensions explicitly provisional; no invented quantified environmental assessment.
+  g5-technical-systems:
+    finding: Specialist-level preparation is asserted for elementary component identification,
+      and the unit drops the planned feedback comparison.
+    correction: Reassess preparation levels against actual teacher work, without assuming
+      training is available. Include a simple observable human feedback adjustment,
+      such as noticing an artifact misses its target and adjusting a control. Distinguish
+      this introductory instructional analogy from automated feedback theory; the
+      source does not certify the grade placement. Avoid adding circuit skills that
+      duplicate the sixth-grade unit unless they are necessary foundations.
+  g5-data-and-ai:
+    finding: Digital representation is incorrectly treated as necessary prior knowledge
+      for understanding unrepresentative samples.
+    correction: Focus the unit on collecting or comparing samples, making a modest
+      prediction and explaining how missing examples affect it. Use concrete non-personal
+      data and explicit evidence limitations. Remove unnecessary digital-representation
+      prerequisites; teacher preparation must be proportionate to the actual task.
+      Do not claim that source statements about evaluation empirically validate bias
+      instruction.
+  g2-data-and-ai:
+    finding: Interpreting a graph measure does not substantiate explaining why an
+      object fails a classification rule.
+    correction: Ground the explanation in the supplied attribute-based sorting evidence,
+      with the physical-object transfer labeled as an instructional adaptation. Do
+      not cite graph measures as evidence for exclusion from a category. Keep this
+      as data-literacy preparation rather than calling ordinary sorting artificial
+      intelligence.
+  g5-digital-citizenship:
+    finding: A nonexistent prerequisite and a fabricated quotation remain; fact/opinion
+      discrimination is not yet a declared internal skill.
+    correction: Resolve internal references using only existing output slugs; put
+      any additional prior knowledge in external_knowledge. Use exact short quotations
+      from the supplied primary Computing and DigComp paragraphs. Do not invent evaluating
+      data in a paragraph that says presenting data. Keep privacy-policy literacy
+      teacher-mediated and age-appropriate.
+  g5-computational-thinking:
+    finding: The earlier packet admitted secondary-stage references; these cannot
+      justify primary placement.
+    correction: Use only the newly supplied primary paragraphs; replace unsupported
+      claims and keep primary-age scaffolding. Do not infer country grade equivalence
+      or necessary prerequisites from broad secondary aims. Preserve the declared
+      learning goal as an explicitly provisional adaptation where needed.
+  g6-computational-thinking:
+    finding: The earlier packet admitted secondary-stage references; these cannot
+      justify primary placement.
+    correction: Use only the newly supplied primary paragraphs; replace unsupported
+      claims and keep primary-age scaffolding. Do not infer country grade equivalence
+      or necessary prerequisites from broad secondary aims. Preserve the declared
+      learning goal as an explicitly provisional adaptation where needed.
+  g6-digital-citizenship:
+    finding: The earlier packet admitted secondary-stage references; these cannot
+      justify primary placement.
+    correction: Use only the newly supplied primary paragraphs; replace unsupported
+      claims and keep primary-age scaffolding. Do not infer country grade equivalence
+      or necessary prerequisites from broad secondary aims. Preserve the declared
+      learning goal as an explicitly provisional adaptation where needed.

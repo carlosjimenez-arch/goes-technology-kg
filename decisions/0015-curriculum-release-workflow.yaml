@@ -1,0 +1,35 @@
+schema_version: architecture-decision/1.0
+id: '0015'
+title: Evidence-backed first and revised curriculum proposals
+status: accepted
+date: '2026-09-17'
+options:
+  - id: single_pass
+    name: Publish a single decomposition as the final curriculum
+  - id: measured_revision
+    name: Preserve first proposal, independent critique and revised release with deterministic gates
+criteria:
+  - Cite actual evidence and distinguish instructional judgment from empirical validation.
+  - Cover all five strands across grades 2–6 with observable progression.
+  - Preserve reproducibility and expose the weakest grade/strand, not only means.
+selected_option: measured_revision
+rationale:
+  - The maintainer approved the complete plan, including GCP, first version, critique, final proposal and Git delivery.
+  - Use the original requested 160 hours as an explicitly nonofficial standalone capacity scenario, with 40/80-hour sensitivity. Never fill unused capacity with invented learning time.
+  - Reuse the Vertex gateway and recorded answers. Limit each run to 25 units, one semantic repair and one contract repair per generation stage, plus one targeted citation repair and a final audit. Preserve failed answers and account for actual calls; schema failures required more than the initial 125-call estimate. Every request records model/settings and source locators.
+  - Use Gemini 2.5 Flash as proposer/reviser and Gemini 2.5 Pro as critic, informed by prior structural-recall experiments. Different models do not create independent human validation.
+  - Critic scores never become confidence values; uncalibrated confidence remains null. A final critique is blind to the previous critique and advisory, not an adoption gate.
+  - Design hypotheses and review-suggested corrections remain distinguishable from source facts; resolving a citation alone cannot establish pedagogical support.
+  - Full-coverage capacity allocation, external snapshot validation and material diagnostics are deterministic code, not LLM decisions. This allocator does not implement optional-node AND/OR optimization.
+  - Candidate units retain invalid relationship proposals for critique; strict graph construction rejects or quarantines unresolved endpoints. Structural proposal validation never certifies semantic graph validity.
+  - Separate assessment time may be zero when assessment is embedded in instruction; every skill still requires an assessment task and success criteria. Review time remains positive.
+  - Cross-grade progression recommendations live in a sidecar, not as falsely necessary graph edges. T0 alternatives remain teaching guidance until a validated downgrade binding exists.
+  - Source review found secondary English Computing paragraphs in primary evidence packets. Exclude Key stages 3 and 4, preserve original contexts and revise affected units. Ontario grade-matched data-literacy evidence supplements two weak packets without asserting country grade equivalence.
+  - Allow one to eight micro-skills per unit instead of forcing three to six. A fixed minimum encouraged unsupported decomposition; required evidence and mastery criteria remain mandatory for every skill.
+  - The science catalog uses the actual sibling repository name goes-natural-science-kg, consistent with existing cross-subject contracts.
+  - Eight explicitly recorded editorial interventions address scope drift, source-stage leakage and unjustified prerequisites; these are agent-authored critiques, not independent human evaluation.
+  - Explicit schema-validated publication curation removes two unjustified prerequisite hypotheses after review and uses authoritative map titles. It preserves original model candidates, rejects stale correction rules, and applies identical changes to graph and allocation.
+  - No cloud hosting, service accounts or persistent infrastructure is created.
+  - Final means the revised proposal for this iteration; adoption remains blocked on missing baseline evidence, unresolved prerequisites and independent human review.
+validation:
+  - tests/integration/test_curriculum_release.py

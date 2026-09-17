@@ -7,6 +7,7 @@
 
 - [Overview](#overview)
 - [Quick start](#quick-start)
+- [Curriculum proposals](#curriculum-proposals)
 - [Evidence pipeline](#evidence-pipeline)
 - [Architecture](#architecture)
 - [Validation](#validation)
@@ -17,7 +18,7 @@
 
 A reproducible foundation for developing a Technology curriculum for El Salvador, grades 2–6. Technology includes design, technical systems, computational thinking, digital citizenship, and data and AI literacy.
 
-The repository implements typed knowledge contracts, semantic graph diffs, source admission, evidence extraction and vector indexing. Curriculum inference and scheduling are future work. The distribution is `goes-tech-kg`; Python imports use `goes_tech_kg`.
+The repository implements source admission, evidence extraction, vector indexing, recorded model proposal/review/revision, graph snapshots and deterministic curriculum allocation. Outputs are research proposals; documentary alignment is not classroom validation. The distribution is `goes-tech-kg`; Python imports use `goes_tech_kg`.
 
 ## Quick start
 
@@ -52,6 +53,31 @@ uv run --locked --extra embeddings goes-tech build \
 
 The model is `sentence-transformers/paraphrase-multilingual-mpnet-base-v2`, revision `4328cf26390c98c5e3c738b4460a05b95f4911f5`. Its file hashes are recorded in [model.json](data/processed/embeddings/model.json). Loading is local-only.
 
+## Curriculum proposals
+
+The [revised proposal](data/processed/curriculum_releases/v2/curriculum_proposal.html) contains observable skills, teaching sequences, assessment tasks and criteria, accessibility, equipment, teacher preparation, exact source locators and remaining critique. Open the HTML locally or use the [CSV](data/processed/curriculum_releases/v2/curriculum_proposal.csv).
+
+- [First graph and curriculum](data/processed/curriculum_releases/v1/): all original candidate units are retained; invalid evidence is quarantined from the graph, and an incomplete draft cannot receive a valid schedule.
+- [Revised graph and curriculum](data/processed/curriculum_releases/v2/): the deliverable for this iteration, with human review still required.
+- [Version comparison](data/processed/curriculum_releases/comparison.json), [semantic graph diff](data/processed/curriculum_releases/graph_diff.json) and [pedagogical review](evaluation/curriculum_release_review.yaml).
+- [Manifest](data/processed/curriculum_releases/manifest.json): code, input, response and artifact hashes. [Progression links](data/processed/curriculum_releases/progression_links.json) are teaching hypotheses, not asserted necessary prerequisites.
+
+The map declares 25 units: five strands in each grade. The revised graph contains 90 micro-skills and 144 edges. The proposed core requires 19–26.33 clock hours per grade; it is not a complete 160-hour annual course. The [recorded run summary](evaluation/curriculum_run_summary.json) accounts for 144 model responses, including failed and superseded attempts. The final model audit retains 28 major flags, which are uncalibrated review findings, not a quality score. Two unnecessary prerequisite hypotheses were removed through [explicit publication curation](config/curriculum_curation.json); other evidence and progression concerns remain visible.
+
+The primary configuration is an **unverified 160-hour standalone capacity scenario**, with 40/80-hour sensitivity. Actual planned time is reported separately; unused capacity is not filled. `standalone`, `transversal` and `hybrid` allocation share the same deterministic ledger. Borrowing requires a host subject, capacity and proposed indicator. A feasible ledger does not certify a school's timetable, equipment or cross-subject readiness.
+
+After restoring and building the pinned evidence, replay the workflow without credentials:
+
+```sh
+uv run --locked python scripts/generate_curriculum_proposals.py
+uv run --locked python scripts/repair_curriculum_evidence.py
+uv run --locked python scripts/apply_curriculum_editorial_review.py
+uv run --locked python scripts/audit_curriculum_revision.py
+uv run --locked python scripts/build_curriculum_release.py
+```
+
+Generation resumes verified completed records. Use a separate experiment directory for changed input plans. New model answers require the explicit `--online` option and authorized GCP credentials; a replay miss never silently calls a provider. The self-contained real-source fixture is exercised by `tests/integration/test_curriculum_release.py` without restoring the full corpus.
+
 ## Evidence pipeline
 
 ```text
@@ -77,14 +103,14 @@ Long activities use token windows for embedding only; cited units remain complet
 | `src/goes_tech_kg/llm/` | Vertex AI boundary: canonical requests, immutable replay records, replay-first gateway |
 | `src/goes_tech_kg/prompts/` | Versioned Spanish prompts (decomposition variants, curricular judge); version derives from text |
 | `src/goes_tech_kg/retrieval/` | Chunk store, context references and deterministic context assembly |
-| `src/goes_tech_kg/curriculum/` | Declared cross-subject grade-conflict checks |
+| `src/goes_tech_kg/curriculum/` | Proposal/review workflow, immutable-response verification, graph compilation, three-mode allocation, external snapshot checks and HTML/CSV publication |
 | `corpus/`, `decisions/` | Reviewed sources and validated architecture decisions |
 | `data/manifests/`, `data/processed/` | Acquisition records and reproducible derived artifacts |
 | `tests/` | Contract, property, real-source, VCR and performance tests |
 
 Skills are context-free archetypes; context enters during curricularization. A micro-skill's `confidence` is never authored: it is computed from judge verdicts weighted by their measured agreement with humans, citation support and revision count, then mapped through a calibration table fitted on unaided human labels (`eval/calibration.py`). Without calibrated judges or a table the value stays null, and `verify_confidence` fails any stored value that does not reproduce. `VOLATILE` tool operations live outside graph snapshots and cannot become prerequisites. Material downgrades must disclose lost practical performance and its instructional bridge.
 
-Budgets support `standalone`, `transversal` and `hybrid` contracts with explicit capacities and host-subject accounting. There is **no assumed 160-hour allocation**. Cross-subject dependencies include repository, snapshot hash, node ID and declared availability grade; authoritative sibling-export adapters remain necessary.
+Budgets support `standalone`, `transversal` and `hybrid` contracts with explicit capacities and host-subject accounting. The release config uses 160 hours only as a nonofficial scenario. Cross-subject dependencies include repository, snapshot hash, node ID and declared availability grade; a hash-pinned science export supports grade-conflict detection, but its labels remain provisional. Release external-knowledge requirements are unresolved until linked to reviewed sibling IDs.
 
 Decisions [0010](decisions/0010-system-design.yaml) and [0011](decisions/0011-evaluation-design.yaml) propose the production framing and the evaluation design. Structure follows the sibling repositories. Context follows the available science sibling; Mathematics uses a different vocabulary and needs an explicit adapter. Decisions [0004](decisions/0004-contracts-and-compatibility.yaml) and [0005](decisions/0005-ingestion-and-replay.yaml) explain compatibility and ingestion trade-offs.
 
@@ -99,13 +125,15 @@ uv build            # Source distribution and wheel
 
 Tests do not mock domain logic. Three attributed real excerpts cover PDF and HTML; VCR replays a real HTTP failure. Hypothesis checks canonical identities, graph ordering, text conservation and offsets. Tests also exercise volatile-node rejection, material tiers, budgets, grade conflicts and source/vector corruption.
 
-Hosted CI is suspended by decision [0012](decisions/0012-ci-suspension.yaml); `make static-check` runs the portable checks locally. Performance thresholds are enforced by `make check` against a reviewed machine-specific [baseline](tests/benchmarks/baseline.json), not compared across unrelated hosted runners. The benchmark workloads are one real PDF page, a real HTML curriculum excerpt, and a seeded 1,000 × 768-vector index. Migration measurements are recorded in [desktop-migration-validation.json](research/desktop-migration-validation.json). Current counts are reported by `make static-check`.
+Hosted CI is suspended by decision [0012](decisions/0012-ci-suspension.yaml); `make static-check` runs the portable checks locally. Performance thresholds are enforced by `make check` against a reviewed machine-specific [baseline](tests/benchmarks/baseline.json), not compared across unrelated hosted runners. The benchmark workloads are one real PDF page, a real HTML curriculum excerpt, a seeded 1,000 × 768-vector index, and graph compilation/allocation for a three-skill unit from real recorded evidence. Migration measurements are recorded in [desktop-migration-validation.json](research/desktop-migration-validation.json). Current counts are reported by `make static-check`.
 
 | Local benchmark | Median |
 | --- | ---: |
 | PDF parsing | 13.665 ms |
 | HTML parsing | 0.363 ms |
 | Index construction | 0.194 ms |
+| Evidence-backed graph compilation (three skills) | 0.285 ms |
+| Complete-unit allocation | 0.020 ms |
 
 ## MLOps and DataOps
 
@@ -115,23 +143,18 @@ Build reports record source-tree, manifest, lock and model hashes, runtime versi
 
 LLM calls happen only through `goes_tech_kg.llm`. A request is canonical JSON over prompt version, model, location, generation settings, output schema, replicate and the digest of the rendered user content; the rendered text is never stored because it embeds licensed corpus passages, only its locators are. Responses live under `data/processed/llm_responses/<sha256>.json`, credential-free and never overwritten. Replay never calls a model: `scripts/run_prompt_experiment.py <plan>` reproduces a report with zero acquisitions, and `--online` is the separately authorized acquisition mode (ADC, with the active gcloud account as fallback). Decision [0013](decisions/0013-llm-provider-and-prompt-selection.yaml) records the provider choice, the pre-declared selection criteria and the measured prompt/model tables; `scripts/summarize_prompt_experiment.py` prints them from a recorded report. Credentials belong in local `.env` files and must never appear in artifacts or logs.
 
-### Prompt and model selection (decision 0013)
+### Model workflow and retrieval evaluation
 
-Three decomposition prompt variants and four Vertex AI Gemini models were run on twelve cases (five official technology-axis units and paraphrases, three computational thinking, one digital citizenship, two malformed, one injection), every proposal judged by two independent models. Eligibility gates were declared before inspection: no unsupported quote on any valid case, correct refusals, no injected content, schema adherence at least 0.95. Judge scores rank eligible cells but do not certify quality; judge-human agreement is still pending.
+Decision [0015](decisions/0015-curriculum-release-workflow.yaml) uses Gemini 2.5 Flash for proposals/revisions and Gemini 2.5 Pro for criticism. Exact citations, schema validity, graph constraints and accounting are deterministic gates. Narrow format corrections are logged; unsupported content requires a recorded repair. Reviewers cannot waive human validation, and model ratings never become calibrated confidence.
 
-| Eligible cell (v4, parse/1.1 chunks) | Judge mean | Worst cell | Quote exactness | Indicator coverage | Micro-skills per case |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| guided-v3 × gemini-3.1-pro-preview | 0.964 | 0.78 | 1.00 | 0.84 | 3.6 |
-| guided-v3 × gemini-2.5-flash | 0.906 | 0.60 | 0.96 | 0.78 | 5.9 |
+The earlier [prompt experiments](data/processed/prompt_experiments/) compared four models and three prompts. Source-authored golden labels and model judges disagreed on rankings. Repeated temperature-zero calls were byte-identical in only four of eight pairs, so reproducibility depends on response replay. See [decision 0013](decisions/0013-llm-provider-and-prompt-selection.yaml), [golden evaluation](evaluation/golden/) and [judge calibration protocol](evaluation/judges/) for the evidence and uncompleted human validation.
 
-Against the provisional golden set (`evaluation/golden/`, seven records authored from the sources, not yet human-reviewed), the picture changes: B0, the official programme, covers 57 percent of golden micro-skills and no prerequisite edge; B1 with `gemini-2.5-flash` recovers 91 percent of micro-skills and 79 percent of prerequisite edges at 88 percent precision; B1 with `gemini-3.1-pro-preview` recovers 93 percent of micro-skills but only 42 percent of edges. The judges ranked the two the other way round, which is why decision 0013 refuses to select on judge score alone. B2 and S are not built yet; `scripts/compare_baselines.py` regenerates the table from recorded responses. Decision 0014 fixes which programme indicators count as Technology (`config/technology_scope.yaml`), so coverage ceilings are explicit; reports carry raw coverage and Technology-only coverage side by side, and the latter reaches 0.98 for the leading configuration against 0.84 raw.
-
-Four findings matter more than the ranking. Layout-mode PDF extraction interleaved the programme's table columns line by line, so faithful quotes were not verbatim substrings; switching the programme to plain extraction (parse/1.1) took strict quote exactness from about 0.6 to 1.0. Injecting programmatic quote verification into the judge prompt raised inter-judge verdict agreement from 0.56 to 0.85. Few-shot demonstrations helped two models and broke two others, so they are validated per model. Identical requests at temperature 0 and seed 0 returned byte-identical responses in only 4 of 8 pairs, so reproducibility rests on recorded responses, never on provider settings. Human calibration materials for the judges are under `evaluation/judges/`; judges gate nothing until the maintainer rates them. Reports replay offline from recorded responses; runs recorded before parse/1.1 are reproducible only at their recording commit.
+A [frozen retrieval comparison](evaluation/retrieval-v2/report.json) evaluated local multilingual MPNet against Vertex `gemini-embedding-001`: 14 queries, 45 candidate paragraphs, eight development and six held-out queries. Both achieved held-out MRR and recall@3 of 1.0; the predeclared improvement threshold was not met, so the local default remains. This small, provisionally labeled pool cannot establish full-corpus superiority. The initial [diagnostic run](evaluation/retrieval/) omitted indicator-based labels; the corrected v2 reports that change. Curriculum generation uses pinned source-diverse packets, so this experiment does not silently alter its evidence.
 
 ## Status and limitations
 
 The recorded corpus contains 104 indexed units, eight foreign resources per target grade from five countries, and three international references counted separately. These counts describe resource coverage, not validated instructional quality or equivalence between national grades.
 
-**Phase 3 remains incomplete.** The current Salvadoran Computer Science programme returned 404/403; the older programme cannot replace that vertical anchor. The UNESCO source is an overview, not the complete competency-framework PDF. OCR, authoritative sibling-grade integration, curriculum generation and the solver are not implemented.
+**Phase 3 remains incomplete.** The current Salvadoran Computer Science programme returned 404/403; the older programme cannot replace that vertical anchor. The UNESCO source is an overview, not the complete competency-framework PDF. OCR, authoritative sibling-grade integration, optional-node optimization and school deployment validation remain incomplete. The implemented allocator covers the complete declared map; it does not claim to optimize alternative learning paths.
 
 See the [ingestion report](data/processed/ingestion/report.json), [research findings](research/findings.yaml) and [replay evidence](research/replay-validation.json) for provenance and unresolved gaps.

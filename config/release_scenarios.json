@@ -1,0 +1,13 @@
+{
+  "primary": {
+    "minutes_per_grade": 9600,
+    "mode": "standalone",
+    "own_share": 1.0,
+    "official_verified": false
+  },
+  "sensitivity_minutes": [
+    2400,
+    4800,
+    9600
+  ]
+}

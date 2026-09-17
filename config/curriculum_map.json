@@ -1,0 +1,514 @@
+{
+  "schema_version": "curriculum-map/1.0",
+  "status": "instructional_design_hypothesis",
+  "units": [
+    {
+      "id": "g2-computational-thinking",
+      "grade": 2,
+      "strand": "computational_thinking",
+      "title": "Precise instructions",
+      "learning_goal": "Follow and debug a short ordered instruction sequence with concrete objects.",
+      "progression": "Move from executing one instruction to predicting and correcting a short sequence.",
+      "retrieval_query": "algorithm sequence instructions repetition debugging condition algorithms programaci\u00f3n secuencia instrucciones depuraci\u00f3n repetici\u00f3n",
+      "source_units": [
+        [
+          "eng-computing",
+          "England Computing programmes of study"
+        ],
+        [
+          "argentina",
+          "Primary first cycle"
+        ]
+      ],
+      "order": 1
+    },
+    {
+      "id": "g2-digital-citizenship",
+      "grade": 2,
+      "strand": "digital_citizenship",
+      "title": "Safe participation",
+      "learning_goal": "Distinguish personal information from shareable classroom work and seek trusted-adult support.",
+      "progression": "Practice concrete decisions in fictional situations without requiring personal accounts.",
+      "retrieval_query": "privacy personal information safety consent respectful sources information seguridad privacidad datos personales respeto fuentes",
+      "source_units": [
+        [
+          "digcomp",
+          "Safety"
+        ],
+        [
+          "eng-computing",
+          "England Computing programmes of study"
+        ]
+      ],
+      "order": 2
+    },
+    {
+      "id": "g2-design-process",
+      "grade": 2,
+      "strand": "design_process",
+      "title": "Design for a need",
+      "learning_goal": "Identify a user need, sketch a simple artifact and test whether it serves its purpose.",
+      "progression": "Make and explain one improvement based on observation, not decoration.",
+      "retrieval_query": "design make evaluate prototype materials criteria test improve dise\u00f1o construir evaluar materiales artefacto prototipo",
+      "source_units": [
+        [
+          "sv-cyt",
+          "Grade 2, unit 5"
+        ],
+        [
+          "eng-dt",
+          "Key stage 1"
+        ]
+      ],
+      "order": 3
+    },
+    {
+      "id": "g2-technical-systems",
+      "grade": 2,
+      "strand": "technical_systems",
+      "title": "Measuring artifacts and structures",
+      "learning_goal": "Build and use a simple measuring artifact and test a stable structure.",
+      "progression": "Connect material, shape and function through observable performance.",
+      "retrieval_query": "technical systems components structure measurement energy machines circuit sistemas medici\u00f3n estructura m\u00e1quinas energ\u00eda circuitos",
+      "source_units": [
+        [
+          "sv-cyt",
+          "Grade 2, unit 5"
+        ],
+        [
+          "eng-dt",
+          "Key stage 1"
+        ]
+      ],
+      "order": 4
+    },
+    {
+      "id": "g2-data-and-ai",
+      "grade": 2,
+      "strand": "data_and_ai",
+      "title": "Sorting and descriptions",
+      "learning_goal": "Sort concrete objects by an explicit attribute and explain a choice that does not fit.",
+      "progression": "A classification rule is a human decision; do not label every sorting activity artificial intelligence.",
+      "retrieval_query": "data classification patterns prediction information examples artificial intelligence datos clasificaci\u00f3n patrones ejemplos inteligencia artificial",
+      "source_units": [
+        [
+          "digcomp",
+          "Information and data literacy"
+        ],
+        [
+          "argentina",
+          "Primary first cycle"
+        ],
+        [
+          "ontario-math",
+          "Mathematics, Grade 2"
+        ]
+      ],
+      "order": 5
+    },
+    {
+      "id": "g3-computational-thinking",
+      "grade": 3,
+      "strand": "computational_thinking",
+      "title": "Patterns and repetition",
+      "learning_goal": "Recognize repeated actions and represent them as a bounded repeat in an algorithm.",
+      "progression": "Use a known sequence as a unit; distinguish a repeated block from an unlimited loop.",
+      "retrieval_query": "algorithm sequence instructions repetition debugging condition algorithms programaci\u00f3n secuencia instrucciones depuraci\u00f3n repetici\u00f3n",
+      "source_units": [
+        [
+          "eng-computing",
+          "England Computing programmes of study"
+        ],
+        [
+          "argentina",
+          "Primary first cycle"
+        ]
+      ],
+      "order": 1
+    },
+    {
+      "id": "g3-digital-citizenship",
+      "grade": 3,
+      "strand": "digital_citizenship",
+      "title": "Respectful collaboration",
+      "learning_goal": "Apply consent, attribution and respectful communication to a shared classroom digital artifact.",
+      "progression": "Explain the reason for a simple rule instead of only recalling a prohibition.",
+      "retrieval_query": "privacy personal information safety consent respectful sources information seguridad privacidad datos personales respeto fuentes",
+      "source_units": [
+        [
+          "digcomp",
+          "Safety"
+        ],
+        [
+          "eng-computing",
+          "England Computing programmes of study"
+        ]
+      ],
+      "order": 2
+    },
+    {
+      "id": "g3-design-process",
+      "grade": 3,
+      "strand": "design_process",
+      "title": "Materials and criteria",
+      "learning_goal": "Compare available materials and build a small prototype against two explicit criteria.",
+      "progression": "Keep the user need stable while changing one design feature.",
+      "retrieval_query": "design make evaluate prototype materials criteria test improve dise\u00f1o construir evaluar materiales artefacto prototipo",
+      "source_units": [
+        [
+          "sv-cyt",
+          "Grade 3, unit 1"
+        ],
+        [
+          "eng-dt",
+          "Key stage 1"
+        ]
+      ],
+      "order": 3
+    },
+    {
+      "id": "g3-technical-systems",
+      "grade": 3,
+      "strand": "technical_systems",
+      "title": "Inputs and outputs",
+      "learning_goal": "Identify components, inputs and outputs of a familiar mechanism and test a change.",
+      "progression": "Distinguish an artifact function from an explanation of natural phenomena.",
+      "retrieval_query": "technical systems components structure measurement energy machines circuit sistemas medici\u00f3n estructura m\u00e1quinas energ\u00eda circuitos",
+      "source_units": [
+        [
+          "sv-cyt",
+          "Grade 3, unit 1"
+        ],
+        [
+          "eng-dt",
+          "Key stage 1"
+        ]
+      ],
+      "order": 4
+    },
+    {
+      "id": "g3-data-and-ai",
+      "grade": 3,
+      "strand": "data_and_ai",
+      "title": "Data and representations",
+      "learning_goal": "Collect a small nonpersonal dataset and choose a clear representation to answer a question.",
+      "progression": "Distinguish the objects, their recorded attributes and the question being answered.",
+      "retrieval_query": "data classification patterns prediction information examples artificial intelligence datos clasificaci\u00f3n patrones ejemplos inteligencia artificial",
+      "source_units": [
+        [
+          "digcomp",
+          "Information and data literacy"
+        ],
+        [
+          "argentina",
+          "Primary first cycle"
+        ],
+        [
+          "ontario-math",
+          "Mathematics, Grade 3"
+        ]
+      ],
+      "order": 5
+    },
+    {
+      "id": "g4-computational-thinking",
+      "grade": 4,
+      "strand": "computational_thinking",
+      "title": "Decisions and testing",
+      "learning_goal": "Use one observable condition to choose an action and test both outcomes.",
+      "progression": "Add selection to sequences and bounded repeats; explain a failing example.",
+      "retrieval_query": "algorithm sequence instructions repetition debugging condition algorithms programaci\u00f3n secuencia instrucciones depuraci\u00f3n repetici\u00f3n",
+      "source_units": [
+        [
+          "eng-computing",
+          "England Computing programmes of study"
+        ],
+        [
+          "argentina",
+          "Primary second cycle"
+        ]
+      ],
+      "order": 1
+    },
+    {
+      "id": "g4-digital-citizenship",
+      "grade": 4,
+      "strand": "digital_citizenship",
+      "title": "Privacy and source checks",
+      "learning_goal": "Compare simple information sources and explain what data a digital activity exposes.",
+      "progression": "Use author, evidence and purpose as cues; never infer truth from appearance alone.",
+      "retrieval_query": "privacy personal information safety consent respectful sources information seguridad privacidad datos personales respeto fuentes",
+      "source_units": [
+        [
+          "digcomp",
+          "Safety"
+        ],
+        [
+          "eng-computing",
+          "England Computing programmes of study"
+        ]
+      ],
+      "order": 2
+    },
+    {
+      "id": "g4-design-process",
+      "grade": 4,
+      "strand": "design_process",
+      "title": "Controlled design tests",
+      "learning_goal": "Use a repeatable test to compare prototypes while keeping relevant conditions consistent.",
+      "progression": "Record failure and connect a revision to evidence rather than preference.",
+      "retrieval_query": "design make evaluate prototype materials criteria test improve dise\u00f1o construir evaluar materiales artefacto prototipo",
+      "source_units": [
+        [
+          "sv-cyt",
+          "Grade 4, unit 1"
+        ],
+        [
+          "eng-dt",
+          "Key stage 2"
+        ]
+      ],
+      "order": 3
+    },
+    {
+      "id": "g4-technical-systems",
+      "grade": 4,
+      "strand": "technical_systems",
+      "title": "Machines and energy use",
+      "learning_goal": "Describe and construct a simple machine combination and explain the energy input it uses.",
+      "progression": "Relate components to their purpose; keep formal physics as an explicit external dependency.",
+      "retrieval_query": "technical systems components structure measurement energy machines circuit sistemas medici\u00f3n estructura m\u00e1quinas energ\u00eda circuitos",
+      "source_units": [
+        [
+          "sv-cyt",
+          "Grade 4, unit 1"
+        ],
+        [
+          "eng-dt",
+          "Key stage 2"
+        ]
+      ],
+      "order": 4
+    },
+    {
+      "id": "g4-data-and-ai",
+      "grade": 4,
+      "strand": "data_and_ai",
+      "title": "Rules and examples",
+      "learning_goal": "Compare a stated classification rule with judgments inferred from example cards and test unfamiliar examples.",
+      "progression": "Treat any paper classifier as a conceptual model, not evidence of trained-software operation.",
+      "retrieval_query": "data classification patterns prediction information examples artificial intelligence datos clasificaci\u00f3n patrones ejemplos inteligencia artificial",
+      "source_units": [
+        [
+          "digcomp",
+          "Information and data literacy"
+        ],
+        [
+          "argentina",
+          "Primary second cycle"
+        ]
+      ],
+      "order": 5
+    },
+    {
+      "id": "g5-computational-thinking",
+      "grade": 5,
+      "strand": "computational_thinking",
+      "title": "Decomposition and debugging",
+      "learning_goal": "Decompose a small problem into named steps and debug a block program with tests.",
+      "progression": "Coordinate sequence, selection and repetition; distinguish test coverage from one successful run.",
+      "retrieval_query": "algorithm sequence instructions repetition debugging condition algorithms programaci\u00f3n secuencia instrucciones depuraci\u00f3n repetici\u00f3n",
+      "source_units": [
+        [
+          "eng-computing",
+          "England Computing programmes of study"
+        ],
+        [
+          "argentina",
+          "Primary second cycle"
+        ]
+      ],
+      "order": 1
+    },
+    {
+      "id": "g5-digital-citizenship",
+      "grade": 5,
+      "strand": "digital_citizenship",
+      "title": "Responsible information use",
+      "learning_goal": "Evaluate a digital claim, cite its source and minimize unnecessary personal data.",
+      "progression": "Cross-check a claim using independent evidence; distinguish permission from technical access.",
+      "retrieval_query": "privacy personal information safety consent respectful sources information seguridad privacidad datos personales respeto fuentes",
+      "source_units": [
+        [
+          "digcomp",
+          "Safety"
+        ],
+        [
+          "eng-computing",
+          "England Computing programmes of study"
+        ]
+      ],
+      "order": 2
+    },
+    {
+      "id": "g5-design-process",
+      "grade": 5,
+      "strand": "design_process",
+      "title": "Constraints and trade-offs",
+      "learning_goal": "Revise a prototype under material, safety and resource constraints, explaining a trade-off.",
+      "progression": "Distinguish necessary functions from optional features; test the revised version.",
+      "retrieval_query": "design make evaluate prototype materials criteria test improve dise\u00f1o construir evaluar materiales artefacto prototipo",
+      "source_units": [
+        [
+          "sv-cyt",
+          "Grade 5, unit 1"
+        ],
+        [
+          "eng-dt",
+          "Key stage 2"
+        ]
+      ],
+      "order": 3
+    },
+    {
+      "id": "g5-technical-systems",
+      "grade": 5,
+      "strand": "technical_systems",
+      "title": "Mechanisms and control",
+      "learning_goal": "Model how a simple control action changes the output of a technical system.",
+      "progression": "Compare open-loop action with feedback using observable states; distinguish a model from a working device.",
+      "retrieval_query": "technical systems components structure measurement energy machines circuit sistemas medici\u00f3n estructura m\u00e1quinas energ\u00eda circuitos",
+      "source_units": [
+        [
+          "sv-cyt",
+          "Grade 5, unit 1"
+        ],
+        [
+          "eng-dt",
+          "Key stage 2"
+        ]
+      ],
+      "order": 4
+    },
+    {
+      "id": "g5-data-and-ai",
+      "grade": 5,
+      "strand": "data_and_ai",
+      "title": "Samples and prediction",
+      "learning_goal": "Test how missing or unrepresentative examples affect a simple classifier or prediction.",
+      "progression": "Separate practice examples from test examples; interpret mistakes without probability formulas.",
+      "retrieval_query": "data classification patterns prediction information examples artificial intelligence datos clasificaci\u00f3n patrones ejemplos inteligencia artificial",
+      "source_units": [
+        [
+          "digcomp",
+          "Information and data literacy"
+        ],
+        [
+          "argentina",
+          "Primary second cycle"
+        ]
+      ],
+      "order": 5
+    },
+    {
+      "id": "g6-computational-thinking",
+      "grade": 6,
+      "strand": "computational_thinking",
+      "title": "Comparing algorithms",
+      "learning_goal": "Compare two algorithms for the same task using correctness, clear tests and counted operations.",
+      "progression": "Justify a design choice with evidence; avoid formal asymptotic complexity and unsupported far-transfer claims.",
+      "retrieval_query": "algorithm sequence instructions repetition debugging condition algorithms programaci\u00f3n secuencia instrucciones depuraci\u00f3n repetici\u00f3n",
+      "source_units": [
+        [
+          "eng-computing",
+          "England Computing programmes of study"
+        ],
+        [
+          "argentina",
+          "Primary second cycle"
+        ]
+      ],
+      "order": 1
+    },
+    {
+      "id": "g6-digital-citizenship",
+      "grade": 6,
+      "strand": "digital_citizenship",
+      "title": "Accountable digital decisions",
+      "learning_goal": "Justify a privacy, information-sharing or AI-use decision considering others and available evidence.",
+      "progression": "Recognize uncertainty, manipulation and model error; identify when human help is necessary.",
+      "retrieval_query": "privacy personal information safety consent respectful sources information seguridad privacidad datos personales respeto fuentes",
+      "source_units": [
+        [
+          "digcomp",
+          "Safety"
+        ],
+        [
+          "eng-computing",
+          "England Computing programmes of study"
+        ]
+      ],
+      "order": 2
+    },
+    {
+      "id": "g6-design-process",
+      "grade": 6,
+      "strand": "design_process",
+      "title": "Evaluate a design lifecycle",
+      "learning_goal": "Compare design options for function, repairability, material use and foreseeable impact.",
+      "progression": "Explain limits of a test and propose repair or reuse; avoid unsupported lifecycle calculations.",
+      "retrieval_query": "design make evaluate prototype materials criteria test improve dise\u00f1o construir evaluar materiales artefacto prototipo",
+      "source_units": [
+        [
+          "sv-cyt",
+          "Grade 6, unit 3"
+        ],
+        [
+          "eng-dt",
+          "Key stage 2"
+        ]
+      ],
+      "order": 3
+    },
+    {
+      "id": "g6-technical-systems",
+      "grade": 6,
+      "strand": "technical_systems",
+      "title": "Safe circuit measurement",
+      "learning_goal": "Represent a low-voltage circuit and measure voltage and resistance with appropriate instruments.",
+      "progression": "Distinguish reading a representation from operating a multimeter; no mains electricity, wet circuits or unsupervised battery work.",
+      "retrieval_query": "technical systems components structure measurement energy machines circuit sistemas medici\u00f3n estructura m\u00e1quinas energ\u00eda circuitos",
+      "source_units": [
+        [
+          "sv-cyt",
+          "Grade 6, unit 3"
+        ],
+        [
+          "eng-dt",
+          "Key stage 2"
+        ]
+      ],
+      "order": 4
+    },
+    {
+      "id": "g6-data-and-ai",
+      "grade": 6,
+      "strand": "data_and_ai",
+      "title": "Evaluating AI-assisted outputs",
+      "learning_goal": "Check an AI-assisted output against evidence and explain uncertainty, data limitations and human responsibility.",
+      "progression": "Compare rule-based and learned behavior conceptually; use teacher-provided examples rather than student accounts or personal data.",
+      "retrieval_query": "data classification patterns prediction information examples artificial intelligence datos clasificaci\u00f3n patrones ejemplos inteligencia artificial",
+      "source_units": [
+        [
+          "digcomp",
+          "Information and data literacy"
+        ],
+        [
+          "argentina",
+          "Primary second cycle"
+        ]
+      ],
+      "order": 5
+    }
+  ]
+}

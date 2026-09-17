@@ -1,0 +1,8 @@
+{
+  "schema_version": "curriculum-curation/1.0",
+  "status": "agent_authored_not_human_validated",
+  "removed_prerequisites": [
+    {"unit_id": "g6-technical-systems", "skill_slug": "measure-voltage-multimeter", "prerequisite_slug": "represent-series-parallel-circuits", "rationale": "A learner can measure voltage on a physically identified circuit without first producing a schematic; notation is a useful teaching route, not a necessary prerequisite."},
+    {"unit_id": "g6-technical-systems", "skill_slug": "measure-resistance-multimeter", "prerequisite_slug": "identify-resistance-color-code", "rationale": "Resistance measurement does not require decoding resistor color bands. The two performances may corroborate one another without a necessary ordering."}
+  ]
+}

@@ -1,0 +1,49 @@
+schema_version: curriculum-editorial-assessment/1.0
+status: revised_research_core_not_an_adoption_ready_annual_curriculum
+independent_human_review: false
+empirical_learning_validation: false
+calibrated_confidence: null
+roles:
+  curriculum_designer:
+    finding: A source-matching generator drifted from artifact design into science measurement and sometimes required specialist preparation for elementary tasks.
+    improvement: Restore criteria-based design evaluation, repair and reuse in grade 6; distinguish it from technical circuit measurement; reassess teacher preparation against the actual task.
+    remaining_limit: Source curricula support subject content but do not establish local teacher readiness, learning time or classroom effectiveness.
+  learning_progressions_researcher:
+    finding: Broad digital-literacy language was stretched into evidence for early classification and data bias; digital representation was treated as necessary for reasoning about samples.
+    improvement: Add grade-matched Ontario sorting evidence, label transfer as a hypothesis, remove the unnecessary representation prerequisite, and retain explicit assessment tasks.
+    remaining_limit: Foreign grade placement and model-written developmental rationales are proposals, not validated Salvadoran progressions. Ordinary sorting is data-literacy preparation, not proof of AI competence.
+  graph_researcher:
+    finding: Generated internal references included nonexistent skills; secondary-stage quotations and loosely related citations could masquerade as primary prerequisites.
+    improvement: Reject unknown endpoints, cycles, unsupported quotations and secondary Computing evidence. Keep cross-grade teaching recommendations outside the strict prerequisite graph.
+    remaining_limit: The retained prerequisite edges are instructional hypotheses, not experimentally demonstrated necessary dependencies. External knowledge requirements remain unresolved rather than receiving invented sibling IDs.
+  ai_software_engineer:
+    finding: Structured output alone did not ensure correct identifiers, exact evidence, valid stage placement or reproducibility.
+    improvement: Use immutable request/response records, logged narrow format repairs, bounded correction stages, explicit context history, original-source offsets, source hashes, deterministic allocation and byte-comparison tests.
+    remaining_limit: Acquisition can fail or exceed initial estimates; replay is deterministic but fresh temperature-zero provider responses are not guaranteed to match. Hosted CI remains suspended.
+publication_curation:
+  rules: config/curriculum_curation.json
+  changes:
+    - Remove color-code interpretation as a necessary prerequisite for measuring resistance.
+    - Remove schematic production as a necessary prerequisite for physically measuring voltage.
+    - Publish the authoritative input-map title while preserving stale generated titles in the data.
+  status: agent_authored_not_independent_human_validation
+  note: Model audit findings remain historical evidence; the two explicit edge removals are applied after that audit and tested deterministically.
+substantive_editorial_interventions: evaluation/release_editorial_review.yaml
+interpretation_rules:
+  - Zero hard errors means the implemented structural and citation checks passed; it is not a measure of pedagogical validity.
+  - First-version quarantine counts are rejection events, not the number of unsupported learning claims or an accuracy estimate.
+  - Model critiques before and after revision are uncalibrated and correlated. Issue counts cannot certify improvement.
+  - The proposed core uses approximately 19 to 26.33 clock hours per grade. It does not constitute a complete 160-hour annual course; remaining capacity is explicitly unallocated.
+  - The 40, 80 and 160 hour runs are capacity scenarios, not verified national timetable alternatives.
+  - Specific equipment, batteries, instruments and teacher preparation require local inventories and planning; a digital tier does not guarantee material availability.
+  - A conceptual T0 alternative does not certify device operation. Formal downgrade bindings remain null until their equivalence or practical bridge is validated.
+adoption_blockers:
+  - Current Salvadoran Computer Science vertical anchor is unavailable in the pinned corpus; the older programme is supplementary only.
+  - The full UNESCO AI competency framework is not present; the overview cannot support claims of complete framework coverage.
+  - External prerequisites need reviewed sibling IDs and authoritative availability grades; the science catalog is provisional.
+  - The instructional core requires independent teacher review, age-appropriate piloting, assessment validation and an official timetable before adoption.
+next_evidence:
+  - Obtain the missing current official programme and verify actual subject hours and teaching weeks.
+  - Review prerequisite necessity and performance criteria with Salvadoran primary teachers.
+  - Observe task completion, misconceptions and required support in classroom pilots before calibrating durations or confidence.
+  - Resolve external knowledge requirements against pinned math, language and science snapshots, then rerun grade conflicts and host-hour checks.

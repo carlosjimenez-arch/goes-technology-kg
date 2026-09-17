@@ -55,9 +55,7 @@ The following local sources were inspected for this contract:
   `src/cgl-core/tests/test_edge.py`.
 - `../goes-natural-science-kg/CLAUDE.md`.
 
-`../goes-science-kg` does not exist. The available science sibling is
-`goes-natural-science-kg`; its contract is a design reference, not proof of an
-implemented science pipeline. These are targeted inspections, not a full audit.
+The available science sibling is `~/Desktop/goes-natural-science-kg`. Its current exported graph is provisional, not independently human-validated; the release pins its catalog hash for conflict detection. These are targeted inspections, not a full audit.
 Claims from older contracts about sibling defects must be rechecked against
 actual files before being reported as current findings.
 
@@ -123,7 +121,7 @@ protect, such as the graph store, solver or budget ledger; other transformations
 are typed pure functions.
 
 Use `pytest-benchmark` for graph, corpus and solver workloads. Commit baselines
-and explicitly load the reference baseline in CI. A mean regression greater
+and explicitly load the reference baseline in CI. A median regression greater
 than 20% fails the build; an absent or incomparable baseline also fails. Record
 runner characteristics, workload size, seeds and dependency versions. Baseline
 updates require review and must not silently absorb a regression.
@@ -133,7 +131,7 @@ updates require review and must not silently absorb a regression.
 Before future Git initialization, create `.gitignore` excluding `data/raw/`,
 `data/interim/`, `.cache/`, `.venv/`, PDFs, LangGraph checkpoints, local databases,
 `.env*` except `.env.example`, credentials, private keys and tooling caches.
-Do not initialize Git during this documentation-only task.
+Git is initialized; the documentation-only restriction applied to the initial contract turn.
 
 Commit `data/processed/`, `data/graph/`, `data/manifests/`, replay records, golden
 fixtures and benchmark baselines. Do not commit the source corpus, extracted full
@@ -335,8 +333,7 @@ specifications supersede the original draft numbering:
 2. Structure and contracts: no curricular inference or scheduling.
 3. Ingestion: licensed sources, complete activities, provenance, embeddings and index.
 
-Phases 2 and 3 are authorized. Later graph inference and solver phases require
-new plans and approval. Decisions 0004 and 0005 record implementation trade-offs.
+Phases 2 and 3 and the complete proposal/review/revision/release plan are authorized, including GCP acquisition, Conventional Commits and push with the GOES identity. Decision 0015 records this scope. New work beyond that plan requires approval. Decisions 0004 and 0005 record implementation trade-offs.
 Accepted Phase 1 decisions retain `specified_not_implemented` enforcement entries
 for future curriculum/solver research; do not present those entries as passing tests.
 

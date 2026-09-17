@@ -1,0 +1,37 @@
+{
+  "schema_version": "release-validation/1.0",
+  "python": "3.13.15",
+  "offline_tests_passed": 96,
+  "benchmarks_passed": 5,
+  "coverage_percent": 83.2,
+  "quality_command": "make check",
+  "package_build": "uv build --offline",
+  "distribution_version": "0.1.0",
+  "html_structure_checks": "90 articles; grades 2\u20136; no scripts or remote assets; valid citation URLs",
+  "git_payload_checks": "No raw/interim corpus, credentials, environments or local build outputs in candidate tracked paths",
+  "benchmarks": [
+    {
+      "name": "test_compile_evidenced_graph",
+      "median_seconds": 0.0003292500041425228
+    },
+    {
+      "name": "test_schedule_complete_unit",
+      "median_seconds": 2.0124949514865875e-05
+    },
+    {
+      "name": "test_parse_pdf",
+      "median_seconds": 0.013002604013308883
+    },
+    {
+      "name": "test_parse_html",
+      "median_seconds": 0.00034595909528434277
+    },
+    {
+      "name": "test_index_1000x768",
+      "median_seconds": 0.00018570804968476295
+    }
+  ],
+  "threshold": "All medians within 20% of retained baselines; existing baselines not reset",
+  "hosted_ci": "suspended by decision 0012",
+  "reproducibility": "Real-source fixture publication compared byte-for-byte in the test suite; full release replay is verified after committing producer inputs."
+}

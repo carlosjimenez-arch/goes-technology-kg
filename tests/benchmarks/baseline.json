@@ -17,6 +17,18 @@
       "stats": {
         "median": 0.000193667015992105
       }
+    },
+    {
+      "name": "test_compile_evidenced_graph",
+      "stats": {
+        "median": 0.0002847079886123538
+      }
+    },
+    {
+      "name": "test_schedule_complete_unit",
+      "stats": {
+        "median": 2.0415987819433212e-05
+      }
     }
   ],
   "dependency_lock_sha256": "a9cac199e97fc6aefad7941a4608c64bf3b34b2797dc4ab1c4340e9f5302a2c5",
@@ -47,5 +59,6 @@
     "python_version": "3.13.15",
     "release": "25.5.0",
     "system": "Darwin"
-  }
+  },
+  "curriculum_workload": "Initial release baseline: one real recorded golden unit with three evidenced micro-skills. Existing ingestion baselines unchanged."
 }
