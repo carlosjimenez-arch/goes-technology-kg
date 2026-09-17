@@ -69,16 +69,15 @@ Long activities use token windows for embedding only; cited units remain complet
 
 | Location | Responsibility |
 | --- | --- |
-| `src/goes_tech_kg/schemas/` | Pydantic contracts and graph/curriculum invariants |
+| `src/goes_tech_kg/schemas/` | Pydantic contracts: graph and curriculum invariants, requests, outputs, plans, reports, golden records and scope |
 | `src/goes_tech_kg/corpus/` | Acquisition, parsing, traceability, embeddings and indexing |
 | `src/goes_tech_kg/graph/` | Semantic graph-version diffs |
 | `src/goes_tech_kg/eval/` | Confidence calibration, prompt-experiment harness, golden metrics, agreement statistics, report tables |
 | `evaluation/` | Golden records and protocol, judge calibration sample and key, baseline tables |
 | `src/goes_tech_kg/llm/` | Vertex AI boundary: canonical requests, immutable replay records, replay-first gateway |
 | `src/goes_tech_kg/prompts/` | Versioned Spanish prompts (decomposition variants, curricular judge); version derives from text |
-| `src/goes_tech_kg/retrieval/` | Deterministic context assembly from chunk locators |
+| `src/goes_tech_kg/retrieval/` | Chunk store, context references and deterministic context assembly |
 | `src/goes_tech_kg/curriculum/` | Declared cross-subject grade-conflict checks |
-| `src/goes_tech_kg/agents/` | License-gate pipeline node |
 | `corpus/`, `decisions/` | Reviewed sources and validated architecture decisions |
 | `data/manifests/`, `data/processed/` | Acquisition records and reproducible derived artifacts |
 | `tests/` | Contract, property, real-source, VCR and performance tests |
@@ -125,7 +124,7 @@ Three decomposition prompt variants and four Vertex AI Gemini models were run on
 | guided-v3 × gemini-3.1-pro-preview | 0.964 | 0.78 | 1.00 | 0.84 | 3.6 |
 | guided-v3 × gemini-2.5-flash | 0.906 | 0.60 | 0.96 | 0.78 | 5.9 |
 
-Against the provisional golden set (`evaluation/golden/`, seven records authored from the sources, not yet human-reviewed), the picture changes: B0, the official programme, covers 57 percent of golden micro-skills and no prerequisite edge; B1 with `gemini-2.5-flash` recovers 91 percent of micro-skills and 79 percent of prerequisite edges at 88 percent precision; B1 with `gemini-3.1-pro-preview` recovers 93 percent of micro-skills but only 42 percent of edges. The judges ranked the two the other way round, which is why decision 0013 refuses to select on judge score alone. B2 and S are not built yet; `scripts/compare_baselines.py` regenerates the table from recorded responses. Decision 0014 fixes which programme indicators count as Technology (`config/technology_scope.yaml`), so coverage ceilings are explicit.
+Against the provisional golden set (`evaluation/golden/`, seven records authored from the sources, not yet human-reviewed), the picture changes: B0, the official programme, covers 57 percent of golden micro-skills and no prerequisite edge; B1 with `gemini-2.5-flash` recovers 91 percent of micro-skills and 79 percent of prerequisite edges at 88 percent precision; B1 with `gemini-3.1-pro-preview` recovers 93 percent of micro-skills but only 42 percent of edges. The judges ranked the two the other way round, which is why decision 0013 refuses to select on judge score alone. B2 and S are not built yet; `scripts/compare_baselines.py` regenerates the table from recorded responses. Decision 0014 fixes which programme indicators count as Technology (`config/technology_scope.yaml`), so coverage ceilings are explicit; reports carry raw coverage and Technology-only coverage side by side, and the latter reaches 0.98 for the leading configuration against 0.84 raw.
 
 Four findings matter more than the ranking. Layout-mode PDF extraction interleaved the programme's table columns line by line, so faithful quotes were not verbatim substrings; switching the programme to plain extraction (parse/1.1) took strict quote exactness from about 0.6 to 1.0. Injecting programmatic quote verification into the judge prompt raised inter-judge verdict agreement from 0.56 to 0.85. Few-shot demonstrations helped two models and broke two others, so they are validated per model. Identical requests at temperature 0 and seed 0 returned byte-identical responses in only 4 of 8 pairs, so reproducibility rests on recorded responses, never on provider settings. Human calibration materials for the judges are under `evaluation/judges/`; judges gate nothing until the maintainer rates them. Reports replay offline from recorded responses; runs recorded before parse/1.1 are reproducible only at their recording commit.
 

@@ -3,8 +3,8 @@
 from pathlib import Path
 
 from goes_tech_kg.eval.golden_context import golden_chunks
-from goes_tech_kg.eval.prompt_experiment import ExperimentCase, ExperimentPlan, ModelSpec
 from goes_tech_kg.schemas.base import canonical_json
+from goes_tech_kg.schemas.experiment import ExperimentCase, ExperimentPlan, ModelSpec
 from goes_tech_kg.schemas.llm import ContextRef, GenerationSettings
 
 root = Path(__file__).resolve().parents[1]

@@ -16,6 +16,7 @@ dependencies = [
   "httpx>=0.28,<1",
   "beautifulsoup4>=4.13,<5",
   "pypdf>=6.15,<7",
+  # pypdf needs fontTools to decode CFF Type1 font encodings while extracting text.
   "fonttools>=4.60,<5",
   "numpy>=2,<3",
   "polars>=1,<2",

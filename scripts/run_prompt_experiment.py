@@ -1,4 +1,8 @@
-"""Run a prompt experiment. Replay by default; --online authorizes provider acquisition."""
+"""Run a prompt experiment. Replay by default; --online authorizes provider acquisition.
+
+--golden-context builds the context from the committed excerpts instead of the ignored interim
+chunks, which is what the offline replay test uses.
+"""
 
 import sys
 from pathlib import Path
@@ -9,32 +13,44 @@ from goes_tech_kg.eval.prompt_experiment import load_plan, run_experiment
 from goes_tech_kg.llm.gateway import LLMGateway
 from goes_tech_kg.llm.replay import ReplayStore
 from goes_tech_kg.llm.vertex import VertexClient, resilient_token_provider
-from goes_tech_kg.retrieval.context import load_interim_chunks
+from goes_tech_kg.retrieval.references import ChunkStore
+from goes_tech_kg.schemas.scope import load_scope
 
-root = Path(__file__).resolve().parents[1]
-plan_path = Path(sys.argv[1])
-online = "--online" in sys.argv[2:]
-golden = "--golden-context" in sys.argv[2:]
-plan = load_plan(plan_path)
-settings = Settings()
-client = None
-if online:
-    if not settings.gcp_project:
-        raise SystemExit(
-            "GOOGLE_CLOUD_PROJECT or GOES_TECH_KG_GCP_PROJECT is required for --online"
-        )
-    client = VertexClient(settings.gcp_project, resilient_token_provider())
-gateway = LLMGateway(ReplayStore(root / "data/processed/llm_responses"), client)
-report = run_experiment(
-    plan,
-    gateway,
-    golden_lookup(root / "tests/golden")[0]
-    if golden
-    else load_interim_chunks(root / "data/interim/chunks.jsonl"),
-    root / "data/processed/prompt_experiments" / plan.name,
-    workers=6 if online else 1,
-)
-print(
-    f"observations={len(report['observations'])} acquired={report['acquired']} "
-    f"replayed={report['replayed']}"
-)
+ROOT = Path(__file__).resolve().parents[1]
+#: Concurrency is only useful while acquiring; replay is local and ordered.
+ONLINE_WORKERS = 6
+
+
+def main(plan_path: Path, online: bool, golden_context: bool) -> None:
+    """Run every cell of the plan and print how many answers were acquired versus replayed."""
+    plan = load_plan(plan_path)
+    settings = Settings()
+    client = None
+    if online:
+        if not settings.gcp_project:
+            raise SystemExit(
+                "GOOGLE_CLOUD_PROJECT or GOES_TECH_KG_GCP_PROJECT is required for --online"
+            )
+        client = VertexClient(settings.gcp_project, resilient_token_provider())
+    lookup = (
+        golden_lookup(ROOT / "tests/golden")[0]
+        if golden_context
+        else ChunkStore(ROOT / "data/interim/chunks.jsonl").lookup
+    )
+    report = run_experiment(
+        plan,
+        LLMGateway(ReplayStore(ROOT / "data/processed/llm_responses"), client),
+        lookup,
+        ROOT / "data/processed/prompt_experiments" / plan.name,
+        workers=ONLINE_WORKERS if online else 1,
+        scope=load_scope(ROOT / "config/technology_scope.yaml"),
+    )
+    print(
+        f"observations={len(report.observations)} "
+        f"acquired={report.acquired} replayed={report.replayed}"
+    )
+
+
+if __name__ == "__main__":
+    flags = sys.argv[2:]
+    main(Path(sys.argv[1]), "--online" in flags, "--golden-context" in flags)

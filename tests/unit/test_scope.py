@@ -4,7 +4,7 @@ import pytest
 import yaml
 from pydantic import ValidationError
 
-from goes_tech_kg.eval import prompt_metrics
+from goes_tech_kg.eval.prompt_metrics import ContextIndex, summarize
 from goes_tech_kg.schemas.decomposition import DecompositionOutput
 from goes_tech_kg.schemas.scope import TechnologyScope, load_scope
 
@@ -70,8 +70,61 @@ def test_scoped_coverage_ignores_out_of_scope_indicators():
         }
     )
     scope = load_scope(SCOPE).unit(3, 1)
-    assert prompt_metrics.indicator_coverage(output, context) == pytest.approx(0.5)
-    assert prompt_metrics.indicator_coverage(
-        output, context, in_scope=scope.technology_indicators
-    ) == pytest.approx(1.0)
-    assert prompt_metrics.indicator_coverage(output, context, in_scope=frozenset()) is None
+    index = ContextIndex(context)
+    assert index.indicator_coverage(output) == pytest.approx(0.5)
+    assert index.indicator_coverage(output, in_scope=scope.technology_indicators) == pytest.approx(
+        1.0
+    )
+    assert index.indicator_coverage(output, in_scope=frozenset()) is None
+
+
+def test_case_ids_link_experiment_cases_to_their_unit():
+    scope = load_scope(SCOPE)
+    assert scope.for_case("sv-g4-u1-maquinas-energia-parafrasis") is scope.unit(4, 1)
+    # Cases whose evidence is foreign have no unit and therefore no Technology-only ceiling.
+    assert scope.for_case("ct-g3-condicionales") is None
+    body = yaml.safe_load(SCOPE.read_text())
+    body["units"][1]["case_ids"] = list(body["units"][0]["case_ids"])
+    with pytest.raises(ValidationError, match="two units"):
+        TechnologyScope.model_validate(body)
+
+
+def test_summarize_reports_scoped_coverage_only_when_a_scope_applies():
+    context = ContextIndex(
+        "[sv-cyt p.46 ¶a] 1.1. Obtiene valores para una misma magnitud.\n"
+        "[sv-cyt p.46 ¶b] 1.3. Efectúa un experimento con fuerzas de contacto."
+    )
+    output = DecompositionOutput.model_validate(
+        {
+            "status": "ok",
+            "coverage_notes": "",
+            "micro_skills": [
+                {
+                    "slug": "medir",
+                    "statement": "Mide una magnitud con distintos instrumentos.",
+                    "observable_verb": "Mide",
+                    "knowledge_object": "instrumentos de medición",
+                    "strand": "technical_systems",
+                    "cognitive_domain": "applying",
+                    "min_tier": "T0",
+                    "half_life": "DURABLE",
+                    "teacher_prep_level": 1,
+                    "evidence_of_mastery": "Tabla con tres mediciones.",
+                    "estimated_minutes": 45,
+                    "evidence_quotes": [
+                        {
+                            "quote": "1.1. Obtiene valores para una misma magnitud.",
+                            "locator_hint": "[sv-cyt p.46 ¶a]",
+                        }
+                    ],
+                }
+            ],
+        }
+    )
+    unscoped = summarize(output, context)
+    assert unscoped.indicator_coverage == pytest.approx(0.5)
+    assert unscoped.scoped_indicator_coverage is None
+    scoped = summarize(output, context, load_scope(SCOPE).unit(3, 1).technology_indicators)
+    # 1.3 is a Science dependency, so covering 1.1 alone is full Technology coverage.
+    assert scoped.indicator_coverage == pytest.approx(0.5)
+    assert scoped.scoped_indicator_coverage == pytest.approx(1.0)

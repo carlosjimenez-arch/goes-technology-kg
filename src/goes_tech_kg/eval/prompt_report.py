@@ -1,115 +1,133 @@
-"""Summarize a prompt-experiment report: eligibility gates first, then ranking, then worst cells."""
+"""Turn a recorded experiment into the decision 0013 tables: gates first, then ranking.
 
-import json
-from pathlib import Path
-from typing import Any
+Eligibility is separated from ranking on purpose. A variant that fabricates a quote, refuses a
+valid case or breaks its output contract is ineligible whatever its judge score, so the gates
+are computed first and the ranking never silently promotes a disqualified cell.
+"""
+
+from collections.abc import Iterator
 
 import polars as pl
 
+from goes_tech_kg.eval import prompt_metrics
+from goes_tech_kg.schemas.decomposition import DecompositionOutput
+from goes_tech_kg.schemas.experiment import ExperimentCase, ExperimentReport, Observation
 
-def observations_frame(report: dict[str, Any]) -> pl.DataFrame:
+#: Columns identifying one prompt-and-model configuration across every table.
+CELL_KEYS = ["prompt_id", "model"]
+
+
+def observations_frame(report: ExperimentReport) -> pl.DataFrame:
+    """Flatten every observation into one row, joining the case flags it is judged against."""
     rows = []
-    cases = {c["id"]: c for c in report["plan"]["cases"]}
-    for row in report["observations"]:
-        case = cases[row["case_id"]]
-        metrics = row.get("metrics") or {}
-        judgements = [j for j in row.get("judgements", []) if not j.get("self_judged")]
-        scores = [j["score"] for j in judgements if "score" in j]
-        usage = row.get("usage") or {}
+    for row in report.observations:
+        case = report.plan.case(row.case_id)
+        metrics = row.metrics
+        scores = row.judge_scores
+        verdicts = sorted(
+            j.verdict or "?" for j in row.judgements if not j.self_judged and j.usable
+        )
         rows.append(
             {
-                "prompt_id": row["prompt_id"],
-                "model": row["model"],
-                "case_id": row["case_id"],
-                "replicate": row["replicate"],
-                "valid_case": not case["expect_refusal"] and not case.get("synthetic_context"),
-                "expect_refusal": case["expect_refusal"],
-                "transport_error": row.get("transport_error") is not None,
-                "parse_ok": bool(row.get("parse_ok")),
-                "status": row.get("status"),
-                "refusal_correct": row.get("refusal_correct"),
-                "forbidden_term_hits": row.get("forbidden_term_hits"),
-                "micro_skill_count": metrics.get("micro_skill_count"),
-                "quote_exactness": metrics.get("quote_exactness"),
-                "quote_support": metrics.get("quote_support"),
-                "locator_exactness": metrics.get("locator_exactness"),
-                "observable_rate": metrics.get("observable_rate"),
-                "indicator_coverage": metrics.get("indicator_coverage"),
-                "t0_share": metrics.get("t0_share"),
-                "duplicate_rate": metrics.get("duplicate_rate"),
-                "mean_cognitive_level": metrics.get("mean_cognitive_level"),
-                "prerequisite_count": metrics.get("prerequisite_count"),
+                "prompt_id": row.prompt_id,
+                "model": row.model,
+                "case_id": row.case_id,
+                "replicate": row.replicate,
+                "valid_case": case.is_valid_task,
+                "expect_refusal": case.expect_refusal,
+                "transport_error": row.transport_error is not None,
+                "parse_ok": row.parse_ok,
+                "status": row.status,
+                "refusal_correct": row.refusal_correct,
+                "forbidden_term_hits": row.forbidden_term_hits,
+                "micro_skill_count": metrics.micro_skill_count if metrics else None,
+                "quote_exactness": metrics.quote_exactness if metrics else None,
+                "quote_support": metrics.quote_support if metrics else None,
+                "locator_exactness": metrics.locator_exactness if metrics else None,
+                "observable_rate": metrics.observable_rate if metrics else None,
+                "indicator_coverage": metrics.indicator_coverage if metrics else None,
+                "scoped_indicator_coverage": (
+                    metrics.scoped_indicator_coverage if metrics else None
+                ),
+                "t0_share": metrics.t0_share if metrics else None,
+                "duplicate_rate": metrics.duplicate_rate if metrics else None,
+                "mean_cognitive_level": metrics.mean_cognitive_level if metrics else None,
+                "prerequisite_count": metrics.prerequisite_count if metrics else None,
                 "judge_mean": sum(scores) / len(scores) if scores else None,
                 "judge_min": min(scores) if scores else None,
-                "judge_verdicts": ",".join(sorted(j.get("verdict", "?") for j in judgements)),
-                "prompt_tokens": usage.get("prompt_tokens"),
-                "output_tokens": usage.get("output_tokens"),
-                "thoughts_tokens": usage.get("thoughts_tokens"),
-                "latency_ms": row.get("latency_ms"),
-                "response_sha256": row.get("response_sha256"),
+                "judge_verdicts": ",".join(verdicts),
+                "prompt_tokens": row.usage.prompt_tokens if row.usage else None,
+                "output_tokens": row.usage.output_tokens if row.usage else None,
+                "thoughts_tokens": row.usage.thoughts_tokens if row.usage else None,
+                "latency_ms": row.latency_ms,
+                "response_sha256": row.response_sha256,
             }
         )
     return pl.DataFrame(rows)
 
 
 def eligibility(frame: pl.DataFrame) -> pl.DataFrame:
-    """Decision 0013 gates 1 to 3 per (prompt, model)."""
+    """Decision 0013 gates 1 to 3 per configuration: quotes, refusals and schema adherence."""
     valid = frame.filter(pl.col("valid_case"))
-    malformed = frame.filter(pl.col("expect_refusal"))
-    injection = frame.filter(pl.col("forbidden_term_hits").is_not_null())
-    keys = ["prompt_id", "model"]
-    fabricated = (
+    quotes = (
         valid.filter(pl.col("status") == "ok")
-        .group_by(keys)
+        .group_by(CELL_KEYS)
         .agg(
             (pl.col("quote_support") < 1.0).sum().alias("cells_with_unsupported_quotes"),
             pl.col("quote_support").min().alias("min_quote_support"),
             pl.col("quote_exactness").mean().alias("mean_quote_exactness"),
         )
     )
-    refusals = malformed.group_by(keys).agg(
-        pl.col("refusal_correct").cast(pl.Float64).mean().alias("refusal_correctness")
+    refusals = (
+        frame.filter(pl.col("expect_refusal"))
+        .group_by(CELL_KEYS)
+        .agg(pl.col("refusal_correct").cast(pl.Float64).mean().alias("refusal_correctness"))
     )
-    # Refusing an injected context is acceptable; producing Python skills is not.
-    injected = injection.group_by(keys).agg(
-        pl.col("forbidden_term_hits").sum().alias("forbidden_term_hits"),
-        (pl.col("parse_ok").not_()).sum().alias("injection_parse_failures"),
+    # Refusing an injected context is acceptable; producing the forbidden content is not.
+    injected = (
+        frame.filter(pl.col("forbidden_term_hits").is_not_null())
+        .group_by(CELL_KEYS)
+        .agg(
+            pl.col("forbidden_term_hits").sum().alias("forbidden_term_hits"),
+            pl.col("parse_ok").not_().sum().alias("injection_parse_failures"),
+        )
     )
-    parse = frame.group_by(keys).agg(
+    delivery = frame.group_by(CELL_KEYS).agg(
         pl.col("parse_ok").cast(pl.Float64).mean().alias("schema_adherence"),
         pl.col("transport_error").sum().alias("transport_errors"),
     )
-    wrong_refusals = valid.group_by(keys).agg(
+    wrong_refusals = valid.group_by(CELL_KEYS).agg(
         (pl.col("status") == "refused").sum().alias("unjustified_refusals")
     )
-    table = (
-        parse.join(fabricated, on=keys, how="left")
-        .join(refusals, on=keys, how="left")
-        .join(injected, on=keys, how="left")
-        .join(wrong_refusals, on=keys, how="left")
-        .fill_null(0)
+    table = delivery
+    for other in (quotes, refusals, injected, wrong_refusals):
+        table = table.join(other, on=CELL_KEYS, how="left")
+    return (
+        table.fill_null(0)
+        .with_columns(
+            (
+                (pl.col("cells_with_unsupported_quotes") == 0)
+                & (pl.col("refusal_correctness") >= 1.0)
+                & (pl.col("forbidden_term_hits") == 0)
+                & (pl.col("injection_parse_failures") == 0)
+                & (pl.col("unjustified_refusals") == 0)
+                & (pl.col("schema_adherence") >= 0.95)
+            ).alias("eligible")
+        )
+        .sort(CELL_KEYS)
     )
-    return table.with_columns(
-        (
-            (pl.col("cells_with_unsupported_quotes") == 0)
-            & (pl.col("refusal_correctness") >= 1.0)
-            & (pl.col("forbidden_term_hits") == 0)
-            & (pl.col("injection_parse_failures") == 0)
-            & (pl.col("unjustified_refusals") == 0)
-            & (pl.col("schema_adherence") >= 0.95)
-        ).alias("eligible")
-    ).sort(keys)
 
 
 def ranking(frame: pl.DataFrame) -> pl.DataFrame:
-    """Gates 4 to 7 over valid, non-refused cells."""
+    """Decision 0013 gates 4 to 7 over valid, non-refused cells, best configuration first."""
     valid = frame.filter(pl.col("valid_case") & (pl.col("status") == "ok"))
     return (
-        valid.group_by(["prompt_id", "model"])
+        valid.group_by(CELL_KEYS)
         .agg(
             pl.col("judge_mean").mean().alias("judge_mean"),
             pl.col("judge_min").min().alias("judge_worst_cell"),
             pl.col("indicator_coverage").mean().alias("indicator_coverage"),
+            pl.col("scoped_indicator_coverage").mean().alias("scoped_indicator_coverage"),
             pl.col("quote_support").mean().alias("quote_support"),
             pl.col("quote_exactness").mean().alias("quote_exactness"),
             pl.col("observable_rate").mean().alias("observable_rate"),
@@ -129,9 +147,10 @@ def ranking(frame: pl.DataFrame) -> pl.DataFrame:
 
 
 def worst_cells(frame: pl.DataFrame, limit: int = 12) -> pl.DataFrame:
-    valid = frame.filter(pl.col("valid_case") & pl.col("parse_ok"))
+    """The cells a reviewer should read first: lowest judge score, then weakest quote support."""
     return (
-        valid.sort(["judge_min", "quote_support"], nulls_last=True)
+        frame.filter(pl.col("valid_case") & pl.col("parse_ok"))
+        .sort(["judge_min", "quote_support"], nulls_last=True)
         .select(
             "prompt_id",
             "model",
@@ -145,87 +164,92 @@ def worst_cells(frame: pl.DataFrame, limit: int = 12) -> pl.DataFrame:
     )
 
 
-def behavioural(frame: pl.DataFrame, report: dict[str, Any]) -> pl.DataFrame:
-    """Directional (grade) and invariance (paraphrase) pairs by prompt and model."""
-    cases = {c["id"]: c for c in report["plan"]["cases"]}
-    outputs = {
-        (r["prompt_id"], r["model"], r["case_id"]): r
-        for r in report["observations"]
-        if r.get("parse_ok")
-    }
-    rows = []
-    for (prompt_id, model, case_id), row in outputs.items():
-        case = cases[case_id]
-        pair = case.get("paraphrase_of") or case.get("directional_pair")
-        if not pair or (prompt_id, model, pair) not in outputs:
+def _paired_cells(
+    report: ExperimentReport, kind: str
+) -> Iterator[tuple[Observation, Observation, ExperimentCase, ExperimentCase]]:
+    """Yield each observation together with its paired observation for a behavioural test.
+
+    `kind` is "invariance" (the paraphrase of the same entry) or "directional" (the same entry
+    at another grade). Pairs are yielded once per direction so both rows appear in the table.
+    """
+    attribute = "paraphrase_of" if kind == "invariance" else "directional_pair"
+    by_key = {(o.prompt_id, o.model, o.case_id): o for o in report.observations if o.parse_ok}
+    for (prompt_id, model, case_id), row in by_key.items():
+        case = report.plan.case(case_id)
+        pair_id = getattr(case, attribute)
+        if not pair_id or (prompt_id, model, pair_id) not in by_key:
             continue
-        other = outputs[(prompt_id, model, pair)]
-        kind = "invariance" if case.get("paraphrase_of") else "directional"
-        left = (row.get("metrics") or {}).get("mean_cognitive_level")
-        right = (other.get("metrics") or {}).get("mean_cognitive_level")
-        rows.append(
-            {
-                "kind": kind,
-                "prompt_id": prompt_id,
-                "model": model,
-                "case_id": case_id,
-                "pair": pair,
-                "grade": case["grade"],
-                "pair_grade": cases[pair]["grade"],
-                "cognitive_level": left,
-                "pair_cognitive_level": right,
-                "status": row.get("status"),
-                "pair_status": other.get("status"),
-            }
-        )
+        yield row, by_key[(prompt_id, model, pair_id)], case, report.plan.case(pair_id)
+
+
+def behavioural(report: ExperimentReport) -> pl.DataFrame:
+    """Directional and invariance pairs with the cognitive level each side produced."""
+    rows = []
+    for kind in ("invariance", "directional"):
+        for row, other, case, pair_case in _paired_cells(report, kind):
+            rows.append(
+                {
+                    "kind": kind,
+                    "prompt_id": row.prompt_id,
+                    "model": row.model,
+                    "case_id": case.id,
+                    "pair": pair_case.id,
+                    "grade": case.grade,
+                    "pair_grade": pair_case.grade,
+                    "cognitive_level": row.metrics.mean_cognitive_level if row.metrics else None,
+                    "pair_cognitive_level": (
+                        other.metrics.mean_cognitive_level if other.metrics else None
+                    ),
+                    "status": row.status,
+                    "pair_status": other.status,
+                }
+            )
     return pl.DataFrame(rows)
 
 
 def invariance(
-    report: dict[str, Any], outputs_by_key: dict[tuple[str, str, str], Any]
+    report: ExperimentReport, outputs: dict[tuple[str, str, str], DecompositionOutput]
 ) -> pl.DataFrame:
-    """Paraphrase invariance: signature Jaccard and quoted-indicator Jaccard per prompt and model."""
-    from goes_tech_kg.eval import prompt_metrics
+    """Paraphrase invariance by micro-skill signature and by quoted indicators.
 
-    cases = {c["id"]: c for c in report["plan"]["cases"]}
+    Signature overlap is brittle to rewording; indicator overlap asks the question that matters,
+    whether the same curricular content was covered.
+    """
     rows = []
-    for (prompt_id, model, case_id), output in outputs_by_key.items():
-        pair = cases[case_id].get("paraphrase_of")
-        if not pair or (prompt_id, model, pair) not in outputs_by_key:
+    for row, other, case, _ in _paired_cells(report, "invariance"):
+        left = outputs.get((row.prompt_id, row.model, case.id))
+        right = outputs.get((other.prompt_id, other.model, other.case_id))
+        if left is None or right is None:
             continue
-        other = outputs_by_key[(prompt_id, model, pair)]
         rows.append(
             {
-                "prompt_id": prompt_id,
-                "model": model,
-                "signature_jaccard": prompt_metrics.jaccard(output, other),
-                "indicator_jaccard": prompt_metrics.indicator_set_jaccard(output, other),
-                "micro_skills": len(output.micro_skills),
-                "pair_micro_skills": len(other.micro_skills),
+                "prompt_id": row.prompt_id,
+                "model": row.model,
+                "signature_jaccard": prompt_metrics.jaccard(left, right),
+                "indicator_jaccard": prompt_metrics.indicator_set_jaccard(left, right),
+                "micro_skills": len(left.micro_skills),
+                "pair_micro_skills": len(right.micro_skills),
             }
         )
     return pl.DataFrame(rows)
 
 
-def judge_agreement(report: dict[str, Any]) -> pl.DataFrame:
-    """Pairwise judge agreement on verdict and score across all non-self-judged cells."""
+def judge_agreement(report: ExperimentReport) -> pl.DataFrame:
+    """Pairwise agreement between judges over the cells both of them scored independently."""
     rows = []
-    for row in report["observations"]:
-        judgements = {
-            j["judge_model"]: j
-            for j in row.get("judgements", [])
-            if "score" in j and not j.get("self_judged")
-        }
-        if len(judgements) == 2:
-            (a, ja), (b, jb) = sorted(judgements.items())
-            rows.append(
-                {
-                    "judge_a": a,
-                    "judge_b": b,
-                    "verdict_agree": ja["verdict"] == jb["verdict"],
-                    "score_gap": abs(ja["score"] - jb["score"]),
-                }
-            )
+    for row in report.observations:
+        usable = {j.judge_model: j for j in row.judgements if j.usable and not j.self_judged}
+        if len(usable) != 2:
+            continue
+        (name_a, a), (name_b, b) = sorted(usable.items())
+        rows.append(
+            {
+                "judge_a": name_a,
+                "judge_b": name_b,
+                "verdict_agree": a.verdict == b.verdict,
+                "score_gap": abs((a.score or 0) - (b.score or 0)),
+            }
+        )
     if not rows:
         return pl.DataFrame()
     return (
@@ -237,8 +261,3 @@ def judge_agreement(report: dict[str, Any]) -> pl.DataFrame:
             pl.col("score_gap").mean().alias("mean_score_gap"),
         )
     )
-
-
-def load_report(path: Path) -> dict[str, Any]:
-    data: dict[str, Any] = json.loads(path.read_text())
-    return data

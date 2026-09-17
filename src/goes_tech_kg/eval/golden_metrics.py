@@ -1,11 +1,10 @@
 """Decision 0011 primary metrics: align a decomposition to a golden record and score it."""
 
 import re
-from typing import Any
 
 from goes_tech_kg.eval.prompt_metrics import indicator_ids
 from goes_tech_kg.schemas.decomposition import DecompositionOutput, ProposedMicroSkill
-from goes_tech_kg.schemas.golden import GoldenRecord
+from goes_tech_kg.schemas.golden import GoldenRecord, GoldenScore
 
 PARAGRAPH_KEY = re.compile(r"¶paragraph-(p\d+)-")
 
@@ -34,7 +33,18 @@ def align(output: DecompositionOutput, golden: GoldenRecord) -> dict[str, frozen
     return mapping
 
 
-def score(output: DecompositionOutput, golden: GoldenRecord) -> dict[str, Any]:
+def score(
+    output: DecompositionOutput,
+    golden: GoldenRecord,
+    system: str = "system",
+    model: str = "none",
+) -> GoldenScore:
+    """Decision 0011 primary metrics for one decomposition against its reference.
+
+    Recall counts golden items some system skill cites; precision counts system skills that
+    cite any golden item. A prerequisite edge is correct when any aligned pair is golden,
+    so a legitimately merged micro-skill is not punished for covering two references.
+    """
     mapping = align(output, golden)
     matched_golden = {g for ids in mapping.values() for g in ids}
     golden_ids = {g.id for g in golden.micro_skills}
@@ -74,41 +84,43 @@ def score(output: DecompositionOutput, golden: GoldenRecord) -> dict[str, Any]:
     strand_agreement = (
         sum(m.strand == g.strand for m, g in aligned) / len(aligned) if aligned else None
     )
-    return {
-        "case_id": golden.case_id,
-        "grade": golden.grade,
-        "golden_micro_skills": len(golden_ids),
-        "system_micro_skills": system_count,
-        "decomposition_recall": decomposition_recall,
-        "decomposition_precision": decomposition_precision,
-        "edge_precision": edge_precision,
-        "edge_recall": edge_recall,
-        "edge_f1": edge_f1,
-        "system_edges": len(system_edges),
-        "golden_edges": len(golden_edges),
-        "cognitive_agreement": cognitive_agreement,
-        "tier_agreement": tier_agreement,
-        "strand_agreement": strand_agreement,
-        "unmatched_golden": sorted(golden_ids - matched_golden),
-    }
+    return GoldenScore(
+        case_id=golden.case_id,
+        grade=golden.grade,
+        system=system,
+        model=model,
+        golden_micro_skills=len(golden_ids),
+        system_micro_skills=system_count,
+        decomposition_recall=decomposition_recall,
+        decomposition_precision=decomposition_precision,
+        edge_precision=edge_precision,
+        edge_recall=edge_recall,
+        edge_f1=edge_f1,
+        system_edges=len(system_edges),
+        golden_edges=len(golden_edges),
+        cognitive_agreement=cognitive_agreement,
+        tier_agreement=tier_agreement,
+        strand_agreement=strand_agreement,
+        unmatched_golden=tuple(sorted(golden_ids - matched_golden)),
+    )
 
 
-def official_baseline(golden: GoldenRecord) -> dict[str, Any]:
+def official_baseline(golden: GoldenRecord) -> GoldenScore:
     """B0: the official programme covers a golden item when the item cites an indicator id."""
     covered = [
         g for g in golden.micro_skills if any(indicator_ids(k + ".") for k in g.evidence_keys)
     ]
     indicators = {k for g in covered for k in g.evidence_keys if indicator_ids(k + ".")}
-    return {
-        "case_id": golden.case_id,
-        "grade": golden.grade,
-        "golden_micro_skills": len(golden.micro_skills),
-        "covered_by_indicators": len(covered),
-        "decomposition_recall": len(covered) / len(golden.micro_skills),
-        "indicators": len(indicators),
-        "granularity_golden_per_indicator": (
-            len(covered) / len(indicators) if indicators else None
-        ),
-        "edge_recall": 0.0 if golden.edge_set else None,
-        "note": "The programme states indicators, not prerequisite edges, cognitive domains or tiers.",
-    }
+    return GoldenScore(
+        case_id=golden.case_id,
+        grade=golden.grade,
+        system="B0-official-programme",
+        model="none",
+        golden_micro_skills=len(golden.micro_skills),
+        decomposition_recall=len(covered) / len(golden.micro_skills),
+        indicators=len(indicators),
+        granularity_golden_per_indicator=(len(covered) / len(indicators) if indicators else None),
+        edge_recall=0.0 if golden.edge_set else None,
+        golden_edges=len(golden.edge_set),
+        note="The programme states indicators, not prerequisite edges, cognitive domains or tiers.",
+    )

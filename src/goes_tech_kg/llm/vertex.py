@@ -15,6 +15,7 @@ TokenProvider = Callable[[], str]
 
 def adc_token_provider() -> TokenProvider:
     """Application Default Credentials; scoped to cloud-platform and refreshed per call."""
+    # Imported here so that reading a recorded experiment never needs credentials on the path.
     import google.auth
     from google.auth.transport.requests import Request
 
@@ -68,6 +69,7 @@ def resilient_token_provider() -> TokenProvider:
 
 
 def endpoint(project: str, location: str, model: str) -> str:
+    """Vertex generateContent URL; the global endpoint has no regional host prefix."""
     host = (
         "aiplatform.googleapis.com"
         if location == "global"
@@ -80,6 +82,11 @@ def endpoint(project: str, location: str, model: str) -> str:
 
 
 def request_body(request: LLMRequest, user_content: str) -> dict[str, Any]:
+    """Exactly the JSON that is sent, derived only from the request contract.
+
+    Thinking is configured by budget on Gemini 2.5 and by level on Gemini 3; the contract
+    allows only one of them, so the two families stay comparable but never conflated.
+    """
     settings = request.settings
     generation: dict[str, Any] = {
         "temperature": settings.temperature,
@@ -100,6 +107,8 @@ def request_body(request: LLMRequest, user_content: str) -> dict[str, Any]:
 
 
 class VertexClient:
+    """The only object that talks to the provider, with one retry for transport faults."""
+
     def __init__(
         self,
         project: str,
@@ -112,6 +121,7 @@ class VertexClient:
         self.client = client or httpx.Client(timeout=timeout_seconds)
 
     def generate(self, request: LLMRequest, user_content: str) -> ResponseRecord:
+        """Send one request and record what came back, including why it stopped."""
         if byte_digest(user_content.encode()) != request.user_content_sha256:
             raise ValueError("user content does not match the request digest")
         headers = {"Authorization": f"Bearer {self.token_provider()}"}

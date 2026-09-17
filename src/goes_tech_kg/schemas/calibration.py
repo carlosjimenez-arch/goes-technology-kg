@@ -14,6 +14,8 @@ JUDGE_ADVISORY_FLOOR = 0.4
 
 
 class JudgeVerdict(Contract):
+    """One judge's verdict plus the human agreement that decides how much it counts."""
+
     schema_version: Literal["judge-verdict/1.0"] = "judge-verdict/1.0"
     judge_id: Text
     judge_llm_version: Text
@@ -25,6 +27,7 @@ class JudgeVerdict(Contract):
 
     @property
     def weight(self) -> float:
+        """Zero below the advisory floor, then linear in agreement up to full weight."""
         if self.agreement_with_humans is None or self.agreement_with_humans <= JUDGE_ADVISORY_FLOOR:
             return 0.0
         return (self.agreement_with_humans - JUDGE_ADVISORY_FLOOR) / (1.0 - JUDGE_ADVISORY_FLOOR)
@@ -61,6 +64,8 @@ class CalibrationSample(Contract):
 
 
 class CalibrationBin(Contract):
+    """One step of the calibration map: raw scores up to a bound share one probability."""
+
     raw_upper: Probability
     probability: Probability
     support: Annotated[int, Field(strict=True, ge=1)]
@@ -87,6 +92,7 @@ class CalibrationTable(Contract):
         return self
 
     def apply(self, raw_score: float) -> float:
+        """Map a raw evidence score to the empirical probability of human acceptance."""
         if not 0.0 <= raw_score <= 1.0:
             raise ValueError("raw score outside [0, 1]")
         for bin_ in self.bins:

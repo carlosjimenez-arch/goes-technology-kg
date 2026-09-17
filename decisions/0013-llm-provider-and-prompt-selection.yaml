@@ -147,6 +147,16 @@ results:
       from 0.57 to 0.72 and for gemini-2.5-flash from 0.69 to 0.70, with all four cells eligible,
       quote support 1.0 and judge means 0.93 to 0.95. Paraphrase indicator Jaccard stayed at
       0.875 for both models. guided-v3 is the current best prompt.
+  schema_descriptions_are_prompt:
+    finding: >
+      Pydantic copies a contract's class docstring into its JSON schema, and the output schema
+      is part of the request and therefore of the replay key. Adding maintainer docstrings to
+      the decomposition contracts silently invalidated all 850 recorded answers.
+    consequence: >
+      schemas/llm.py provider_schema() strips every description before the schema is sent, so
+      documentation and model-facing wording are separate concerns: wording meant to change
+      the model's behaviour belongs in the versioned prompt, where it is measured. Pinned by
+      tests/unit/test_llm_boundary.py::test_documentation_cannot_invalidate_recorded_answers.
   provider_determinism:
     finding: >
       Same request acquired twice (temperature 0, seed 0): 4 of 8 pairs byte-identical.

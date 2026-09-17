@@ -12,6 +12,7 @@ from goes_tech_kg.schemas.corpus import Chunk, SourceDocument
 
 
 def golden_chunks(golden_dir: Path) -> dict[str, tuple[SourceDocument, tuple[Chunk, ...]]]:
+    """Parse the committed real-source excerpts into chunks, keyed by document slug."""
     result: dict[str, tuple[SourceDocument, tuple[Chunk, ...]]] = {}
     for path in sorted(golden_dir.glob("*.json")):
         row = json.loads(path.read_text())

@@ -13,6 +13,8 @@ AnnotationMethod = Literal["human_unaided", "llm_expert_cross_vendor"]
 
 
 class GoldenMicroSkill(Contract):
+    """One reference micro-skill, keyed to the evidence a system answer must also cite."""
+
     id: Text
     statement: Text
     grade: Grade
@@ -26,6 +28,8 @@ class GoldenMicroSkill(Contract):
 
 
 class GoldenEdge(Contract):
+    """A reference prerequisite between two golden micro-skills, with its justification."""
+
     source: Text
     target: Text
     type: Literal["PREREQUISITE", "CO_REQUISITE"] = "PREREQUISITE"
@@ -33,6 +37,12 @@ class GoldenEdge(Contract):
 
 
 class GoldenRecord(Contract):
+    """The reference answer for one case, and how it was annotated.
+
+    Only `human_unaided` records may gate promotion; everything else enables the harness
+    while staying explicitly provisional.
+    """
+
     schema_version: Literal["golden-record/1.0"] = "golden-record/1.0"
     case_id: Text
     grade: Grade
@@ -63,7 +73,38 @@ class GoldenRecord(Contract):
 
     @property
     def edge_set(self) -> frozenset[tuple[str, str]]:
+        """Strict prerequisite pairs, the target of the edge metrics."""
         return frozenset((e.source, e.target) for e in self.edges if e.type == "PREREQUISITE")
+
+
+class GoldenScore(Contract):
+    """Decision 0011 primary metrics for one decomposition against its reference record.
+
+    None means the question does not apply: a decomposition with no prerequisite has no edge
+    precision, and the official programme states no edges to be precise about.
+    """
+
+    case_id: Text
+    grade: Grade
+    system: Text
+    model: Text
+    golden_micro_skills: int = Field(ge=0)
+    system_micro_skills: int = Field(default=0, ge=0)
+    decomposition_recall: float = Field(ge=0, le=1)
+    decomposition_precision: float | None = Field(default=None, ge=0, le=1)
+    edge_precision: float | None = Field(default=None, ge=0, le=1)
+    edge_recall: float | None = Field(default=None, ge=0, le=1)
+    edge_f1: float | None = Field(default=None, ge=0, le=1)
+    system_edges: int = Field(default=0, ge=0)
+    golden_edges: int = Field(default=0, ge=0)
+    cognitive_agreement: float | None = Field(default=None, ge=0, le=1)
+    tier_agreement: float | None = Field(default=None, ge=0, le=1)
+    strand_agreement: float | None = Field(default=None, ge=0, le=1)
+    unmatched_golden: tuple[Text, ...] = ()
+    #: Only the official-programme baseline fills these: it states indicators, not skills.
+    indicators: int | None = Field(default=None, ge=0)
+    granularity_golden_per_indicator: float | None = Field(default=None, gt=0)
+    note: str = ""
 
 
 def load_golden(directory: Path, require_human: bool = False) -> tuple[GoldenRecord, ...]:

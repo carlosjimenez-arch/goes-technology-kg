@@ -68,23 +68,23 @@ def test_metrics_on_known_alignment():
         }
     )
     result = golden_metrics.score(output, golden)
-    assert result["decomposition_recall"] == pytest.approx(4 / 8)
-    assert result["decomposition_precision"] == pytest.approx(4 / 5)
+    assert result.decomposition_recall == pytest.approx(4 / 8)
+    assert result.decomposition_precision == pytest.approx(4 / 5)
     # balanza -> registrar is golden; puente -> optimizar is not.
-    assert result["edge_precision"] == pytest.approx(0.5)
-    assert result["edge_recall"] == pytest.approx(1 / 3)
-    assert result["edge_f1"] == pytest.approx(0.4)
-    assert result["cognitive_agreement"] == pytest.approx(3 / 4)
-    assert "g2-usar-terrario" in result["unmatched_golden"]
+    assert result.edge_precision == pytest.approx(0.5)
+    assert result.edge_recall == pytest.approx(1 / 3)
+    assert result.edge_f1 == pytest.approx(0.4)
+    assert result.cognitive_agreement == pytest.approx(3 / 4)
+    assert "g2-usar-terrario" in result.unmatched_golden
     empty_edges = DecompositionOutput.model_validate(
         {"status": "ok", "coverage_notes": "", "micro_skills": [micro("balanza", "5.1. Construye")]}
     )
     zero = golden_metrics.score(empty_edges, golden)
-    assert zero["edge_precision"] is None and zero["edge_f1"] == 0.0
+    assert zero.edge_precision is None and zero.edge_f1 == 0.0
     b0 = golden_metrics.official_baseline(golden)
-    assert b0["decomposition_recall"] == 1.0 and b0["edge_recall"] == 0.0
+    assert b0.decomposition_recall == 1.0 and b0.edge_recall == 0.0
     ct = next(g for g in load_golden(GOLDEN_DIR) if g.case_id == "ct-g3-secuencias-depuracion")
-    assert golden_metrics.official_baseline(ct)["decomposition_recall"] == 0.0
+    assert golden_metrics.official_baseline(ct).decomposition_recall == 0.0
 
 
 def test_paragraph_keys_align_foreign_evidence():
@@ -125,4 +125,30 @@ def test_paragraph_keys_align_foreign_evidence():
         }
     )
     # One merged system skill covers both golden items it cites.
-    assert golden_metrics.score(merged, ct)["decomposition_recall"] == pytest.approx(2 / 8)
+    assert golden_metrics.score(merged, ct).decomposition_recall == pytest.approx(2 / 8)
+
+
+def test_scores_are_validated_contracts_that_a_table_can_trust():
+    golden = next(g for g in load_golden(GOLDEN_DIR) if g.case_id == "sv-g2-u5-objetos-tecnicos")
+    result = golden_metrics.score(
+        DecompositionOutput.model_validate(
+            {
+                "status": "ok",
+                "coverage_notes": "",
+                "micro_skills": [micro("balanza", "5.1. Construye una balanza.")],
+            }
+        ),
+        golden,
+        system="B1-demo",
+        model="model-x",
+    )
+    assert result.system == "B1-demo" and result.model == "model-x"
+    assert result.unmatched_golden and "g2-registrar-magnitud" in result.unmatched_golden
+    with pytest.raises(ValidationError):
+        result.model_copy(update={"decomposition_recall": 1.5}).model_validate(
+            {**result.model_dump(mode="json"), "decomposition_recall": 1.5}
+        )
+    b0 = golden_metrics.official_baseline(golden)
+    assert b0.system == "B0-official-programme" and b0.indicators == 8
+    # The programme is not a decomposition, so precision has no meaning to report.
+    assert b0.decomposition_precision is None and b0.note

@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import re
 import unicodedata
 from typing import Annotated
 
@@ -12,6 +13,8 @@ Digest = Annotated[str, StringConstraints(pattern=r"^[0-9a-f]{64}$")]
 Grade = Annotated[StrictInt, Field(ge=2, le=6)]
 Minutes = Annotated[StrictInt, Field(ge=0)]
 Probability = Annotated[float, Field(ge=0, le=1, allow_inf_nan=False)]
+#: Identity slugs are lowercase ASCII kebab-case so they survive any filesystem or URL.
+SLUG = re.compile(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*")
 
 
 class Contract(BaseModel):
@@ -37,9 +40,7 @@ def byte_digest(value: bytes) -> str:
 
 
 def stable_id(kind: str, slug: str, intrinsic: object) -> str:
-    import re
-
-    if not re.fullmatch(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*", slug):
+    if not SLUG.fullmatch(slug):
         raise ValueError("identity slug must be lowercase ASCII kebab-case")
     payload = {"identity_version": 1, "kind": kind, "slug": slug, "intrinsic": intrinsic}
     # Intrinsic strings are NFC; relations, contexts and editorial fields are excluded by callers.

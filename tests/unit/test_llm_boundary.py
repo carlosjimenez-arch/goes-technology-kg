@@ -5,16 +5,23 @@ import pytest
 from pydantic import ValidationError
 
 from goes_tech_kg.eval import prompt_metrics
-from goes_tech_kg.eval.prompt_experiment import ExperimentCase, ModelSpec, build_request
+from goes_tech_kg.eval.prompt_experiment import build_request
 from goes_tech_kg.llm.gateway import LLMGateway
 from goes_tech_kg.llm.replay import ReplayMiss, ReplayStore
 from goes_tech_kg.llm.vertex import endpoint, request_body
 from goes_tech_kg.prompts.decomposition import DECOMPOSITION_GUIDED, DECOMPOSITION_PROMPTS
-from goes_tech_kg.prompts.judge import CURRICULAR_JUDGE
+from goes_tech_kg.prompts.judge import CURRICULAR_JUDGE, CURRICULAR_JUDGE_V2
 from goes_tech_kg.prompts.registry import Prompt
 from goes_tech_kg.schemas.base import byte_digest
 from goes_tech_kg.schemas.decomposition import DecompositionOutput, JudgeOutput
-from goes_tech_kg.schemas.llm import GenerationSettings, LLMRequest, ResponseRecord, TokenUsage
+from goes_tech_kg.schemas.experiment import ExperimentCase, ModelSpec
+from goes_tech_kg.schemas.llm import (
+    GenerationSettings,
+    LLMRequest,
+    ResponseRecord,
+    TokenUsage,
+    provider_schema,
+)
 
 CONTEXT = (
     "[demo p.1 ¶p1] 5.1 . Construye una balanza.\n"
@@ -72,8 +79,6 @@ def test_prompt_version_derives_from_text_and_rendering_is_strict():
         case_id="x", grade="2", skill_map_entry="s", context="c", output_schema_version="v"
     )
     assert "{{" not in rendered and "decomposition/1.0" not in rendered
-    from goes_tech_kg.prompts.judge import CURRICULAR_JUDGE_V2
-
     assert CURRICULAR_JUDGE_V2.system != CURRICULAR_JUDGE.system
     assert "verification" in CURRICULAR_JUDGE_V2.variables
     for prompt in (*DECOMPOSITION_PROMPTS.values(), CURRICULAR_JUDGE, CURRICULAR_JUDGE_V2):
@@ -117,7 +122,7 @@ def test_vertex_body_is_exactly_the_recorded_request():
     )
     body = request_body(request, user_content)
     assert body["generationConfig"]["thinkingConfig"] == {"thinkingBudget": 4096}
-    assert body["generationConfig"]["responseJsonSchema"] == DecompositionOutput.model_json_schema()
+    assert body["generationConfig"]["responseJsonSchema"] == provider_schema(DecompositionOutput)
     assert body["contents"][0]["parts"][0]["text"] == user_content
     assert endpoint("p", "global", "m").startswith(
         "https://aiplatform.googleapis.com/v1/projects/p/"
@@ -199,7 +204,8 @@ def test_decomposition_contract_and_metrics():
             ],
         }
     )
-    metrics = prompt_metrics.summarize(ok, CONTEXT)
+    context = prompt_metrics.ContextIndex(CONTEXT)
+    metrics = prompt_metrics.summarize(ok, context).model_dump()
     assert metrics["micro_skill_count"] == 2
     assert metrics["quote_exactness"] == pytest.approx(2 / 3)
     assert metrics["locator_exactness"] == pytest.approx(2 / 3)
@@ -216,7 +222,7 @@ def test_decomposition_contract_and_metrics():
     )
     with pytest.raises(ValidationError, match="at least one micro-skill"):
         DecompositionOutput.model_validate({"status": "ok", "coverage_notes": ""})
-    assert prompt_metrics.summarize(refused, CONTEXT)["quote_exactness"] is None
+    assert prompt_metrics.summarize(refused, context).quote_exactness is None
     assert prompt_metrics.jaccard(ok, ok) == 1.0 and prompt_metrics.jaccard(ok, refused) == 0.0
     for bad in [
         {"status": "refused", "micro_skills": [micro()], "coverage_notes": ""},
@@ -246,3 +252,20 @@ def test_decomposition_contract_and_metrics():
         JudgeOutput(verdict="accept", score=0.5, rationale="x")
     with pytest.raises(ValidationError, match="reject requires"):
         JudgeOutput(verdict="reject", score=0.7, rationale="x")
+
+
+def test_documentation_cannot_invalidate_recorded_answers():
+    """A maintainer docstring must not reach the provider, or every replay key would move."""
+    schema = provider_schema(DecompositionOutput)
+    assert DecompositionOutput.__doc__ and "description" not in json.dumps(schema)
+    assert schema["$defs"]["ProposedMicroSkill"]["properties"].keys() == (
+        DecompositionOutput.model_json_schema()["$defs"]["ProposedMicroSkill"]["properties"].keys()
+    )
+    documented, _ = build_request(DECOMPOSITION_GUIDED, spec(), case(), CONTEXT, 0)
+    stripped = documented.model_copy(
+        update={"output_json_schema": provider_schema(DecompositionOutput)}
+    )
+    assert documented.key == stripped.key
+    # A real contract change still moves the key, so replay cannot silently accept a new shape.
+    widened = documented.model_copy(update={"output_json_schema": provider_schema(JudgeOutput)})
+    assert widened.key != documented.key

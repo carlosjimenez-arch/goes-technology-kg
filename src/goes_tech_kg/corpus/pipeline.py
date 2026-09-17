@@ -9,12 +9,12 @@ import numpy as np
 import polars as pl
 import yaml
 
-from goes_tech_kg.agents.license_workflow import license_gate_node
 from goes_tech_kg.corpus.chunk import chunk_document
 from goes_tech_kg.corpus.discover import discover
 from goes_tech_kg.corpus.embed import Embedder
 from goes_tech_kg.corpus.fetch import fetch, replay_bytes
 from goes_tech_kg.corpus.index import VectorIndex
+from goes_tech_kg.corpus.license_gate import license_gate
 from goes_tech_kg.corpus.parse import parse
 from goes_tech_kg.corpus.provenance import build_provenance
 from goes_tech_kg.schemas.base import byte_digest, canonical_json
@@ -30,7 +30,7 @@ def acquire(catalogue: Path, policy_path: Path, data_root: Path) -> tuple[Acquis
 
         def get(source: SourceDocument) -> Acquisition:
             return fetch(
-                source, license_gate_node(source, policy), policy, data_root / "raw/corpus", client
+                source, license_gate(source, policy), policy, data_root / "raw/corpus", client
             )
 
         with ThreadPoolExecutor(max_workers=4) as executor:

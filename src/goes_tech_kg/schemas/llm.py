@@ -4,12 +4,34 @@ from typing import Annotated, Any, Literal, Self
 
 from pydantic import Field, model_validator
 
-from goes_tech_kg.schemas.base import Contract, Digest, Text, digest
+from goes_tech_kg.schemas.base import Contract, Digest, Text, byte_digest, digest
 
 Provider = Literal["vertex-ai"]
 
 
+def provider_schema(contract: type[Contract]) -> dict[str, Any]:
+    """The JSON schema sent to the provider, stripped of every description.
+
+    Pydantic copies class docstrings into the schema as descriptions, and the schema is part
+    of the request and therefore of the replay key. Stripping them keeps maintainer
+    documentation free to change without invalidating recorded answers; wording meant for the
+    model belongs in the versioned prompt, where it is measured.
+    """
+    stripped: dict[str, Any] = _without_descriptions(contract.model_json_schema())
+    return stripped
+
+
+def _without_descriptions(node: Any) -> Any:
+    if isinstance(node, dict):
+        return {k: _without_descriptions(v) for k, v in node.items() if k != "description"}
+    if isinstance(node, list):
+        return [_without_descriptions(v) for v in node]
+    return node
+
+
 class GenerationSettings(Contract):
+    """Provider settings that change the answer, and therefore the replay key."""
+
     temperature: Annotated[float, Field(ge=0, le=2, allow_inf_nan=False)] = 0.0
     seed: Annotated[int, Field(strict=True, ge=0)] = 0
     max_output_tokens: Annotated[int, Field(strict=True, gt=0)] = 32768
@@ -35,6 +57,12 @@ class ContextRef(Contract):
 
 
 class LLMRequest(Contract):
+    """Everything that determines an answer, with the rendered prompt reduced to its digest.
+
+    The rendered text is not stored because it embeds licensed corpus passages; the context
+    is kept as locators instead, so a record can be committed while the source cannot.
+    """
+
     schema_version: Literal["llm-request/1.0"] = "llm-request/1.0"
     provider: Provider = "vertex-ai"
     model: Text
@@ -55,16 +83,21 @@ class LLMRequest(Contract):
 
     @property
     def key(self) -> str:
+        """Replay key: the digest of every field that can change the answer."""
         return digest(self)
 
 
 class TokenUsage(Contract):
+    """Tokens the provider reported, thinking counted separately from output."""
+
     prompt_tokens: Annotated[int, Field(strict=True, ge=0)]
     output_tokens: Annotated[int, Field(strict=True, ge=0)]
     thoughts_tokens: Annotated[int, Field(strict=True, ge=0)] = 0
 
 
 class ResponseRecord(Contract):
+    """One immutable provider answer bound to the request that produced it."""
+
     schema_version: Literal["llm-response/1.0"] = "llm-response/1.0"
     request_sha256: Digest
     request: LLMRequest
@@ -80,8 +113,6 @@ class ResponseRecord(Contract):
     def digests(self) -> Self:
         if self.request.key != self.request_sha256:
             raise ValueError("response record does not match its request digest")
-        from goes_tech_kg.schemas.base import byte_digest
-
         if byte_digest(self.response_text.encode()) != self.response_sha256:
             raise ValueError("response text does not match its digest")
         return self

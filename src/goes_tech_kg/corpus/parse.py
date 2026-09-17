@@ -13,7 +13,6 @@ PARSER_VERSION = "parse/1.1"
 
 
 def _paragraph(
-    document: SourceDocument,
     sha: str,
     text: str,
     ordinal: int,
@@ -70,9 +69,7 @@ def parse_pdf(document: SourceDocument, payload: bytes) -> ParsedDocument:
         parts = re.findall(r".*?(?:\n[ \t]*\n|\Z)", text, flags=re.S)
         for part in parts:
             if part:
-                paragraphs.append(
-                    _paragraph(document, sha, part, len(paragraphs) + 1, unit, page_no, unit)
-                )
+                paragraphs.append(_paragraph(sha, part, len(paragraphs) + 1, unit, page_no, unit))
     return ParsedDocument(
         document_id=document.id, document_sha256=sha, paragraphs=tuple(paragraphs)
     )
@@ -113,7 +110,6 @@ def parse_html(document: SourceDocument, payload: bytes) -> ParsedDocument:
             continue
         paragraphs.append(
             _paragraph(
-                document,
                 sha,
                 text,
                 len(paragraphs) + 1,

@@ -3,7 +3,6 @@
 import json
 import re
 from collections.abc import Callable
-from pathlib import Path
 from typing import Any
 
 from goes_tech_kg.schemas.llm import ContextRef
@@ -18,23 +17,6 @@ def compact(text: str) -> str:
     return _BLANK_LINES.sub("\n", _SPACES.sub(" ", text)).strip()
 
 
-def load_interim_chunks(path: Path) -> ChunkLookup:
-    """Lookup over data/interim/chunks.jsonl (full text, ignored by Git)."""
-    index: dict[str, dict[str, Any]] = {}
-    with path.open() as stream:
-        for line in stream:
-            if line.strip():
-                row = json.loads(line)
-                index[row["id"]] = row
-
-    def lookup(chunk_id: str) -> dict[str, Any]:
-        if chunk_id not in index:
-            raise KeyError(f"chunk not available locally: {chunk_id}")
-        return index[chunk_id]
-
-    return lookup
-
-
 def chunk_from_model(chunk: Any) -> dict[str, Any]:
     """Adapt a Chunk contract (for example from a golden excerpt) to the lookup row shape."""
     row: dict[str, Any] = json.loads(chunk.model_dump_json())
@@ -42,6 +24,7 @@ def chunk_from_model(chunk: Any) -> dict[str, Any]:
 
 
 def locator(document_slug: str, paragraph: dict[str, Any]) -> str:
+    """The bracketed reference a model must cite: document, page or html, paragraph id."""
     original = paragraph["original"]
     where = f"p.{original['page']}" if original.get("page") is not None else "html"
     return f"[{document_slug} {where} ¶{original['id']}]"

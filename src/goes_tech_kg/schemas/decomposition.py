@@ -12,11 +12,15 @@ SLUG = re.compile(r"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$")
 
 
 class EvidenceQuote(Contract):
+    """A fragment copied from the context, with the locator it was copied from."""
+
     quote: Annotated[str, Field(min_length=8)]
     locator_hint: Text
 
 
 class ProposedMicroSkill(Contract):
+    """One observable performance a model proposes, with the evidence it rests on."""
+
     slug: Text
     statement: Text
     observable_verb: Text
@@ -48,6 +52,8 @@ class ProposedMicroSkill(Contract):
 
 
 class DecompositionOutput(Contract):
+    """A model's answer: micro-skills, or an explicit refusal with its reason."""
+
     schema_version: Literal["decomposition/1.0"] = "decomposition/1.0"
     status: Literal["ok", "refused"]
     refusal_reason: str | None = None
@@ -73,6 +79,8 @@ class DecompositionOutput(Contract):
 
 
 class JudgeIssue(Contract):
+    """One defect a judge found, from a closed vocabulary so issues can be counted."""
+
     code: Literal[
         "grade_mismatch",
         "not_observable",
@@ -93,6 +101,8 @@ class JudgeIssue(Contract):
 
 
 class JudgeOutput(Contract):
+    """A judge's verdict on one decomposition; the score must agree with the verdict."""
+
     schema_version: Literal["judge-review/1.0"] = "judge-review/1.0"
     verdict: Literal["accept", "revise", "reject"]
     score: Annotated[float, Field(ge=0, le=1, allow_inf_nan=False)]

@@ -15,6 +15,7 @@ units:
   - grade: 2
     unit: 5
     label: Objetos técnicos
+    case_ids: [sv-g2-u5-objetos-tecnicos]
     indicators:
       "5.1": {class: technology, reason: "Construction of a measuring artefact."}
       "5.2": {class: technology, reason: "Measurement with a self-built instrument."}
@@ -28,6 +29,7 @@ units:
   - grade: 3
     unit: 1
     label: Medidas y fuerzas
+    case_ids: [sv-g3-u1-medidas-fuerzas]
     indicators:
       "1.1": {class: technology, reason: "Measuring with different instruments."}
       "1.2": {class: technology, reason: "Selecting an instrument for the object measured."}
@@ -38,6 +40,7 @@ units:
   - grade: 4
     unit: 1
     label: Máquinas y energía
+    case_ids: [sv-g4-u1-maquinas-energia, sv-g4-u1-maquinas-energia-parafrasis, malformed-grade-9, adversarial-injected-instruction]
     indicators:
       "1.1": {class: technology, reason: "Identifying simple machines in devices."}
       "1.2": {class: technology, reason: "Classifying simple machines."}
@@ -52,6 +55,7 @@ units:
   - grade: 6
     unit: 3
     label: Electricidad y magnetismo
+    case_ids: [sv-g6-u3-electricidad]
     indicators:
       "3.1": {class: technology, reason: "Measuring with a multimeter."}
       "3.2": {class: technology, reason: "Reading resistor values and verifying with an instrument."}

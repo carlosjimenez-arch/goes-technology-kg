@@ -8,6 +8,12 @@ from goes_tech_kg.schemas.llm import LLMRequest, ResponseRecord
 
 
 class LLMGateway:
+    """Single door to the provider: replay first, acquire only when authorized.
+
+    A gateway without an online client can never reach a model, which is what makes an
+    offline build reproducible: a missing recording raises instead of being fetched.
+    """
+
     def __init__(self, store: ReplayStore, online: VertexClient | None = None):
         self.store = store
         self.online = online
@@ -16,6 +22,7 @@ class LLMGateway:
         self._lock = threading.Lock()
 
     def complete(self, request: LLMRequest, user_content: str) -> ResponseRecord:
+        """Return the recorded answer for this request, acquiring it only if allowed."""
         record = self.store.get(request)
         if record is not None:
             with self._lock:

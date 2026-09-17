@@ -1,1 +1,0 @@
-"""Technology curriculum infrastructure."""

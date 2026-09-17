@@ -56,6 +56,20 @@ rationale:
   - "Energy calculations for appliances (grade 4, 1.10) stay; the human-body half of the indicator is Science and is not required of a Technology micro-skill."
   - The classification lives in config/technology_scope.yaml, validated by a Pydantic contract, and the coverage metric reports both raw coverage and coverage within scope, so the ceiling is visible instead of implicit.
 
+measured_effect:
+  date: '2026-09-17'
+  report: data/processed/prompt_experiments/decomposition-v4/report.json
+  finding: >
+    Applying the classification to the recorded v4 answers, with no new provider call, raises
+    mean indicator coverage from 0.84 to 0.98 for guided-v3 with gemini-3.1-pro-preview and
+    from 0.78 to 0.91 with gemini-2.5-flash. The raw metric was penalizing both models for not
+    covering Science indicators that decision 0013's prompts correctly excluded, and their
+    coverage_notes said so.
+  consequence: >
+    Reports carry both numbers. Raw coverage stays visible because it answers what fraction of
+    the unit was touched; scoped coverage answers whether Technology was covered, which is the
+    question the ceiling was written for.
+
 consequences:
   - Coverage ceilings for the four experiment units are 0.889, 0.333, 1.0 and 0.889.
   - Decomposition prompts may receive the in-scope indicator list per unit; the Phase 1 anti-circularity boundary is respected because the list narrows the target, it does not supply evidence.
@@ -85,6 +99,12 @@ enforced_by:
     - id: scoped_coverage_ignores_out_of_scope_indicators
       assertion: A decomposition quoting every technology indicator reaches scoped coverage 1.0 even when Science-dependency indicators are unquoted.
       test: tests/unit/test_scope.py::test_scoped_coverage_ignores_out_of_scope_indicators
+    - id: cases_map_to_exactly_one_unit
+      assertion: Every experiment case belongs to at most one classified unit, and a case with foreign evidence has no unit and therefore no scoped ceiling.
+      test: tests/unit/test_scope.py::test_case_ids_link_experiment_cases_to_their_unit
+    - id: scoped_metric_is_absent_without_a_scope
+      assertion: summarize reports scoped coverage only when a scope applies; otherwise the field is None rather than zero.
+      test: tests/unit/test_scope.py::test_summarize_reports_scoped_coverage_only_when_a_scope_applies
 
 validation:
   - tests/unit/test_scope.py
